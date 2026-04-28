@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boop — Carlos Mera</title>
+  <meta name="description" content="Boop — Palm-based payment and identity app. Designed by Carlos Mera.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="project.css">
+  <link rel="stylesheet" href="boop.css">
+</head>
+<body>
+
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">CM</a>
+      <nav class="nav__links">
+        <a href="index.html#work">Work</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#contact">Contact</a>
+        <a href="https://www.linkedin.com/in/carlosmmera/" target="_blank" rel="noopener" class="nav__cta">LinkedIn ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="project">
+
+    <!-- ─── HERO ─── -->
+    <section class="proj-hero">
+      <div class="proj-hero__inner">
+        <a href="index.html#work" class="proj-back">← Back to work</a>
+        <div class="proj-hero__meta">
+          <span class="tag">Mobile</span>
+          <span class="tag">UX / UI</span>
+          <span class="tag">Design System</span>
+          <span class="tag">Fintech</span>
+        </div>
+        <h1 class="proj-hero__title">Boop</h1>
+        <p class="proj-hero__tagline">Palm-based payment & identity app</p>
+        <div class="proj-hero__details">
+          <div class="proj-detail">
+            <span class="proj-detail__label">Year</span>
+            <span class="proj-detail__value">2024</span>
+          </div>
+          <div class="proj-detail">
+            <span class="proj-detail__label">Role</span>
+            <span class="proj-detail__value">Lead Product Designer</span>
+          </div>
+          <div class="proj-detail">
+            <span class="proj-detail__label">Tools</span>
+            <span class="proj-detail__value">Figma · Claude Code</span>
+          </div>
+          <div class="proj-detail">
+            <span class="proj-detail__label">Platform</span>
+            <span class="proj-detail__value">iOS · Android</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cover: 3 phones -->
+      <div class="proj-hero__cover boop-cover">
+        <div class="boop-cover__phones">
+
+          <!-- Splash -->
+          <div class="boop-phone boop-phone--left">
+            <div class="boop-phone__frame">
+              <div class="boop-screen boop-screen--splash">
+                <div class="boop-logo">b<span class="boop-dot"></span>op</div>
+                <p class="boop-splash-headline">Secure payments at the wave of a hand</p>
+                <div class="boop-splash-visual">
+                  <div class="boop-splash-hand"></div>
+                  <div class="boop-splash-scanner"></div>
+                </div>
+                <div class="boop-splash-actions">
+                  <div class="boop-btn-dark">Create a new account</div>
+                  <div class="boop-btn-ring">● Boop account</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Onboarding 1 -->
+          <div class="boop-phone boop-phone--center">
+            <div class="boop-phone__frame">
+              <div class="boop-screen boop-screen--light">
+                <div class="boop-ob-title">Your identity<br>is safe</div>
+                <div class="boop-ob-body">Boop connects you to the world while keeping your data entirely yours — unseen and untouched by anyone, even Boop.</div>
+                <div class="boop-illus boop-illus--identity">
+                  <div class="boop-illus__circle">
+                    <div class="boop-illus__figure"></div>
+                  </div>
+                </div>
+                <div class="boop-btn-dark">Next</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Onboarding 2 -->
+          <div class="boop-phone boop-phone--right">
+            <div class="boop-phone__frame">
+              <div class="boop-screen boop-screen--light">
+                <div class="boop-ob-title">Your hand<br>is your key</div>
+                <div class="boop-ob-body">With it you can make payments and access exclusive membership programs and events.</div>
+                <div class="boop-illus boop-illus--palm">
+                  <div class="boop-illus__circle">
+                    <div class="boop-illus__palm"></div>
+                  </div>
+                </div>
+                <div class="boop-btn-dark">Continue</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ─── OVERVIEW ─── -->
+    <section class="proj-section">
+      <div class="proj-section__inner boop-overview fade-in">
+        <div>
+          <p class="section__label">Overview</p>
+          <h2 class="proj-section__title">Pay with a wave, belong with an identity</h2>
+          <p class="proj-text">Boop is a palm-based payment and identity app that turns your hand into a universal key — for contactless payments, venue access, and membership programs — all without exposing personal data.</p>
+          <p class="proj-text">Designed from the ground up with privacy at its core, Boop integrates World ID verification so users stay anonymous even to the platform itself. The result is a product that feels frictionless and futuristic without sacrificing trust.</p>
+        </div>
+        <div class="boop-steps-block">
+          <p class="boop-steps-label">How it works</p>
+          <div class="boop-steps">
+            <div class="boop-step">
+              <span class="boop-step__num">01</span>
+              <div>
+                <h4 class="boop-step__title">Create your identity</h4>
+                <p class="boop-step__body">Sign up with a World ID or Boop account. Your data stays encrypted and private — even Boop can't access it.</p>
+              </div>
+            </div>
+            <div class="boop-step">
+              <span class="boop-step__num">02</span>
+              <div>
+                <h4 class="boop-step__title">Register your palm</h4>
+                <p class="boop-step__body">Scan at a Boop device or at home. Your hand becomes your payment credential and access key.</p>
+              </div>
+            </div>
+            <div class="boop-step">
+              <span class="boop-step__num">03</span>
+              <div>
+                <h4 class="boop-step__title">Pay & access</h4>
+                <p class="boop-step__body">Wave your hand over any Boop scanner to pay at kiosks, verify age, or unlock exclusive memberships and events.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ─── PILLARS ─── -->
+    <section class="proj-section">
+      <div class="proj-section__inner fade-in">
+        <p class="section__label">Design principles</p>
+        <h2 class="proj-section__title">Built on four pillars</h2>
+        <div class="proj-pillars">
+          <div class="proj-pillar">
+            <span class="proj-pillar__num">01</span>
+            <h4 class="proj-pillar__title">Privacy by default</h4>
+            <p class="proj-pillar__desc">Zero data shared with third parties. World ID ensures identity without exposure — not even Boop can see your information.</p>
+          </div>
+          <div class="proj-pillar">
+            <span class="proj-pillar__num">02</span>
+            <h4 class="proj-pillar__title">Frictionless payments</h4>
+            <p class="proj-pillar__desc">A wave of the hand replaces cards, phones, and PINs. No app open needed at the point of sale.</p>
+          </div>
+          <div class="proj-pillar">
+            <span class="proj-pillar__num">03</span>
+            <h4 class="proj-pillar__title">Access control</h4>
+            <p class="proj-pillar__desc">Automatic age verification and membership gating without sharing personal documents or going through manual checks.</p>
+          </div>
+          <div class="proj-pillar">
+            <span class="proj-pillar__num">04</span>
+            <h4 class="proj-pillar__title">Unified experience</h4>
+            <p class="proj-pillar__desc">One app for payments, event access, and merchant management — seamless for both sides of the transaction.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ─── ONBOARDING FLOW ─── -->
+    <section class="proj-section">
+      <div class="proj-section__inner fade-in">
+        <p class="section__label">User Flow</p>
+        <h2 class="proj-section__title">Onboarding & registration</h2>
+        <p class="proj-text" style="max-width:580px;margin-bottom:3rem">A 3-step onboarding that builds trust before asking for anything. Each screen answers "why" before asking "what" — reassuring users at every stage.</p>
+
+        <div class="boop-flow">
+
+          <div class="boop-flow__item">
+            <span class="boop-flow__label">Step 1 · Date of birth</span>
+            <div class="boop-phone__frame">
+              <div class="boop-screen boop-screen--light">
+                <div class="boop-progress-bar">
+                  <div class="boop-progress-bar__seg boop-progress-bar__seg--on"></div>
+                  <div class="boop-progress-bar__seg boop-progress-bar__seg--on"></div>
+                  <div class="boop-progress-bar__seg"></div>
+                </div>
+                <div class="boop-ob-title" style="font-size:1.1rem;margin-top:.5rem">Date of birth</div>
+                <div class="boop-ob-body" style="font-size:.65rem">You must be 18 or older to use Boop.</div>
+                <div class="boop-dob">
+                  <div class="boop-dob__track"></div>
+                  <div class="boop-dob__cols">
+                    <div class="boop-dob__col">
+                      <div class="boop-dob__item boop-dob__item--dim">October</div>
+                      <div class="boop-dob__item boop-dob__item--sel">November</div>
+                      <div class="boop-dob__item boop-dob__item--dim">December</div>
+                    </div>
+                    <div class="boop-dob__col">
+                      <div class="boop-dob__item boop-dob__item--dim">11</div>
+                      <div class="boop-dob__item boop-dob__item--sel">12</div>
+                      <div class="boop-dob__item boop-dob__item--dim">13</div>
+                    </div>
+                    <div class="boop-dob__col">
+                      <div class="boop-dob__item boop-dob__item--dim">1994</div>
+                      <div class="boop-dob__item boop-dob__item--sel">1995</div>
+                      <div class="boop-dob__item boop-dob__item--dim">1996</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="boop-btn-dark" style="margin-top:auto">Confirm</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="boop-flow__arrow">→</div>
+
+          <div class="boop-flow__item">
+            <span class="boop-flow__label">Step 2 · Account created</span>
+            <div class="boop-phone__frame">
+              <div class="boop-screen boop-screen--light">
+                <div class="boop-progress-bar">
+                  <div class="boop-progress-bar__seg boop-progress-bar__seg--on"></div>
+                  <div class="boop-progress-bar__seg boop-progress-bar__seg--on"></div>
+                  <div class="boop-progress-bar__seg boop-progress-bar__seg--on"></div>
+                </div>
+                <div class="boop-success">
+                  <div class="boop-success__ring">
+                    <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+                      <path d="M9 18L15 24L27 12" stroke="#7C8BD4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </div>
+                </div>
+                <div class="boop-ob-title" style="font-size:1.1rem">Account Created!</div>
+                <div class="boop-ob-body" style="font-size:.65rem">Welcome to Boop. Your account is ready to use.</div>
+                <div class="boop-btn-dark" style="margin-top:auto;font-size:.6rem">Enable Push Notifications</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="boop-flow__arrow">→</div>
+
+          <div class="boop-flow__item">
+            <span class="boop-flow__label">Step 3 · Palm registration</span>
+            <div class="boop-phone__frame">
+              <div class="boop-screen boop-screen--scanner">
+                <div class="boop-logo" style="font-size:.9rem;align-self:center;margin-bottom:.25rem">b<span class="boop-dot"></span>op</div>
+                <div class="boop-ob-title" style="font-size:1.05rem;text-align:left">To start scanning</div>
+                <div class="boop-scanner-opts">
+                  <div class="boop-scanner-opt">
+                    <div class="boop-scanner-opt__icon">))</div>
+                    <div>
+                      <div class="boop-scanner-opt__title">Register at a boop scanner</div>
+                      <div class="boop-scanner-opt__sub">Hold your phone close to the scanner</div>
+                    </div>
+                    <span class="boop-scanner-opt__caret">›</span>
+                  </div>
+                  <div class="boop-scanner-opt">
+                    <div class="boop-scanner-opt__icon">⊡</div>
+                    <div>
+                      <div class="boop-scanner-opt__title">Register at home</div>
+                      <div class="boop-scanner-opt__sub">A deep scan will run the first time you interact with a boop device</div>
+                    </div>
+                    <span class="boop-scanner-opt__caret">›</span>
+                  </div>
+                </div>
+                <div class="boop-scanner-wave"></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ─── PAYMENTS SCREEN ─── -->
+    <section class="proj-section">
+      <div class="proj-section__inner fade-in">
+        <p class="section__label">Screens</p>
+        <h2 class="proj-section__title">Payments & transactions</h2>
+        <div class="boop-showcase">
+
+          <div class="boop-phone__frame boop-phone__frame--lg">
+            <div class="boop-screen boop-screen--home">
+              <div class="boop-home-hd">
+                <div class="boop-home-title">Transactions</div>
+                <div class="boop-home-sub">List of all your transactions</div>
+              </div>
+              <div class="boop-empty-card">
+                <div>
+                  <div class="boop-empty-card__title">No payment card</div>
+                  <div class="boop-empty-card__sub">Add one to pay with <span class="boop-pts">+10 points</span></div>
+                </div>
+                <div class="boop-add-btn">+ Add card</div>
+              </div>
+              <div class="boop-tx-date">April 10</div>
+              <div class="boop-tx-group">
+                <div class="boop-tx">
+                  <div><div class="boop-tx__name">Kiosk payment</div><div class="boop-tx__time">14:21</div></div>
+                  <div class="boop-tx__amt">-2,45 £</div>
+                </div>
+                <div class="boop-tx boop-tx--border">
+                  <div><div class="boop-tx__name">Entrance</div><div class="boop-tx__time">14:21</div></div>
+                  <div style="text-align:right">
+                    <div class="boop-tx__rejected">Rejected</div>
+                    <div class="boop-tx__tag">Age verification</div>
+                  </div>
+                </div>
+                <div class="boop-tx boop-tx--border">
+                  <div><div class="boop-tx__name">Kiosk payment</div><div class="boop-tx__time">14:21</div></div>
+                  <div class="boop-tx__amt">-2,45 £</div>
+                </div>
+                <div class="boop-tx-sigs">All Signatures →</div>
+              </div>
+              <div class="boop-tx-date">April 9</div>
+              <div class="boop-tx-group">
+                <div class="boop-tx">
+                  <div><div class="boop-tx__name">Kiosk payment</div><div class="boop-tx__time">14:21</div></div>
+                  <div class="boop-tx__amt">-2,45 £</div>
+                </div>
+              </div>
+              <div class="boop-bottom-nav">
+                <div class="boop-nav-item boop-nav-item--on">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/></svg>
+                  <span>Payments</span>
+                </div>
+                <div class="boop-nav-item">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="4" width="14" height="9" rx="2" stroke="currentColor" stroke-width="1.5"/></svg>
+                  <span>Card</span>
+                </div>
+                <div class="boop-nav-item">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2L10 5H14L11 8L12 12L8 10L4 12L5 8L2 5H6L8 2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                  <span>Permissions</span>
+                </div>
+                <div class="boop-nav-item">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="6" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M2 14c0-3.314 2.686-6 6-6s6 2.686 6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  <span>Account</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="boop-showcase__copy">
+            <h3 class="boop-showcase__title">Four-tab navigation</h3>
+            <p class="proj-text">The bottom nav maps directly to the four core concerns of the product — payments, card, permissions, and account — keeping each area focused and immediately accessible.</p>
+            <ul class="boop-feat-list">
+              <li>Transactions grouped chronologically by date</li>
+              <li>Age verification rejections surfaced inline with context</li>
+              <li>Card onboarding prompt with loyalty points incentive</li>
+              <li>Cryptographic signature trail for full auditability</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ─── DESIGN SYSTEM ─── -->
+    <section class="proj-section">
+      <div class="proj-section__inner fade-in">
+        <p class="section__label">Design System</p>
+        <h2 class="proj-section__title">A system built for trust and clarity</h2>
+        <div class="proj-ds-grid">
+          <div class="proj-ds-card">
+            <h4 class="proj-ds-card__title">Typography</h4>
+            <p class="proj-ds-card__desc">Inter throughout — <em>bold display</em> headings for moments of delight, <em>regular weight</em> for transactional clarity. A tight scale that never competes with content.</p>
+          </div>
+          <div class="proj-ds-card">
+            <h4 class="proj-ds-card__title">Colour</h4>
+            <p class="proj-ds-card__desc">Light blue-grey surface (#ECF0F6) with pure black CTAs. Teal for identity, coral-orange for palm — each colour carries a specific semantic meaning.</p>
+          </div>
+          <div class="proj-ds-card">
+            <h4 class="proj-ds-card__title">Components</h4>
+            <p class="proj-ds-card__desc"><em>Button panel, selector, scanner prompt, transaction row, card assignment</em> — a tight component set covering every core interaction pattern in the product.</p>
+          </div>
+          <div class="proj-ds-card">
+            <h4 class="proj-ds-card__title">Illustration style</h4>
+            <p class="proj-ds-card__desc">Generative line-art figures on muted backgrounds. Human yet abstract — reinforcing the privacy-first message without feeling sterile or technical.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ─── CLOSING ─── -->
+    <section class="proj-closing">
+      <div class="proj-closing__inner fade-in">
+        <p class="section__label">Closing thoughts</p>
+        <h2 class="proj-closing__title">Identity without<br>exposure.</h2>
+        <p class="proj-closing__text">Designing Boop meant solving a hard UX problem: making biometric payments feel natural and trustworthy without ever asking users to surrender their privacy. Every screen was designed to reassure first and transact second.</p>
+        <a href="index.html#contact" class="btn btn--primary" style="margin-top:2rem;display:inline-flex">Get in touch</a>
+      </div>
+    </section>
+
+    <nav class="proj-nav">
+      <a href="index.html#work" class="proj-nav__back">← All projects</a>
+      <div class="proj-nav__next">
+        <span class="proj-nav__label">Next project</span>
+        <a href="syntropyx.html" class="proj-nav__title">SyntropyX →</a>
+      </div>
+    </nav>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <span>© 2025 Carlos Mera</span>
+      <span>Designed &amp; built with care · Barcelona</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

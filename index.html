@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Carlos Mera — Web3 Product Designer</title>
-  <meta name="description" content="Carlos Mera is a Web3 Product Designer based in Barcelona, creating digital products with simplicity and functionality.">
+  <title>Carlos Mera — Product Designer / Engineer</title>
+  <meta name="description" content="Carlos Mera is a Product Designer & Engineer based in Barcelona, bridging design and engineering through Claude Code and MCP.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -17,6 +17,7 @@
       <a href="#" class="nav__logo">CM</a>
       <nav class="nav__links">
         <a href="#work">Work</a>
+        <a href="#process">Process</a>
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
         <a href="https://www.linkedin.com/in/carlosmmera/" target="_blank" rel="noopener" class="nav__cta">LinkedIn ↗</a>
@@ -26,44 +27,126 @@
 
   <main>
 
-    <!-- HERO -->
+    <!-- ── HERO ── -->
     <section class="hero" id="hero">
-      <div class="hero__content">
-        <div class="hero__eyebrow">
-          <span class="badge badge--green">Available for work</span>
-          <span class="hero__location">Barcelona, Spain</span>
-        </div>
-        <h1 class="hero__name">Carlos<br>Mera</h1>
-        <p class="hero__title">Web3 Product Designer</p>
-        <p class="hero__bio">
-          Digital product designer with a graphic design background.
-          Focused on user-centred experiences built on simplicity and functionality —
-          currently designing at Nethermind.
-        </p>
+      <div class="hero__inner">
+        <span class="badge badge--lime">Available for new projects</span>
+        <h1 class="hero__title"><span class="hero__line1"><span class="rotating-word-wrap"><span class="rotating-word" id="rotatingWord">Web3</span></span> Product</span><br>Designer.</h1>
+        <p class="hero__tagline">I bridge Design &amp; Engineering — building hi-fi prototypes with code, AI agents, and real workflows.</p>
+        <p class="hero__meta">End-to-end · AI-augmented · Barcelona-based</p>
         <div class="hero__actions">
-          <a href="#work" class="btn btn--primary">View Work</a>
-          <a href="#contact" class="btn btn--ghost">Get in Touch</a>
-        </div>
-      </div>
-      <div class="hero__visual" aria-hidden="true">
-        <div class="hero__img-grid">
-          <div class="hero__img-cell hero__img-cell--1">
-            <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/88290e165961447.6476f2be57e2d.jpg" alt="">
-          </div>
-          <div class="hero__img-cell hero__img-cell--2">
-            <img src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/14a204192356969.65dbbee1cb009.jpg" alt="">
-          </div>
-          <div class="hero__img-cell hero__img-cell--3">
-            <img src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/b14396187278695.6584b4a18f9fa.jpg" alt="">
-          </div>
-          <div class="hero__img-cell hero__img-cell--4">
-            <img src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/dff649142179465.6267fcf5472f9.jpg" alt="">
-          </div>
+          <a href="#work" class="btn btn--lime-pill">View selected work</a>
+          <a href="#process" class="btn btn--dark-pill">Explore my process</a>
         </div>
       </div>
     </section>
 
-    <!-- SELECTED WORK -->
+
+    <!-- ── STATS ── -->
+    <div class="stats-bar">
+      <div class="stats-bar__inner">
+        <div class="stats-bar__item">
+          <span class="stats-bar__value">4+</span>
+          <span class="stats-bar__label">years exp.</span>
+        </div>
+        <div class="stats-bar__item">
+          <span class="stats-bar__value">Web3 &amp; Fintech</span>
+          <span class="stats-bar__label">domains</span>
+        </div>
+        <div class="stats-bar__item">
+          <span class="stats-bar__value">AI-augmented</span>
+          <span class="stats-bar__label">workflow</span>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ── PROCESS ── -->
+    <section class="process-section" id="process">
+      <div class="process-section__sticky">
+      <div class="process-section__inner">
+        <div class="process__layout">
+
+          <div class="process__left">
+            <div class="process__header">
+              <p class="section__label">My Process</p>
+              <button class="process__skip" id="processSkip">Skip</button>
+            </div>
+            <div class="process__progress"><div class="process__progress-fill"></div></div>
+          <div class="process__nav">
+            <div class="process__item process__item--active" data-panel="discover">
+              <div class="process__item-inner">
+                <span class="process__num">01</span>
+                <span class="process__name">Discover</span>
+              </div>
+              <span class="process__sub">Research & benchmarking</span>
+            </div>
+            <div class="process__item" data-panel="define">
+              <div class="process__item-inner">
+                <span class="process__num">02</span>
+                <span class="process__name">Define</span>
+              </div>
+              <span class="process__sub">Problem framing & flows</span>
+            </div>
+            <div class="process__item" data-panel="design">
+              <div class="process__item-inner">
+                <span class="process__num">03</span>
+                <span class="process__name">Design</span>
+              </div>
+              <span class="process__sub">Lo-fi → validate → hi-fi</span>
+            </div>
+            <div class="process__item" data-panel="validate">
+              <div class="process__item-inner">
+                <span class="process__num">04</span>
+                <span class="process__name">Validate</span>
+              </div>
+              <span class="process__sub">Prototype & user testing</span>
+            </div>
+            <div class="process__item" data-panel="deliver">
+              <div class="process__item-inner">
+                <span class="process__num">05</span>
+                <span class="process__name">Deliver</span>
+              </div>
+              <span class="process__sub">Handoff & implementation</span>
+            </div>
+          </div>
+          </div>
+
+          <div class="process__panels">
+            <div class="process__panel process__panel--active" id="panel-discover">
+              <h2 class="process__title">Discover</h2>
+              <p class="process__body">Stakeholder interviews, competitive benchmarking, and AI-assisted synthesis. I surface patterns fast — less collecting, more interpreting.</p>
+              <div class="process__img"></div>
+            </div>
+            <div class="process__panel" id="panel-define">
+              <h2 class="process__title">Define</h2>
+              <p class="process__body">Problem framing, user flows, and information architecture. Every design decision starts with a clear problem statement and a shared understanding of who we're designing for.</p>
+              <div class="process__img"></div>
+            </div>
+            <div class="process__panel" id="panel-design">
+              <h2 class="process__title">Design</h2>
+              <p class="process__body">Lo-fi wireframes to design reviews to hi-fi prototypes. I work in rapid iterations, validating assumptions at each stage rather than polishing in one long pass.</p>
+              <div class="process__img"></div>
+            </div>
+            <div class="process__panel" id="panel-validate">
+              <h2 class="process__title">Validate</h2>
+              <p class="process__body">Interactive prototypes in Figma, usability testing with real users. Findings feed directly back into the design — no waiting for a final handoff to discover problems.</p>
+              <div class="process__img"></div>
+            </div>
+            <div class="process__panel" id="panel-deliver">
+              <h2 class="process__title">Deliver</h2>
+              <p class="process__body">Pixel-perfect specs, component documentation, and developer support through implementation. I stay close to the build — and with Claude Code, I often build alongside it.</p>
+              <div class="process__img"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      </div>
+    </section>
+
+
+    <!-- ── SELECTED WORK ── -->
     <section class="section work" id="work">
       <div class="section__header">
         <p class="section__label">Selected Work</p>
@@ -104,17 +187,21 @@
           </div>
         </a>
 
-        <a href="https://www.behance.net/hdkrlosde26" class="card fade-in" target="_blank" rel="noopener">
+        <a href="boop.html" class="card fade-in">
           <div class="card__image">
-            <div class="card__placeholder" style="background: linear-gradient(135deg, #0f0c29 0%, #302b63 55%, #24243e 100%)"></div>
+            <div class="card__placeholder boop-index-cover">
+              <div class="boop-index-logo">b<span></span>op</div>
+              <div class="boop-index-tag">Palm-based payments & identity</div>
+            </div>
           </div>
           <div class="card__info">
             <div class="card__tags">
               <span class="tag">Mobile</span>
-              <span class="tag">Social</span>
+              <span class="tag">Fintech</span>
+              <span class="tag">UX / UI</span>
             </div>
             <h3 class="card__title">Boop</h3>
-            <p class="card__desc">Social discovery app matching people through shared interests</p>
+            <p class="card__desc">Palm-based payment and identity app — wave your hand to pay and access</p>
             <span class="card__year">2024</span>
           </div>
         </a>
@@ -197,11 +284,12 @@
       </div>
 
       <div class="work__more">
-        <a href="https://www.behance.net/hdkrlosde26" target="_blank" rel="noopener" class="btn btn--outline">View All on Behance ↗</a>
+        <a href="https://www.behance.net/hdkrlosde26" target="_blank" rel="noopener" class="work__all">All projects on Behance →</a>
       </div>
     </section>
 
-    <!-- ABOUT -->
+
+    <!-- ── ABOUT ── -->
     <section class="section about" id="about">
       <div class="about__inner fade-in">
         <div class="about__left">
@@ -220,7 +308,7 @@
             </div>
             <div class="about__meta-item">
               <span class="about__meta-label">Education</span>
-              <span class="about__meta-value">UX/UI Design · Ironhack, 2020</span>
+              <span class="about__meta-value">UX/UI Design · Ironhack, 2020<br>Visual Communication &amp; Integral Design · ISDI</span>
             </div>
             <div class="about__meta-item">
               <span class="about__meta-label">Based in</span>
@@ -263,6 +351,7 @@
                 <li>Photoshop</li>
                 <li>Illustrator</li>
                 <li>Claude Code</li>
+                <li>MCP / APIs</li>
               </ul>
             </div>
           </div>
@@ -270,7 +359,75 @@
       </div>
     </section>
 
-    <!-- CONTACT -->
+
+    <!-- ── EXPERIENCE & EDUCATION ── -->
+    <section class="exp-section" id="exp">
+      <div class="exp-section__inner">
+        <p class="section__label">Experience &amp; Education</p>
+        <div class="exp__layout">
+
+          <div class="exp__nav">
+            <div class="exp__tab exp__tab--active" data-exp="experience">
+              <span class="exp__tab-name">Experience</span>
+              <span class="exp__tab-count">4 positions</span>
+            </div>
+            <div class="exp__tab" data-exp="education">
+              <span class="exp__tab-name">Education</span>
+              <span class="exp__tab-count">2 institutions</span>
+            </div>
+          </div>
+
+          <div class="exp__panels">
+
+            <div class="exp__panel exp__panel--active" id="exp-experience">
+              <h2 class="exp__title">Work Experience</h2>
+              <div class="exp__list">
+                <div class="exp__entry">
+                  <h3 class="exp__role">Product Designer</h3>
+                  <p class="exp__meta">Nethermind · Full-time · May 2024 – Present · Remote</p>
+                  <p class="exp__desc">Led Projects: SyntropyX · Dashboard.info · Aztec Dashboard<br>Web3 & Layer 2 Ethereum. End-to-end design from discovery to developer handoff.</p>
+                </div>
+                <div class="exp__entry">
+                  <h3 class="exp__role">UX/UI Designer</h3>
+                  <p class="exp__meta">NATEEVO · Full-time · May 2022 – May 2024 · Barcelona, Hybrid</p>
+                  <p class="exp__desc">Clients: ImaginBank, WatchesandWonders, Manor, Samsung, SEAT, Towerbank.<br>Product features, redesigns, wireframes and prototypes.</p>
+                </div>
+                <div class="exp__entry">
+                  <h3 class="exp__role">Product Designer</h3>
+                  <p class="exp__meta">Dissect · Co-op · Dec 2023 – Feb 2024 · Remote</p>
+                  <p class="exp__desc">Built the full design system for Dissect — a Web3/DeFi platform.</p>
+                </div>
+                <div class="exp__entry">
+                  <h3 class="exp__role">Product Designer</h3>
+                  <p class="exp__meta">OPOS · Co-op · Nov 2023 – Jan 2024 · Remote</p>
+                  <p class="exp__desc">Designed OPOS — a Solana blockchain fundamental analysis dashboard.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="exp__panel" id="exp-education">
+              <h2 class="exp__title">Education</h2>
+              <div class="exp__list">
+                <div class="exp__entry">
+                  <h3 class="exp__role">UX/UI Design</h3>
+                  <p class="exp__meta">Ironhack · 2020 · Barcelona</p>
+                  <p class="exp__desc">Intensive program covering user research, prototyping, interaction design, and product thinking.</p>
+                </div>
+                <div class="exp__entry">
+                  <h3 class="exp__role">Visual Communication &amp; Integral Design</h3>
+                  <p class="exp__meta">ISDI · Havana</p>
+                  <p class="exp__desc">Foundation in visual design, typography, brand identity, and communication systems.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ── CONTACT ── -->
     <section class="contact" id="contact">
       <div class="contact__inner fade-in">
         <p class="section__label">Contact</p>
@@ -292,7 +449,7 @@
 
   <footer class="footer">
     <div class="footer__inner">
-      <span>© 2024 Carlos Mera</span>
+      <span>© 2025 Carlos Mera</span>
       <span>Designed &amp; built with care · Barcelona</span>
     </div>
   </footer>

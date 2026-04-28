@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  @page { size: A4; margin: 0; }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;
+    background: #fff;
+    color: #1D1D1F;
+    font-size: 9.5pt;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    padding: 13mm 15mm 13mm 15mm;
+  }
+
+  /* ── Header ── */
+  .hd {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-bottom: 7mm;
+    border-bottom: 0.5px solid #D2D2D7;
+    margin-bottom: 6mm;
+  }
+
+  .hd__left { }
+
+  .hd__name {
+    font-size: 26pt;
+    font-weight: 700;
+    letter-spacing: -0.6px;
+    color: #1D1D1F;
+    line-height: 1;
+    margin-bottom: 2mm;
+  }
+
+  .hd__title {
+    font-size: 10.5pt;
+    font-weight: 400;
+    color: #3A3A3C;
+  }
+
+  .hd__title strong {
+    font-weight: 600;
+    color: #1D1D1F;
+  }
+
+  .hd__right {
+    text-align: right;
+    font-size: 8.5pt;
+    color: #6E6E73;
+    line-height: 1.8;
+  }
+
+  .hd__right a {
+    color: #0066CC;
+    text-decoration: none;
+  }
+
+  /* ── Stats ── */
+  .stats {
+    display: flex;
+    gap: 10mm;
+    padding: 5mm 0;
+    border-bottom: 0.5px solid #D2D2D7;
+    margin-bottom: 6mm;
+  }
+
+  .stat { display: flex; flex-direction: column; gap: 0.8mm; }
+
+  .stat__val {
+    font-size: 12pt;
+    font-weight: 700;
+    color: #1D1D1F;
+    letter-spacing: -0.3px;
+  }
+
+  .stat__lbl {
+    font-size: 7.5pt;
+    color: #6E6E73;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+  }
+
+  /* ── Summary ── */
+  .summary {
+    font-size: 9.5pt;
+    color: #3A3A3C;
+    line-height: 1.65;
+    margin-bottom: 6mm;
+    max-width: 170mm;
+  }
+
+  /* ── AI banner ── */
+  .ai-banner {
+    display: flex;
+    align-items: center;
+    gap: 2.5mm;
+    background: #F5F5F7;
+    border: 0.5px solid #D2D2D7;
+    border-radius: 8px;
+    padding: 3mm 4.5mm;
+    margin-bottom: 7mm;
+  }
+
+  .ai-banner__label {
+    font-size: 7.5pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #6E6E73;
+    white-space: nowrap;
+  }
+
+  .ai-banner__divider {
+    width: 0.5px;
+    height: 10px;
+    background: #D2D2D7;
+    flex-shrink: 0;
+  }
+
+  .ai-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5mm;
+  }
+
+  .ai-tag {
+    background: #fff;
+    border: 0.5px solid #D2D2D7;
+    border-radius: 4px;
+    padding: 1px 6px;
+    font-size: 8pt;
+    font-weight: 500;
+    color: #1D1D1F;
+  }
+
+  /* ── Two-column body ── */
+  .body {
+    display: grid;
+    grid-template-columns: 56mm 1fr;
+    gap: 9mm;
+  }
+
+  /* ── Section ── */
+  .section { margin-bottom: 6mm; }
+
+  .sec-label {
+    font-size: 7.5pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #6E6E73;
+    margin-bottom: 3mm;
+    padding-bottom: 1.5mm;
+    border-bottom: 0.5px solid #E5E5EA;
+  }
+
+  /* ── Experience ── */
+  .exp + .exp { margin-top: 4mm; padding-top: 4mm; border-top: 0.5px solid #F0F0F0; }
+
+  .exp__company {
+    font-size: 9pt;
+    font-weight: 700;
+    color: #1D1D1F;
+  }
+
+  .exp__role {
+    font-size: 9pt;
+    font-weight: 400;
+    color: #3A3A3C;
+  }
+
+  .exp__meta {
+    font-size: 8pt;
+    color: #6E6E73;
+    margin: 0.8mm 0 1.5mm;
+  }
+
+  .exp__desc {
+    font-size: 8.5pt;
+    color: #3A3A3C;
+    line-height: 1.55;
+  }
+
+  .exp__desc li {
+    margin-left: 3.5mm;
+    margin-bottom: 0.5mm;
+  }
+
+  /* ── Sidebar ── */
+  .skill-group { margin-bottom: 3.5mm; }
+
+  .skill-group__title {
+    font-size: 7.5pt;
+    font-weight: 600;
+    color: #6E6E73;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 1.5mm;
+  }
+
+  .skill-item {
+    font-size: 8.5pt;
+    color: #3A3A3C;
+    line-height: 1.7;
+  }
+
+  /* ── Education ── */
+  .edu + .edu { margin-top: 2.5mm; }
+
+  .edu__school {
+    font-size: 8.5pt;
+    font-weight: 600;
+    color: #1D1D1F;
+  }
+
+  .edu__degree {
+    font-size: 8pt;
+    color: #3A3A3C;
+  }
+
+  .edu__year {
+    font-size: 7.5pt;
+    color: #6E6E73;
+  }
+
+  /* ── Lang / contact pills ── */
+  .lang-item {
+    font-size: 8.5pt;
+    color: #3A3A3C;
+    line-height: 1.7;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <div class="hd">
+    <div class="hd__left">
+      <div class="hd__name">Carlos Mera</div>
+      <div class="hd__title"><strong>Product Designer &amp; Engineer</strong> · AI-augmented workflow · Web3 &amp; Fintech</div>
+    </div>
+    <div class="hd__right">
+      +34 602 479 339<br>
+      <a href="mailto:hd.krlos@gmail.com">hd.krlos@gmail.com</a><br>
+      <a href="https://linkedin.com/in/carlosmmera">linkedin.com/in/carlosmmera</a><br>
+      <a href="https://behance.net/hdkrlosde26">behance.net/hdkrlosde26</a><br>
+      Barcelona, Spain
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats">
+    <div class="stat">
+      <span class="stat__val">4+</span>
+      <span class="stat__lbl">Years exp.</span>
+    </div>
+    <div class="stat">
+      <span class="stat__val">Web3 &amp; Fintech</span>
+      <span class="stat__lbl">Core domains</span>
+    </div>
+    <div class="stat">
+      <span class="stat__val">End-to-end</span>
+      <span class="stat__lbl">Research to code</span>
+    </div>
+    <div class="stat">
+      <span class="stat__val">AI-augmented</span>
+      <span class="stat__lbl">Workflow</span>
+    </div>
+  </div>
+
+  <!-- Summary -->
+  <div class="summary">
+    Product Designer and Engineer bridging design and development through AI-powered workflows. Leverages Claude Code, MCP, and AI agents end-to-end — from research synthesis and ideation to hi-fi prototyping and production-ready code. 4+ years designing Web3, DeFi, and fintech products. Specialized in Figma, scalable design systems, and developer-close delivery.
+  </div>
+
+  <!-- AI Banner -->
+  <div class="ai-banner">
+    <span class="ai-banner__label">AI Pipeline</span>
+    <div class="ai-banner__divider"></div>
+    <div class="ai-tags">
+      <span class="ai-tag">Claude Code</span>
+      <span class="ai-tag">MCP</span>
+      <span class="ai-tag">AI Agents</span>
+      <span class="ai-tag">Cursor</span>
+      <span class="ai-tag">Prompt Engineering</span>
+      <span class="ai-tag">Research Synthesis</span>
+      <span class="ai-tag">Figma → Code</span>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div class="body">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+
+      <div class="section">
+        <div class="sec-label">Skills</div>
+        <div class="skill-group">
+          <div class="skill-group__title">Design</div>
+          <div class="skill-item">Figma</div>
+          <div class="skill-item">Design Systems</div>
+          <div class="skill-item">UX Research</div>
+          <div class="skill-item">Interaction Design</div>
+          <div class="skill-item">Prototyping</div>
+          <div class="skill-item">Motion Design</div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group__title">Engineering</div>
+          <div class="skill-item">Claude Code · MCP</div>
+          <div class="skill-item">Framer</div>
+          <div class="skill-item">HTML / CSS</div>
+          <div class="skill-item">Developer Handoff</div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group__title">Domain</div>
+          <div class="skill-item">Web3 / DeFi</div>
+          <div class="skill-item">Fintech / Blockchain</div>
+          <div class="skill-item">Mobile Apps</div>
+          <div class="skill-item">B2B SaaS</div>
+          <div class="skill-item">Healthcare</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="sec-label">Education</div>
+        <div class="edu">
+          <div class="edu__school">Ironhack</div>
+          <div class="edu__degree">UX/UI Design Bootcamp</div>
+          <div class="edu__year">2020 · Barcelona</div>
+        </div>
+        <div class="edu">
+          <div class="edu__school">ISDi</div>
+          <div class="edu__degree">Bachelor's · Visual Design &amp; Communication</div>
+          <div class="edu__year">2011 – 2016 · Havana</div>
+        </div>
+        <div class="edu">
+          <div class="edu__school">EFTI</div>
+          <div class="edu__degree">Professional Photography &amp; Lighting</div>
+          <div class="edu__year">Madrid</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="sec-label">Languages</div>
+        <div class="lang-item">Spanish — Native</div>
+        <div class="lang-item">English — Full Professional</div>
+      </div>
+
+    </div>
+
+    <!-- Main content -->
+    <div class="content">
+      <div class="section">
+        <div class="sec-label">Experience</div>
+
+        <div class="exp">
+          <div class="exp__company">Nethermind</div>
+          <div class="exp__role">Product Designer</div>
+          <div class="exp__meta">May 2024 – Present · Full-time · Remote</div>
+          <div class="exp__desc">
+            <ul>
+              <li>Led SyntropyX, Dashboard.info, and Aztec Dashboard — Web3 &amp; Layer 2 Ethereum products.</li>
+              <li>Integrated Claude Code and MCP into the design pipeline — shipping production-ready code alongside Figma files.</li>
+              <li>End-to-end ownership: discovery, research, wireframing, hi-fi, developer handoff.</li>
+              <li>Maintained and scaled design systems across concurrent projects.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="exp">
+          <div class="exp__company">NATEEVO</div>
+          <div class="exp__role">UX/UI Designer</div>
+          <div class="exp__meta">May 2022 – May 2024 · Full-time · Barcelona, Hybrid</div>
+          <div class="exp__desc">
+            <ul>
+              <li>Designed for ImaginBank, WatchesandWonders, Manor, Samsung, SEAT, Towerbank.</li>
+              <li>Built product features, redesigns, wireframes, and prototypes for mobile and desktop.</li>
+              <li>Improved usability and accessibility across platforms, driving measurable conversion gains.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="exp">
+          <div class="exp__company">Dissect</div>
+          <div class="exp__role">Product Designer</div>
+          <div class="exp__meta">Dec 2023 – Feb 2024 · Co-op · Remote</div>
+          <div class="exp__desc">Built the full design system for Dissect — a Web3/DeFi platform. Tokens, components, and documentation delivered end-to-end in Figma.</div>
+        </div>
+
+        <div class="exp">
+          <div class="exp__company">OPOS — Only Possible on Solana</div>
+          <div class="exp__role">Product Designer</div>
+          <div class="exp__meta">Nov 2023 – Jan 2024 · Co-op · Remote</div>
+          <div class="exp__desc">Designed a Solana blockchain fundamental analysis dashboard from concept to hi-fi prototype.</div>
+        </div>
+
+        <div class="exp">
+          <div class="exp__company">Grizzlython / Solana Hackathon</div>
+          <div class="exp__role">Product Designer</div>
+          <div class="exp__meta">Feb 2023 – Mar 2023 · Remote</div>
+          <div class="exp__desc">Designed an on-chain NFT dapp end-to-end within a hackathon sprint.</div>
+        </div>
+
+        <div class="exp">
+          <div class="exp__company">Widitrade</div>
+          <div class="exp__role">Graphic Designer</div>
+          <div class="exp__meta">Oct 2020 – Jan 2022 · Madrid</div>
+          <div class="exp__desc">Visual design and brand identity for a fintech e-commerce platform.</div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
