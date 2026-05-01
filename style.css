@@ -46,6 +46,19 @@ a   { color: inherit; text-decoration: none; }
   transition: background .3s;
 }
 .nav.scrolled { background: rgba(10,10,10,.92); }
+
+.nav__progress {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: transparent;
+}
+.nav__progress-fill {
+  height: 100%;
+  width: 0%;
+  background: rgba(255,255,255,.18);
+  transition: width .1s linear;
+}
 .nav__inner {
   max-width: var(--max-w);
   margin: 0 auto;
@@ -748,7 +761,26 @@ a   { color: inherit; text-decoration: none; }
 
 /* ── About ── */
 .about__inner {
-  max-width: 680px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4rem;
+  max-width: 960px;
+}
+
+.about__photo {
+  flex-shrink: 0;
+  width: 280px;
+  height: 340px;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: var(--radius-lg);
+  filter: grayscale(1) saturate(0);
+}
+
+.about__content {
+  display: flex;
+  flex-direction: column;
 }
 
 .about__inner .section__label {
@@ -759,6 +791,17 @@ a   { color: inherit; text-decoration: none; }
   color: var(--text-sec);
   font-size: 1.125rem;
   line-height: 1.8;
+}
+
+@media (max-width: 640px) {
+  .about__inner {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .about__photo {
+    width: 100%;
+    height: 320px;
+  }
 }
 
 /* ── Timeline ── */
