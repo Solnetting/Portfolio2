@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Carlos Mera — Product Designer / Engineer</title>
+  <title>Carlos Mera — Product Design Engineer</title>
   <meta name="description" content="Carlos Mera is a Product Designer & Engineer based in Barcelona, bridging design and engineering through Claude Code and MCP.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="dissect.css">
 </head>
 <body>
 
@@ -31,7 +32,7 @@
     <section class="hero" id="hero">
       <div class="hero__inner">
         <span class="badge badge--lime">Available for new projects</span>
-        <h1 class="hero__title"><span class="hero__line1"><span class="rotating-word-wrap"><span class="rotating-word" id="rotatingWord">Web3</span></span> Product</span><br>Designer.</h1>
+        <h1 class="hero__title">Product Design<br>Engineer.</h1>
         <p class="hero__tagline">I bridge Design &amp; Engineering — building hi-fi prototypes with code, AI agents, and real workflows.</p>
         <p class="hero__meta">End-to-end · AI-augmented · Barcelona-based</p>
         <div class="hero__actions">
@@ -63,85 +64,77 @@
 
     <!-- ── PROCESS ── -->
     <section class="process-section" id="process">
-      <div class="process-section__sticky">
       <div class="process-section__inner">
-        <div class="process__layout">
 
-          <div class="process__left">
-            <div class="process__header">
-              <p class="section__label">My Process</p>
-              <button class="process__skip" id="processSkip">Skip</button>
-            </div>
-            <div class="process__progress"><div class="process__progress-fill"></div></div>
-          <div class="process__nav">
-            <div class="process__item process__item--active" data-panel="discover">
-              <div class="process__item-inner">
-                <span class="process__num">01</span>
-                <span class="process__name">Discover</span>
+        <div class="process__header">
+          <h2 class="process__heading">My Process</h2>
+          <div class="process__header-line"></div>
+        </div>
+
+        <div class="process__list">
+
+          <div class="process__row fade-in">
+            <div class="process__row-left">
+              <span class="process__num">01.</span>
+              <div class="process__row-label">
+                <h3 class="process__name">Discover</h3>
+                <span class="process__sub">Audit, Research &amp; Benchmarking</span>
               </div>
-              <span class="process__sub">Research & benchmarking</span>
             </div>
-            <div class="process__item" data-panel="define">
-              <div class="process__item-inner">
-                <span class="process__num">02</span>
-                <span class="process__name">Define</span>
-              </div>
-              <span class="process__sub">Problem framing & flows</span>
-            </div>
-            <div class="process__item" data-panel="design">
-              <div class="process__item-inner">
-                <span class="process__num">03</span>
-                <span class="process__name">Design</span>
-              </div>
-              <span class="process__sub">Lo-fi → validate → hi-fi</span>
-            </div>
-            <div class="process__item" data-panel="validate">
-              <div class="process__item-inner">
-                <span class="process__num">04</span>
-                <span class="process__name">Validate</span>
-              </div>
-              <span class="process__sub">Prototype & user testing</span>
-            </div>
-            <div class="process__item" data-panel="deliver">
-              <div class="process__item-inner">
-                <span class="process__num">05</span>
-                <span class="process__name">Deliver</span>
-              </div>
-              <span class="process__sub">Handoff & implementation</span>
-            </div>
-          </div>
+            <div class="process__connector"></div>
+            <p class="process__desc">I start by deconstructing the landscape. For redesigns, I perform a Heuristic Audit to pinpoint where the current UI fails. For new products, I use AI-assisted synthesis to cluster user insights and competitive patterns. I don't just collect screenshots; I interpret them to find the "why" before I touch a canvas.</p>
           </div>
 
-          <div class="process__panels">
-            <div class="process__panel process__panel--active" id="panel-discover">
-              <h2 class="process__title">Discover</h2>
-              <p class="process__body">Stakeholder interviews, competitive benchmarking, and AI-assisted synthesis. I surface patterns fast — less collecting, more interpreting.</p>
-              <div class="process__img"></div>
+          <div class="process__row fade-in">
+            <div class="process__row-left">
+              <span class="process__num">02.</span>
+              <div class="process__row-label">
+                <h3 class="process__name">Define</h3>
+                <span class="process__sub">Problem Framing &amp; Strategic Flows</span>
+              </div>
             </div>
-            <div class="process__panel" id="panel-define">
-              <h2 class="process__title">Define</h2>
-              <p class="process__body">Problem framing, user flows, and information architecture. Every design decision starts with a clear problem statement and a shared understanding of who we're designing for.</p>
-              <div class="process__img"></div>
+            <div class="process__connector"></div>
+            <p class="process__desc">I translate raw research into a design strategy. This phase is about Information Architecture and high-level user flows. I define the constraints and the "Job to be Done," ensuring that the visual work that follows is anchored in a clear solution for a specific user pain point.</p>
+          </div>
+
+          <div class="process__row fade-in">
+            <div class="process__row-left">
+              <span class="process__num">03.</span>
+              <div class="process__row-label">
+                <h3 class="process__name">Design</h3>
+                <span class="process__sub">Lo-fi → Logic Validation → Hi-fi</span>
+              </div>
             </div>
-            <div class="process__panel" id="panel-design">
-              <h2 class="process__title">Design</h2>
-              <p class="process__body">Lo-fi wireframes to design reviews to hi-fi prototypes. I work in rapid iterations, validating assumptions at each stage rather than polishing in one long pass.</p>
-              <div class="process__img"></div>
+            <div class="process__connector"></div>
+            <p class="process__desc">I begin with wireframes to nail the hierarchy and layout. Before moving to high-fidelity, I perform Logic Validation — stress-testing the "unhappy paths," edge cases, and complex state changes. Once the logic is bulletproof, I apply the visual layer, focusing on typography, spacing, and brand expression.</p>
+          </div>
+
+          <div class="process__row fade-in">
+            <div class="process__row-left">
+              <span class="process__num">04.</span>
+              <div class="process__row-label">
+                <h3 class="process__name">Validate</h3>
+                <span class="process__sub">Prototyping &amp; User Testing</span>
+              </div>
             </div>
-            <div class="process__panel" id="panel-validate">
-              <h2 class="process__title">Validate</h2>
-              <p class="process__body">Interactive prototypes in Figma, usability testing with real users. Findings feed directly back into the design — no waiting for a final handoff to discover problems.</p>
-              <div class="process__img"></div>
+            <div class="process__connector"></div>
+            <p class="process__desc">I build interactive prototypes to put my assumptions to the test. Through task-based usability sessions, I observe how real users interact with the interface. This isn't just about finding bugs; it's about refining the friction points and iterating on the UI until the experience feels intuitive.</p>
+          </div>
+
+          <div class="process__row fade-in">
+            <div class="process__row-left">
+              <span class="process__num">05.</span>
+              <div class="process__row-label">
+                <h3 class="process__name">Deliver</h3>
+                <span class="process__sub">Handoff &amp; Implementation Support</span>
+              </div>
             </div>
-            <div class="process__panel" id="panel-deliver">
-              <h2 class="process__title">Deliver</h2>
-              <p class="process__body">Pixel-perfect specs, component documentation, and developer support through implementation. I stay close to the build — and with Claude Code, I often build alongside it.</p>
-              <div class="process__img"></div>
-            </div>
+            <div class="process__connector"></div>
+            <p class="process__desc">Design doesn't end at the Figma file. I provide developers with organised Design Tokens, documented component states, and accessibility specs. I stay involved during the build for Design QA, ensuring that the final coded product matches the intended craft and quality of the design.</p>
           </div>
 
         </div>
-      </div>
+
       </div>
     </section>
 
@@ -236,17 +229,50 @@
           </div>
         </a>
 
-        <a href="https://www.behance.net/gallery/192356969/Design-System-for-dissect" class="card fade-in" target="_blank" rel="noopener">
+        <a href="dissect.html" class="card fade-in">
           <div class="card__image">
-            <img src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/14a204192356969.65dbbee1cb009.jpg" alt="Design System for Dissect" loading="lazy">
+            <div class="card__placeholder dissect-index-cover">
+              <div class="dissect-index-cover__cube">
+                <svg viewBox="0 0 240 230" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <polygon points="120,20 210,68 120,116 30,68" stroke="rgba(110,165,255,0.65)" stroke-width="1.2" fill="rgba(59,130,246,0.06)"/>
+                  <polygon points="30,68 120,116 120,210 30,162" stroke="rgba(110,165,255,0.45)" stroke-width="1.2" fill="rgba(59,130,246,0.03)"/>
+                  <polygon points="120,116 210,68 210,162 120,210" stroke="rgba(110,165,255,0.55)" stroke-width="1.2" fill="rgba(59,130,246,0.07)"/>
+                  <polygon points="120,20 210,68 210,162 120,210 30,162 30,68" stroke="rgba(110,165,255,0.13)" stroke-width="1" fill="none"/>
+                  <line x1="120" y1="20" x2="120" y2="2" stroke="rgba(110,165,255,0.35)" stroke-width="1"/>
+                  <line x1="210" y1="68" x2="230" y2="57" stroke="rgba(110,165,255,0.28)" stroke-width="1"/>
+                  <line x1="30" y1="68" x2="10" y2="57" stroke="rgba(110,165,255,0.28)" stroke-width="1"/>
+                  <circle cx="120" cy="20" r="2.5" fill="rgba(110,165,255,0.7)"/>
+                  <circle cx="210" cy="68" r="2.5" fill="rgba(110,165,255,0.6)"/>
+                  <circle cx="30" cy="68" r="2.5" fill="rgba(110,165,255,0.55)"/>
+                  <circle cx="120" cy="116" r="2" fill="rgba(110,165,255,0.45)"/>
+                  <polygon points="120,2 230,57 230,173 120,228 10,173 10,57" stroke="rgba(110,165,255,0.07)" stroke-width="1" fill="none"/>
+                </svg>
+              </div>
+              <span class="dissect-index-cover__logo">Dissect</span>
+              <div class="dissect-index-cover__card">
+                <div class="dissect-index-cover__row dissect-index-cover__row--apy">
+                  <span>APY</span>
+                  <span>25%</span>
+                </div>
+                <div class="dissect-index-cover__row">
+                  <span>Fraction price</span>
+                  <span>3 SOL</span>
+                </div>
+                <div class="dissect-index-cover__row">
+                  <span>Duration</span>
+                  <span>7 days</span>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="card__info">
             <div class="card__tags">
-              <span class="tag">Design System</span>
-              <span class="tag">Figma</span>
+              <span class="tag">Web3</span>
+              <span class="tag">DeFi</span>
+              <span class="tag">NFT</span>
             </div>
-            <h3 class="card__title">Dissect DS</h3>
-            <p class="card__desc">End-to-end design system — principles, components, and tokens</p>
+            <h3 class="card__title">Dissect</h3>
+            <p class="card__desc">NFT fractional lending platform — landing page & design system</p>
             <span class="card__year">2024</span>
           </div>
         </a>
@@ -292,70 +318,10 @@
     <!-- ── ABOUT ── -->
     <section class="section about" id="about">
       <div class="about__inner fade-in">
-        <div class="about__left">
-          <p class="section__label">About</p>
-          <h2 class="section__title">A designer who<br>thinks in systems</h2>
-          <p class="about__bio">
-            I'm a digital product designer with roots in graphic design, now fully focused on Web3 and complex product experiences. My work spans from user research and lo-fi wireframes all the way to hi-fi prototypes and developer handoff.
-          </p>
-          <p class="about__bio">
-            I believe great design lives at the intersection of simplicity, functionality, and aesthetics — three things that are harder to balance together than they sound.
-          </p>
-          <div class="about__meta">
-            <div class="about__meta-item">
-              <span class="about__meta-label">Currently</span>
-              <span class="about__meta-value">Nethermind · Web3 Infrastructure</span>
-            </div>
-            <div class="about__meta-item">
-              <span class="about__meta-label">Education</span>
-              <span class="about__meta-value">UX/UI Design · Ironhack, 2020<br>Visual Communication &amp; Integral Design · ISDI</span>
-            </div>
-            <div class="about__meta-item">
-              <span class="about__meta-label">Based in</span>
-              <span class="about__meta-value">Barcelona, Spain · Open to relocation</span>
-            </div>
-            <div class="about__meta-item">
-              <span class="about__meta-label">Availability</span>
-              <span class="about__meta-value">Freelance &amp; Full-time</span>
-            </div>
-          </div>
-        </div>
-        <div class="about__right">
-          <div class="skills">
-            <div class="skills__group">
-              <h4 class="skills__label">Design</h4>
-              <ul class="skills__list">
-                <li>Product Design</li>
-                <li>UX Research</li>
-                <li>Interaction Design</li>
-                <li>Design Systems</li>
-                <li>Prototyping</li>
-                <li>Motion Design</li>
-              </ul>
-            </div>
-            <div class="skills__group">
-              <h4 class="skills__label">Domain</h4>
-              <ul class="skills__list">
-                <li>Web3 / DeFi</li>
-                <li>Mobile Apps</li>
-                <li>B2B SaaS</li>
-                <li>Healthcare</li>
-                <li>E-commerce</li>
-              </ul>
-            </div>
-            <div class="skills__group">
-              <h4 class="skills__label">Tools</h4>
-              <ul class="skills__list">
-                <li>Figma</li>
-                <li>Framer</li>
-                <li>Photoshop</li>
-                <li>Illustrator</li>
-                <li>Claude Code</li>
-                <li>MCP / APIs</li>
-              </ul>
-            </div>
-          </div>
-        </div>
+        <p class="section__label">About</p>
+        <p class="about__bio">
+          Product Designer and Engineer with 4+ years of experience in Web3, DeFi, and fintech. I bridge the gap between design and development — taking products from user research and wireframes all the way to hi-fi prototypes, design systems, and production-ready code. Currently at Nethermind, leading design on Web3 and Layer 2 Ethereum products. Previously at NATEEVO, designing for brands like ImaginBank, Samsung, and SEAT. I work with an AI-augmented pipeline — Claude Code, MCP, and AI agents are part of how I design and build every day.
+        </p>
       </div>
     </section>
 
