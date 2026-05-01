@@ -107,3 +107,21 @@ expTabs.forEach(tab => {
   update();
 })();
 
+// Load more projects
+(function () {
+  const btn = document.getElementById('loadMore');
+  const behanceLink = document.getElementById('behanceLink');
+  if (!btn) return;
+
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.pcard--hidden').forEach(card => {
+      card.classList.remove('pcard--hidden');
+      card.classList.add('fade-in');
+      // trigger observer for fade-in animation
+      observer.observe(card);
+    });
+    btn.style.display = 'none';
+    if (behanceLink) behanceLink.classList.remove('work__all--hidden');
+  });
+})();
+
