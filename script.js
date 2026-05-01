@@ -107,25 +107,21 @@ expTabs.forEach(tab => {
   update();
 })();
 
-// Load more / Show less projects
+// Load more projects
 (function () {
   const btn = document.getElementById('loadMore');
+  const behanceLink = document.getElementById('behanceLink');
   if (!btn) return;
-  const extraCards = document.querySelectorAll('.pcard--hidden');
-  let expanded = false;
 
   btn.addEventListener('click', () => {
-    expanded = !expanded;
-    if (expanded) {
-      extraCards.forEach(card => {
-        card.classList.remove('pcard--hidden');
-        observer.observe(card);
-      });
-      btn.textContent = 'Show less';
-    } else {
-      extraCards.forEach(card => card.classList.add('pcard--hidden'));
-      btn.textContent = 'Load more';
-    }
+    document.querySelectorAll('.pcard--hidden').forEach(card => {
+      card.classList.remove('pcard--hidden');
+      card.classList.add('fade-in');
+      // trigger observer for fade-in animation
+      observer.observe(card);
+    });
+    btn.style.display = 'none';
+    if (behanceLink) behanceLink.classList.remove('work__all--hidden');
   });
 })();
 
