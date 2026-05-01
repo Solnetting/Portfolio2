@@ -9,14 +9,17 @@ Open `index.html` directly in a browser. No build step or server required.
 ## Structure
 
 ```
-index.html        Main portfolio page (hero, work grid, about, contact)
+index.html        Main portfolio page (hero, work grid, process, about, contact)
 style.css         Global design tokens and component styles
-script.js         Scroll animations and nav behaviour
+script.js         Scroll animations, nav scroll progress bar, nav highlight
+profile.png       B&W portrait — About section
 project.css       Shared styles for all case study pages
 quadrato.html     Quadrato NFT Protocol — full case study
 quadrato.css      Quadrato-specific styles and components
 syntropyx.html    SyntropyX DeFi Vault Platform — full case study
 syntropyx.css     SyntropyX-specific styles and components
+dissect.html      Dissect Design System — full case study
+dissect.css       Dissect-specific styles
 ```
 
 ## Tech
@@ -24,7 +27,8 @@ syntropyx.css     SyntropyX-specific styles and components
 Plain HTML, CSS, and vanilla JS. No frameworks, no build tools, no dependencies.
 
 - Fonts: Inter (body), IBM Plex Mono + Chakra Petch (Quadrato page only)
-- Animations: IntersectionObserver scroll fade-ins
+- Animations: IntersectionObserver scroll fade-ins, scroll progress bar in nav
+- About section: horizontal grid aligned to the same 280px | 1fr reticle as Experience & Education
 - All project content is living HTML — no text trapped in images
 
 ## Projects

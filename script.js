@@ -52,10 +52,15 @@ const observer = new IntersectionObserver(
 
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-// Nav background on scroll
+// Nav background + scroll progress bar
 const nav = document.getElementById('nav');
+const navProgress = document.getElementById('navProgress');
 window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 60);
+  if (navProgress) {
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    navProgress.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + '%';
+  }
 }, { passive: true });
 
 // Experience & Education tabs
@@ -74,7 +79,7 @@ expTabs.forEach(tab => {
 
 // Active nav highlight
 (function () {
-  const sections = ['process', 'work', 'about', 'contact'];
+  const sections = ['work', 'process', 'about', 'contact'];
   const links = {};
   sections.forEach(id => {
     const a = document.querySelector(`.nav__links a[href="#${id}"]`);
