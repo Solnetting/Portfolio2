@@ -760,7 +760,14 @@ a   { color: inherit; text-decoration: none; }
 }
 
 /* ── About ── */
+.section.about {
+  max-width: none;
+  margin: 0;
+}
+
 .about__inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
   display: grid;
   grid-template-columns: 280px 1fr;
   gap: 5rem;
