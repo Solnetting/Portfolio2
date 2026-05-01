@@ -7,7 +7,7 @@
   <meta name="description" content="Quadrato — An NFT protocol democratising standards on Solana. Designed by Carlos Mera.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=IBM+Plex+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="project.css">
   <link rel="stylesheet" href="quadrato.css">
@@ -26,386 +26,233 @@
     </div>
   </header>
 
-  <main class="project">
+  <main class="project q-project">
 
-    <!-- ─── HERO ─── -->
-    <section class="proj-hero">
-      <div class="proj-hero__inner">
-        <a href="index.html#work" class="proj-back">← Back to work</a>
-        <div class="proj-hero__meta">
-          <span class="tag">Web3</span>
-          <span class="tag">NFT</span>
-          <span class="tag">Product Design</span>
-          <span class="tag">Interaction Design</span>
-        </div>
-        <h1 class="proj-hero__title">Quadrato</h1>
-        <p class="proj-hero__tagline">Democratising NFT Standards</p>
-        <div class="proj-hero__details">
-          <div class="proj-detail">
-            <span class="proj-detail__label">Year</span>
-            <span class="proj-detail__value">2023</span>
-          </div>
-          <div class="proj-detail">
-            <span class="proj-detail__label">Role</span>
-            <span class="proj-detail__value">Product Designer</span>
-          </div>
-          <div class="proj-detail">
-            <span class="proj-detail__label">Tools</span>
-            <span class="proj-detail__value">Figma · Photoshop · Midjourney · ChatGPT</span>
-          </div>
-          <div class="proj-detail">
-            <span class="proj-detail__label">Platform</span>
-            <span class="proj-detail__value">Web dApp · Solana</span>
-          </div>
-        </div>
+    <!-- ── META BAR ── -->
+    <div class="q-meta-bar">
+      <a href="index.html#work" class="q-meta-back">← Work</a>
+      <div class="q-meta-tags">
+        <span>Web3</span><span>NFT</span><span>Product Design</span><span>Interaction Design</span>
       </div>
-      <div class="proj-hero__cover">
-        <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/88290e165961447.6476f2be57e2d.jpg" alt="Quadrato — Democratising NFT Standards" loading="eager">
-      </div>
-    </section>
-
-
-    <!-- ─── THE PRODUCT ─── -->
-    <!-- Replaces image 2: "The product" / "Used tools" -->
-    <section class="proj-section">
-      <div class="proj-section__inner q-product-split fade-in">
-        <div class="q-product-text">
-          <p class="section__label">The product</p>
-          <h2 class="proj-section__title">A new perspective<br>on NFTs</h2>
-          <p class="proj-text">As a product designer, I was faced with the challenging task of translating an amazing idea for a protocol that could revolutionise the world of NFTs into a digital product. The aim was to create a unique platform that offered a fresh perspective on how we perceive and interact with NFTs.</p>
-          <p class="proj-text">This product offered new choices and possibilities, catering to a diverse audience of creators, developers and regular users who were eager to explore and experiment with the infinite variations that come with creating collectibles.</p>
-          <p class="proj-text">All of this had to be achieved within a tight deadline of three weeks, leaving little time for testing and iteration. Despite the inherent difficulty, the project was both challenging and exciting, building anticipation for what could be achieved.</p>
-        </div>
-        <div class="q-tools-panel">
-          <h3 class="q-tools-panel__title">Used tools</h3>
-          <p class="q-tools-panel__sub">These tools were used to design the prototype, low-fi and final product.</p>
-          <ol class="q-tools-list">
-            <li class="q-tool-item"><span class="q-tool-num">1—</span><span class="q-tool-name">Figma</span></li>
-            <li class="q-tool-item"><span class="q-tool-num">2—</span><span class="q-tool-name">Photoshop</span></li>
-            <li class="q-tool-item"><span class="q-tool-num">3—</span><span class="q-tool-name">Midjourney</span></li>
-            <li class="q-tool-item"><span class="q-tool-num">4—</span><span class="q-tool-name">ChatGPT</span></li>
-          </ol>
-        </div>
-      </div>
-    </section>
-
-
-    <!-- ─── PROBLEM / SOLUTION ─── -->
-    <!-- Replaces image 3 top section -->
-    <div class="q-dark-band">
-      <div class="q-dark-band__inner fade-in">
-        <div class="q-ps-col">
-          <h2 class="q-ps-heading">The problem</h2>
-          <div class="q-ps-point">
-            <h3 class="q-ps-point__title">NFTs exist in a web2 world</h3>
-            <p class="q-ps-point__body">Currently, most digital assets rely heavily on technologies that require centralised infrastructure. As a result, the vast majority of them fall short in their attempt to provide a trustless environment.</p>
-          </div>
-          <div class="q-ps-point">
-            <h3 class="q-ps-point__title">NFT projects have short-life</h3>
-            <p class="q-ps-point__body">A significant percentage of projects that launched an NFT collection did not survive long enough to provide the promised services. While many were able to generate initial engagement, they lacked efficient tools to keep track of user feedback.</p>
-          </div>
-          <div class="q-ps-point">
-            <h3 class="q-ps-point__title">Lack of shared resources</h3>
-            <p class="q-ps-point__body">The current NFT standards across different blockchains lack composability, making it difficult for tools built on top to easily integrate with other projects. Existing protocols also lack scalability to accommodate new features required by the community.</p>
-          </div>
-        </div>
-        <div class="q-ps-col">
-          <h2 class="q-ps-heading">The solution</h2>
-          <p class="q-sol-kicker">A PROTOCOL THAT ENABLES CUSTOM STANDARDS DEFINITIONS</p>
-          <div class="q-ps-point">
-            <h3 class="q-ps-point__title">Generalized metadata architecture</h3>
-            <p class="q-ps-point__body">Metadata structures can be defined by anyone.</p>
-          </div>
-          <div class="q-ps-point">
-            <h3 class="q-ps-point__title">Authorizations on metadata</h3>
-            <p class="q-ps-point__body">There are different types of authorities available to manage assets, both for users to manage their items and for creators to maintain the value of their projects.</p>
-          </div>
-          <div class="q-ps-point">
-            <h3 class="q-ps-point__title">Composability at its best</h3>
-            <p class="q-ps-point__body">The protocol allows for high interoperability between various standards built on top, enabling developers to access metadata and verify parameters directly on-chain.</p>
-          </div>
-        </div>
-      </div>
+      <span class="q-meta-year">2023</span>
     </div>
 
+    <!-- ══════════════════════════════════════════
+         SECTION 1 — HERO + PROBLEM + PROPOSAL + AUDIENCE
+         ══════════════════════════════════════════ -->
 
-    <!-- ─── PROPOSAL + ARCHITECTURE DIAGRAM ─── -->
-    <!-- Replaces image 3 middle section (diagram) -->
-    <section class="proj-section">
-      <div class="proj-section__inner fade-in">
-        <p class="section__label">The Proposal</p>
-        <h2 class="proj-section__title">Protocol architecture</h2>
-        <div class="q-proposal-layout">
-
-          <div class="q-proposal-points">
-            <div class="q-prop-item">
-              <h4 class="q-prop-item__title">Quadrato metadata program</h4>
-              <p class="q-prop-item__body">Is the main contract that allows for the management of Roots, Extensions, and Metadata.</p>
+    <!-- ── HERO ── -->
+    <section class="q-hero">
+      <div class="q-hero__inner">
+        <div class="q-hero__text">
+          <h1 class="q-hero__title">NFTs Web3 dapp</h1>
+          <p class="q-hero__on">on Solana</p>
+          <p class="q-hero__body">Our team faced a tight deadline to create a solution for the NFT market and participate in the "Grizzlython" event on the Solana blockchain. We rose to the challenge and developed a MVP — Web3 Dapp on Solana that allows on-chain editing and creation of fungible tokens. This solution is unique to Solana blockchain and provides unparalleled flexibility and customization for NFTs. Using Solana's fast and efficient blockchain technology, we were able to deliver a user-friendly and functional Dapp in record time.</p>
+          <p class="q-hero__note">Note: This article does not pretend to explain the behaviour of the dapp from a technical point of view, but rather to give a presentation of the dapp with a strong focus on design.</p>
+        </div>
+        <div class="q-hero__art">
+          <div class="q-portrait">
+            <div class="q-portrait__glow"></div>
+            <div class="q-portrait__border"></div>
+            <div class="q-portrait__inner">
+              <div class="q-bear"></div>
             </div>
-            <div class="q-prop-item">
-              <h4 class="q-prop-item__title">An asset owned by a user</h4>
-              <p class="q-prop-item__body">Is defined by the SPL token, the Root, and the metadata instances.</p>
-            </div>
-            <div class="q-prop-item">
-              <h4 class="q-prop-item__title">There can only be one root</h4>
-              <p class="q-prop-item__body">Associated with one SPL token, and it contains the SPL token's address.</p>
-            </div>
-            <div class="q-prop-item">
-              <h4 class="q-prop-item__title">Metadata instances</h4>
-              <p class="q-prop-item__body">Store information about the asset, and an infinite number of instances can be associated with a single Root/asset.</p>
-            </div>
-            <div class="q-prop-item">
-              <h4 class="q-prop-item__title">Extensions</h4>
-              <p class="q-prop-item__body">Store metadata instance data structures. Each metadata instance derives its structure from an extension and can only store data following that structure.</p>
-            </div>
-          </div>
-
-          <div class="q-arch-wrap">
-            <svg class="q-arch-svg" viewBox="0 0 700 320" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <pattern id="qgrid" width="22" height="22" patternUnits="userSpaceOnUse">
-                  <circle cx="1" cy="1" r="1" fill="rgba(139,92,246,0.13)"/>
-                </pattern>
-                <marker id="arr" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
-                  <path d="M0,1 L0,6 L6,3.5 z" fill="rgba(139,92,246,0.7)"/>
-                </marker>
-              </defs>
-
-              <!-- Background grid -->
-              <rect width="700" height="320" fill="url(#qgrid)" rx="6"/>
-
-              <!-- QUADRATO PROTOCOL outer dashed boundary -->
-              <rect x="12" y="12" width="676" height="294" rx="4"
-                    stroke="rgba(139,92,246,0.4)" stroke-width="1"
-                    stroke-dasharray="7 4" fill="rgba(139,92,246,0.025)"/>
-              <text x="540" y="294" font-family="IBM Plex Mono,monospace"
-                    font-size="8.5" fill="rgba(139,92,246,0.55)" letter-spacing="1.5">QUADRATO PROTOCOL</text>
-
-              <!-- ── LINES ── -->
-              <!-- USER → QMP -->
-              <line x1="144" y1="55" x2="196" y2="55"
-                    stroke="rgba(139,92,246,0.7)" stroke-width="1"
-                    marker-end="url(#arr)"/>
-              <!-- QMP → branch vertical -->
-              <line x1="347" y1="72" x2="347" y2="105"
-                    stroke="rgba(139,92,246,0.5)" stroke-width="1"/>
-              <!-- Horizontal branch bar -->
-              <line x1="105" y1="105" x2="585" y2="105"
-                    stroke="rgba(139,92,246,0.5)" stroke-width="1"/>
-              <!-- Down to SOLANA TOKEN -->
-              <line x1="105" y1="105" x2="105" y2="130"
-                    stroke="rgba(139,92,246,0.5)" stroke-width="1"/>
-              <!-- Down to ROOT -->
-              <line x1="347" y1="105" x2="347" y2="130"
-                    stroke="rgba(139,92,246,0.5)" stroke-width="1"/>
-              <!-- Down to EXTENSIONS -->
-              <line x1="585" y1="105" x2="585" y2="130"
-                    stroke="rgba(139,92,246,0.5)" stroke-width="1"/>
-              <!-- SOLANA TOKEN → ASSET/SPL TOKEN -->
-              <line x1="105" y1="163" x2="105" y2="220"
-                    stroke="rgba(139,92,246,0.4)" stroke-width="1"
-                    stroke-dasharray="4 3"/>
-              <!-- ROOT → METADATA -->
-              <line x1="347" y1="163" x2="347" y2="220"
-                    stroke="rgba(139,92,246,0.5)" stroke-width="1"/>
-              <!-- EXTENSIONS → METADATA (diagonal dashed) -->
-              <path d="M 530,163 Q 530,200 395,245"
-                    stroke="rgba(139,92,246,0.3)" stroke-width="1"
-                    stroke-dasharray="3 3" fill="none"/>
-
-              <!-- ── NODES ── -->
-
-              <!-- USER -->
-              <rect x="30" y="40" width="114" height="30" rx="2"
-                    fill="rgba(139,92,246,0.1)" stroke="rgba(139,92,246,0.55)" stroke-width="1"/>
-              <text x="87" y="59" text-anchor="middle"
-                    font-family="IBM Plex Mono,monospace" font-size="10"
-                    font-weight="500" fill="#C4B5FD" letter-spacing="1.5">USER</text>
-
-              <!-- QUADRATO METADATA PROGRAM -->
-              <rect x="196" y="40" width="302" height="30" rx="2"
-                    fill="rgba(139,92,246,0.2)" stroke="rgba(139,92,246,0.85)" stroke-width="1"/>
-              <text x="347" y="59" text-anchor="middle"
-                    font-family="IBM Plex Mono,monospace" font-size="9"
-                    font-weight="700" fill="#DDD6FE" letter-spacing="1.2">QUADRATO METADATA PROGRAM</text>
-
-              <!-- SOLANA TOKEN -->
-              <rect x="42" y="130" width="126" height="32" rx="2"
-                    fill="rgba(139,92,246,0.07)" stroke="rgba(139,92,246,0.38)" stroke-width="1"/>
-              <text x="105" y="150" text-anchor="middle"
-                    font-family="IBM Plex Mono,monospace" font-size="9"
-                    font-weight="400" fill="#E2D9F3" letter-spacing="1">SOLANA TOKEN</text>
-
-              <!-- ROOT -->
-              <rect x="285" y="130" width="124" height="32" rx="2"
-                    fill="rgba(139,92,246,0.07)" stroke="rgba(139,92,246,0.38)" stroke-width="1"/>
-              <text x="347" y="150" text-anchor="middle"
-                    font-family="IBM Plex Mono,monospace" font-size="10"
-                    font-weight="500" fill="#E2D9F3" letter-spacing="2">ROOT</text>
-
-              <!-- EXTENSIONS -->
-              <rect x="521" y="130" width="128" height="32" rx="2"
-                    fill="rgba(139,92,246,0.07)" stroke="rgba(139,92,246,0.38)" stroke-width="1"/>
-              <text x="585" y="150" text-anchor="middle"
-                    font-family="IBM Plex Mono,monospace" font-size="9"
-                    font-weight="400" fill="#E2D9F3" letter-spacing="1">EXTENSIONS</text>
-
-              <!-- ASSET / SPL TOKEN -->
-              <rect x="34" y="220" width="142" height="32" rx="2"
-                    fill="rgba(139,92,246,0.16)" stroke="rgba(139,92,246,0.7)" stroke-width="1"/>
-              <text x="105" y="240" text-anchor="middle"
-                    font-family="IBM Plex Mono,monospace" font-size="9"
-                    font-weight="700" fill="#C4B5FD" letter-spacing="1">ASSET / SPL TOKEN</text>
-
-              <!-- METADATA -->
-              <rect x="285" y="220" width="124" height="32" rx="2"
-                    fill="rgba(139,92,246,0.07)" stroke="rgba(139,92,246,0.38)" stroke-width="1"/>
-              <text x="347" y="240" text-anchor="middle"
-                    font-family="IBM Plex Mono,monospace" font-size="10"
-                    font-weight="400" fill="#E2D9F3" letter-spacing="1.5">METADATA</text>
-
-              <!-- Annotation labels -->
-              <text x="118" y="197" font-family="IBM Plex Mono,monospace"
-                    font-size="8" fill="rgba(139,92,246,0.48)" letter-spacing="0.5">has address</text>
-              <text x="355" y="197" font-family="IBM Plex Mono,monospace"
-                    font-size="8" fill="rgba(139,92,246,0.48)" letter-spacing="0.5">stores info</text>
-              <text x="438" y="175" font-family="IBM Plex Mono,monospace"
-                    font-size="8" fill="rgba(139,92,246,0.38)" letter-spacing="0.5">derives structure</text>
-            </svg>
           </div>
         </div>
       </div>
     </section>
 
-
-    <!-- ─── TARGET AUDIENCE STATS ─── -->
-    <!-- Replaces image 3 bottom stats section -->
-    <div class="q-stats-band fade-in">
-      <div class="q-stats-band__inner">
-        <div class="q-stats-context">
-          <p class="section__label">Target audience</p>
-          <p class="q-stats-desc">Our primary target audience was the artists and creators of the Solana ecosystem and the jury of the Grizzython event. However, we recognise the infinite applications of NFTs and the potential for widespread adoption in the future — addressing the needs of all users involved in the crypto-space.</p>
-        </div>
-        <div class="q-stats-row">
-          <div class="q-stat-block">
-            <span class="q-stat-num">8.5M+</span>
-            <span class="q-stat-label">NFT wallets on Solana</span>
+    <!-- ── PROBLEM / SOLUTION ── -->
+    <section class="q-ps">
+      <div class="q-ps__inner">
+        <div class="q-ps__col">
+          <p class="q-section-label">THE PROBLEM</p>
+          <div class="q-ps__point">
+            <h3 class="q-ps__ptitle">NFTs exist in a web2 world</h3>
+            <p class="q-ps__pbody">Currently, most digital assets rely heavily on technologies that require centralized infrastructure. As a result, the vast majority of them fall short in their attempt to provide a trustless environment.</p>
           </div>
-          <div class="q-stat-divider"></div>
-          <div class="q-stat-block">
-            <span class="q-stat-num">$0.00012</span>
-            <span class="q-stat-label">cost to mint an NFT with state compression</span>
+          <div class="q-ps__point">
+            <h3 class="q-ps__ptitle">NFT projects have short-life</h3>
+            <p class="q-ps__pbody">A significant percentage of projects that launched an NFT collection did not survive long enough to provide the promised services. While many were able to generate initial engagement, they lacked efficient tools to keep track of user feedback.</p>
           </div>
-          <div class="q-stat-divider"></div>
-          <div class="q-stat-block">
-            <span class="q-stat-num">32.0M+</span>
-            <span class="q-stat-label">NFTs on Solana</span>
+          <div class="q-ps__point">
+            <h3 class="q-ps__ptitle">Lack of shared resources</h3>
+            <p class="q-ps__pbody">The current NFT standards across different blockchains lack composability, making it difficult for tools built on top to easily integrate with other projects at the same level. Furthermore, existing protocols lack scalability to accommodate new features required by the community.</p>
           </div>
         </div>
-      </div>
-    </div>
-
-
-    <!-- ─── BENCHMARK ─── -->
-    <!-- Replaces image 4 -->
-    <section class="proj-section">
-      <div class="proj-section__inner fade-in">
-        <p class="section__label">Research</p>
-        <h2 class="proj-section__title">Benchmark</h2>
-        <p class="proj-text q-intro-text">This benchmark aims to analyse competitors and similar projects on the Solana Blockchain with similar functions, purposes, design, and look &amp; feel. Although these projects still use Web2 integration and aren't fully on-chain like our product, we stand out by offering a unique protocol that goes beyond buying and selling.</p>
-        <div class="q-benchmarks">
-          <div class="q-bm-card">
-            <div class="q-bm-card__head">
-              <span class="q-bm-num">01</span>
-              <h3 class="q-bm-name">Metaplex</h3>
-            </div>
-            <p class="q-bm-body">A revolutionary project that utilises Solana blockchain technology to transform digital art and collections. It offers a complete ecosystem with tools to create, sell, and trade customisable NFTs. Its decentralised marketplace and community-driven approach drive innovation and the growth of digital art. Metaplex is the most used standard — even though it's still a web2-web3 integrated dapp.</p>
-            <span class="q-verdict q-verdict--neutral">Still web2 integrated · No developer, no problem</span>
+        <div class="q-ps__col">
+          <p class="q-section-label">THE SOLUTION</p>
+          <p class="q-ps__kicker">A PROTOCOL THAT ENABLES CUSTOM STANDARDS DEFINITIONS</p>
+          <div class="q-ps__point">
+            <h3 class="q-ps__ptitle">Generalized metadata architecture</h3>
+            <p class="q-ps__pbody">Metadata structures can be defined by anyone.</p>
           </div>
-          <div class="q-bm-card">
-            <div class="q-bm-card__head">
-              <span class="q-bm-num">02</span>
-              <h3 class="q-bm-name">Magic Eden</h3>
-            </div>
-            <p class="q-bm-body">One of the most widely used NFT marketplaces, and especially common on Solana. Although our project is not based on a marketplace, Magic Eden serves as a study for its functionalities, modern style, and as a general marketplace idea and explorer. Still having the same problem.</p>
-            <span class="q-verdict q-verdict--neutral">Marketplace study · Same limitations</span>
+          <div class="q-ps__point">
+            <h3 class="q-ps__ptitle">Authorizations on metadata</h3>
+            <p class="q-ps__pbody">There are different types of authorities available to manage assets, both for users to manage their items and for creators to maintain the value of their projects.</p>
           </div>
-          <div class="q-bm-card">
-            <div class="q-bm-card__head">
-              <span class="q-bm-num">03</span>
-              <h3 class="q-bm-name">Rarible</h3>
-            </div>
-            <p class="q-bm-body">Another major marketplace used for buying and selling collectibles. It offers a wide variety of options and incorporates graphic and functional codes that require in-depth study. However, as a multichain, web2-integrated platform it doesn't fully meet the needs of our project. It is also not very flexible when it comes to creating collections, as it lacks personalised options — making it less suitable for our project.</p>
-            <span class="q-verdict q-verdict--neg">Less suitable · Lacks flexibility</span>
+          <div class="q-ps__point">
+            <h3 class="q-ps__ptitle">Composability at its best</h3>
+            <p class="q-ps__pbody">The protocol allows for high interoperability between various standards built on top, enabling developers to access metadata and verify parameters directly on-chain.</p>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- ── THE PROPOSAL ── -->
+    <section class="q-proposal">
+      <div class="q-proposal__inner">
+        <div class="q-proposal__left">
+          <p class="q-section-label">THE PROPOSAL</p>
+          <div class="q-prop-item">
+            <h4 class="q-prop-item__h">Quadrato metadata program</h4>
+            <p class="q-prop-item__p">Is the main contract that allows for the management of Roots, Extensions, and Metadata.</p>
+          </div>
+          <div class="q-prop-item">
+            <h4 class="q-prop-item__h">An asset owned by a user</h4>
+            <p class="q-prop-item__p">Is defined by the SPL token, the Root, and the metadata instances.</p>
+          </div>
+          <div class="q-prop-item">
+            <h4 class="q-prop-item__h">There can only be one root</h4>
+            <p class="q-prop-item__p">Associated with one SPL token, and it contains the SPL token's address.</p>
+          </div>
+          <div class="q-prop-item">
+            <h4 class="q-prop-item__h">Metadata instances</h4>
+            <p class="q-prop-item__p">Store information about the asset, and an infinite number of instances can be associated with a single Root/asset.</p>
+          </div>
+          <div class="q-prop-item">
+            <h4 class="q-prop-item__h">Extensions</h4>
+            <p class="q-prop-item__p">Store metadata instance data structures. Each metadata instance derives its structure from an extension and can only store data following that structure.</p>
+          </div>
+        </div>
+        <div class="q-proposal__right">
+          <svg class="q-arch-svg" viewBox="0 0 560 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="qgrid" width="22" height="22" patternUnits="userSpaceOnUse">
+                <circle cx="1" cy="1" r="1" fill="rgba(139,92,246,0.12)"/>
+              </pattern>
+              <marker id="arr" markerWidth="7" markerHeight="7" refX="5.5" refY="3.5" orient="auto">
+                <path d="M0,1 L0,6 L6,3.5 z" fill="rgba(139,92,246,0.65)"/>
+              </marker>
+            </defs>
+            <rect width="560" height="300" fill="url(#qgrid)" rx="4"/>
+            <rect x="10" y="10" width="540" height="278" rx="3" stroke="rgba(139,92,246,0.3)" stroke-width="1" stroke-dasharray="6 4" fill="none"/>
+            <text x="416" y="282" font-family="IBM Plex Mono,monospace" font-size="8" fill="rgba(139,92,246,0.45)" letter-spacing="2">QUADRATO PROTOCOL</text>
 
-    <!-- ─── USER FLOW ─── -->
-    <!-- Replaces image 5 (flowchart + UI screens) -->
-    <section class="proj-section">
-      <div class="proj-section__inner fade-in">
-        <p class="section__label">User Flow</p>
-        <h2 class="proj-section__title">Showcase #1</h2>
-        <p class="proj-text q-intro-text">In this case, the user is not creating a new SPL token, but rather utilizing one from their own collection. The goal is to enhance the token's functionality by adding various standards that serve different purposes and use cases. Connecting a wallet is necessary in order to access your assets.</p>
+            <!-- USER box -->
+            <rect x="24" y="36" width="90" height="28" rx="2" fill="rgba(139,92,246,0.08)" stroke="rgba(139,92,246,0.5)" stroke-width="1"/>
+            <text x="69" y="54" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" font-weight="500" fill="#C4B5FD" letter-spacing="1.5">USER</text>
 
-        <div class="q-flow">
-          <div class="q-flow-node">Landing Page</div>
-          <div class="q-flow-arrow">→</div>
-          <div class="q-flow-node">Explore</div>
-          <div class="q-flow-arrow">→</div>
-          <div class="q-flow-node">My Assets</div>
-          <div class="q-flow-arrow">→</div>
-          <div class="q-flow-node q-flow-node--active">Collectible detail</div>
-          <div class="q-flow-arrow">→</div>
-          <div class="q-flow-node">Explore Standards</div>
-          <div class="q-flow-arrow">→</div>
-          <div class="q-flow-node q-flow-node--active">Add Standards</div>
+            <!-- Arrow user → QMP -->
+            <line x1="114" y1="50" x2="148" y2="50" stroke="rgba(139,92,246,0.6)" stroke-width="1" marker-end="url(#arr)"/>
+
+            <!-- QUADRATO METADATA PROGRAM box -->
+            <rect x="148" y="36" width="242" height="28" rx="2" fill="rgba(139,92,246,0.16)" stroke="rgba(139,92,246,0.8)" stroke-width="1"/>
+            <text x="269" y="54" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8.5" font-weight="700" fill="#DDD6FE" letter-spacing="1">QUADRATO METADATA PROGRAM</text>
+
+            <!-- Vertical line from QMP center down -->
+            <line x1="269" y1="64" x2="269" y2="96" stroke="rgba(139,92,246,0.4)" stroke-width="1"/>
+            <!-- Horizontal line connecting SOLANA TOKEN — ROOT — EXTENSIONS -->
+            <line x1="82" y1="96" x2="462" y2="96" stroke="rgba(139,92,246,0.4)" stroke-width="1"/>
+            <!-- Vertical drops -->
+            <line x1="82" y1="96" x2="82" y2="116" stroke="rgba(139,92,246,0.4)" stroke-width="1"/>
+            <line x1="269" y1="96" x2="269" y2="116" stroke="rgba(139,92,246,0.4)" stroke-width="1"/>
+            <line x1="462" y1="96" x2="462" y2="116" stroke="rgba(139,92,246,0.4)" stroke-width="1"/>
+
+            <!-- SOLANA TOKEN -->
+            <rect x="30" y="116" width="104" height="28" rx="2" fill="rgba(139,92,246,0.06)" stroke="rgba(139,92,246,0.32)" stroke-width="1"/>
+            <text x="82" y="134" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8.5" fill="#D0C8F0" letter-spacing="1">SOLANA TOKEN</text>
+
+            <!-- ROOT -->
+            <rect x="215" y="116" width="108" height="28" rx="2" fill="rgba(139,92,246,0.06)" stroke="rgba(139,92,246,0.32)" stroke-width="1"/>
+            <text x="269" y="134" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" font-weight="500" fill="#D0C8F0" letter-spacing="2">ROOT</text>
+
+            <!-- EXTENSIONS -->
+            <rect x="408" y="116" width="108" height="28" rx="2" fill="rgba(139,92,246,0.06)" stroke="rgba(139,92,246,0.32)" stroke-width="1"/>
+            <text x="462" y="134" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8.5" fill="#D0C8F0" letter-spacing="1">EXTENSIONS</text>
+
+            <!-- Dashed lines down -->
+            <line x1="82" y1="144" x2="82" y2="196" stroke="rgba(139,92,246,0.3)" stroke-width="1" stroke-dasharray="4 3"/>
+            <line x1="269" y1="144" x2="269" y2="196" stroke="rgba(139,92,246,0.4)" stroke-width="1"/>
+            <path d="M462 144 Q462 180 320 220" stroke="rgba(139,92,246,0.25)" stroke-width="1" stroke-dasharray="3 3" fill="none"/>
+
+            <!-- Labels -->
+            <text x="93" y="176" font-family="IBM Plex Mono,monospace" font-size="7.5" fill="rgba(139,92,246,0.42)" letter-spacing="0.5">has address</text>
+            <text x="278" y="176" font-family="IBM Plex Mono,monospace" font-size="7.5" fill="rgba(139,92,246,0.42)" letter-spacing="0.5">stores info</text>
+
+            <!-- ASSET / SPL TOKEN -->
+            <rect x="24" y="196" width="116" height="28" rx="2" fill="rgba(139,92,246,0.14)" stroke="rgba(139,92,246,0.65)" stroke-width="1"/>
+            <text x="82" y="214" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8" font-weight="700" fill="#C4B5FD" letter-spacing="1">ASSET / SPL TOKEN</text>
+
+            <!-- METADATA -->
+            <rect x="215" y="196" width="108" height="28" rx="2" fill="rgba(139,92,246,0.06)" stroke="rgba(139,92,246,0.32)" stroke-width="1"/>
+            <text x="269" y="214" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8.5" fill="#D0C8F0" letter-spacing="1.5">METADATA</text>
+          </svg>
         </div>
       </div>
     </section>
 
-
-    <!-- ─── dAPP SCREENS ─── -->
-    <!-- Replaces image 5 UI screens -->
-    <section class="proj-section">
-      <div class="proj-section__inner fade-in">
-        <p class="section__label">Screens</p>
-        <h2 class="proj-section__title">dApp walkthrough</h2>
-
-        <!-- Landing page screen -->
-        <div class="q-device">
-          <div class="q-device__chrome">
-            <div class="q-chrome-dots"><span></span><span></span><span></span></div>
-            <div class="q-chrome-url">quadrato.io</div>
+    <!-- ── TARGET AUDIENCE ── -->
+    <section class="q-audience">
+      <div class="q-audience__inner">
+        <div class="q-audience__left">
+          <h2 class="q-audience__title">The target audience</h2>
+          <p class="q-audience__body">Our primary target audience for our product was the artists and creators of the Solana and the jury of the event. However, we recognise the infinite applications of NFTs and the potential for widespread adoption in the future. Therefore, our goal was to address the needs of all users involved in crypto-space and NFTs, especially young people around the world, and encourage them to contribute to and enrich the protocol. Our solution offers unparalleled flexibility and customisation for NFTs, making it ideal for both experienced and novice users.</p>
+        </div>
+        <div class="q-audience__stats">
+          <div class="q-stat">
+            <span class="q-stat__num">8.5M+</span>
+            <span class="q-stat__label">nft wallets on solana</span>
           </div>
-          <div class="q-screen q-screen--landing">
-            <nav class="q-dapp-nav">
-              <span class="q-dapp-logo">QUADRATO</span>
-              <div class="q-dapp-links">
-                <span class="q-dapp-link q-dapp-link--active">Explore</span>
-                <span class="q-dapp-link">About</span>
-                <span class="q-dapp-link">Whitepaper</span>
-              </div>
-              <button class="q-btn-mint">Mint</button>
-            </nav>
-            <div class="q-landing-body">
-              <div class="q-landing-copy">
-                <h2 class="q-landing-h">Add infinite scalability to your NFT</h2>
-                <p class="q-landing-sub">Increase the applicability and utility of your digital goods across platforms by setting various standards for your collectibles. Create the future of NFTs by designing dynamic, scalable, and modular digital collections.</p>
-                <div class="q-landing-ctas">
-                  <button class="q-btn-outline">Explore</button>
-                  <button class="q-btn-mint">Mint</button>
+          <div class="q-stat__div"></div>
+          <div class="q-stat">
+            <span class="q-stat__num">$0.00012</span>
+            <span class="q-stat__label">cost of minting an NFT using state compression</span>
+          </div>
+          <div class="q-stat__div"></div>
+          <div class="q-stat">
+            <span class="q-stat__num">32.0M+</span>
+            <span class="q-stat__label">NFTs</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         SECTION 2 — BENCHMARK
+         ══════════════════════════════════════════ -->
+    <section class="q-benchmark">
+      <div class="q-bm__inner">
+        <h2 class="q-bm__title">Benchmark</h2>
+        <p class="q-bm__intro">This benchmark aims to analyse competitors and similar projects on the Solana Blockchain with similar functions, purposes, design, and look &amp; feel. Although these projects still use Web2 integration and aren't fully on-chain like our product, we stand out by offering a unique protocol that goes beyond buying and selling. Our platform empowers creators and artists to build their own customisable collections with flexible standards, allowing them to showcase their full imagination.</p>
+
+        <!-- Metaplex -->
+        <div class="q-bm__entry">
+          <h3 class="q-bm__name">Metaplex</h3>
+          <div class="q-bm__split">
+            <div class="q-bm__text-col">
+              <p class="q-bm__text">Metaplex is a revolutionary project that utilizes Solana blockchain technology to transform digital art and collections. It offers a complete ecosystem with tools to create, sell, and trade customizable NFTs. Its decentralized marketplace and community-driven approach drive innovation and the growth of digital art. Metaplex is a pioneer in the future of digital art on the blockchain and probably the most used as a standard. Even though, still a web2-web3 integrated dapp.</p>
+            </div>
+            <div class="q-bm__mockup-col">
+              <div class="q-browser">
+                <div class="q-browser__bar">
+                  <div class="q-browser__dots"><span></span><span></span><span></span></div>
                 </div>
-              </div>
-              <div class="q-landing-art">
-                <div class="q-nft-frame">
-                  <div class="q-nft-frame__glow"></div>
-                  <div class="q-nft-frame__border"></div>
-                  <div class="q-nft-frame__inner">
-                    <div class="q-bear-art"></div>
+                <div class="q-browser__screen q-browser__screen--metaplex">
+                  <div class="q-mplex-top">
+                    <div class="q-mplex-nft">
+                      <div class="q-mplex-nft__art"></div>
+                      <div class="q-mplex-nft__badge">No developer. Go ahead.</div>
+                    </div>
+                    <div class="q-mplex-quote">
+                      <p class="q-mplex-quote__main">That should be an<br><strong>NFT</strong></p>
+                      <p class="q-mplex-quote__sub">Empower artists and creators to transform their ideas into on-chain digital assets you can add to any NFT. Get access to early editions of generate NFTs to build a one.</p>
+                    </div>
+                  </div>
+                  <div class="q-mplex-banner">
+                    <p class="q-mplex-banner__h">Anyone can be a creator.</p>
+                    <p class="q-mplex-banner__p">Metaplex Creator Studio makes it easy to create, sell, and manage Solana NFTs without writing a single line of code.</p>
+                    <button class="q-mplex-cta">Request Early Access</button>
                   </div>
                 </div>
               </div>
@@ -413,74 +260,81 @@
           </div>
         </div>
 
-        <!-- Collectible detail screen -->
-        <div class="q-device" style="margin-top:1.5rem">
-          <div class="q-device__chrome">
-            <div class="q-chrome-dots"><span></span><span></span><span></span></div>
-            <div class="q-chrome-url">quadrato.io/explore/collectible/0xA4F2C</div>
+        <!-- Magic Eden -->
+        <div class="q-bm__entry">
+          <h3 class="q-bm__name">Magic Eden</h3>
+          <div class="q-bm__split q-bm__split--reverse">
+            <div class="q-bm__mockup-col">
+              <div class="q-bm__img-block q-bm__img-block--shyones">
+                <div class="q-shyones__badge">Shy Ones</div>
+                <p class="q-shyones__sub">Shy Ones is a multifaceted creative studio creating handcrafted unique expressions run of 3 Core Pillars: Shy Ones, Venture Studio, Shy Ones Events, Shy Ones Shop.</p>
+                <a class="q-shyones__link">Go to Launchpad ↗</a>
+              </div>
+            </div>
+            <div class="q-bm__text-col">
+              <p class="q-bm__text">Magic Eden is one of the most widely used marketplaces in the field of NFTs, especially one of the most common in Solana. Although our project is not based on a marketplace, Magic Eden serves as a study for its functionalities, modern style and as a general marketplace idea and marketplace explorer. Still having the same problem.</p>
+            </div>
           </div>
-          <div class="q-screen q-screen--detail">
-            <nav class="q-dapp-nav">
-              <span class="q-dapp-logo">QUADRATO</span>
-              <div class="q-dapp-links">
-                <span class="q-dapp-link">Explore</span>
-                <span class="q-dapp-link q-dapp-link--active">Explore collectible</span>
+          <div class="q-browser q-browser--wide" style="margin-top:1.5rem">
+            <div class="q-browser__bar">
+              <div class="q-browser__dots"><span></span><span></span><span></span></div>
+              <div class="q-browser__tab">You can use this slot  · ...</div>
+            </div>
+            <div class="q-browser__screen q-browser__screen--gallery">
+              <div class="q-gallery-nav">
+                <span>V</span>
+                <div class="q-gallery-tabs"><span class="q-gallery-tab q-gallery-tab--active">This can be a...</span><span class="q-gallery-tab">Tab</span><span class="q-gallery-tab">Tab</span><span class="q-gallery-tab">Tab</span></div>
+                <span>⊞ ⊟</span>
               </div>
-              <button class="q-btn-mint">Mint</button>
-            </nav>
-            <div class="q-detail-body">
-              <div class="q-detail-art">
-                <div class="q-nft-frame q-nft-frame--sm">
-                  <div class="q-nft-frame__glow"></div>
-                  <div class="q-nft-frame__border"></div>
-                  <div class="q-nft-frame__inner">
-                    <div class="q-bear-art"></div>
+              <div class="q-gallery-grid">
+                <div class="q-gallery-card"><div class="q-gallery-card__art q-gallery-card__art--1"></div><div class="q-gallery-card__info"><span class="q-gallery-card__price">0.5k</span><span class="q-gallery-card__name">0.5k</span></div></div>
+                <div class="q-gallery-card"><div class="q-gallery-card__art q-gallery-card__art--2"></div><div class="q-gallery-card__info"><span class="q-gallery-card__price">0.5k</span><span class="q-gallery-card__name">0.5k</span></div></div>
+                <div class="q-gallery-card"><div class="q-gallery-card__art q-gallery-card__art--3"></div><div class="q-gallery-card__info"><span class="q-gallery-card__price">0.5k</span><span class="q-gallery-card__name">0.5k</span></div></div>
+                <div class="q-gallery-card"><div class="q-gallery-card__art q-gallery-card__art--4"></div><div class="q-gallery-card__info"><span class="q-gallery-card__price">0.5k</span><span class="q-gallery-card__name">0.5k</span></div></div>
+                <div class="q-gallery-card"><div class="q-gallery-card__art q-gallery-card__art--5"></div><div class="q-gallery-card__info"><span class="q-gallery-card__price">0.5k</span><span class="q-gallery-card__name">0.5k</span></div></div>
+                <div class="q-gallery-card q-gallery-card--hidden"><div class="q-gallery-card__art q-gallery-card__art--6"></div><div class="q-gallery-card__info"><span class="q-gallery-card__price">0.5k</span><span class="q-gallery-card__name">0.5k</span></div></div>
+              </div>
+              <div class="q-gallery-row2">
+                <div class="q-gallery-card-sm"><div class="q-gallery-card__art q-gallery-card__art--7"></div></div>
+                <div class="q-gallery-card-sm"><div class="q-gallery-card__art q-gallery-card__art--8"></div></div>
+                <div class="q-gallery-card-sm"><div class="q-gallery-card__art q-gallery-card__art--1"></div></div>
+                <div class="q-gallery-card-sm"><div class="q-gallery-card__art q-gallery-card__art--2"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Rarible -->
+        <div class="q-bm__entry">
+          <h3 class="q-bm__name">Rarible</h3>
+          <div class="q-bm__split">
+            <div class="q-bm__text-col">
+              <p class="q-bm__text">Rarible is another major marketplace used for buying and selling collectibles (NFTs). It offers a wide variety of options and incorporates graphic and functional codes that require in-depth study. However, as a multichain marketplace and web2 integrated platform, it doesn't fully meet the needs of our project. It is also not very flexible when it comes to creating your collection, as it lacks personalized options. Therefore, Rarible has limitations in terms of functionality and operability, making it less suitable for our project.</p>
+            </div>
+            <div class="q-bm__mockup-col">
+              <div class="q-browser">
+                <div class="q-browser__bar">
+                  <div class="q-browser__dots"><span></span><span></span><span></span></div>
+                </div>
+                <div class="q-browser__screen q-browser__screen--rarible">
+                  <div class="q-rarible-split">
+                    <div class="q-rarible-nft">
+                      <div class="q-rarible-nft__art"></div>
+                      <div class="q-rarible-nft__label">BoredApeFachClub #32010</div>
+                    </div>
+                    <div class="q-rarible-info">
+                      <div class="q-rarible-row"><span>Price</span><span>3.14 ETH</span></div>
+                      <div class="q-rarible-row"><span>Volume</span><span>1,241.7 ETH</span></div>
+                      <div class="q-rarible-row"><span>Items</span><span>10,000</span></div>
+                      <div class="q-rarible-row"><span>Owners</span><span>5,677</span></div>
+                      <button class="q-rarible-btn">Buy now</button>
+                      <button class="q-rarible-btn q-rarible-btn--ghost">Make offer</button>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div class="q-detail-info">
-                <div class="q-detail-row">
-                  <span class="q-detail-label">Collectible name</span>
-                  <span class="q-detail-val">Falling near Atari</span>
-                </div>
-                <div class="q-detail-row">
-                  <span class="q-detail-label">Used standards</span>
-                  <div class="q-chip-group">
-                    <span class="q-chip">Metaverse Gadget</span>
-                    <span class="q-chip">Creative standard</span>
-                  </div>
-                </div>
-                <div class="q-detail-row">
-                  <span class="q-detail-label">Category</span>
-                  <div class="q-chip-group"><span class="q-chip">Toy</span></div>
-                </div>
-                <div class="q-detail-row">
-                  <span class="q-detail-label">Standard</span>
-                  <span class="q-detail-val">3D model (3/3)</span>
-                </div>
-                <div class="q-detail-row">
-                  <span class="q-detail-label">Owned by</span>
-                  <span class="q-detail-val q-detail-val--addr">GrayGris7oGebBeny</span>
-                </div>
-                <div class="q-detail-row">
-                  <span class="q-detail-label">Involvement</span>
-                  <span class="q-detail-val">Metis Lee · Gratisto · MadBug</span>
-                </div>
-                <div class="q-detail-tags">
-                  <span class="q-detail-tag">#collectible</span>
-                  <span class="q-detail-tag">#standard</span>
-                  <span class="q-detail-tag">#Design</span>
-                  <span class="q-detail-tag">#Toy</span>
-                  <span class="q-detail-tag">#Metaverse</span>
-                </div>
-                <div class="q-detail-price">
-                  <span class="q-detail-price__label">Current price</span>
-                  <span class="q-detail-price__val">1.5 SOL</span>
-                </div>
-                <div class="q-detail-actions">
-                  <button class="q-btn-ghost">Back</button>
-                  <button class="q-btn-mint">Mint standard!</button>
-                </div>
+              <div class="q-bm__img-block q-bm__img-block--rarible-art" style="margin-top:1rem">
+                <div class="q-rarible-art-lg"></div>
               </div>
             </div>
           </div>
@@ -489,209 +343,559 @@
       </div>
     </section>
 
+    <!-- ══════════════════════════════════════════
+         SECTION 3 — USER FLOW + SCREENS
+         ══════════════════════════════════════════ -->
+    <section class="q-userflow">
+      <div class="q-uf__inner">
+        <div class="q-uf__header">
+          <div class="q-uf__bullets">
+            <span class="q-uf__bullet q-uf__bullet--active"></span>
+            <span class="q-uf__bullet"></span>
+            <span class="q-uf__blabel">Use Case #1</span>
+            <span class="q-uf__blabel">Use Case #2</span>
+          </div>
+        </div>
+        <h2 class="q-uf__title">User flow / showcase #1</h2>
+        <p class="q-uf__body">In this case, the user is not creating a new SPL token, but rather utilizing one from their own collection. The goal is to enhance the token's functionality by adding various standards that serve different purposes and use cases. The main task at hand is to review the details of the token and incorporate additional utilities to optimize its value as an NFT.</p>
+        <p class="q-uf__note">A — The user can go through the dapp or into documentation and forum. Notice that connecting wallet is necessary in order to access your assets.</p>
 
-    <!-- ─── DESIGN GUIDANCE ─── -->
-    <!-- Replaces image 6 (full DS spec sheet) -->
-    <section class="proj-section">
-      <div class="proj-section__inner fade-in">
-        <p class="section__label">Design System</p>
-        <h2 class="proj-section__title">Design guidance</h2>
-        <p class="proj-text q-intro-text">We were looking for a range of colors that complement the project's concept, evoking futurism, hardness, deep space, and above all, high contrast and vibrant colors in line with the world of Web3 and NFTs.</p>
+        <div class="q-flow-group">
+          <span class="q-flow-case">Use Case #1</span>
+          <div class="q-flow">
+            <div class="q-flow-node">Landing Page</div>
+            <div class="q-flow-arrow">→</div>
+            <div class="q-flow-node">Explore</div>
+            <div class="q-flow-arrow">→</div>
+            <div class="q-flow-node">My Assets</div>
+            <div class="q-flow-arrow">→</div>
+            <div class="q-flow-node q-flow-node--active">Collectible detail</div>
+            <div class="q-flow-arrow">→</div>
+            <div class="q-flow-node">Explore Standards</div>
+            <div class="q-flow-arrow">→</div>
+            <div class="q-flow-node q-flow-node--active">Add Standards</div>
+          </div>
+        </div>
+        <div class="q-flow-group">
+          <span class="q-flow-case">Use Case #2 Minting</span>
+          <div class="q-flow">
+            <div class="q-flow-node">Landing Page</div>
+            <div class="q-flow-arrow">→</div>
+            <div class="q-flow-node">Explore</div>
+            <div class="q-flow-arrow">→</div>
+            <div class="q-flow-node q-flow-node--active">Create collectible</div>
+            <div class="q-flow-arrow">→</div>
+            <div class="q-flow-node q-flow-node--active">Mint collectible</div>
+            <div class="q-flow-arrow">→</div>
+            <div class="q-flow-node">Connect wallet</div>
+            <div class="q-flow-arrow">→</div>
+            <div class="q-flow-node">My Assets</div>
+          </div>
+        </div>
+
+        <!-- Network visualization -->
+        <div class="q-netvis">
+          <div class="q-netvis__nodes">
+            <div class="q-netvis__node" style="--nx:12%;--ny:30%">Landing Page</div>
+            <div class="q-netvis__node q-netvis__node--active" style="--nx:28%;--ny:18%">Explore</div>
+            <div class="q-netvis__node" style="--nx:45%;--ny:28%">My Assets</div>
+            <div class="q-netvis__node q-netvis__node--active" style="--nx:60%;--ny:15%">Collectible detail</div>
+            <div class="q-netvis__node" style="--nx:52%;--ny:48%">Explore Standards</div>
+            <div class="q-netvis__node q-netvis__node--active" style="--nx:74%;--ny:35%">Add Standards</div>
+            <div class="q-netvis__node q-netvis__node--sm" style="--nx:22%;--ny:60%">Documentation</div>
+            <div class="q-netvis__node q-netvis__node--sm" style="--nx:38%;--ny:65%">Forum</div>
+            <div class="q-netvis__node q-netvis__node--sm" style="--nx:68%;--ny:62%">Connect wallet</div>
+            <div class="q-netvis__node q-netvis__node--sm" style="--nx:82%;--ny:52%">Mint collectible</div>
+          </div>
+          <svg class="q-netvis__svg" viewBox="0 0 900 320" preserveAspectRatio="none">
+            <line x1="108" y1="96" x2="252" y2="57" stroke="rgba(139,92,246,0.3)" stroke-width="1"/>
+            <line x1="252" y1="57" x2="405" y2="89" stroke="rgba(139,92,246,0.3)" stroke-width="1"/>
+            <line x1="405" y1="89" x2="540" y2="48" stroke="rgba(139,92,246,0.3)" stroke-width="1"/>
+            <line x1="405" y1="89" x2="468" y2="153" stroke="rgba(139,92,246,0.2)" stroke-width="1"/>
+            <line x1="468" y1="153" x2="666" y2="112" stroke="rgba(139,92,246,0.3)" stroke-width="1"/>
+            <line x1="198" y1="192" x2="342" y2="208" stroke="rgba(139,92,246,0.15)" stroke-width="1"/>
+            <line x1="108" y1="96" x2="198" y2="192" stroke="rgba(139,92,246,0.15)" stroke-width="1" stroke-dasharray="4 3"/>
+            <line x1="612" y1="198" x2="738" y2="166" stroke="rgba(139,92,246,0.2)" stroke-width="1" stroke-dasharray="4 3"/>
+            <circle cx="108" cy="96" r="3" fill="rgba(139,92,246,0.6)"/>
+            <circle cx="252" cy="57" r="4" fill="rgba(139,92,246,0.8)"/>
+            <circle cx="405" cy="89" r="3" fill="rgba(139,92,246,0.5)"/>
+            <circle cx="540" cy="48" r="4" fill="rgba(139,92,246,0.9)"/>
+            <circle cx="468" cy="153" r="3" fill="rgba(139,92,246,0.5)"/>
+            <circle cx="666" cy="112" r="5" fill="rgba(139,92,246,1)" filter="url(#glow)"/>
+            <defs>
+              <filter id="glow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+            </defs>
+          </svg>
+        </div>
+
+      </div>
+
+      <!-- Landing page screen (full-width) -->
+      <div class="q-screen-wrap">
+        <p class="q-screen-label-sm">Landing Page</p>
+        <div class="q-dapp-screen q-dapp-screen--landing">
+          <nav class="q-dapp-nav">
+            <span class="q-dapp-logo">QUADRATO</span>
+            <div class="q-dapp-links">
+              <span class="q-dapp-link q-dapp-link--active">Explore</span>
+              <span class="q-dapp-link">About</span>
+              <span class="q-dapp-link">NFT support</span>
+            </div>
+            <div class="q-dapp-ctas">
+              <button class="q-btn-outline-sm">Explore</button>
+              <button class="q-btn-mint-sm">Mint</button>
+            </div>
+          </nav>
+          <div class="q-landing-body">
+            <div class="q-landing-copy">
+              <h2 class="q-landing-h">Add infinite scalabi-lity<br>to your NFT</h2>
+              <p class="q-landing-sub">Increase the applicability and utility of your digital goods across platforms by setting new standards for your collectibles. Create the future of NFTs by designing dynamic, scalable, and modular digital collectibles.</p>
+              <div class="q-landing-ctas">
+                <button class="q-btn-outline-sm">Explore</button>
+                <button class="q-btn-mint-sm">Mint</button>
+              </div>
+            </div>
+            <div class="q-landing-art">
+              <div class="q-portrait q-nft-portrait--sm">
+                <div class="q-portrait__glow"></div>
+                <div class="q-portrait__border"></div>
+                <div class="q-portrait__inner">
+                  <div class="q-bear"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Screen grid -->
+      <div class="q-screens-grid-outer">
+        <!-- Explorer -->
+        <div class="q-screen-thumb">
+          <p class="q-screen-label-sm">Explorer</p>
+          <div class="q-dapp-screen q-dapp-screen--thumb">
+            <div class="q-thumb-nav"><span class="q-dapp-logo q-dapp-logo--xs">QUADRATO</span></div>
+            <div class="q-thumb-content">
+              <p class="q-thumb-title">Exploring collectibles</p>
+              <div class="q-thumb-grid">
+                <div class="q-thumb-card q-thumb-card--1"></div>
+                <div class="q-thumb-card q-thumb-card--2"></div>
+                <div class="q-thumb-card q-thumb-card--3"></div>
+                <div class="q-thumb-card q-thumb-card--4"></div>
+                <div class="q-thumb-card q-thumb-card--5"></div>
+                <div class="q-thumb-card q-thumb-card--6"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Asset detail -->
+        <div class="q-screen-thumb">
+          <p class="q-screen-label-sm">Asset detail</p>
+          <div class="q-dapp-screen q-dapp-screen--thumb">
+            <div class="q-thumb-nav"><span class="q-dapp-logo q-dapp-logo--xs">QUADRATO</span></div>
+            <div class="q-detail-mini">
+              <div class="q-detail-mini__art">
+                <div class="q-bear q-bear--mini"></div>
+              </div>
+              <div class="q-detail-mini__info">
+                <div class="q-detail-mini__row"><span>Falling Bear #2443</span></div>
+                <div class="q-detail-mini__row q-detail-mini__row--muted"><span>Falling Bear #2443</span></div>
+                <div class="q-detail-mini__row q-detail-mini__row--muted"><span>0xa4f2</span></div>
+                <div class="q-detail-mini__price">2.5 SOL</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- My Assets -->
+        <div class="q-screen-thumb">
+          <p class="q-screen-label-sm">My Assets</p>
+          <div class="q-dapp-screen q-dapp-screen--thumb">
+            <div class="q-thumb-nav"><span class="q-dapp-logo q-dapp-logo--xs">QUADRATO</span></div>
+            <div class="q-thumb-content">
+              <p class="q-thumb-title">My assets</p>
+              <div class="q-thumb-grid">
+                <div class="q-thumb-card q-thumb-card--6"></div>
+                <div class="q-thumb-card q-thumb-card--2"></div>
+                <div class="q-thumb-card q-thumb-card--4"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Standards Explorer -->
+        <div class="q-screen-thumb">
+          <p class="q-screen-label-sm">Standards Explorer</p>
+          <div class="q-dapp-screen q-dapp-screen--thumb">
+            <div class="q-thumb-nav"><span class="q-dapp-logo q-dapp-logo--xs">QUADRATO</span></div>
+            <div class="q-thumb-content">
+              <p class="q-thumb-title">Standards</p>
+              <div class="q-standards-list">
+                <div class="q-standard-row"><div class="q-standard-row__icon"></div><div class="q-standard-row__text"><span>3D Model</span><span>By Quadrato</span></div></div>
+                <div class="q-standard-row"><div class="q-standard-row__icon"></div><div class="q-standard-row__text"><span>Game Asset</span><span>By HenryLou</span></div></div>
+                <div class="q-standard-row"><div class="q-standard-row__icon"></div><div class="q-standard-row__text"><span>Metaverse Item</span><span>By MughBag</span></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Standard detail -->
+        <div class="q-screen-thumb">
+          <p class="q-screen-label-sm">Standard detail</p>
+          <div class="q-dapp-screen q-dapp-screen--thumb">
+            <div class="q-thumb-nav"><span class="q-dapp-logo q-dapp-logo--xs">QUADRATO</span></div>
+            <div class="q-thumb-content">
+              <p class="q-thumb-title">Standards</p>
+              <p class="q-thumb-sub">Category: Toy<br>Standard: 3D model [2/3]</p>
+              <div class="q-thumb-bear-sm"></div>
+            </div>
+          </div>
+        </div>
+        <!-- Asset detail after adding standard -->
+        <div class="q-screen-thumb q-screen-thumb--wide">
+          <p class="q-screen-label-sm">Asset detail after adding standard</p>
+          <div class="q-dapp-screen q-dapp-screen--thumb q-dapp-screen--wide">
+            <div class="q-thumb-nav"><span class="q-dapp-logo q-dapp-logo--xs">QUADRATO</span><span class="q-thumb-addr">● quadrato.io</span></div>
+            <div class="q-add-std-body">
+              <div class="q-add-std-form">
+                <div class="q-add-std-field"><label>Collectible name</label><div class="q-add-std-input">Falling bear #2443</div></div>
+                <div class="q-add-std-field"><label>Used standards</label><div class="q-add-std-input">3D Model</div></div>
+                <div class="q-add-std-field"><label>Standard</label><div class="q-add-std-input">3D Model, Game...</div></div>
+                <div class="q-add-std-field"><label>Category</label><div class="q-add-std-input">Toy / Metaverse</div></div>
+                <div class="q-add-std-actions">
+                  <button class="q-add-std-back">Back</button>
+                  <button class="q-add-std-submit">Add standard</button>
+                </div>
+              </div>
+              <div class="q-add-std-preview">
+                <p class="q-add-std-preview__label">Category: Toy<br>Standard: 3D model [2/3]</p>
+                <div class="q-thumb-bear-lg"></div>
+                <div class="q-add-std-nav">
+                  <span>‹</span>
+                  <span class="q-add-std-dots"><span></span><span class="active"></span><span></span></span>
+                  <span>›</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         SECTION 4 — DESIGN GUIDANCE: CONCEPT
+         ══════════════════════════════════════════ -->
+    <section class="q-dg-concept">
+      <div class="q-dg-concept__inner">
+        <div class="q-dg-concept__nav">
+          <p class="q-dg-concept__label">Design guidance</p>
+          <p class="q-dg-concept__sub">Concept</p>
+          <ul class="q-dg-nav-list">
+            <li class="q-dg-nav-item">Type</li>
+            <li class="q-dg-nav-item">Colors</li>
+            <li class="q-dg-nav-item">Component set<br>and behaviour</li>
+            <li class="q-dg-nav-item">Micro-interaction</li>
+            <li class="q-dg-nav-item">Effects</li>
+          </ul>
+        </div>
+        <div class="q-dg-concept__screens">
+          <p class="q-dg-screens-title">Related screens</p>
+          <p class="q-dg-screens-sub">Landing Page</p>
+          <div class="q-dg-screens-grid">
+            <!-- Landing screen thumb -->
+            <div class="q-dg-thumb q-dg-thumb--wide">
+              <div class="q-dg-thumb__screen q-dg-thumb__screen--landing">
+                <div class="q-dg-thumb__nav">
+                  <span class="q-dg-thumb__logo">QUADRATO</span>
+                  <div class="q-dg-thumb__navlinks">
+                    <span class="q-dg-thumb__navlink q-dg-thumb__navlink--active">Explore</span>
+                    <span class="q-dg-thumb__navlink">About</span>
+                    <span class="q-dg-thumb__navlink">NFT support</span>
+                  </div>
+                </div>
+                <div class="q-dg-thumb__body">
+                  <div class="q-dg-thumb__copy">
+                    <div class="q-dg-thumb__h"></div>
+                    <div class="q-dg-thumb__p"></div>
+                    <div class="q-dg-thumb__ctas"><span></span><span></span></div>
+                  </div>
+                  <div class="q-dg-thumb__art"></div>
+                </div>
+              </div>
+            </div>
+            <!-- Explorer thumb -->
+            <div class="q-dg-thumb">
+              <div class="q-dg-thumb__screen">
+                <div class="q-dg-thumb__nav"><span class="q-dg-thumb__logo">Q</span></div>
+                <div class="q-dg-thumb__grid4">
+                  <div class="q-dg-card q-dg-card--1"></div>
+                  <div class="q-dg-card q-dg-card--2"></div>
+                  <div class="q-dg-card q-dg-card--3"></div>
+                  <div class="q-dg-card q-dg-card--4"></div>
+                </div>
+              </div>
+            </div>
+            <!-- My assets thumb -->
+            <div class="q-dg-thumb">
+              <div class="q-dg-thumb__screen">
+                <div class="q-dg-thumb__nav"><span class="q-dg-thumb__logo">Q</span></div>
+                <div class="q-dg-thumb__grid4">
+                  <div class="q-dg-card q-dg-card--5"></div>
+                  <div class="q-dg-card q-dg-card--6"></div>
+                  <div class="q-dg-card q-dg-card--1"></div>
+                </div>
+              </div>
+            </div>
+            <!-- Asset detail thumb -->
+            <div class="q-dg-thumb">
+              <div class="q-dg-thumb__screen">
+                <div class="q-dg-thumb__nav"><span class="q-dg-thumb__logo">Q</span></div>
+                <div class="q-dg-thumb__detail">
+                  <div class="q-dg-thumb__detail-art"></div>
+                  <div class="q-dg-thumb__detail-rows">
+                    <div></div><div></div><div></div><div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Standards Explorer thumb -->
+            <div class="q-dg-thumb">
+              <div class="q-dg-thumb__screen">
+                <div class="q-dg-thumb__nav"><span class="q-dg-thumb__logo">Q</span></div>
+                <div class="q-dg-thumb__std-list">
+                  <div class="q-dg-thumb__std-row"></div>
+                  <div class="q-dg-thumb__std-row"></div>
+                  <div class="q-dg-thumb__std-row"></div>
+                </div>
+              </div>
+            </div>
+            <!-- Standard detail thumb -->
+            <div class="q-dg-thumb">
+              <div class="q-dg-thumb__screen">
+                <div class="q-dg-thumb__nav"><span class="q-dg-thumb__logo">Q</span></div>
+                <div class="q-dg-thumb__content">
+                  <div class="q-dg-thumb__bear"></div>
+                </div>
+              </div>
+            </div>
+            <!-- Add standard full-width thumb -->
+            <div class="q-dg-thumb q-dg-thumb--wide2">
+              <div class="q-dg-thumb__screen">
+                <div class="q-dg-thumb__nav"><span class="q-dg-thumb__logo">Q</span><span class="q-dg-thumb__addr">quadrato.io</span></div>
+                <div class="q-dg-thumb__form-preview">
+                  <div class="q-dg-thumb__form">
+                    <div class="q-dg-thumb__form-row"></div>
+                    <div class="q-dg-thumb__form-row"></div>
+                    <div class="q-dg-thumb__form-row"></div>
+                    <div class="q-dg-thumb__form-btn"></div>
+                  </div>
+                  <div class="q-dg-thumb__bear q-dg-thumb__bear--lg"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         SECTION 7 — DESIGN GUIDANCE: SPECS
+         ══════════════════════════════════════════ -->
+    <section class="q-dg-specs">
+      <div class="q-dg-specs__inner">
+
+        <h2 class="q-dg-specs__title">Design guidance</h2>
 
         <!-- Typography -->
-        <div class="q-ds-block">
-          <h3 class="q-ds-block__title">Typography</h3>
-          <div class="q-type-scale">
-            <div class="q-type-row">
-              <div class="q-type-meta">
-                <span class="q-type-name">Chakra Petch Bold 40</span>
-                <span class="q-type-role">Header</span>
+        <div class="q-dg-block">
+          <h3 class="q-dg-block__h">Typography</h3>
+          <p class="q-dg-block__desc">We are working with a range of Chakra Petch Bold and Inter Regular. These typefaces combined give us a unique look and feel, which is in line with the world of Web3 and NFTs, while also being legible and accessible. The Chakra Petch typeface is used for headers and titles, while the Inter typeface is used for body text and descriptions.</p>
+          <div class="q-type-showcase">
+            <div class="q-type-row2">
+              <div class="q-type-meta2">
+                <span class="q-type-name2">Chakra Petch Bold 40</span>
+                <span class="q-type-role2">Header</span>
               </div>
-              <span class="q-type-sample" style="font-family:'Chakra Petch',sans-serif;font-weight:700;font-size:2.5rem;line-height:1">1234567890</span>
+              <div class="q-type-samples">
+                <span class="q-type-samp q-type-samp--header">1234567890</span>
+                <span class="q-type-role-tag">Black text</span>
+                <span class="q-type-role-tag q-type-role-tag--dark">Sub text</span>
+                <span class="q-type-role-tag q-type-role-tag--white">Links</span>
+              </div>
             </div>
-            <div class="q-type-row">
-              <div class="q-type-meta">
-                <span class="q-type-name">Inter Regular 24</span>
-                <span class="q-type-role">Block text</span>
+            <div class="q-type-row2">
+              <div class="q-type-meta2">
+                <span class="q-type-name2">Inter Regular 16</span>
+                <span class="q-type-role2">Block text</span>
               </div>
-              <span class="q-type-sample" style="font-family:'Inter',sans-serif;font-weight:400;font-size:1.5rem">1234567890</span>
+              <div class="q-type-samples">
+                <span class="q-type-samp q-type-samp--body">1234567890</span>
+              </div>
             </div>
-            <div class="q-type-row">
-              <div class="q-type-meta">
-                <span class="q-type-name">IBM Plex Mono Medium 18</span>
-                <span class="q-type-role">Subtitles</span>
+            <div class="q-type-row2">
+              <div class="q-type-meta2">
+                <span class="q-type-name2">IBM Plex Mono Medium 18</span>
+                <span class="q-type-role2">Subtitles</span>
               </div>
-              <span class="q-type-sample" style="font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:1.125rem">1234567890</span>
+              <div class="q-type-samples">
+                <span class="q-type-samp q-type-samp--mono-lg">1234567890</span>
+              </div>
             </div>
-            <div class="q-type-row">
-              <div class="q-type-meta">
-                <span class="q-type-name">IBM Plex Mono Medium 16</span>
-                <span class="q-type-role">Button</span>
+            <div class="q-type-row2">
+              <div class="q-type-meta2">
+                <span class="q-type-name2">IBM Plex Mono Medium 16</span>
+                <span class="q-type-role2">Button</span>
               </div>
-              <span class="q-type-sample" style="font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:1rem">1234567890</span>
+              <div class="q-type-samples">
+                <span class="q-type-samp q-type-samp--mono">1234567890</span>
+              </div>
             </div>
-            <div class="q-type-row">
-              <div class="q-type-meta">
-                <span class="q-type-name">IBM Plex Mono Regular 14</span>
-                <span class="q-type-role">Details</span>
+            <div class="q-type-row2">
+              <div class="q-type-meta2">
+                <span class="q-type-name2">IBM Plex Mono Regular 14</span>
+                <span class="q-type-role2">Details</span>
               </div>
-              <span class="q-type-sample" style="font-family:'IBM Plex Mono',monospace;font-weight:400;font-size:0.875rem">1234567890</span>
+              <div class="q-type-samples">
+                <span class="q-type-samp q-type-samp--mono-sm">1234567890</span>
+              </div>
             </div>
           </div>
         </div>
 
         <!-- Color -->
-        <div class="q-ds-block">
-          <h3 class="q-ds-block__title">Color</h3>
-          <div class="q-color-groups">
-            <div class="q-color-group">
-              <p class="q-color-group__label">Greyscales</p>
-              <div class="q-swatches">
-                <div class="q-swatch">
-                  <div class="q-swatch__block" style="background:#0A0A0A;border:1px solid rgba(255,255,255,0.1)"></div>
-                  <span class="q-swatch__hex">#0A0A0A</span>
-                </div>
-                <div class="q-swatch">
-                  <div class="q-swatch__block" style="background:#1C1C1C"></div>
-                  <span class="q-swatch__hex">#1C1C1C</span>
-                </div>
-                <div class="q-swatch">
-                  <div class="q-swatch__block" style="background:#3D3D3D"></div>
-                  <span class="q-swatch__hex">#3D3D3D</span>
-                </div>
-                <div class="q-swatch">
-                  <div class="q-swatch__block" style="background:#7A7A7A"></div>
-                  <span class="q-swatch__hex">#7A7A7A</span>
-                </div>
-                <div class="q-swatch">
-                  <div class="q-swatch__block" style="background:#F0F0F0;border:1px solid rgba(0,0,0,0.12)"></div>
-                  <span class="q-swatch__hex">#F0F0F0</span>
-                </div>
+        <div class="q-dg-block">
+          <h3 class="q-dg-block__h">Color</h3>
+          <p class="q-dg-block__desc">We were looking for a range of colors that complement the project's concept, evoking futurism, hardness, deep space, and above all, high contrast and vibrant colors in line with the world of Web3 and NFTs.</p>
+          <div class="q-color-showcase">
+            <div class="q-color-section">
+              <p class="q-color-section__label">Greyscales</p>
+              <div class="q-swatches-row">
+                <div class="q-swatch2"><div class="q-swatch2__block" style="background:#0A0A0A"></div><span>#0A0A0A</span></div>
+                <div class="q-swatch2"><div class="q-swatch2__block" style="background:#1C1C1C"></div><span>#1C1C1C</span></div>
+                <div class="q-swatch2"><div class="q-swatch2__block" style="background:#3D3D3D"></div><span>#3D3D3D</span></div>
+                <div class="q-swatch2"><div class="q-swatch2__block" style="background:#7A7A7A"></div><span>#7A7A7A</span></div>
+                <div class="q-swatch2"><div class="q-swatch2__block" style="background:#F0F0F0;border:1px solid rgba(0,0,0,.15)"></div><span>#F0F0F0</span></div>
               </div>
             </div>
-            <div class="q-color-group">
-              <p class="q-color-group__label">Main colours</p>
-              <div class="q-swatches">
-                <div class="q-swatch">
-                  <div class="q-swatch__block" style="background:#F97316"></div>
-                  <span class="q-swatch__hex">Orange</span>
-                </div>
-                <div class="q-swatch">
-                  <div class="q-swatch__block" style="background:#EC4899"></div>
-                  <span class="q-swatch__hex">Pink</span>
-                </div>
-                <div class="q-swatch">
-                  <div class="q-swatch__block" style="background:#3B82F6"></div>
-                  <span class="q-swatch__hex">Blue</span>
-                </div>
-                <div class="q-swatch">
-                  <div class="q-swatch__block" style="background:#22C55E"></div>
-                  <span class="q-swatch__hex">Green</span>
-                </div>
+            <div class="q-color-section">
+              <p class="q-color-section__label">Main colours</p>
+              <div class="q-swatches-row">
+                <div class="q-swatch2"><div class="q-swatch2__block" style="background:#EAB308"></div><span>Yellow</span></div>
+                <div class="q-swatch2"><div class="q-swatch2__block" style="background:#22C55E"></div><span>Green</span></div>
+                <div class="q-swatch2"><div class="q-swatch2__block" style="background:#EF4444"></div><span>Red</span></div>
+                <div class="q-swatch2"><div class="q-swatch2__block" style="background:#8B5CF6"></div><span>Purple</span></div>
+                <div class="q-swatch2"><div class="q-swatch2__block" style="background:#3B82F6"></div><span>Blue</span></div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Component set and specs -->
-        <div class="q-ds-block">
-          <h3 class="q-ds-block__title">Component set and specs</h3>
-          <p class="q-ds-intro">This is a brief description of the main components used in the dapp and is intended to provide an idea of how everything was conceived — especially structure and consistency.</p>
+        <!-- Component set -->
+        <div class="q-dg-block">
+          <h3 class="q-dg-block__h">Component set and space</h3>
+          <p class="q-dg-block__desc">This is a brief description of the main components used in the dapp and is intended to provide an idea of how everything was conceived — especially structure and consistency.</p>
 
           <!-- Primary button -->
-          <div class="q-comp-row">
-            <div class="q-comp-specs">
-              <h4 class="q-comp-name">Primary button</h4>
-              <ul class="q-spec-list">
-                <li><span class="q-spec-prop">Border radius</span><span class="q-spec-val">2px</span></li>
-                <li><span class="q-spec-prop">Border width</span><span class="q-spec-val">1px</span></li>
-                <li><span class="q-spec-prop">Font</span><span class="q-spec-val">IBM Plex Mono Medium 16px</span></li>
-                <li><span class="q-spec-prop">Text align</span><span class="q-spec-val">Center</span></li>
+          <div class="q-comp-showcase">
+            <div class="q-comp-left">
+              <h4 class="q-comp-h">Primary button</h4>
+              <ul class="q-comp-specs">
+                <li><span>Border radius</span><span>2px</span></li>
+                <li><span>Border width</span><span>1px</span></li>
+                <li><span>Font</span><span>IBM Plex Mono Medium 16px</span></li>
+                <li><span>Text align</span><span>Center</span></li>
+                <li><span>Spacing</span><span>16 · 32</span></li>
+                <li><span>Width</span><span>Fill</span></li>
               </ul>
             </div>
-            <div class="q-comp-states">
-              <div class="q-state-row">
-                <span class="q-state-label">Default</span>
-                <button class="q-live q-live--primary">Primary</button>
-                <button class="q-live q-live--mint">Mint</button>
-              </div>
-              <div class="q-state-row">
-                <span class="q-state-label">Hover</span>
-                <button class="q-live q-live--primary q-live--hovered">Primary</button>
-                <button class="q-live q-live--mint q-live--hovered">Mint</button>
-              </div>
-              <div class="q-state-row">
-                <span class="q-state-label">Disable</span>
-                <button class="q-live q-live--primary q-live--disabled" disabled>Primary</button>
-                <button class="q-live q-live--mint q-live--disabled" disabled>Mint</button>
-              </div>
+            <div class="q-comp-right">
+              <div class="q-comp-state"><span class="q-comp-state__label">Default</span><button class="q-live q-live--primary">Primary</button><button class="q-live q-live--mint">Mint</button></div>
+              <div class="q-comp-state"><span class="q-comp-state__label">Hover</span><button class="q-live q-live--primary q-live--hov">Primary</button><button class="q-live q-live--mint q-live--hov">Mint</button></div>
+              <div class="q-comp-state"><span class="q-comp-state__label">Disable</span><button class="q-live q-live--primary" disabled style="opacity:.3">Primary</button><button class="q-live q-live--mint" disabled style="opacity:.3">Mint</button></div>
+            </div>
+          </div>
+
+          <!-- Secondary button -->
+          <div class="q-comp-showcase">
+            <div class="q-comp-left">
+              <h4 class="q-comp-h">Secondary button</h4>
+              <ul class="q-comp-specs">
+                <li><span>Border radius</span><span>2px</span></li>
+                <li><span>Font</span><span>IBM Plex Mono Medium 14px</span></li>
+                <li><span>Spacing</span><span>12 · 24</span></li>
+              </ul>
+            </div>
+            <div class="q-comp-right">
+              <div class="q-comp-state"><span class="q-comp-state__label">Default</span><button class="q-live q-live--ghost">Next</button></div>
+              <div class="q-comp-state"><span class="q-comp-state__label">Hover</span><button class="q-live q-live--ghost q-live--ghost-hov">Next</button></div>
+              <div class="q-comp-state"><span class="q-comp-state__label">Disable</span><button class="q-live q-live--ghost" disabled style="opacity:.3">Next</button></div>
             </div>
           </div>
 
           <!-- Explore bar -->
-          <div class="q-comp-row">
-            <div class="q-comp-specs">
-              <h4 class="q-comp-name">Explore bar</h4>
-              <ul class="q-spec-list">
-                <li><span class="q-spec-prop">Border radius</span><span class="q-spec-val">24px</span></li>
-                <li><span class="q-spec-prop">Font</span><span class="q-spec-val">IBM Plex Mono Regular 14px</span></li>
+          <div class="q-comp-showcase">
+            <div class="q-comp-left">
+              <h4 class="q-comp-h">Explore bar</h4>
+              <ul class="q-comp-specs">
+                <li><span>Border radius</span><span>24px</span></li>
+                <li><span>Font</span><span>IBM Plex Mono Regular 14px</span></li>
+                <li><span>Spacing</span><span>12 · 24</span></li>
               </ul>
             </div>
-            <div class="q-comp-states">
-              <div class="q-state-row">
-                <span class="q-state-label">Default</span>
-                <div class="q-searchbar">
-                  <span class="q-searchbar__icon">⌕</span>
-                  <span class="q-searchbar__placeholder">Search collectibles</span>
-                </div>
-              </div>
-              <div class="q-state-row">
-                <span class="q-state-label">Focus</span>
-                <div class="q-searchbar q-searchbar--focus">
-                  <span class="q-searchbar__icon">⌕</span>
-                  <span class="q-searchbar__typing">Whatever token</span>
-                </div>
-              </div>
+            <div class="q-comp-right">
+              <div class="q-comp-state"><span class="q-comp-state__label">Default</span><div class="q-searchbar"><span class="q-searchbar__icon">⌕</span><span class="q-searchbar__ph">Search collectibles</span></div></div>
+              <div class="q-comp-state"><span class="q-comp-state__label">Focus</span><div class="q-searchbar q-searchbar--focus"><span class="q-searchbar__icon">⌕</span><span class="q-searchbar__typing">Whatever token</span></div></div>
             </div>
           </div>
 
-          <!-- NFT Card -->
-          <div class="q-comp-row q-comp-row--cards">
-            <div class="q-comp-specs">
-              <h4 class="q-comp-name">NFT cards</h4>
-              <ul class="q-spec-list">
-                <li><span class="q-spec-prop">Border weight</span><span class="q-spec-val">0.5px</span></li>
-                <li><span class="q-spec-prop">Radius</span><span class="q-spec-val">4px top · 0 bottom</span></li>
-                <li><span class="q-spec-prop">Background blur</span><span class="q-spec-val">10px</span></li>
-                <li><span class="q-spec-prop">Label font</span><span class="q-spec-val">IBM Plex Mono Light 10px</span></li>
+          <!-- Textfields -->
+          <div class="q-comp-showcase">
+            <div class="q-comp-left">
+              <h4 class="q-comp-h">Textfields</h4>
+              <ul class="q-comp-specs">
+                <li><span>Border radius</span><span>2px</span></li>
+                <li><span>Font</span><span>IBM Plex Mono Regular 14px</span></li>
               </ul>
             </div>
-            <div class="q-comp-states q-comp-states--cards">
-              <div class="q-card-state">
-                <span class="q-state-label">Default</span>
-                <div class="q-nft-card">
-                  <div class="q-nft-card__art"></div>
-                  <div class="q-nft-card__body">
-                    <span class="q-nft-card__cat">Metaverse</span>
-                    <span class="q-nft-card__title">Metamorphosis</span>
-                    <span class="q-nft-card__creator">Collection creator</span>
-                    <span class="q-nft-card__price">0.45 SOL</span>
+            <div class="q-comp-right">
+              <div class="q-comp-state"><span class="q-comp-state__label">Default</span><div class="q-textfield">Placeholder text</div></div>
+              <div class="q-comp-state"><span class="q-comp-state__label">Focus</span><div class="q-textfield q-textfield--focus">Typing text</div></div>
+              <div class="q-comp-state"><span class="q-comp-state__label">Error</span><div class="q-textfield q-textfield--error">Error state</div></div>
+            </div>
+          </div>
+
+          <!-- NFT Guide -->
+          <div class="q-comp-showcase q-comp-showcase--nft">
+            <div class="q-comp-left">
+              <h4 class="q-comp-h">NFT Guide</h4>
+              <ul class="q-comp-specs">
+                <li><span>Border weight</span><span>0.5px</span></li>
+                <li><span>Radius</span><span>4px top</span></li>
+                <li><span>Blur</span><span>10px</span></li>
+                <li><span>Label font</span><span>IBM Plex Mono Light 10px</span></li>
+              </ul>
+            </div>
+            <div class="q-comp-right q-comp-right--nft">
+              <div class="q-comp-state q-comp-state--vert">
+                <span class="q-comp-state__label">Default</span>
+                <div class="q-nft-card2">
+                  <div class="q-nft-card2__art q-nft-card2__art--1"></div>
+                  <div class="q-nft-card2__body">
+                    <span class="q-nft-card2__cat">Metaverse</span>
+                    <span class="q-nft-card2__title">Metamorphosis</span>
+                    <span class="q-nft-card2__creator">Collection creator</span>
+                    <span class="q-nft-card2__price">0.45 SOL</span>
                   </div>
                 </div>
               </div>
-              <div class="q-card-state">
-                <span class="q-state-label">Hover</span>
-                <div class="q-nft-card q-nft-card--hover">
-                  <div class="q-nft-card__art">
-                    <div class="q-nft-card__overlay">
-                      <button class="q-btn-mint">Preview</button>
-                    </div>
+              <div class="q-comp-state q-comp-state--vert">
+                <span class="q-comp-state__label">Hover</span>
+                <div class="q-nft-card2 q-nft-card2--hover">
+                  <div class="q-nft-card2__art q-nft-card2__art--2">
+                    <div class="q-nft-card2__overlay"><button class="q-live q-live--primary" style="font-size:.55rem;padding:.3rem .6rem">Preview</button></div>
                   </div>
-                  <div class="q-nft-card__body">
-                    <span class="q-nft-card__cat">Metaverse</span>
-                    <span class="q-nft-card__title">Metamorphosis</span>
-                    <span class="q-nft-card__creator">Collection creator</span>
-                    <span class="q-nft-card__price">0.45 SOL</span>
+                  <div class="q-nft-card2__body">
+                    <span class="q-nft-card2__cat">Metaverse</span>
+                    <span class="q-nft-card2__title">Metamorphosis</span>
+                    <span class="q-nft-card2__creator">Collection creator</span>
+                    <span class="q-nft-card2__price">0.45 SOL</span>
                   </div>
                 </div>
               </div>
@@ -699,17 +903,61 @@
           </div>
 
         </div>
+
+        <!-- Closing -->
+        <div class="q-dg-closing">
+          <p class="q-dg-closing__h">That's it for now!</p>
+          <p class="q-dg-closing__p">Feel free to connect with me for any Web3-related discussions, proposals or feedback. Always happy to talk design.</p>
+        </div>
+
       </div>
     </section>
 
+    <!-- ══════════════════════════════════════════
+         SECTION 8 — QUADRATO CLOSING
+         ══════════════════════════════════════════ -->
+    <section class="q-closing-hero">
+      <div class="q-closing-hero__inner">
+        <div class="q-closing-hero__left">
+          <h2 class="q-closing-hero__wordmark">QUADRATO</h2>
+          <p class="q-closing-hero__tagline">DEMOCRATISING NFT STANDARDS</p>
+        </div>
+        <div class="q-closing-hero__right">
+          <div class="q-neon-frame">
+            <div class="q-neon-frame__glow1"></div>
+            <div class="q-neon-frame__glow2"></div>
+            <div class="q-neon-frame__border"></div>
+            <div class="q-neon-frame__inner"></div>
+            <div class="q-neon-frame__floor"></div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <!-- ─── CLOSING ─── -->
-    <section class="proj-closing">
-      <div class="proj-closing__inner fade-in">
-        <p class="section__label">Closing thoughts</p>
-        <h2 class="proj-closing__title">That's it for now!</h2>
-        <p class="proj-closing__text">Feel free to connect with me for any Web3-related discussions, proposals or feedback. Always happy to talk design.</p>
-        <a href="index.html#contact" class="btn btn--primary" style="margin-top:2rem;display:inline-flex">Get in touch</a>
+    <!-- ── USED TOOLS + CTA ── -->
+    <section class="q-used-tools">
+      <div class="q-ut__inner">
+        <div class="q-ut__left">
+          <p class="q-ut__label">USED TOOLS</p>
+          <ul class="q-ut__list">
+            <li>Figma</li>
+            <li>Photoshop</li>
+            <li>Midjourney</li>
+            <li>ChatGPT</li>
+          </ul>
+          <a href="index.html#work" class="q-ut__about">About product</a>
+        </div>
+        <!-- WE'LL CHANGE THE GAME -->
+        <div class="q-cta-banner">
+          <div class="q-cta-banner__art">
+            <div class="q-cta-globe"></div>
+          </div>
+          <div class="q-cta-banner__text">
+            <h3 class="q-cta-banner__h">WE'LL<br>CHANGE<br>THE GAME</h3>
+            <p class="q-cta-banner__p">At Quadrato, we promote new standards and solutions, accelerate the development of valid ideas, and always welcome new proposals.</p>
+            <button class="q-live q-live--primary" style="margin-top:1rem;font-size:.7rem">Contact us</button>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -717,7 +965,7 @@
       <a href="index.html#work" class="proj-nav__back">← All projects</a>
       <div class="proj-nav__next">
         <span class="proj-nav__label">Next project</span>
-        <a href="index.html#work" class="proj-nav__title">View all work →</a>
+        <a href="dissect.html" class="proj-nav__title">Dissect →</a>
       </div>
     </nav>
 
@@ -725,7 +973,7 @@
 
   <footer class="footer">
     <div class="footer__inner">
-      <span>© 2024 Carlos Mera</span>
+      <span>© 2025 Carlos Mera</span>
       <span>Designed &amp; built with care · Barcelona</span>
     </div>
   </footer>
