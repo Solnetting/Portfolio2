@@ -64,17 +64,33 @@
 
 
     <!-- ── SELECTED WORK ── -->
+    <!-- ── SELECTED WORK ── -->
     <section class="section work" id="work">
-      <div class="section__header">
-        <p class="section__label">Selected Work</p>
-        <h2 class="section__title">Projects</h2>
-      </div>
+      <p class="section__label">Selected Work</p>
 
-      <div class="work__grid">
+      <div class="projects">
 
-        <a href="syntropyx.html" class="card card--featured fade-in">
-          <div class="card__image">
-            <div class="card__placeholder sx-index-cover">
+        <!-- SyntropyX -->
+        <a href="syntropyx.html" class="pcard fade-in">
+          <div class="pcard__left">
+            <div class="pcard__icon">
+              <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+                <rect width="36" height="36" rx="8" fill="var(--accent)"/>
+                <path d="M10 18h16M18 10l8 8-8 8" stroke="#0D0D0D" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3 class="pcard__title">SyntropyX</h3>
+            <div class="pcard__tags">
+              <span class="tag">Web3</span>
+              <span class="tag">DeFi</span>
+              <span class="tag">Product Design</span>
+            </div>
+            <p class="pcard__desc">DeFi structured vault platform — deposit, mint, stake, earn.</p>
+            <span class="pcard__cta">View Case Study</span>
+          </div>
+          <div class="pcard__right">
+            <div class="pcard__glow"></div>
+            <div class="pcard__screen sx-index-cover">
               <div class="sx-index-cover__grid">
                 <div class="sx-index-card">
                   <div class="sx-index-label">Net Value</div>
@@ -92,72 +108,86 @@
               </div>
             </div>
           </div>
-          <div class="card__info">
-            <div class="card__tags">
-              <span class="tag">Web3</span>
-              <span class="tag">DeFi</span>
-              <span class="tag">Product Design</span>
-            </div>
-            <h3 class="card__title">SyntropyX</h3>
-            <p class="card__desc">DeFi structured vault platform — deposit, mint, stake, earn</p>
-            <span class="card__year">2025</span>
-          </div>
         </a>
 
-        <a href="boop.html" class="card fade-in">
-          <div class="card__image">
-            <div class="card__placeholder boop-index-cover">
-              <div class="boop-index-logo">b<span></span>op</div>
-              <div class="boop-index-tag">Palm-based payments & identity</div>
+        <!-- Boop -->
+        <a href="boop.html" class="pcard fade-in">
+          <div class="pcard__left">
+            <div class="pcard__icon">
+              <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+                <rect width="16" height="16" rx="4" fill="var(--accent)"/>
+                <rect x="20" width="16" height="16" rx="4" fill="var(--accent)" opacity=".55"/>
+                <rect y="20" width="16" height="16" rx="4" fill="var(--accent)" opacity=".55"/>
+                <rect x="20" y="20" width="16" height="16" rx="4" fill="var(--accent)" opacity=".25"/>
+              </svg>
             </div>
-          </div>
-          <div class="card__info">
-            <div class="card__tags">
+            <h3 class="pcard__title">Boop</h3>
+            <div class="pcard__tags">
               <span class="tag">Mobile</span>
               <span class="tag">Fintech</span>
               <span class="tag">UX / UI</span>
             </div>
-            <h3 class="card__title">Boop</h3>
-            <p class="card__desc">Palm-based payment and identity app — wave your hand to pay and access</p>
-            <span class="card__year">2024</span>
+            <p class="pcard__desc">Palm-based payment and identity — wave your hand to pay and access.</p>
+            <span class="pcard__cta">View Case Study</span>
+          </div>
+          <div class="pcard__right">
+            <div class="pcard__glow"></div>
+            <div class="pcard__screen boop-index-cover">
+              <div class="boop-index-logo">b<span></span>op</div>
+              <div class="boop-index-tag">Palm-based payments &amp; identity</div>
+            </div>
           </div>
         </a>
 
-        <a href="quadrato.html" class="card fade-in">
-          <div class="card__image">
-            <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/88290e165961447.6476f2be57e2d.jpg" alt="Quadrato NFT Protocol" loading="lazy">
-          </div>
-          <div class="card__info">
-            <div class="card__tags">
+        <!-- Quadrato -->
+        <a href="quadrato.html" class="pcard fade-in">
+          <div class="pcard__left">
+            <div class="pcard__icon">
+              <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+                <rect x="3" y="3" width="13" height="13" rx="3" stroke="var(--accent)" stroke-width="1.6"/>
+                <rect x="20" y="3" width="13" height="13" rx="3" stroke="var(--accent)" stroke-width="1.6" opacity=".6"/>
+                <rect x="3" y="20" width="13" height="13" rx="3" stroke="var(--accent)" stroke-width="1.6" opacity=".6"/>
+                <rect x="20" y="20" width="13" height="13" rx="3" stroke="var(--accent)" stroke-width="1.6" opacity=".3"/>
+              </svg>
+            </div>
+            <h3 class="pcard__title">Quadrato</h3>
+            <div class="pcard__tags">
               <span class="tag">Web3</span>
               <span class="tag">NFT</span>
+              <span class="tag">Solana</span>
             </div>
-            <h3 class="card__title">Quadrato</h3>
-            <p class="card__desc">NFT protocol democratising standards on Solana</p>
-            <span class="card__year">2023</span>
+            <p class="pcard__desc">NFT protocol democratising fractional ownership standards on Solana.</p>
+            <span class="pcard__cta">View Case Study</span>
+          </div>
+          <div class="pcard__right">
+            <div class="pcard__glow"></div>
+            <img class="pcard__img" src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/88290e165961447.6476f2be57e2d.jpg" alt="Quadrato NFT Protocol" loading="lazy"/>
           </div>
         </a>
 
-        <a href="https://www.behance.net/hdkrlosde26" class="card fade-in" target="_blank" rel="noopener">
-          <div class="card__image">
-            <div class="card__placeholder" style="background: linear-gradient(135deg, #0f2027 0%, #203a43 55%, #2c5364 100%)"></div>
-          </div>
-          <div class="card__info">
-            <div class="card__tags">
-              <span class="tag">Web App</span>
+        <!-- Dissect -->
+        <a href="dissect.html" class="pcard fade-in">
+          <div class="pcard__left">
+            <div class="pcard__icon">
+              <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+                <path d="M18 3L33 12V24L18 33L3 24V12L18 3Z" stroke="var(--accent)" stroke-width="1.6"/>
+                <path d="M18 3V33M3 12L33 12M3 24L33 24" stroke="var(--accent)" stroke-width="1" opacity=".35"/>
+              </svg>
+            </div>
+            <h3 class="pcard__title">Dissect</h3>
+            <div class="pcard__tags">
+              <span class="tag">Design System</span>
+              <span class="tag">Web3</span>
               <span class="tag">DeFi</span>
             </div>
-            <h3 class="card__title">Restaking.Info</h3>
-            <p class="card__desc">DeFi restaking analytics and portfolio management dashboard</p>
-            <span class="card__year">2024</span>
+            <p class="pcard__desc">NFT fractional lending platform — landing page &amp; full design system.</p>
+            <span class="pcard__cta">View Case Study</span>
           </div>
-        </a>
-
-        <a href="dissect.html" class="card fade-in">
-          <div class="card__image">
-            <div class="card__placeholder dissect-index-cover">
+          <div class="pcard__right">
+            <div class="pcard__glow pcard__glow--blue"></div>
+            <div class="pcard__screen dissect-index-cover">
               <div class="dissect-index-cover__cube">
-                <svg viewBox="0 0 240 230" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg viewBox="0 0 240 230" fill="none">
                   <polygon points="120,20 210,68 120,116 30,68" stroke="rgba(110,165,255,0.65)" stroke-width="1.2" fill="rgba(59,130,246,0.06)"/>
                   <polygon points="30,68 120,116 120,210 30,162" stroke="rgba(110,165,255,0.45)" stroke-width="1.2" fill="rgba(59,130,246,0.03)"/>
                   <polygon points="120,116 210,68 210,162 120,210" stroke="rgba(110,165,255,0.55)" stroke-width="1.2" fill="rgba(59,130,246,0.07)"/>
@@ -169,65 +199,71 @@
                   <circle cx="210" cy="68" r="2.5" fill="rgba(110,165,255,0.6)"/>
                   <circle cx="30" cy="68" r="2.5" fill="rgba(110,165,255,0.55)"/>
                   <circle cx="120" cy="116" r="2" fill="rgba(110,165,255,0.45)"/>
-                  <polygon points="120,2 230,57 230,173 120,228 10,173 10,57" stroke="rgba(110,165,255,0.07)" stroke-width="1" fill="none"/>
                 </svg>
               </div>
               <span class="dissect-index-cover__logo">Dissect</span>
               <div class="dissect-index-cover__card">
                 <div class="dissect-index-cover__row dissect-index-cover__row--apy">
-                  <span>APY</span>
-                  <span>25%</span>
+                  <span>APY</span><span>25%</span>
                 </div>
                 <div class="dissect-index-cover__row">
-                  <span>Fraction price</span>
-                  <span>3 SOL</span>
+                  <span>Fraction price</span><span>3 SOL</span>
                 </div>
                 <div class="dissect-index-cover__row">
-                  <span>Duration</span>
-                  <span>7 days</span>
+                  <span>Duration</span><span>7 days</span>
                 </div>
               </div>
             </div>
           </div>
-          <div class="card__info">
-            <div class="card__tags">
-              <span class="tag">Web3</span>
-              <span class="tag">DeFi</span>
-              <span class="tag">NFT</span>
+        </a>
+
+        <!-- Restaking.Info -->
+        <a href="https://www.behance.net/hdkrlosde26" class="pcard fade-in" target="_blank" rel="noopener">
+          <div class="pcard__left">
+            <div class="pcard__icon">
+              <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+                <circle cx="11" cy="18" r="7" stroke="var(--accent)" stroke-width="1.6"/>
+                <circle cx="25" cy="18" r="7" stroke="var(--accent)" stroke-width="1.6" opacity=".5"/>
+                <path d="M16.5 13.5A7 7 0 0 1 19.5 18a7 7 0 0 1-3 4.5" stroke="var(--accent)" stroke-width="1.2" opacity=".7"/>
+              </svg>
             </div>
-            <h3 class="card__title">Dissect</h3>
-            <p class="card__desc">NFT fractional lending platform — landing page & design system</p>
-            <span class="card__year">2024</span>
+            <h3 class="pcard__title">Restaking.Info</h3>
+            <div class="pcard__tags">
+              <span class="tag">Web App</span>
+              <span class="tag">DeFi</span>
+              <span class="tag">Dashboard</span>
+            </div>
+            <p class="pcard__desc">DeFi restaking analytics and portfolio management dashboard.</p>
+            <span class="pcard__cta">View on Behance</span>
+          </div>
+          <div class="pcard__right">
+            <div class="pcard__glow pcard__glow--teal"></div>
+            <div class="pcard__screen" style="background:linear-gradient(135deg,#0f2027 0%,#203a43 55%,#2c5364 100%);display:flex;align-items:center;justify-content:center;">
+              <span style="color:rgba(255,255,255,.25);font-size:.8125rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;">Restaking.Info</span>
+            </div>
           </div>
         </a>
 
-        <a href="https://www.behance.net/gallery/142179465/WAARM" class="card fade-in" target="_blank" rel="noopener">
-          <div class="card__image">
-            <img src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/dff649142179465.6267fcf5472f9.jpg" alt="WAARM Carbon Platform" loading="lazy">
-          </div>
-          <div class="card__info">
-            <div class="card__tags">
+        <!-- WAARM -->
+        <a href="https://www.behance.net/gallery/142179465/WAARM" class="pcard fade-in" target="_blank" rel="noopener">
+          <div class="pcard__left">
+            <div class="pcard__icon">
+              <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+                <path d="M18 5C18 5 7 13 7 21a11 11 0 0 0 22 0C29 13 18 5 18 5Z" stroke="var(--accent)" stroke-width="1.6" fill="none"/>
+                <path d="M13 23c0-4 5-10 5-10s5 6 5 10" stroke="var(--accent)" stroke-width="1.2" opacity=".5"/>
+              </svg>
+            </div>
+            <h3 class="pcard__title">WAARM</h3>
+            <div class="pcard__tags">
               <span class="tag">B2B SaaS</span>
               <span class="tag">UX Case Study</span>
             </div>
-            <h3 class="card__title">WAARM</h3>
-            <p class="card__desc">Carbon management B2B platform for enterprise sustainability</p>
-            <span class="card__year">2022</span>
+            <p class="pcard__desc">Carbon management platform for enterprise sustainability goals.</p>
+            <span class="pcard__cta">View on Behance</span>
           </div>
-        </a>
-
-        <a href="https://www.behance.net/gallery/187278695/Opos" class="card fade-in" target="_blank" rel="noopener">
-          <div class="card__image">
-            <img src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/b14396187278695.6584b4a18f9fa.jpg" alt="Opos Solana Analytics" loading="lazy">
-          </div>
-          <div class="card__info">
-            <div class="card__tags">
-              <span class="tag">Web3</span>
-              <span class="tag">Dashboard</span>
-            </div>
-            <h3 class="card__title">Opos</h3>
-            <p class="card__desc">Solana ecosystem analytics — Only Possible On Solana</p>
-            <span class="card__year">2023</span>
+          <div class="pcard__right">
+            <div class="pcard__glow pcard__glow--teal"></div>
+            <img class="pcard__img" src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/dff649142179465.6267fcf5472f9.jpg" alt="WAARM Carbon Platform" loading="lazy"/>
           </div>
         </a>
 
