@@ -295,6 +295,16 @@ a   { color: inherit; text-decoration: none; }
 }
 .section__header { margin-bottom: 3rem; }
 
+/* ── Work section ── */
+.work {
+  padding: 6rem var(--pad);
+}
+
+.work__inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+}
+
 /* ── Work grid (legacy) ── */
 .work__grid {
   display: grid;
@@ -303,7 +313,7 @@ a   { color: inherit; text-decoration: none; }
 }
 
 /* ── Projects — large horizontal cards ── */
-.section.work > .section__label { margin-bottom: 2.5rem; }
+.work__inner > .section__label { margin-bottom: 2.5rem; }
 
 .projects {
   display: flex;
