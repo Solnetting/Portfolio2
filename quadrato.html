@@ -392,6 +392,7 @@
     }
     .flow__step-t { font-size: .8125rem; color: rgba(255,255,255,.6); }
     .flow__diagram .ph { aspect-ratio: 16/9; }
+    .flow__diagram-img { width: 100%; height: auto; display: block; border-radius: var(--radius); }
 
     /* ─────────────────────────────────────
        7. LANDING PAGE SCREEN
@@ -878,19 +879,9 @@
           <h2 class="flow__title">Adding standards to an existing token</h2>
           <p class="flow__body">In this case, the user is not creating a new SPL token, but rather utilising one from their own collection. The goal is to enhance the token's functionality by adding various standards that serve different purposes and use cases.</p>
           <p class="flow__body" style="margin-top:.875rem">The main task at hand is to review the details of the token and incorporate additional utilities to optimise its value as an NFT.</p>
-          <div class="flow__steps">
-            <div class="flow__step"><span class="flow__step-n">01</span><span class="flow__step-t">Connect wallet — required to access your assets</span></div>
-            <div class="flow__step"><span class="flow__step-n">02</span><span class="flow__step-t">Landing Page → Explore → My Assets</span></div>
-            <div class="flow__step"><span class="flow__step-n">03</span><span class="flow__step-t">Select collectible → Collectible detail</span></div>
-            <div class="flow__step"><span class="flow__step-n">04</span><span class="flow__step-t">Explore Standards → Select standard</span></div>
-            <div class="flow__step"><span class="flow__step-n">05</span><span class="flow__step-t">Add Standard → Confirm → Updated asset detail</span></div>
-          </div>
         </div>
         <div class="flow__diagram">
-          <div class="ph">
-            <span class="ph__icon">□</span>
-            <span class="ph__label">User flow diagram<br>(Figma prototype overview with all screens connected)</span>
-          </div>
+          <img src="quadrato-img/userflow.svg" alt="User flow diagram" class="flow__diagram-img">
         </div>
       </div>
     </div>
