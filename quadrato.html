@@ -7,101 +7,651 @@
   <meta name="description" content="Quadrato — An NFT protocol democratising standards on Solana. Designed by Carlos Mera.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Chakra+Petch:wght@400;600;700&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
-    body { background: #0a0a0a; }
+    /* ─── Global overrides ─── */
+    body { background: #09090f; color: #e2e4ee; }
 
+    /* ─── Image placeholder ─── */
+    .ph {
+      background: rgba(255,255,255,.04);
+      border: 1px dashed rgba(255,255,255,.18);
+      border-radius: 6px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: .5rem;
+      padding: 1.5rem;
+    }
+    .ph__label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: .65rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.3);
+      text-align: center;
+      line-height: 1.5;
+    }
+    .ph__icon {
+      font-size: 1.25rem;
+      color: rgba(255,255,255,.15);
+    }
+
+    /* ─── Meta bar ─── */
     .q-meta-bar {
-      position: sticky;
-      top: 60px;
-      z-index: 90;
+      position: sticky; top: 60px; z-index: 90;
+      padding: .75rem var(--pad);
+      background: #09090f;
+      border-bottom: 1px solid var(--border);
+    }
+    .q-meta-bar__inner {
       display: flex;
       align-items: center;
-      gap: 1.5rem;
-      padding: .75rem var(--pad);
-      background: rgba(10,10,10,.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255,255,255,.06);
     }
-    .q-meta-back {
-      font-size: .8125rem;
-      color: rgba(255,255,255,.45);
-      text-decoration: none;
-      transition: color .15s;
-      white-space: nowrap;
+    .q-meta-back { font-size: .8125rem; color: rgba(255,255,255,.4); text-decoration: none; transition: color .15s; }
+    .q-meta-back:hover { color: #fff; }
+    .q-meta-tags { display: flex; flex-wrap: wrap; gap: .375rem; flex: 1; }
+    .q-meta-tags span {
+      font-size: .625rem; letter-spacing: .09em; text-transform: uppercase;
+      color: rgba(255,255,255,.3); background: rgba(255,255,255,.06);
+      padding: .2rem .55rem; border-radius: 2px;
     }
-    .q-meta-back:hover { color: rgba(255,255,255,.9); }
-    .q-meta-tags {
+    .q-meta-year { font-size: .8125rem; color: rgba(255,255,255,.22); white-space: nowrap; }
+
+    /* ═══════════════════════════════════════════
+       PAGE GRID
+       One source of truth for all horizontal
+       alignment. Every direct child of <main>
+       lands in the content column automatically.
+       Elements that must span the full viewport
+       width declare grid-column: full.
+    ═══════════════════════════════════════════ */
+    main {
+      display: grid;
+      grid-template-columns:
+        [full-start] minmax(var(--pad), 1fr)
+        [content-start] min(
+          calc(var(--max-w) - 2 * var(--pad)),
+          calc(100% - 2 * var(--pad))
+        )
+        [content-end] minmax(var(--pad), 1fr) [full-end];
+    }
+    main > * { grid-column: content; }
+
+    /* Full-viewport-width elements */
+    .hero-section,
+    .q-divider,
+    .closing-hero,
+    .q-full-band { grid-column: full; }
+
+    /* ─── Section wrapper ─── */
+    .qs         { padding: 6rem 0; }
+    .qs--tight  { padding-top: 3rem; padding-bottom: 3rem; }
+    .qs--dark   { background: #060609; }
+    .qs--darker { background: #030306; }
+
+    /* ─── Section divider ─── */
+    .q-divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+    /* ─── Label / eyebrow ─── */
+    .q-eyebrow {
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: clamp(1.5rem, 2.5vw, 2.25rem); font-weight: 700;
+      letter-spacing: .02em;
+      color: #fff; margin-bottom: 2rem;
+    }
+
+    /* ─────────────────────────────────────
+       1. HERO — full-bleed image + text overlay
+    ───────────────────────────────────── */
+    .hero-section {
+      position: relative;
+      width: 100%;
+      /* Lock to image's native ratio: 11512 × 7133 — no crop, no stretch */
+      aspect-ratio: 11512 / 7133;
+      overflow: hidden;
+    }
+    .hero-section__img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+    .hero-section__text {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-left: clamp(2.5rem, 18vw, 22rem);
+      padding-right: 0;
+      max-width: 60%;
+    }
+    .hero-section__title {
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: clamp(2rem, 4.5vw, 4.5rem);
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      color: #fff;
+      line-height: 1;
+      margin: 0 0 .35em;
+    }
+    .hero-section__sub {
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: clamp(.65rem, 1.05vw, 1rem);
+      font-weight: 400;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.7);
+      margin: 0 0 1.25em;
+    }
+    .hero-section__tags {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: .5rem;
+    }
+    .hero-section__pills {
       display: flex;
       flex-wrap: wrap;
       gap: .375rem;
-      flex: 1;
     }
-    .q-meta-tags span {
-      font-size: .6875rem;
-      letter-spacing: .08em;
+    .hero-section__pills span {
+      font-size: .625rem;
+      letter-spacing: .09em;
       text-transform: uppercase;
       color: rgba(255,255,255,.3);
       background: rgba(255,255,255,.06);
-      padding: .2rem .6rem;
+      padding: .2rem .55rem;
       border-radius: 2px;
     }
-    .q-meta-year {
-      font-size: .8125rem;
+    .hero-section__year {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: .75rem;
+      letter-spacing: .08em;
       color: rgba(255,255,255,.25);
-      white-space: nowrap;
     }
 
-    .q-case-study {
-      width: 100%;
-      max-width: 1512px;
-      margin: 0 auto;
-    }
-    .q-case-study img {
-      display: block;
-      width: 100%;
-      height: auto;
-    }
-
-    .proj-nav {
-      display: flex;
-      justify-content: space-between;
+    /* ─────────────────────────────────────
+       2. INTRO — title + text + NFT cards
+    ───────────────────────────────────── */
+    .intro {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
       align-items: center;
-      padding: 3rem var(--pad);
-      border-top: 1px solid rgba(255,255,255,.07);
-      max-width: var(--max-w);
-      margin: 0 auto;
+      padding: 6rem 0;
     }
-    .proj-nav__back {
-      font-size: .875rem;
-      color: rgba(255,255,255,.4);
-      text-decoration: none;
-      transition: color .15s;
-    }
-    .proj-nav__back:hover { color: rgba(255,255,255,.85); }
-    .proj-nav__next { text-align: right; }
-    .proj-nav__label {
-      display: block;
-      font-size: .6875rem;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,.25);
+    .intro__title {
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: clamp(2.25rem, 4.5vw, 4rem);
+      font-weight: 700; line-height: 1.05; color: #fff;
       margin-bottom: .25rem;
     }
-    .proj-nav__title {
-      font-size: 1rem;
-      font-weight: 600;
-      color: rgba(255,255,255,.7);
-      text-decoration: none;
-      transition: color .15s;
+    .intro__title-sub {
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: clamp(2.25rem, 4.5vw, 4rem);
+      font-weight: 400; line-height: 1.05; color: rgba(255,255,255,.65);
+      margin-bottom: 2rem;
     }
+    .intro__body {
+      font-size: .9375rem; line-height: 1.75;
+      color: rgba(255,255,255,.7); margin-bottom: 1.5rem;
+    }
+    .intro__note-label {
+      font-size: .8125rem; font-style: italic;
+      color: rgba(255,255,255,.4); margin-bottom: .25rem;
+    }
+    .intro__note {
+      font-size: .8125rem; font-style: italic; line-height: 1.65;
+      color: rgba(255,255,255,.3);
+    }
+
+    /* Overlapping NFT card frames */
+    .intro__cards {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .intro__cards-img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .nft-card {
+      position: absolute;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1.5px solid rgba(255,255,255,.15);
+    }
+    .nft-card--back {
+      width: 72%;
+      aspect-ratio: 3/4;
+      right: 0; top: 0;
+    }
+    .nft-card--front {
+      width: 58%;
+      aspect-ratio: 3/4;
+      left: 0; bottom: 0;
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 1px #3b82f6;
+    }
+    .nft-card .ph { height: 100%; border-radius: 0; border: none; }
+
+    /* ─────────────────────────────────────
+       2. PROBLEM / SOLUTION
+    ───────────────────────────────────── */
+    .ps { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+    .ps__col-label {
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: 1.5rem; font-weight: 700; letter-spacing: .02em;
+      color: #fff;
+      padding-bottom: 1.5rem; margin-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .ps__item { margin-bottom: 2.5rem; }
+    .ps__item-title {
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem; font-weight: 600; color: rgba(255,255,255,.9);
+      margin-bottom: .5rem;
+    }
+    .ps__item-body { font-size: .9375rem; line-height: 1.75; color: rgba(255,255,255,.55); }
+
+    /* ─────────────────────────────────────
+       3. THE PROPOSAL
+    ───────────────────────────────────── */
+    .proposal { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .proposal__diagram { display: flex; align-items: center; justify-content: center; }
+    .proposal__diagram-img { width: 100%; height: auto; display: block; }
+    .proposal__title {
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: clamp(1.5rem, 2.5vw, 2.25rem); font-weight: 700;
+      color: #fff; margin-bottom: 1.25rem; line-height: 1.15;
+    }
+    .proposal__body { font-size: .9375rem; line-height: 1.75; color: rgba(255,255,255,.65); }
+    .proposal__items { margin-top: 2rem; display: flex; flex-direction: column; gap: 1.5rem; }
+    .proposal__item-name {
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: .875rem; font-weight: 600; color: rgba(255,255,255,.85);
+      margin-bottom: .35rem;
+    }
+    .proposal__item-desc { font-size: .875rem; line-height: 1.65; color: rgba(255,255,255,.65); }
+
+    /* Architecture diagram */
+    .arch {
+      background: rgba(255,255,255,.025);
+      border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 2.5rem;
+      font-family: 'IBM Plex Mono', monospace;
+    }
+    .arch__row { display: flex; align-items: stretch; gap: 0; }
+    .arch__node {
+      flex: 1; padding: 1rem 1.125rem;
+      border-right: 1px solid var(--border);
+    }
+    .arch__node:last-child { border-right: none; }
+    .arch__node-tag {
+      font-size: .55rem; letter-spacing: .15em; text-transform: uppercase;
+      color: rgba(255,255,255,.25); margin-bottom: .5rem;
+    }
+    .arch__node-name { font-size: .8rem; color: rgba(255,255,255,.8); margin-bottom: .375rem; font-weight: 500; }
+    .arch__node-desc { font-size: .7rem; line-height: 1.5; color: rgba(255,255,255,.4); }
+    .arch__arrow { padding: 0 .375rem; color: rgba(255,255,255,.2); font-size: .875rem; display: flex; align-items: center; }
+    .arch__label {
+      margin-top: 1.5rem; padding-top: 1.25rem;
+      border-top: 1px solid rgba(255,255,255,.06);
+      font-size: .6rem; letter-spacing: .15em; text-transform: uppercase;
+      color: rgba(255,255,255,.2); text-align: center;
+    }
+
+    /* ─────────────────────────────────────
+       4. TARGET AUDIENCE
+    ───────────────────────────────────── */
+    .audience { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    .audience__body { font-size: .9375rem; line-height: 1.8; color: rgba(255,255,255,.7); }
+    .audience__stats { display: flex; flex-direction: column; gap: 1.5rem; }
+    .stat {
+      padding: .25rem 0;
+    }
+    .stat__num {
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: clamp(2rem, 4vw, 3.25rem); font-weight: 700;
+      color: #fff; line-height: 1; margin-bottom: .4rem;
+    }
+    .stat__label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: .7rem; letter-spacing: .1em; text-transform: uppercase;
+      color: rgba(255,255,255,.32);
+    }
+
+    /* ─────────────────────────────────────
+       5. BENCHMARK
+    ───────────────────────────────────── */
+    .bench__intro { font-size: .9375rem; line-height: 1.8; color: rgba(255,255,255,.7); max-width: 820px; margin-bottom: 3.5rem; }
+    .bench__entries { display: flex; flex-direction: column; gap: 0; }
+    .bench__entry {
+      display: grid; grid-template-columns: 1fr 1fr;
+      overflow: visible;
+    }
+    .bench__entry--flip { direction: rtl; }
+    .bench__entry--flip > * { direction: ltr; }
+    .bench__img { min-height: 280px; display: flex; align-items: center; justify-content: center; padding: 2rem; }
+    .bench__img .ph { height: 100%; border-radius: 0; border: none; }
+    .bench__img--shots { position: relative; height: 480px; padding: 0; overflow: visible; }
+    .bench__shot {
+      position: absolute;
+      height: auto; display: block;
+      border-radius: var(--radius);
+    }
+    /* NFT UI — top-right, behind */
+    .bench__shot--top { width: 80%; top: 0; right: 0; z-index: 1; }
+    /* Creator banner — starts at 160px, overlapping image 1 by ~100px */
+    .bench__shot--btm { width: 74%; top: 160px; left: 0; z-index: 2; }
+    /* Magic Eden — mirrored overlap (top-left behind, bottom-right on top) */
+    .bench__shot--me-top { width: 80%; top: 0; left: 0; z-index: 1; }
+    .bench__shot--me-btm { width: 74%; top: 160px; right: 0; z-index: 2; }
+    .bench__text { padding: 3rem 2rem; }
+    .bench__num {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: .6rem; letter-spacing: .15em; text-transform: uppercase;
+      color: rgba(255,255,255,.22); margin-bottom: .625rem;
+    }
+    .bench__name {
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: 1.375rem; font-weight: 700; color: #fff; margin-bottom: 1rem;
+    }
+    .bench__body { font-size: .875rem; line-height: 1.75; color: rgba(255,255,255,.7); }
+    .bench__verdict {
+      margin-top: 1.25rem; display: inline-block;
+      font-family: 'IBM Plex Mono', monospace; font-size: .7rem;
+      color: rgba(255,200,60,.55); letter-spacing: .04em;
+    }
+
+    /* ─────────────────────────────────────
+       6. USER FLOW
+    ───────────────────────────────────── */
+    .flow { display: grid; grid-template-columns: 280px 1fr; gap: 4rem; align-items: start; }
+    .flow__title {
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: clamp(1.25rem, 2vw, 1.875rem); font-weight: 700; color: #fff; margin-bottom: 1rem;
+    }
+    .flow__body { font-size: .875rem; line-height: 1.75; color: rgba(255,255,255,.7); }
+    .flow__steps { margin-top: 2rem; display: flex; flex-direction: column; gap: .75rem; }
+    .flow__step {
+      display: flex; gap: .875rem;
+      padding: .75rem 1rem;
+      background: rgba(255,255,255,.03); border: 1px solid var(--border); border-radius: var(--radius-sm);
+    }
+    .flow__step-n {
+      font-family: 'IBM Plex Mono', monospace; font-size: .65rem;
+      color: rgba(255,255,255,.22); min-width: 1.5rem; padding-top: .1rem;
+    }
+    .flow__step-t { font-size: .8125rem; color: rgba(255,255,255,.6); }
+    .flow__diagram .ph { aspect-ratio: 16/9; }
+
+    /* ─────────────────────────────────────
+       7. LANDING PAGE SCREEN
+    ───────────────────────────────────── */
+    .screen-landing { }
+    .screen-landing__ph { aspect-ratio: 16/7; }
+
+    /* ─────────────────────────────────────
+       8. APP SCREENS COLLAGE
+    ───────────────────────────────────── */
+    .screens__label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: .625rem; letter-spacing: .15em; text-transform: uppercase;
+      color: rgba(255,255,255,.25); margin-bottom: 1.5rem;
+    }
+    .screens__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+    .screens__grid .ph { aspect-ratio: 4/3; }
+    .screens__grid--wide .ph:first-child { grid-column: span 2; }
+
+    /* ─────────────────────────────────────
+       9. DESIGN GUIDANCE (sidebar layout)
+    ───────────────────────────────────── */
+    .dg { display: grid; grid-template-columns: 280px 1fr; gap: 4rem; align-items: start; }
+    .dg__nav { display: flex; flex-direction: column; gap: .125rem; }
+    .dg__nav-item {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: .75rem; letter-spacing: .05em;
+      color: rgba(255,255,255,.35); padding: .5rem .75rem;
+      border-radius: 4px; cursor: default;
+    }
+    .dg__nav-item.active { background: rgba(255,255,255,.06); color: rgba(255,255,255,.8); }
+    .dg__content { min-width: 0; }
+    .dg__block { margin-bottom: 4rem; }
+    .dg__block:last-child { margin-bottom: 0; }
+    .dg__block-title {
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: 1.125rem; font-weight: 700; color: #fff;
+      margin-bottom: .875rem;
+      padding-bottom: .75rem; border-bottom: 1px solid var(--border);
+    }
+    .dg__text { font-size: .875rem; line-height: 1.75; color: rgba(255,255,255,.5); margin-bottom: 1.5rem; }
+
+    /* ─────────────────────────────────────
+       10. LAPTOP MOCKUP
+    ───────────────────────────────────── */
+    .laptop-wrap { max-width: 900px; margin: 0 auto; }
+    .laptop-wrap .ph { aspect-ratio: 4/3; }
+
+    /* ─────────────────────────────────────
+       11. TYPOGRAPHY
+    ───────────────────────────────────── */
+    .type-scale { display: flex; flex-direction: column; }
+    .type-row {
+      display: grid; grid-template-columns: 150px 1fr 160px;
+      gap: 2rem; align-items: baseline;
+      padding: 1.25rem 0; border-bottom: 1px solid rgba(255,255,255,.05);
+    }
+    .type-row:last-child { border-bottom: none; }
+    .type-role {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: .7rem; letter-spacing: .08em; text-transform: uppercase;
+      color: rgba(255,255,255,.28);
+    }
+    .type-spec {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: .65rem; color: rgba(255,255,255,.22); white-space: nowrap;
+    }
+    .ts-chakra-40 { font-family: 'Chakra Petch', sans-serif; font-size: 2.5rem; font-weight: 700; color: #fff; line-height: 1; }
+    .ts-inter-24  { font-family: 'Inter', sans-serif; font-size: 1.5rem; font-weight: 400; color: rgba(255,255,255,.85); }
+    .ts-mono-18   { font-family: 'IBM Plex Mono', monospace; font-size: 1.125rem; font-weight: 500; color: rgba(255,255,255,.8); }
+    .ts-mono-16m  { font-family: 'IBM Plex Mono', monospace; font-size: 1rem; font-weight: 500; color: rgba(255,255,255,.75); }
+    .ts-mono-16r  { font-family: 'IBM Plex Mono', monospace; font-size: 1rem; font-weight: 400; color: rgba(255,255,255,.7); }
+    .ts-mono-14   { font-family: 'IBM Plex Mono', monospace; font-size: .875rem; font-weight: 400; color: rgba(255,255,255,.65); }
+    .ts-mono-12   { font-family: 'IBM Plex Mono', monospace; font-size: .75rem; font-weight: 400; color: rgba(255,255,255,.6); }
+
+    /* ─────────────────────────────────────
+       12. COLORS
+    ───────────────────────────────────── */
+    .colors__group { margin-bottom: 2.5rem; }
+    .colors__group-label {
+      font-family: 'IBM Plex Mono', monospace; font-size: .6rem;
+      letter-spacing: .15em; text-transform: uppercase;
+      color: rgba(255,255,255,.25); margin-bottom: 1rem;
+    }
+    .colors__row { display: flex; gap: .75rem; flex-wrap: wrap; }
+    .chip { display: flex; flex-direction: column; gap: .4rem; }
+    .chip__swatch { width: 60px; height: 60px; border-radius: 5px; border: 1px solid rgba(255,255,255,.08); }
+    .chip__hex { font-family: 'IBM Plex Mono', monospace; font-size: .6rem; color: rgba(255,255,255,.32); }
+
+    /* ─────────────────────────────────────
+       13. COMPONENTS
+    ───────────────────────────────────── */
+    .comp__section { margin-bottom: 3rem; }
+    .comp__title {
+      font-family: 'IBM Plex Mono', monospace; font-size: .65rem;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: rgba(255,255,255,.28); margin-bottom: 1.25rem;
+    }
+    .comp__spec-row { display: grid; grid-template-columns: 260px 1fr; gap: 2rem; align-items: start; }
+    .comp__spec-list { list-style: none; display: flex; flex-direction: column; gap: .375rem; }
+    .comp__spec-item {
+      font-family: 'IBM Plex Mono', monospace; font-size: .7rem;
+      color: rgba(255,255,255,.35); line-height: 1.5;
+    }
+    .comp__spec-item strong { color: rgba(255,255,255,.55); }
+    .comp__visual .ph { min-height: 80px; }
+    /* live button previews */
+    .btn-row { display: flex; gap: .875rem; align-items: center; flex-wrap: wrap; }
+    .q-btn-p {
+      font-family: 'IBM Plex Mono', monospace; font-size: .875rem; font-weight: 500;
+      padding: .6rem 1.75rem; border-radius: 2px; border: none; cursor: pointer;
+      background: #fff; color: #09090f; transition: opacity .15s;
+    }
+    .q-btn-p:hover { opacity: .9; }
+    .q-btn-p.hover { background: #f0f0f0; }
+    .q-btn-p.disabled { background: rgba(255,255,255,.18); color: rgba(255,255,255,.35); cursor: not-allowed; }
+    .q-btn-s {
+      font-family: 'IBM Plex Mono', monospace; font-size: .875rem; font-weight: 500;
+      padding: .6rem 1.75rem; border-radius: 2px; cursor: pointer;
+      background: transparent; color: rgba(255,255,255,.8);
+      border: 1px solid rgba(255,255,255,.3);
+      transition: border-color .15s;
+    }
+    .q-btn-s:hover, .q-btn-s.hover { border-color: rgba(255,255,255,.7); color: #fff; }
+    .q-btn-s.disabled { border-color: rgba(255,255,255,.1); color: rgba(255,255,255,.25); cursor: not-allowed; }
+    .q-searchbar {
+      display: flex; align-items: center; gap: .625rem;
+      padding: .55rem 1rem; border-radius: 4px;
+      border: 1px solid rgba(255,255,255,.15);
+      background: rgba(255,255,255,.03);
+      max-width: 280px;
+    }
+    .q-searchbar span { font-family: 'IBM Plex Mono', monospace; font-size: .8125rem; color: rgba(255,255,255,.28); }
+
+    /* ─────────────────────────────────────
+       14. THAT'S IT FOR NOW
+    ───────────────────────────────────── */
+    .thats-it { text-align: center; padding: 5rem 0; }
+    .thats-it__heading {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 1.125rem; color: rgba(255,255,255,.7);
+      margin-bottom: .75rem;
+    }
+    .thats-it__body { font-size: .9rem; color: rgba(255,255,255,.4); }
+
+    /* ─────────────────────────────────────
+       15. QUADRATO CLOSING HERO
+    ───────────────────────────────────── */
+    .closing-hero {
+      position: relative; overflow: hidden;
+      padding: 6rem var(--pad);
+      background: #030306;
+      display: flex; flex-direction: column; align-items: center;
+      text-align: center; gap: 1rem;
+    }
+    .closing-hero__title {
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: clamp(3rem, 8vw, 8rem); font-weight: 700;
+      line-height: 1; letter-spacing: -.02em; color: #fff;
+    }
+    .closing-hero__sub {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: .75rem; letter-spacing: .3em; text-transform: uppercase;
+      color: rgba(255,255,255,.3);
+    }
+    .closing-hero__img { margin-top: 3rem; width: 100%; max-width: 700px; }
+    .closing-hero__img .ph { aspect-ratio: 1 / 1; }
+
+    /* ─────────────────────────────────────
+       16. WE'LL CHANGE THE GAME
+    ───────────────────────────────────── */
+    .change {
+      padding: 5rem var(--pad);
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: center;
+      max-width: var(--max-w); margin: 0 auto; /* inside q-full-band so needs own centering */
+    }
+    .change__headline {
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 5.5rem); font-weight: 700;
+      line-height: 1; letter-spacing: -.02em; color: #fff;
+      margin-bottom: 1.5rem;
+    }
+    .change__body { font-size: .875rem; line-height: 1.8; color: rgba(255,255,255,.45); }
+    .change__cta {
+      display: inline-block; margin-top: 2rem;
+      font-family: 'IBM Plex Mono', monospace; font-size: .8125rem;
+      color: rgba(255,255,255,.6); border: 1px solid rgba(255,255,255,.2);
+      padding: .6rem 1.5rem; border-radius: 2px; text-decoration: none;
+      transition: color .15s, border-color .15s;
+    }
+    .change__cta:hover { color: #fff; border-color: rgba(255,255,255,.5); }
+    .change__img .ph { aspect-ratio: 1 / 1; }
+
+    /* ─────────────────────────────────────
+       17. THE PRODUCT / USED TOOLS
+    ───────────────────────────────────── */
+    .product {
+      background: #f5f5f7; color: #1d1d1f;
+      padding: 5rem var(--pad);
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; max-width: var(--max-w); margin: 0 auto;
+    }
+    .product__title {
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: 1.5rem; font-weight: 700; color: #1d1d1f;
+      margin-bottom: 1.25rem;
+    }
+    .product__body { font-size: .9rem; line-height: 1.8; color: #555; }
+    .tools__title {
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: 1.5rem; font-weight: 700; color: #1d1d1f;
+      margin-bottom: .625rem;
+    }
+    .tools__sub { font-size: .8rem; color: #888; margin-bottom: 2rem; }
+    .tools__list { display: flex; flex-direction: column; gap: 1.25rem; }
+    .tool {
+      display: flex; align-items: center; gap: 1.25rem;
+    }
+    .tool__icon { width: 40px; height: 40px; }
+    .tool__icon .ph { width: 40px; height: 40px; border-radius: 8px; padding: 0; }
+    .tool__name { font-family: 'IBM Plex Mono', monospace; font-size: .875rem; color: #333; }
+
+    /* ─── Project nav ─── */
+    .proj-nav {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 3rem 0; border-top: 1px solid var(--border);
+    }
+    .proj-nav__back { font-size: .875rem; color: rgba(255,255,255,.4); text-decoration: none; transition: color .15s; }
+    .proj-nav__back:hover { color: rgba(255,255,255,.85); }
+    .proj-nav__next { text-align: right; }
+    .proj-nav__label { display: block; font-size: .6875rem; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.25); margin-bottom: .25rem; }
+    .proj-nav__title { font-size: 1rem; font-weight: 600; color: rgba(255,255,255,.7); text-decoration: none; transition: color .15s; }
     .proj-nav__title:hover { color: #fff; }
+
+    /* ─── Component styles ─── */
+
+    .dg__nav { align-self: start; }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 900px) {
+      .intro, .ps, .proposal, .audience, .flow, .change, .product { grid-template-columns: 1fr; }
+      .intro__cards { height: 360px; }
+      .bench__entry, .bench__entry--flip { grid-template-columns: 1fr; direction: ltr; }
+      .dg { grid-template-columns: 1fr; }
+      .dg__nav { flex-direction: row; flex-wrap: wrap; }
+      .comp__spec-row { grid-template-columns: 1fr; }
+      .type-row { grid-template-columns: 1fr; gap: .5rem; }
+    }
   </style>
 </head>
 <body>
 
+  <!-- NAV -->
   <header class="nav" id="nav">
+    <div class="nav__progress"><div class="nav__progress-fill" id="navProgress"></div></div>
     <div class="nav__inner">
       <a href="index.html" class="nav__logo">CM</a>
       <nav class="nav__links">
@@ -113,33 +663,634 @@
     </div>
   </header>
 
+  <!-- META BAR — back link only -->
   <div class="q-meta-bar">
-    <a href="index.html#work" class="q-meta-back">← Work</a>
-    <div class="q-meta-tags">
-      <span>Web3</span><span>NFT</span><span>Product Design</span><span>Interaction Design</span>
+    <div class="q-meta-bar__inner">
+      <a href="index.html#work" class="q-meta-back">← Work</a>
     </div>
-    <span class="q-meta-year">2023</span>
   </div>
 
   <main>
-    <div class="q-case-study">
-      <img src="quadrato-img/01_hero.png"          alt="Quadrato — Hero: NFTs Web3 dapp on Solana" loading="eager">
-      <img src="quadrato-img/02_problem.png"        alt="The Problem and The Solution" loading="lazy">
-      <img src="quadrato-img/03_proposal.png"       alt="The Proposal — Quadrato metadata program architecture" loading="lazy">
-      <img src="quadrato-img/04_audience.png"       alt="The Target Audience — 8.5M+ wallets, $0.00012 minting, 32M+ NFTs" loading="lazy">
-      <img src="quadrato-img/05_benchmark.png"      alt="Benchmark — Metaplex, Magic Eden, Rarible" loading="lazy">
-      <img src="quadrato-img/06_userflow.png"       alt="User Flow / Showcase #1 — Adding standards to existing token" loading="lazy">
-      <img src="quadrato-img/07_screens1.png"       alt="App screens — Explorer, Asset detail, My Assets, Standards" loading="lazy">
-      <img src="quadrato-img/08_screens2.png"       alt="App screens — Add standard, Asset detail after adding standard" loading="lazy">
-      <img src="quadrato-img/09_dg_concept.png"     alt="Design guidance — Concept and related screens" loading="lazy">
-      <img src="quadrato-img/10_typography.png"     alt="Design guidance — Typography" loading="lazy">
-      <img src="quadrato-img/11_colors.png"         alt="Design guidance — Color palette" loading="lazy">
-      <img src="quadrato-img/12_components.png"     alt="Design guidance — Component set: buttons, fields, NFT cards" loading="lazy">
-      <img src="quadrato-img/13_closing_text.png"   alt="That's it for now!" loading="lazy">
-      <img src="quadrato-img/14_quadrato_hero.png"  alt="Quadrato — Democratising NFT Standards" loading="lazy">
-      <img src="quadrato-img/15_used_tools.png"     alt="Used tools and WE'LL CHANGE THE GAME" loading="lazy">
+
+    <!-- ═══════════════════════════════════════
+         1. HERO — full-bleed cover image
+    ═══════════════════════════════════════ -->
+    <section class="hero-section">
+      <img src="quadrato-img/hero-cover.jpg" alt="Quadrato" class="hero-section__img">
+      <div class="hero-section__text">
+        <h1 class="hero-section__title">QUADRATO</h1>
+        <p class="hero-section__sub">Democratising NFT Standards</p>
+        <div class="hero-section__tags">
+          <div class="hero-section__pills">
+            <span>Web3</span><span>NFT</span><span>Product Design</span><span>Interaction Design</span>
+          </div>
+          <span class="hero-section__year">2023</span>
+        </div>
+      </div>
+    </section>
+
+    <hr class="q-divider">
+
+    <!-- ═══════════════════════════════════════
+         2. INTRO — title + body + NFT cards
+    ═══════════════════════════════════════ -->
+    <div class="qs" style="padding:0">
+      <div class="intro">
+        <div class="intro__left">
+          <h1 class="intro__title">NFTs Web3 dapp</h1>
+          <p class="intro__title-sub">on Solana</p>
+          <p class="intro__body">Our team faced a tight deadline to create a solution for the NFT market and participate in the "Grizzlython" event on the Solana blockchain. We rose to the challenge and developed a MVP — Web3 Dapp on Solana that allows on-chain editing and creation of fungible tokens. This solution is unique to Solana blockchain and provides unparalleled flexibility and customization for NFTs. Using Solana's fast and efficient blockchain technology, we were able to deliver a user-friendly and functional Dapp in record time.</p>
+          <p class="intro__note-label">Note:</p>
+          <p class="intro__note">This article does not pretend to explain the behaviour of the dapp from a technical point of view, but rather to give a presentation of the dapp with a strong focus on design.</p>
+        </div>
+        <div class="intro__cards">
+          <img src="quadrato-img/nft-cards.png" alt="Warrior bear and flower vase NFTs" class="intro__cards-img">
+        </div>
+      </div>
     </div>
 
+    <hr class="q-divider">
+
+    <!-- ═══════════════════════════════════════
+         3. PROBLEM / SOLUTION
+    ═══════════════════════════════════════ -->
+    <div class="qs">
+      <div class="ps">
+        <div>
+          <p class="ps__col-label">The Problem</p>
+          <div class="ps__item">
+            <h3 class="ps__item-title">NFTs exist in a web2 world</h3>
+            <p class="ps__item-body">Currently, most digital assets rely heavily on technologies that require centralised infrastructure. As a result, the vast majority of them fall short in their attempt to provide a trustless environment.</p>
+          </div>
+          <div class="ps__item">
+            <h3 class="ps__item-title">NFT projects have short-life</h3>
+            <p class="ps__item-body">A significant percentage of projects that launched an NFT collection did not survive long enough to provide the promised services. While many were able to generate initial engagement, they lacked efficient tools to keep track of user feedback.</p>
+          </div>
+          <div class="ps__item">
+            <h3 class="ps__item-title">Lack of shared resources</h3>
+            <p class="ps__item-body">The current NFT standards across different blockchains lack composability, making it difficult for tools built on top to easily integrate with other projects at the same level. Furthermore, existing protocols lack scalability to accommodate new features required by the community.</p>
+          </div>
+        </div>
+        <div>
+          <p class="ps__col-label">The Solution</p>
+          <div class="ps__item">
+            <h3 class="ps__item-title">A protocol that enables custom standards definitions</h3>
+            <p class="ps__item-body">Generalised metadata architecture — metadata structures can be defined by anyone.</p>
+          </div>
+          <div class="ps__item">
+            <h3 class="ps__item-title">Authorisations on metadata</h3>
+            <p class="ps__item-body">There are different types of authorities available to manage assets, both for users to manage their items and for creators to maintain the value of their projects.</p>
+          </div>
+          <div class="ps__item">
+            <h3 class="ps__item-title">Composability at its best</h3>
+            <p class="ps__item-body">The protocol allows for high interoperability between various standards built on top, enabling developers to access metadata and verify parameters directly on-chain.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="q-divider">
+
+    <!-- ═══════════════════════════════════════
+         3. THE PROPOSAL
+    ═══════════════════════════════════════ -->
+    <div class="qs">
+      <p class="q-eyebrow">The Proposal</p>
+      <div class="proposal">
+        <div>
+          <h2 class="proposal__title">Quadrato metadata program</h2>
+          <p class="proposal__body">Is the main contract that allows for the management of Roots, Extensions, and Metadata. An asset owned by a user is defined by the SPL token, the Root, and the metadata instances.</p>
+          <div class="proposal__items">
+            <div>
+              <p class="proposal__item-name">Root</p>
+              <p class="proposal__item-desc">There can only be one root. Associated with one SPL token, and it contains the SPL token's address.</p>
+            </div>
+            <div>
+              <p class="proposal__item-name">Metadata instances</p>
+              <p class="proposal__item-desc">Store information about the asset, and an infinite number of instances can be associated with a single Root/asset.</p>
+            </div>
+            <div>
+              <p class="proposal__item-name">Extensions</p>
+              <p class="proposal__item-desc">Store metadata instance data structures. Each metadata instance derives its structure from an extension and can only store data following that structure.</p>
+            </div>
+          </div>
+        </div>
+        <div class="proposal__diagram">
+          <img src="quadrato-img/proposal-diagram.png" alt="Quadrato protocol architecture diagram" class="proposal__diagram-img">
+        </div>
+      </div>
+    </div>
+
+    <hr class="q-divider">
+
+    <!-- ═══════════════════════════════════════
+         4. TARGET AUDIENCE
+    ═══════════════════════════════════════ -->
+    <div class="qs">
+      <p class="q-eyebrow">The Target Audience</p>
+      <div class="audience">
+        <div>
+          <p class="audience__body">Our primary target audience for our product was the artists and creators of the Solana ecosystem and the jury of the event. However, we recognise the infinite applications of NFTs and the potential for widespread adoption in the future.</p>
+          <p class="audience__body" style="margin-top:1.25rem">Therefore, our goal was to address the needs of all users involved in crypto-space and NFTs, especially young people around the world, and encourage them to contribute to and enrich the protocol. Our solution offers unparalleled flexibility and customisation for NFTs, making it ideal for both experienced and novice users.</p>
+        </div>
+        <div class="audience__stats">
+          <div class="stat">
+            <div class="stat__num">8.5M+</div>
+            <div class="stat__label">NFT wallets on Solana</div>
+          </div>
+          <div class="stat">
+            <div class="stat__num">$0.00012</div>
+            <div class="stat__label">Cost of minting an NFT using state compression</div>
+          </div>
+          <div class="stat">
+            <div class="stat__num">32.0M+</div>
+            <div class="stat__label">NFTs on Solana</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="q-divider">
+
+    <!-- ═══════════════════════════════════════
+         5. BENCHMARK
+    ═══════════════════════════════════════ -->
+    <div class="qs qs--tight">
+      <p class="q-eyebrow">Benchmark</p>
+      <p class="bench__intro">This benchmark aims to analyse competitors and similar projects on the Solana blockchain with similar functions, purposes, design, and look &amp; feel. Although these projects still use Web integration and aren't fully on-chain like our product, we stand out by offering a unique protocol that goes beyond buying and selling. Our platform empowers creators and artists to build their own customisable collections with flexible standards, allowing them to showcase their full imagination.</p>
+    </div>
+
+    <div class="bench__entries">
+
+      <!-- Metaplex: text left / image right -->
+      <div class="bench__entry">
+        <div class="bench__text">
+          <div class="bench__num">01 / 03</div>
+          <div class="bench__name">Metaplex</div>
+          <p class="bench__body">Metaplex is a revolutionary project that utilises Solana blockchain technology to transform digital art and collections. It offers a complete ecosystem with tools to create, sell, and trade customisable NFTs. Its decentralised marketplace and community-driven approach drive innovation and the growth of digital art. Metaplex is a pioneer in the future of digital art on the blockchain and probably the most used as a standard.</p>
+          <span class="bench__verdict">Still a web2-web integrated dapp.</span>
+        </div>
+        <div class="bench__img bench__img--shots">
+          <img src="quadrato-img/bench-metaplex-2.png" alt="Metaplex NFT creation UI" class="bench__shot bench__shot--top">
+          <img src="quadrato-img/bench-metaplex.png"   alt="Metaplex — Anyone can be a creator" class="bench__shot bench__shot--btm">
+        </div>
+      </div>
+
+      <!-- Magic Eden: image left / text right -->
+      <div class="bench__entry bench__entry--flip">
+        <div class="bench__text">
+          <div class="bench__num">02 / 03</div>
+          <div class="bench__name">Magic Eden</div>
+          <p class="bench__body">Magic Eden is one of the most widely used marketplaces in the field of NFTs, especially one of the most common in Solana. Although our project is not based on a marketplace, Magic Eden serves as a study for its functionalities, modern style and as a general marketplace idea and marketplace explorer.</p>
+          <span class="bench__verdict">Still having the same problem.</span>
+        </div>
+        <div class="bench__img bench__img--shots">
+          <img src="quadrato-img/bench-magiceden.png"   alt="Magic Eden — Shy Ones banner"   class="bench__shot bench__shot--me-top">
+          <img src="quadrato-img/bench-magiceden-2.png" alt="Magic Eden — NFT grid"          class="bench__shot bench__shot--me-btm">
+        </div>
+      </div>
+
+      <!-- Rarible: text left / image right -->
+      <div class="bench__entry">
+        <div class="bench__text">
+          <div class="bench__num">03 / 03</div>
+          <div class="bench__name">Rarible</div>
+          <p class="bench__body">Rarible is another major marketplace used for buying and selling collectibles (NFTs). It offers a wide variety of options and incorporates graphic and functional codes that require in-depth study. However, as a multichain marketplace and web-integrated platform, it doesn't fully meet the needs of our project. It is also not very flexible when it comes to creating your collection, as it lacks personalised options.</p>
+          <span class="bench__verdict">Limitations in functionality and operability.</span>
+        </div>
+        <div class="bench__img bench__img--shots">
+          <img src="quadrato-img/bench-rarible.png"   alt="Rarible — MutantApeYachtClub" class="bench__shot bench__shot--top">
+          <img src="quadrato-img/bench-rarible-2.png" alt="Rarible — second screenshot"  class="bench__shot bench__shot--btm">
+        </div>
+      </div>
+
+    </div>
+
+    <hr class="q-divider">
+
+    <!-- ═══════════════════════════════════════
+         6. USER FLOW / SHOWCASE #1
+    ═══════════════════════════════════════ -->
+    <div class="qs">
+      <p class="q-eyebrow">User Flow / Showcase #1</p>
+      <div class="flow">
+        <div>
+          <h2 class="flow__title">Adding standards to an existing token</h2>
+          <p class="flow__body">In this case, the user is not creating a new SPL token, but rather utilising one from their own collection. The goal is to enhance the token's functionality by adding various standards that serve different purposes and use cases.</p>
+          <p class="flow__body" style="margin-top:.875rem">The main task at hand is to review the details of the token and incorporate additional utilities to optimise its value as an NFT.</p>
+          <div class="flow__steps">
+            <div class="flow__step"><span class="flow__step-n">01</span><span class="flow__step-t">Connect wallet — required to access your assets</span></div>
+            <div class="flow__step"><span class="flow__step-n">02</span><span class="flow__step-t">Landing Page → Explore → My Assets</span></div>
+            <div class="flow__step"><span class="flow__step-n">03</span><span class="flow__step-t">Select collectible → Collectible detail</span></div>
+            <div class="flow__step"><span class="flow__step-n">04</span><span class="flow__step-t">Explore Standards → Select standard</span></div>
+            <div class="flow__step"><span class="flow__step-n">05</span><span class="flow__step-t">Add Standard → Confirm → Updated asset detail</span></div>
+          </div>
+        </div>
+        <div class="flow__diagram">
+          <div class="ph">
+            <span class="ph__icon">□</span>
+            <span class="ph__label">User flow diagram<br>(Figma prototype overview with all screens connected)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="q-divider">
+
+    <!-- ═══════════════════════════════════════
+         7. LANDING PAGE SCREEN
+    ═══════════════════════════════════════ -->
+    <div class="qs">
+      <p class="screens__label">Landing Page</p>
+      <div class="screen-landing">
+        <div class="ph screen-landing__ph">
+          <span class="ph__icon">□</span>
+          <span class="ph__label">Landing page screen<br>"Add infinite scalability to your NFT"<br>with Explore and Mint buttons</span>
+        </div>
+      </div>
+    </div>
+
+    <hr class="q-divider">
+
+    <!-- ═══════════════════════════════════════
+         8. APP SCREENS — Explorer / My Assets / Standards / Detail
+    ═══════════════════════════════════════ -->
+    <div class="qs">
+      <p class="screens__label">App Screens — Explorer, My Assets, Standards, Asset Detail</p>
+      <div class="screens__grid">
+        <div class="ph"><span class="ph__icon">□</span><span class="ph__label">Explorer<br>NFT grid with search &amp; filters</span></div>
+        <div class="ph"><span class="ph__icon">□</span><span class="ph__label">Collectible detail<br>Falling bear #2443 — standards &amp; info</span></div>
+        <div class="ph"><span class="ph__icon">□</span><span class="ph__label">Explore Standards<br>Standards list with categories</span></div>
+        <div class="ph"><span class="ph__icon">□</span><span class="ph__label">My Assets<br>User's NFT grid with wallet</span></div>
+        <div class="ph"><span class="ph__icon">□</span><span class="ph__label">Add Standard<br>Select &amp; confirm flow</span></div>
+        <div class="ph"><span class="ph__icon">□</span><span class="ph__label">Asset detail after adding standard<br>Updated standards list</span></div>
+      </div>
+    </div>
+
+    <hr class="q-divider">
+
+    <!-- ═══════════════════════════════════════
+         9. DESIGN GUIDANCE — Concept + Related Screens
+    ═══════════════════════════════════════ -->
+    <div class="qs">
+      <p class="q-eyebrow">Design Guidance</p>
+      <div class="dg">
+        <div class="dg__nav">
+          <div class="dg__nav-item active">Concept</div>
+          <div class="dg__nav-item">Type</div>
+          <div class="dg__nav-item">Colors</div>
+          <div class="dg__nav-item">Component set<br>and behaviour</div>
+          <div class="dg__nav-item">Micro-interaction</div>
+          <div class="dg__nav-item">Effects</div>
+        </div>
+        <div class="dg__content">
+          <div class="dg__block">
+            <h3 class="dg__block-title">Concept</h3>
+            <p class="dg__text">We meticulously studied the typography, drawing inspiration from various references and benchmarks within the Solana blockchain ecosystem, including Wormhole, Star Atlas, and others. Our focus was on maintaining consistency throughout the web dApp, aligning elements such as colours and component structure with the overall concept.</p>
+            <p class="dg__block-title" style="margin-top:2rem">Related screens</p>
+            <div class="screens__grid">
+              <div class="ph"><span class="ph__icon">□</span><span class="ph__label">Landing page — related screen</span></div>
+              <div class="ph"><span class="ph__icon">□</span><span class="ph__label">Explorer — related screen</span></div>
+              <div class="ph"><span class="ph__icon">□</span><span class="ph__label">Standards — related screen</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="q-divider">
+
+    <!-- ═══════════════════════════════════════
+         10. LAPTOP MOCKUP
+    ═══════════════════════════════════════ -->
+    <div class="qs" style="text-align:center">
+      <div class="laptop-wrap">
+        <div class="ph">
+          <span class="ph__icon">□</span>
+          <span class="ph__label">Laptop mockup (MacBook)<br>showing Quadrato app with Falling bear #2443</span>
+        </div>
+      </div>
+    </div>
+
+    <hr class="q-divider">
+
+    <!-- ═══════════════════════════════════════
+         11. DESIGN GUIDANCE — Typography
+    ═══════════════════════════════════════ -->
+    <div class="qs">
+      <div class="dg">
+        <div class="dg__nav">
+          <div class="dg__nav-item">Concept</div>
+          <div class="dg__nav-item active">Typography</div>
+          <div class="dg__nav-item">Colors</div>
+          <div class="dg__nav-item">Component set<br>and behaviour</div>
+          <div class="dg__nav-item">Micro-interaction</div>
+          <div class="dg__nav-item">Effects</div>
+        </div>
+        <div class="dg__content">
+          <div class="dg__block">
+            <h3 class="dg__block-title">Typography</h3>
+            <p class="dg__text">We meticulously studied the typography, drawing inspiration from various references and benchmarks within the Solana blockchain ecosystem, including Wormhole, Star Atlas, and others. Our focus was on maintaining consistency throughout the web dApp, aligning elements such as colours and component structure with the overall concept.</p>
+            <div class="type-scale">
+              <div class="type-row">
+                <span class="type-role">Header</span>
+                <span class="ts-chakra-40">1234567890</span>
+                <span class="type-spec">Chakra Petch Bold 40</span>
+              </div>
+              <div class="type-row">
+                <span class="type-role">Block text</span>
+                <span class="ts-inter-24">1234567890</span>
+                <span class="type-spec">Inter Regular 24</span>
+              </div>
+              <div class="type-row">
+                <span class="type-role">Subtitles</span>
+                <span class="ts-mono-18">1234567890</span>
+                <span class="type-spec">IBM Plex Mono Medium 18</span>
+              </div>
+              <div class="type-row">
+                <span class="type-role">Button</span>
+                <span class="ts-mono-16m">1234567890</span>
+                <span class="type-spec">IBM Plex Mono Medium 16</span>
+              </div>
+              <div class="type-row">
+                <span class="type-role">Menu</span>
+                <span class="ts-mono-16r">1234567890</span>
+                <span class="type-spec">IBM Plex Mono Regular 16</span>
+              </div>
+              <div class="type-row">
+                <span class="type-role">Button</span>
+                <span class="ts-mono-14">1234567890</span>
+                <span class="type-spec">IBM Plex Mono Regular 14</span>
+              </div>
+              <div class="type-row">
+                <span class="type-role">Details</span>
+                <span class="ts-mono-12">1234567890</span>
+                <span class="type-spec">IBM Plex Mono Regular 12</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="q-divider">
+
+    <!-- ═══════════════════════════════════════
+         12. DESIGN GUIDANCE — Color
+    ═══════════════════════════════════════ -->
+    <div class="qs">
+      <div class="dg">
+        <div class="dg__nav">
+          <div class="dg__nav-item">Concept</div>
+          <div class="dg__nav-item">Typography</div>
+          <div class="dg__nav-item active">Colors</div>
+          <div class="dg__nav-item">Component set<br>and behaviour</div>
+          <div class="dg__nav-item">Micro-interaction</div>
+          <div class="dg__nav-item">Effects</div>
+        </div>
+        <div class="dg__content">
+          <div class="dg__block">
+            <h3 class="dg__block-title">Color</h3>
+            <p class="dg__text">We are looking for a range of colors that complement the project's concept, evoking futurism, trendiness, deep space, and above all, high contrast and vibrant colors in line with the world of Web3 and NFTs.</p>
+            <div class="colors__group">
+              <div class="colors__group-label">Greyscales used along the website</div>
+              <div class="colors__row">
+                <div class="chip"><div class="chip__swatch" style="background:#333333"></div><span class="chip__hex">#333333</span></div>
+                <div class="chip"><div class="chip__swatch" style="background:#4F4F4F"></div><span class="chip__hex">#4F4F4F</span></div>
+                <div class="chip"><div class="chip__swatch" style="background:#828282"></div><span class="chip__hex">#828282</span></div>
+                <div class="chip"><div class="chip__swatch" style="background:#BDBDBD"></div><span class="chip__hex">#BDBDBD</span></div>
+                <div class="chip"><div class="chip__swatch" style="background:#E0E0E0"></div><span class="chip__hex">#E0E0E0</span></div>
+                <div class="chip"><div class="chip__swatch" style="background:#F2F2F2"></div><span class="chip__hex">#F2F2F2</span></div>
+              </div>
+            </div>
+            <div class="colors__group">
+              <div class="colors__group-label">Main colours</div>
+              <div class="colors__row">
+                <div class="chip"><div class="chip__swatch" style="background:#EB5757"></div><span class="chip__hex">#EB5757</span></div>
+                <div class="chip"><div class="chip__swatch" style="background:#F2994A"></div><span class="chip__hex">#F2994A</span></div>
+                <div class="chip"><div class="chip__swatch" style="background:#FFC000"></div><span class="chip__hex">#FFC000</span></div>
+                <div class="chip"><div class="chip__swatch" style="background:#F2C94C"></div><span class="chip__hex">#F2C94C</span></div>
+                <div class="chip"><div class="chip__swatch" style="background:#219653"></div><span class="chip__hex">#219653</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="q-divider">
+
+    <!-- ═══════════════════════════════════════
+         13. DESIGN GUIDANCE — Components
+    ═══════════════════════════════════════ -->
+    <div class="qs">
+      <div class="dg">
+        <div class="dg__nav">
+          <div class="dg__nav-item">Concept</div>
+          <div class="dg__nav-item">Typography</div>
+          <div class="dg__nav-item">Colors</div>
+          <div class="dg__nav-item active">Component set<br>and behaviour</div>
+          <div class="dg__nav-item">Micro-interaction</div>
+          <div class="dg__nav-item">Effects</div>
+        </div>
+        <div class="dg__content">
+          <div class="dg__block">
+            <h3 class="dg__block-title">Component set and specs</h3>
+            <p class="dg__text">This is a brief description of the main components used in the dapp — intended to provide an idea of how everything was conceived: specially structured and consistent.</p>
+
+            <!-- Primary button -->
+            <div class="comp__section">
+              <div class="comp__title">Primary button</div>
+              <div class="comp__spec-row">
+                <ul class="comp__spec-list">
+                  <li class="comp__spec-item"><strong>Border radius:</strong> 1px</li>
+                  <li class="comp__spec-item"><strong>Font:</strong> IBM Plex Mono Medium 18</li>
+                  <li class="comp__spec-item"><strong>Text align:</strong> Center</li>
+                  <li class="comp__spec-item"><strong>Fill:</strong> Yellow / White</li>
+                </ul>
+                <div class="comp__visual">
+                  <div class="btn-row">
+                    <div style="display:flex;flex-direction:column;align-items:center;gap:.5rem">
+                      <button class="q-btn-p">Mint</button>
+                      <span style="font-family:'IBM Plex Mono',monospace;font-size:.6rem;color:rgba(255,255,255,.25)">Default</span>
+                    </div>
+                    <div style="display:flex;flex-direction:column;align-items:center;gap:.5rem">
+                      <button class="q-btn-p hover">Mint</button>
+                      <span style="font-family:'IBM Plex Mono',monospace;font-size:.6rem;color:rgba(255,255,255,.25)">Hover</span>
+                    </div>
+                    <div style="display:flex;flex-direction:column;align-items:center;gap:.5rem">
+                      <button class="q-btn-p disabled" disabled>Mint</button>
+                      <span style="font-family:'IBM Plex Mono',monospace;font-size:.6rem;color:rgba(255,255,255,.25)">Disable</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Secondary button -->
+            <div class="comp__section">
+              <div class="comp__title">Secondary button</div>
+              <div class="comp__spec-row">
+                <ul class="comp__spec-list">
+                  <li class="comp__spec-item"><strong>Border weight:</strong> 1px</li>
+                  <li class="comp__spec-item"><strong>Border radius:</strong> 1px</li>
+                  <li class="comp__spec-item"><strong>Font:</strong> IBM Plex Mono Medium 18</li>
+                  <li class="comp__spec-item"><strong>Text align:</strong> Center</li>
+                </ul>
+                <div class="comp__visual">
+                  <div class="btn-row">
+                    <div style="display:flex;flex-direction:column;align-items:center;gap:.5rem">
+                      <button class="q-btn-s">Mint</button>
+                      <span style="font-family:'IBM Plex Mono',monospace;font-size:.6rem;color:rgba(255,255,255,.25)">Default</span>
+                    </div>
+                    <div style="display:flex;flex-direction:column;align-items:center;gap:.5rem">
+                      <button class="q-btn-s hover">Mint</button>
+                      <span style="font-family:'IBM Plex Mono',monospace;font-size:.6rem;color:rgba(255,255,255,.25)">Hover</span>
+                    </div>
+                    <div style="display:flex;flex-direction:column;align-items:center;gap:.5rem">
+                      <button class="q-btn-s disabled" disabled>Mint</button>
+                      <span style="font-family:'IBM Plex Mono',monospace;font-size:.6rem;color:rgba(255,255,255,.25)">Disable</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Explore bar -->
+            <div class="comp__section">
+              <div class="comp__title">Explore bar</div>
+              <div class="comp__spec-row">
+                <ul class="comp__spec-list">
+                  <li class="comp__spec-item"><strong>Border color:</strong> Gray 5</li>
+                  <li class="comp__spec-item"><strong>Border weight:</strong> 1px</li>
+                  <li class="comp__spec-item"><strong>Border radius:</strong> 4px</li>
+                  <li class="comp__spec-item"><strong>Background:</strong> Gray 3</li>
+                  <li class="comp__spec-item"><strong>Font:</strong> IBM Plex Mono Regular 14</li>
+                  <li class="comp__spec-item"><strong>Text color:</strong> Gray 2</li>
+                </ul>
+                <div class="comp__visual">
+                  <div style="display:flex;flex-direction:column;gap:1rem">
+                    <div>
+                      <div class="q-searchbar"><span>Search collectibles</span></div>
+                      <span style="font-family:'IBM Plex Mono',monospace;font-size:.6rem;color:rgba(255,255,255,.25);display:block;margin-top:.375rem">Default</span>
+                    </div>
+                    <div>
+                      <div class="q-searchbar" style="border-color:rgba(255,255,255,.4)"><span style="color:rgba(255,255,255,.6)">Whatever token</span></div>
+                      <span style="font-family:'IBM Plex Mono',monospace;font-size:.6rem;color:rgba(255,255,255,.25);display:block;margin-top:.375rem">Focus</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- NFT cards -->
+            <div class="comp__section">
+              <div class="comp__title">NFT cards</div>
+              <div class="comp__spec-row">
+                <ul class="comp__spec-list">
+                  <li class="comp__spec-item"><strong>Border weight:</strong> 0.5px</li>
+                  <li class="comp__spec-item"><strong>Bottom radius:</strong> 4px</li>
+                  <li class="comp__spec-item"><strong>Category font:</strong> IBM Plex Mono Light 10</li>
+                  <li class="comp__spec-item"><strong>Name font:</strong> IBM Plex Mono Light 10</li>
+                  <li class="comp__spec-item"><strong>Hover:</strong> Background blur 10px</li>
+                </ul>
+                <div class="comp__visual">
+                  <div class="ph" style="aspect-ratio:2/1">
+                    <span class="ph__icon">□</span>
+                    <span class="ph__label">NFT card — Default &amp; Hover states<br>Metamorphosis / Calagaria</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="q-divider">
+
+    <!-- ═══════════════════════════════════════
+         14. THAT'S IT FOR NOW
+    ═══════════════════════════════════════ -->
+    <div class="thats-it">
+      <p class="thats-it__heading">That's it for now!</p>
+      <p class="thats-it__body">Feel free to connect with me for any Web3-related discussions, proposals or feedback.</p>
+    </div>
+
+    <hr class="q-divider">
+
+    <!-- ═══════════════════════════════════════
+         15. QUADRATO CLOSING HERO
+    ═══════════════════════════════════════ -->
+    <div class="closing-hero" style="background:#030307">
+      <p class="closing-hero__title">QUADRATO</p>
+      <p class="closing-hero__sub">Democratising NFT Standards</p>
+      <div class="closing-hero__img">
+        <div class="ph">
+          <span class="ph__icon">□</span>
+          <span class="ph__label">Neon frame / portal image<br>(glowing blue square frame on dark bg)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════
+         16. WE'LL CHANGE THE GAME
+    ═══════════════════════════════════════ -->
+    <div class="q-full-band" style="background:#030307">
+      <div class="change">
+        <div>
+          <h2 class="change__headline">WE'LL<br>CHANGE<br>THE GAME</h2>
+          <p class="change__body">At Quadrato we're still looking for some roles to fill. DM us to know more about it.</p>
+          <a href="#" class="change__cta">Contact us</a>
+        </div>
+        <div class="change__img">
+          <div class="ph">
+            <span class="ph__icon">□</span>
+            <span class="ph__label">Planet / globe image<br>(colorful sphere with glow)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="q-divider">
+
+    <!-- ═══════════════════════════════════════
+         17. THE PRODUCT / USED TOOLS
+    ═══════════════════════════════════════ -->
+    <div class="q-full-band" style="background:#f5f5f7; padding: 1px 0">
+      <div class="product">
+        <div>
+          <h3 class="product__title">The product</h3>
+          <p class="product__body">As a product designer, I was faced with the challenging task of translating an amazing idea for a protocol that could revolutionise the world of NFTs into a digital product. The aim was to create a unique platform that offered a fresh perspective on how we perceive and interact with NFTs. This product offered new choices and possibilities, catering to a diverse audience of creators, developers and regular users who were eager to explore and experiment with the infinite variations that come with creating collectibles.</p>
+          <p class="product__body" style="margin-top:1rem">All of this had to be achieved within a tight deadline of three weeks, leaving little time for testing and iteration. Despite the inherent difficulty, the project was both challenging and exciting, building anticipation for what could be achieved.</p>
+        </div>
+        <div>
+          <h3 class="tools__title">Used tools</h3>
+          <p class="tools__sub">These tools were used to design the prototype, low-fi and final product.</p>
+          <div class="tools__list">
+            <div class="tool">
+              <div class="tool__icon"><div class="ph" style="width:40px;height:40px;border-radius:8px;padding:0"><span style="font-size:.5rem;color:rgba(0,0,0,.3)">1</span></div></div>
+              <span class="tool__name">Figma</span>
+            </div>
+            <div class="tool">
+              <div class="tool__icon"><div class="ph" style="width:40px;height:40px;border-radius:8px;padding:0"><span style="font-size:.5rem;color:rgba(0,0,0,.3)">2</span></div></div>
+              <span class="tool__name">Photoshop</span>
+            </div>
+            <div class="tool">
+              <div class="tool__icon"><div class="ph" style="width:40px;height:40px;border-radius:8px;padding:0"><span style="font-size:.5rem;color:rgba(0,0,0,.3)">3</span></div></div>
+              <span class="tool__name">Midjourney</span>
+            </div>
+            <div class="tool">
+              <div class="tool__icon"><div class="ph" style="width:40px;height:40px;border-radius:8px;padding:0"><span style="font-size:.5rem;color:rgba(0,0,0,.3)">4</span></div></div>
+              <span class="tool__name">ChatGPT</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project nav -->
     <nav class="proj-nav">
       <a href="index.html#work" class="proj-nav__back">← All projects</a>
       <div class="proj-nav__next">
@@ -147,6 +1298,7 @@
         <a href="dissect.html" class="proj-nav__title">Dissect →</a>
       </div>
     </nav>
+
   </main>
 
   <footer class="footer">
