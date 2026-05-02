@@ -1357,6 +1357,7 @@
 .q-type-samp--mono-lg { font-family: var(--q-mono); font-size: 1.125rem; font-weight: 500; }
 .q-type-samp--mono { font-family: var(--q-mono); font-size: 1rem; font-weight: 500; }
 .q-type-samp--mono-sm { font-family: var(--q-mono); font-size: .875rem; font-weight: 400; }
+.q-type-samp--mono-xs { font-family: var(--q-mono); font-size: .75rem; font-weight: 400; }
 .q-type-role-tag {
   font-family: var(--q-mono);
   font-size: .625rem;
@@ -1658,6 +1659,12 @@
   grid-template-columns: 1fr 480px;
   gap: 5rem;
   align-items: start;
+}
+.q-ut__desc {
+  font-size: .9rem;
+  color: rgba(255,255,255,.45);
+  line-height: 1.7;
+  margin-bottom: 1.25rem;
 }
 .q-ut__label {
   font-family: var(--q-mono);
