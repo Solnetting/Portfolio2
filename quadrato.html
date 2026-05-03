@@ -439,8 +439,7 @@
     /* ─────────────────────────────────────
        7. LANDING PAGE SCREEN
     ───────────────────────────────────── */
-    .screen-landing { }
-    .screen-landing__ph { aspect-ratio: 16/7; }
+    .screen-landing__img { width: 100%; height: auto; display: block; border-radius: var(--radius); }
 
     /* ─────────────────────────────────────
        8. APP SCREENS COLLAGE
@@ -452,26 +451,38 @@
     }
     .screens__grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
     }
-    .screens__grid .ph { aspect-ratio: 4/3; }
-    .screens__grid--wide .ph:first-child { grid-column: span 2; }
+    .screens__grid .ph { aspect-ratio: 16/10; }
+    .screens__item { display: flex; flex-direction: column; gap: .5rem; }
+    .screens__item--full { grid-column: 1 / -1; }
+    .screens__name {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: .6875rem; color: rgba(255,255,255,.35);
+      letter-spacing: .04em;
+    }
+    .screens__img { width: 100%; height: auto; display: block; border-radius: 0; }
 
     /* ─────────────────────────────────────
        9. DESIGN GUIDANCE (sidebar layout)
     ───────────────────────────────────── */
-    .dg { display: grid; grid-template-columns: 280px 1fr; gap: 4rem; align-items: start; }
-    .dg__nav { display: flex; flex-direction: column; gap: .125rem; }
+    .dg { display: grid; grid-template-columns: 260px 1fr; gap: 5rem; align-items: start; }
+    .dg__nav {
+      position: sticky; top: 76px;
+      display: flex; flex-direction: column; gap: .125rem;
+      padding-top: 1.25rem;
+    }
     .dg__nav-item {
       font-family: 'IBM Plex Mono', monospace;
       font-size: .75rem; letter-spacing: .05em;
       color: rgba(255,255,255,.35); padding: .5rem .75rem;
       border-radius: 4px; cursor: default;
+      transition: color .2s, background .2s;
     }
     .dg__nav-item.active { background: rgba(255,255,255,.06); color: rgba(255,255,255,.8); }
     .dg__content { min-width: 0; }
-    .dg__block { margin-bottom: 4rem; }
+    .dg__block { margin-bottom: 6rem; scroll-margin-top: 90px; }
     .dg__block:last-child { margin-bottom: 0; }
     .dg__block-title {
       font-family: 'Chakra Petch', sans-serif;
@@ -676,7 +687,7 @@
 
     /* ─── Component styles ─── */
 
-    .dg__nav { align-self: start; }
+    /* .dg__nav sticky is set in the component styles block above */
 
     /* ─── Responsive ─── */
     @media (max-width: 900px) {
@@ -935,53 +946,85 @@
     <hr class="q-divider">
 
     <!-- ═══════════════════════════════════════
-         7. LANDING PAGE SCREEN
+         7. SCREENS
     ═══════════════════════════════════════ -->
     <div class="qs">
-      <p class="screens__label">Landing Page</p>
-      <div class="screen-landing">
-        <div class="ph screen-landing__ph">
-          <span class="ph__icon">□</span>
-          <span class="ph__label">Landing page screen<br>"Add infinite scalability to your NFT"<br>with Explore and Mint buttons</span>
-        </div>
-      </div>
+      <p class="q-eyebrow">Screens</p>
     </div>
 
     <hr class="q-divider">
 
     <!-- ═══════════════════════════════════════
-         8. APP SCREENS — Explorer / My Assets / Standards / Detail
+         8. APP SCREENS
     ═══════════════════════════════════════ -->
     <div class="qs">
-      <p class="screens__label">App Screens — Explorer, My Assets, Standards, Asset Detail</p>
+      <div class="screens__item" style="margin-bottom:1.5rem">
+        <span class="screens__name">Landing Page</span>
+        <img src="quadrato-img/screen-landing.png" alt="Quadrato landing page" class="screens__img">
+      </div>
       <div class="screens__grid">
-        <div class="ph"><span class="ph__icon">□</span><span class="ph__label">Explorer<br>NFT grid with search &amp; filters</span></div>
-        <div class="ph"><span class="ph__icon">□</span><span class="ph__label">Collectible detail<br>Falling bear #2443 — standards &amp; info</span></div>
-        <div class="ph"><span class="ph__icon">□</span><span class="ph__label">Explore Standards<br>Standards list with categories</span></div>
-        <div class="ph"><span class="ph__icon">□</span><span class="ph__label">My Assets<br>User's NFT grid with wallet</span></div>
-        <div class="ph"><span class="ph__icon">□</span><span class="ph__label">Add Standard<br>Select &amp; confirm flow</span></div>
-        <div class="ph"><span class="ph__icon">□</span><span class="ph__label">Asset detail after adding standard<br>Updated standards list</span></div>
+        <!-- 1 -->
+        <div class="screens__item">
+          <span class="screens__name">Explorer</span>
+          <img src="quadrato-img/screen-explore.png" alt="Explorer" class="screens__img">
+        </div>
+        <!-- 2 -->
+        <div class="screens__item">
+          <span class="screens__name">Connecting</span>
+          <img src="quadrato-img/screen-1x2.png" alt="Connecting" class="screens__img">
+        </div>
+        <!-- 3 -->
+        <div class="screens__item">
+          <span class="screens__name">User's Assets</span>
+          <img src="quadrato-img/screen-2x1.png" alt="User's Assets" class="screens__img">
+        </div>
+        <!-- 4 -->
+        <div class="screens__item">
+          <span class="screens__name">Asset detail</span>
+          <img src="quadrato-img/screen-2x2.png" alt="Asset detail" class="screens__img">
+        </div>
+        <!-- 5 -->
+        <div class="screens__item">
+          <span class="screens__name">Standards Explorer</span>
+          <img src="quadrato-img/screen-3x1.png" alt="Standards Explorer" class="screens__img">
+        </div>
+        <!-- 6 -->
+        <div class="screens__item">
+          <span class="screens__name">Standard detail</span>
+          <img src="quadrato-img/screen-3x2.png" alt="Standard detail" class="screens__img">
+        </div>
+        <!-- 7 — full width -->
+        <div class="screens__item screens__item--full">
+          <span class="screens__name">Asset detail after adding standard</span>
+          <img src="quadrato-img/screen-full.png" alt="Asset detail after adding standard" class="screens__img">
+        </div>
       </div>
     </div>
 
     <hr class="q-divider">
 
     <!-- ═══════════════════════════════════════
-         9. DESIGN GUIDANCE — Concept + Related Screens
+         9. DESIGN GUIDANCE — unified sticky sidebar
     ═══════════════════════════════════════ -->
     <div class="qs">
-      <p class="q-eyebrow">Design Guidance</p>
       <div class="dg">
-        <div class="dg__nav">
-          <div class="dg__nav-item active">Concept</div>
-          <div class="dg__nav-item">Type</div>
-          <div class="dg__nav-item">Colors</div>
-          <div class="dg__nav-item">Component set<br>and behaviour</div>
-          <div class="dg__nav-item">Micro-interaction</div>
-          <div class="dg__nav-item">Effects</div>
+
+        <!-- Sticky left nav -->
+        <div class="dg__nav" id="dgNav">
+          <p class="q-eyebrow" style="font-size:1.5rem;margin-bottom:1.5rem">Design Guidance</p>
+          <div class="dg__nav-item active" data-dg="dg-concept">Concept</div>
+          <div class="dg__nav-item" data-dg="dg-type">Type</div>
+          <div class="dg__nav-item" data-dg="dg-colors">Colors</div>
+          <div class="dg__nav-item" data-dg="dg-components">Component set<br>and behaviour</div>
+          <div class="dg__nav-item" data-dg="dg-micro">Micro-interaction</div>
+          <div class="dg__nav-item" data-dg="dg-effects">Effects</div>
         </div>
+
+        <!-- Scrolling right content -->
         <div class="dg__content">
-          <div class="dg__block">
+
+          <!-- Concept -->
+          <div class="dg__block" id="dg-concept">
             <h3 class="dg__block-title">Concept</h3>
             <p class="dg__text">We meticulously studied the typography, drawing inspiration from various references and benchmarks within the Solana blockchain ecosystem, including Wormhole, Star Atlas, and others. Our focus was on maintaining consistency throughout the web dApp, aligning elements such as colours and component structure with the overall concept.</p>
             <p class="dg__block-title" style="margin-top:2rem">Related screens</p>
@@ -991,102 +1034,24 @@
               <div class="ph"><span class="ph__icon">□</span><span class="ph__label">Standards — related screen</span></div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
 
-    <hr class="q-divider">
-
-    <!-- ═══════════════════════════════════════
-         10. LAPTOP MOCKUP
-    ═══════════════════════════════════════ -->
-    <div class="qs" style="text-align:center">
-      <div class="laptop-wrap">
-        <div class="ph">
-          <span class="ph__icon">□</span>
-          <span class="ph__label">Laptop mockup (MacBook)<br>showing Quadrato app with Falling bear #2443</span>
-        </div>
-      </div>
-    </div>
-
-    <hr class="q-divider">
-
-    <!-- ═══════════════════════════════════════
-         11. DESIGN GUIDANCE — Typography
-    ═══════════════════════════════════════ -->
-    <div class="qs">
-      <div class="dg">
-        <div class="dg__nav">
-          <div class="dg__nav-item">Concept</div>
-          <div class="dg__nav-item active">Typography</div>
-          <div class="dg__nav-item">Colors</div>
-          <div class="dg__nav-item">Component set<br>and behaviour</div>
-          <div class="dg__nav-item">Micro-interaction</div>
-          <div class="dg__nav-item">Effects</div>
-        </div>
-        <div class="dg__content">
-          <div class="dg__block">
+          <!-- Type -->
+          <div class="dg__block" id="dg-type">
             <h3 class="dg__block-title">Typography</h3>
             <p class="dg__text">We meticulously studied the typography, drawing inspiration from various references and benchmarks within the Solana blockchain ecosystem, including Wormhole, Star Atlas, and others. Our focus was on maintaining consistency throughout the web dApp, aligning elements such as colours and component structure with the overall concept.</p>
             <div class="type-scale">
-              <div class="type-row">
-                <span class="type-role">Header</span>
-                <span class="ts-chakra-40">1234567890</span>
-                <span class="type-spec">Chakra Petch Bold 40</span>
-              </div>
-              <div class="type-row">
-                <span class="type-role">Block text</span>
-                <span class="ts-inter-24">1234567890</span>
-                <span class="type-spec">Inter Regular 24</span>
-              </div>
-              <div class="type-row">
-                <span class="type-role">Subtitles</span>
-                <span class="ts-mono-18">1234567890</span>
-                <span class="type-spec">IBM Plex Mono Medium 18</span>
-              </div>
-              <div class="type-row">
-                <span class="type-role">Button</span>
-                <span class="ts-mono-16m">1234567890</span>
-                <span class="type-spec">IBM Plex Mono Medium 16</span>
-              </div>
-              <div class="type-row">
-                <span class="type-role">Menu</span>
-                <span class="ts-mono-16r">1234567890</span>
-                <span class="type-spec">IBM Plex Mono Regular 16</span>
-              </div>
-              <div class="type-row">
-                <span class="type-role">Button</span>
-                <span class="ts-mono-14">1234567890</span>
-                <span class="type-spec">IBM Plex Mono Regular 14</span>
-              </div>
-              <div class="type-row">
-                <span class="type-role">Details</span>
-                <span class="ts-mono-12">1234567890</span>
-                <span class="type-spec">IBM Plex Mono Regular 12</span>
-              </div>
+              <div class="type-row"><span class="type-role">Header</span><span class="ts-chakra-40">1234567890</span><span class="type-spec">Chakra Petch Bold 40</span></div>
+              <div class="type-row"><span class="type-role">Block text</span><span class="ts-inter-24">1234567890</span><span class="type-spec">Inter Regular 24</span></div>
+              <div class="type-row"><span class="type-role">Subtitles</span><span class="ts-mono-18">1234567890</span><span class="type-spec">IBM Plex Mono Medium 18</span></div>
+              <div class="type-row"><span class="type-role">Button</span><span class="ts-mono-16m">1234567890</span><span class="type-spec">IBM Plex Mono Medium 16</span></div>
+              <div class="type-row"><span class="type-role">Menu</span><span class="ts-mono-16r">1234567890</span><span class="type-spec">IBM Plex Mono Regular 16</span></div>
+              <div class="type-row"><span class="type-role">Button</span><span class="ts-mono-14">1234567890</span><span class="type-spec">IBM Plex Mono Regular 14</span></div>
+              <div class="type-row"><span class="type-role">Details</span><span class="ts-mono-12">1234567890</span><span class="type-spec">IBM Plex Mono Regular 12</span></div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
 
-    <hr class="q-divider">
-
-    <!-- ═══════════════════════════════════════
-         12. DESIGN GUIDANCE — Color
-    ═══════════════════════════════════════ -->
-    <div class="qs">
-      <div class="dg">
-        <div class="dg__nav">
-          <div class="dg__nav-item">Concept</div>
-          <div class="dg__nav-item">Typography</div>
-          <div class="dg__nav-item active">Colors</div>
-          <div class="dg__nav-item">Component set<br>and behaviour</div>
-          <div class="dg__nav-item">Micro-interaction</div>
-          <div class="dg__nav-item">Effects</div>
-        </div>
-        <div class="dg__content">
-          <div class="dg__block">
+          <!-- Colors -->
+          <div class="dg__block" id="dg-colors">
             <h3 class="dg__block-title">Color</h3>
             <p class="dg__text">We are looking for a range of colors that complement the project's concept, evoking futurism, trendiness, deep space, and above all, high contrast and vibrant colors in line with the world of Web3 and NFTs.</p>
             <div class="colors__group">
@@ -1111,27 +1076,9 @@
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
 
-    <hr class="q-divider">
-
-    <!-- ═══════════════════════════════════════
-         13. DESIGN GUIDANCE — Components
-    ═══════════════════════════════════════ -->
-    <div class="qs">
-      <div class="dg">
-        <div class="dg__nav">
-          <div class="dg__nav-item">Concept</div>
-          <div class="dg__nav-item">Typography</div>
-          <div class="dg__nav-item">Colors</div>
-          <div class="dg__nav-item active">Component set<br>and behaviour</div>
-          <div class="dg__nav-item">Micro-interaction</div>
-          <div class="dg__nav-item">Effects</div>
-        </div>
-        <div class="dg__content">
-          <div class="dg__block">
+          <!-- Components -->
+          <div class="dg__block" id="dg-components">
             <h3 class="dg__block-title">Component set and specs</h3>
             <p class="dg__text">This is a brief description of the main components used in the dapp — intended to provide an idea of how everything was conceived: specially structured and consistent.</p>
 
@@ -1240,10 +1187,23 @@
               </div>
             </div>
 
+          </div><!-- /dg-components -->
+
+          <!-- Micro-interaction -->
+          <div class="dg__block" id="dg-micro">
+            <h3 class="dg__block-title">Micro-interaction</h3>
+            <p class="dg__text">Subtle animations and transitions reinforce feedback throughout the dApp — hover states on NFT cards blur the background and surface metadata, buttons respond with colour shifts, and wallet connection triggers a smooth modal slide-in.</p>
           </div>
-        </div>
-      </div>
-    </div>
+
+          <!-- Effects -->
+          <div class="dg__block" id="dg-effects">
+            <h3 class="dg__block-title">Effects</h3>
+            <p class="dg__text">Glassmorphism is used sparingly for overlapping panels, paired with drop shadows and glow accents on interactive elements to maintain the Web3 dark-theme aesthetic without sacrificing readability.</p>
+          </div>
+
+        </div><!-- /dg__content -->
+      </div><!-- /dg -->
+    </div><!-- /qs -->
 
     <hr class="q-divider">
 
@@ -1347,6 +1307,25 @@
 
   <script src="script.js"></script>
   <script>
+    // Design Guidance scroll-spy
+    (function () {
+      const navItems = document.querySelectorAll('#dgNav .dg__nav-item');
+      const blocks   = document.querySelectorAll('.dg__block[id]');
+      if (!navItems.length || !blocks.length) return;
+
+      const spy = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          const id = entry.target.id;
+          navItems.forEach(item => {
+            item.classList.toggle('active', item.dataset.dg === id);
+          });
+        });
+      }, { rootMargin: '-25% 0px -65% 0px' });
+
+      blocks.forEach(b => spy.observe(b));
+    })();
+
     // Parallax background
     const pageBg = document.getElementById('pageBg');
     let ticking = false;
