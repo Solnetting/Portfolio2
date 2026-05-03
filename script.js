@@ -47,7 +47,7 @@ const observer = new IntersectionObserver(
       }
     });
   },
-  { threshold: 0.1 }
+  { threshold: 0.12, rootMargin: '0px 0px -60px 0px' }
 );
 
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
@@ -107,21 +107,35 @@ expTabs.forEach(tab => {
   update();
 })();
 
-// Load more projects
+// Load more / Show less projects
 (function () {
   const btn = document.getElementById('loadMore');
   const behanceLink = document.getElementById('behanceLink');
   if (!btn) return;
 
+  let expanded = false;
+
   btn.addEventListener('click', () => {
-    document.querySelectorAll('.pcard--hidden').forEach(card => {
-      card.classList.remove('pcard--hidden');
-      card.classList.add('fade-in');
-      // trigger observer for fade-in animation
-      observer.observe(card);
-    });
-    btn.style.display = 'none';
-    if (behanceLink) behanceLink.classList.remove('work__all--hidden');
+    expanded = !expanded;
+
+    if (expanded) {
+      document.querySelectorAll('.pcard--hidden').forEach(card => {
+        card.classList.remove('pcard--hidden');
+        card.classList.add('fade-in');
+        observer.observe(card);
+      });
+      btn.textContent = 'Show less';
+      if (behanceLink) behanceLink.classList.remove('work__all--hidden');
+    } else {
+      document.querySelectorAll('.pcard[href*="behance"]').forEach(card => {
+        card.classList.add('pcard--hidden');
+        card.classList.remove('fade-in', 'visible');
+      });
+      btn.textContent = 'Load more';
+      if (behanceLink) behanceLink.classList.add('work__all--hidden');
+      // Scroll back up to the work section smoothly
+      document.getElementById('work')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   });
 })();
 

@@ -11,7 +11,27 @@
   <link rel="stylesheet" href="style.css">
   <style>
     /* ─── Global overrides ─── */
-    body { background: #09090f; color: #e2e4ee; }
+    body { background: transparent; color: #e2e4ee; }
+
+    /* ─── Parallax background ─── */
+    html { background: #09080b; }
+    .page-bg {
+      position: fixed;
+      top: -15%;
+      left: 0;
+      width: 100%;
+      height: 130%;
+      z-index: 0;
+      pointer-events: none;
+      will-change: transform;
+    }
+    .page-bg__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
 
     /* ─── Image placeholder ─── */
     .ph {
@@ -41,9 +61,11 @@
 
     /* ─── Meta bar ─── */
     .q-meta-bar {
-      position: sticky; top: 60px; z-index: 90;
+      position: sticky; top: 60px; z-index: 91;
       padding: .75rem var(--pad);
-      background: #09090f;
+      background: rgba(9,8,11,.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
     }
     .q-meta-bar__inner {
@@ -69,6 +91,8 @@
        width declare grid-column: full.
     ═══════════════════════════════════════════ */
     main {
+      position: relative;
+      z-index: 1;
       display: grid;
       grid-template-columns:
         [full-start] minmax(var(--pad), 1fr)
@@ -89,8 +113,8 @@
     /* ─── Section wrapper ─── */
     .qs         { padding: 6rem 0; }
     .qs--tight  { padding-top: 3rem; padding-bottom: 3rem; }
-    .qs--dark   { background: #060609; }
-    .qs--darker { background: #030306; }
+    .qs--dark   { background: rgba(6,6,9,.55); }
+    .qs--darker { background: rgba(3,3,6,.65); }
 
     /* ─── Section divider ─── */
     .q-divider { border: none; border-top: 1px solid var(--border); margin: 0; }
@@ -374,6 +398,22 @@
     /* ─────────────────────────────────────
        6. USER FLOW
     ───────────────────────────────────── */
+    .flow__lead {
+      font-size: .9375rem; line-height: 1.75;
+      color: rgba(255,255,255,.7); max-width: 820px; margin-bottom: 2rem;
+    }
+    .flow__cases { list-style: none; padding: 0; margin: 0 0 3rem; display: flex; flex-direction: column; gap: .75rem; }
+    .flow__case {
+      display: flex; align-items: center; gap: .75rem;
+      font-size: 1rem; color: rgba(255,255,255,.8);
+    }
+    .flow__case::before {
+      content: ''; display: block; width: .625rem; height: .625rem;
+      border-radius: 50%; flex-shrink: 0;
+    }
+    .flow__case--green::before { background: #4ade80; }
+    .flow__case--blue::before  { background: #60a5fa; }
+
     .flow { display: grid; grid-template-columns: 280px 1fr; gap: 4rem; align-items: start; }
     .flow__title {
       font-family: 'Chakra Petch', sans-serif;
@@ -393,6 +433,8 @@
     .flow__step-t { font-size: .8125rem; color: rgba(255,255,255,.6); }
     .flow__diagram .ph { aspect-ratio: 16/9; }
     .flow__diagram-img { width: 100%; height: auto; display: block; border-radius: var(--radius); }
+    .flow__proto { margin-top: 3rem; }
+    .flow__proto-img { width: 100%; height: auto; display: block; border-radius: var(--radius); }
 
     /* ─────────────────────────────────────
        7. LANDING PAGE SCREEN
@@ -548,7 +590,7 @@
     .closing-hero {
       position: relative; overflow: hidden;
       padding: 6rem var(--pad);
-      background: #030306;
+      background: rgba(3,3,6,.6);
       display: flex; flex-direction: column; align-items: center;
       text-align: center; gap: 1rem;
     }
@@ -649,6 +691,9 @@
   </style>
 </head>
 <body>
+  <div class="page-bg" id="pageBg">
+    <img src="quadrato-img/bg.svg" alt="" aria-hidden="true" class="page-bg__img">
+  </div>
 
   <!-- NAV -->
   <header class="nav" id="nav">
@@ -874,15 +919,16 @@
     ═══════════════════════════════════════ -->
     <div class="qs">
       <p class="q-eyebrow">User Flow / Showcase #1</p>
-      <div class="flow">
-        <div>
-          <h2 class="flow__title">Adding standards to an existing token</h2>
-          <p class="flow__body">In this case, the user is not creating a new SPL token, but rather utilising one from their own collection. The goal is to enhance the token's functionality by adding various standards that serve different purposes and use cases.</p>
-          <p class="flow__body" style="margin-top:.875rem">The main task at hand is to review the details of the token and incorporate additional utilities to optimise its value as an NFT.</p>
-        </div>
-        <div class="flow__diagram">
-          <img src="quadrato-img/userflow.svg" alt="User flow diagram" class="flow__diagram-img">
-        </div>
+      <p class="flow__lead">In this case, the user is not creating a new SPL token, but rather utilising one from their own collection. The goal is to enhance the token's functionality by adding various standards that serve different purposes and use cases. The main task at hand is to review the details of the token and incorporate additional utilities to optimise its value as an NFT.</p>
+      <ul class="flow__cases">
+        <li class="flow__case flow__case--green">Use Case #1</li>
+        <li class="flow__case flow__case--blue">Use Case #2 Minting</li>
+      </ul>
+      <div class="flow__diagram">
+        <img src="quadrato-img/userflow.svg" alt="User flow diagram" class="flow__diagram-img">
+      </div>
+      <div class="flow__proto">
+        <img src="quadrato-img/prototype-flow.png" alt="Figma prototype — full flow overview" class="flow__proto-img">
       </div>
     </div>
 
@@ -1214,7 +1260,7 @@
     <!-- ═══════════════════════════════════════
          15. QUADRATO CLOSING HERO
     ═══════════════════════════════════════ -->
-    <div class="closing-hero" style="background:#030307">
+    <div class="closing-hero" style="background:rgba(3,3,7,.55)"
       <p class="closing-hero__title">QUADRATO</p>
       <p class="closing-hero__sub">Democratising NFT Standards</p>
       <div class="closing-hero__img">
@@ -1228,7 +1274,7 @@
     <!-- ═══════════════════════════════════════
          16. WE'LL CHANGE THE GAME
     ═══════════════════════════════════════ -->
-    <div class="q-full-band" style="background:#030307">
+    <div class="q-full-band" style="background:rgba(3,3,7,.55)"
       <div class="change">
         <div>
           <h2 class="change__headline">WE'LL<br>CHANGE<br>THE GAME</h2>
@@ -1300,5 +1346,19 @@
   </footer>
 
   <script src="script.js"></script>
+  <script>
+    // Parallax background
+    const pageBg = document.getElementById('pageBg');
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          pageBg.style.transform = 'translateY(' + (window.scrollY * 0.25) + 'px)';
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+  </script>
 </body>
 </html>
