@@ -756,8 +756,7 @@
     .product {
       background: transparent; color: #e2e4ee;
       padding: 5rem var(--pad);
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 5rem; max-width: var(--max-w); margin: 0 auto;
+      max-width: var(--max-w); margin: 0 auto;
     }
     .product__title {
       font-family: 'Chakra Petch', sans-serif;
@@ -765,19 +764,6 @@
       margin-bottom: 1.25rem;
     }
     .product__body { font-size: .9rem; line-height: 1.8; color: rgba(255,255,255,.7); }
-    .tools__title {
-      font-family: 'Chakra Petch', sans-serif;
-      font-size: 1.5rem; font-weight: 700; color: #fff;
-      margin-bottom: .625rem;
-    }
-    .tools__sub { font-size: .8rem; color: rgba(255,255,255,.5); margin-bottom: 2rem; }
-    .tools__list { display: flex; flex-direction: column; gap: 1.25rem; }
-    .tool {
-      display: flex; align-items: center; gap: 1.25rem;
-    }
-    .tool__icon { width: 40px; height: 40px; }
-    .tool__icon .ph { width: 40px; height: 40px; border-radius: 8px; padding: 0; }
-    .tool__name { font-family: 'IBM Plex Mono', monospace; font-size: .875rem; color: rgba(255,255,255,.8); }
 
     /* ─── Project nav ─── */
     .proj-nav {
@@ -839,7 +825,7 @@
 
     /* ─── Responsive ─── */
     @media (max-width: 900px) {
-      .intro, .ps, .proposal, .audience, .flow, .change, .product { grid-template-columns: 1fr; }
+      .intro, .ps, .proposal, .audience, .flow, .change { grid-template-columns: 1fr; }
       .intro__cards { height: 360px; }
       .bench__entry, .bench__entry--flip { grid-template-columns: 1fr; direction: ltr; }
       .dg { grid-template-columns: 1fr; }
@@ -1534,7 +1520,7 @@
       '.thats-it__heading', '.thats-it__body',
       '.closing-hero__title', '.closing-hero__sub', '.closing-hero__img',
       '.change__headline', '.change__body', '.change__img',
-      '.product > div', '.tool',
+      '.product > div',
       '.proj-nav',
     ].forEach(sel => document.querySelectorAll(sel).forEach(el => {
       el.classList.add('fade-in');
