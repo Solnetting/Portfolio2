@@ -785,6 +785,15 @@
       .comp__spec-row { grid-template-columns: 1fr; }
       .type-row { flex-direction: column; align-items: flex-start; gap: .5rem; }
     }
+    @media (max-width: 768px) {
+      .proj-hero__meta {
+        flex-direction: column;
+        gap: .25rem;
+      }
+      .proj-hero__meta .tag {
+        font-size: .75rem;
+      }
+    }
   </style>
 </head>
 <body>
