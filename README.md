@@ -14,12 +14,15 @@ style.css         Global design tokens and component styles
 script.js         Scroll animations, nav scroll progress bar, nav highlight
 profile.png       B&W portrait — About section
 project.css       Shared styles for all case study pages
+boop.html         Boop palm-payment app — full case study (user app + vendor app)
+boop.css          Boop-specific styles and components
 quadrato.html     Quadrato NFT Protocol — full case study
 quadrato.css      Quadrato-specific styles and components
 syntropyx.html    SyntropyX DeFi Vault Platform — full case study
 syntropyx.css     SyntropyX-specific styles and components
 dissect.html      Dissect Design System — full case study
 dissect.css       Dissect-specific styles
+restaking.html    Restaking.Info DeFi Dashboard — full case study
 ```
 
 ## Tech
@@ -36,7 +39,7 @@ Plain HTML, CSS, and vanilla JS. No frameworks, no build tools, no dependencies.
 | Project | Year | Tags |
 |---------|------|------|
 | SyntropyX | 2025 | Web3, DeFi, Product Design, Design System |
-| Boop | 2024 | Mobile, Social |
+| Boop | 2024–2026 | Mobile, Fintech, UX/UI, Design System — user app + vendor app |
 | Restaking.Info | 2024 | Web App, DeFi |
 | Dissect DS | 2024 | Design System, Figma |
 | Quadrato | 2023 | Web3, NFT |
