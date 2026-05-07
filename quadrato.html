@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Chakra+Petch:wght@400;600;700&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="project.css">
   <style>
     /* ─── Global overrides ─── */
     body { background: transparent; color: #e2e4ee; }
@@ -121,76 +122,24 @@
     }
 
     /* ─────────────────────────────────────
-       1. HERO — full-bleed image + text overlay
+       1. HERO — proj-hero overrides for Quadrato
     ───────────────────────────────────── */
-    .hero-section {
-      position: relative;
-      width: 100%;
-      /* Lock to image's native ratio: 11512 × 7133 — no crop, no stretch */
-      aspect-ratio: 11512 / 7133;
+    .q-proj-hero { padding-top: 4rem; }
+    .q-hero-title {
+      font-family: 'Chakra Petch', sans-serif;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    .q-hero-cover {
+      aspect-ratio: 16 / 7;
+      border-radius: 1.5rem;
       overflow: hidden;
     }
-    .hero-section__img {
-      position: absolute; inset: 0;
+    .q-hero-cover img {
       width: 100%; height: 100%;
       object-fit: cover;
       object-position: center;
       display: block;
-    }
-    .hero-section__text {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding-left: clamp(2.5rem, 18vw, 22rem);
-      padding-right: 0;
-      max-width: 60%;
-    }
-    .hero-section__title {
-      font-family: 'Chakra Petch', sans-serif;
-      font-size: clamp(2rem, 4.5vw, 4.5rem);
-      font-weight: 700;
-      letter-spacing: .04em;
-      text-transform: uppercase;
-      color: #fff;
-      line-height: 1;
-      margin: 0 0 .35em;
-    }
-    .hero-section__sub {
-      font-family: 'Chakra Petch', sans-serif;
-      font-size: clamp(.65rem, 1.05vw, 1rem);
-      font-weight: 400;
-      letter-spacing: .3em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,.7);
-      margin: 0 0 1.25em;
-    }
-    .hero-section__tags {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: .5rem;
-    }
-    .hero-section__pills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: .375rem;
-    }
-    .hero-section__pills span {
-      font-size: .625rem;
-      letter-spacing: .09em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,.3);
-      background: rgba(255,255,255,.06);
-      padding: .2rem .55rem;
-      border-radius: 2px;
-    }
-    .hero-section__year {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: .75rem;
-      letter-spacing: .08em;
-      color: rgba(255,255,255,.25);
     }
 
     /* ─────────────────────────────────────
@@ -836,16 +785,6 @@
       .comp__spec-row { grid-template-columns: 1fr; }
       .type-row { flex-direction: column; align-items: flex-start; gap: .5rem; }
     }
-    /* ─── Back link (matching Boop) ─── */
-    .proj-back {
-      display: inline-block;
-      font-size: .8125rem;
-      color: rgba(255,255,255,.4);
-      text-decoration: none;
-      transition: color .15s;
-      margin-bottom: 1.5rem;
-    }
-    .proj-back:hover { color: #fff; }
   </style>
 </head>
 <body>
@@ -871,20 +810,40 @@
   <main>
 
     <!-- ═══════════════════════════════════════
-         1. HERO — full-bleed cover image
+         1. HERO
     ═══════════════════════════════════════ -->
-    <section class="hero-section">
-      <img src="quadrato-img/hero-cover.jpg" alt="Quadrato" class="hero-section__img">
-      <div class="hero-section__text">
+    <section class="proj-hero q-proj-hero">
+      <div class="proj-hero__inner">
         <a href="index.html#work" class="proj-back">← Back to work</a>
-        <h1 class="hero-section__title">QUADRATO</h1>
-        <p class="hero-section__sub">Democratising NFT Standards</p>
-        <div class="hero-section__tags">
-          <div class="hero-section__pills">
-            <span>Web3</span><span>NFT</span><span>Product Design</span><span>Interaction Design</span>
-          </div>
-          <span class="hero-section__year">2023</span>
+        <div class="proj-hero__meta">
+          <span class="tag">Web3</span>
+          <span class="tag">NFT</span>
+          <span class="tag">Product Design</span>
+          <span class="tag">Interaction Design</span>
         </div>
+        <h1 class="proj-hero__title q-hero-title">QUADRATO</h1>
+        <p class="proj-hero__tagline">NFT protocol democratising fractional ownership standards on Solana</p>
+        <div class="proj-hero__details">
+          <div class="proj-detail">
+            <span class="proj-detail__label">Role</span>
+            <span class="proj-detail__value">Lead Product Designer</span>
+          </div>
+          <div class="proj-detail">
+            <span class="proj-detail__label">Timeline</span>
+            <span class="proj-detail__value">3 weeks · 2023</span>
+          </div>
+          <div class="proj-detail">
+            <span class="proj-detail__label">Platform</span>
+            <span class="proj-detail__value">Web · Solana</span>
+          </div>
+          <div class="proj-detail">
+            <span class="proj-detail__label">Tools</span>
+            <span class="proj-detail__value">Figma</span>
+          </div>
+        </div>
+      </div>
+      <div class="proj-hero__cover q-hero-cover">
+        <img src="quadrato-img/hero-cover.jpg" alt="Quadrato">
       </div>
     </section>
 
