@@ -376,19 +376,21 @@ a   { color: inherit; text-decoration: none; }
   display: inline-flex;
   align-self: flex-start;
   margin-top: .75rem;
-  padding: .625rem 1.25rem;
-  background: rgba(255,255,255,.07);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
+  padding: .5rem 1.25rem;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,.3);
+  border-radius: 999px;
   font-size: .875rem;
   font-weight: 500;
-  color: var(--text-primary);
-  transition: background .2s, border-color .2s;
+  color: #fff;
+  text-decoration: none;
+  transition: background .2s, border-color .2s, color .2s;
 }
 
 .pcard:hover .pcard__cta {
-  background: rgba(255,255,255,.12);
-  border-color: var(--border-strong);
+  background: #a3e635;
+  border-color: #a3e635;
+  color: #0d0d0d;
 }
 
 .pcard__right {
@@ -522,15 +524,22 @@ a   { color: inherit; text-decoration: none; }
   justify-content: center;
   height: 42px;
   padding: 8px 16px;
-  background: #1e1e1e;
-  border: 1px solid #313131;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,.3);
   border-radius: 9999px;
   font-family: 'Inter', sans-serif;
   font-size: 16px;
   font-weight: 400;
-  color: #f5f5f5;
+  color: #fff;
   width: fit-content;
   flex-shrink: 0;
+  transition: background .2s, border-color .2s, color .2s;
+}
+
+.fcard:hover .fcard__cta {
+  background: #a3e635;
+  border-color: #a3e635;
+  color: #0d0d0d;
 }
 
 /* Boop — 3 phone mockups absolutely positioned within card */
