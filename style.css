@@ -455,7 +455,7 @@ a   { color: inherit; text-decoration: none; }
 
 .fcard__content {
   position: absolute;
-  left: 96px;
+  left: 48px;
   top: 90px;
   width: 360px;
   display: flex;
