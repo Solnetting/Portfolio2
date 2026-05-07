@@ -505,27 +505,17 @@
     ───────────────────────────────────── */
     .type-scale { display: flex; flex-direction: column; }
     .type-row {
-      display: grid; grid-template-columns: 150px 1fr 160px;
-      gap: 2rem; align-items: baseline;
-      padding: 1.25rem 0; border-bottom: 1px solid rgba(255,255,255,.05);
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.75rem 0; border-bottom: 1px solid rgba(255,255,255,.12);
     }
-    .type-row:last-child { border-bottom: none; }
-    .type-role {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: .7rem; letter-spacing: .08em; text-transform: uppercase;
-      color: rgba(255,255,255,.28);
-    }
-    .type-spec {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: .65rem; color: rgba(255,255,255,.22); white-space: nowrap;
-    }
-    .ts-chakra-40 { font-family: 'Chakra Petch', sans-serif; font-size: 2.5rem; font-weight: 700; color: #fff; line-height: 1; }
-    .ts-inter-24  { font-family: 'Inter', sans-serif; font-size: 1.5rem; font-weight: 400; color: rgba(255,255,255,.85); }
-    .ts-mono-18   { font-family: 'IBM Plex Mono', monospace; font-size: 1.125rem; font-weight: 500; color: rgba(255,255,255,.8); }
-    .ts-mono-16m  { font-family: 'IBM Plex Mono', monospace; font-size: 1rem; font-weight: 500; color: rgba(255,255,255,.75); }
-    .ts-mono-16r  { font-family: 'IBM Plex Mono', monospace; font-size: 1rem; font-weight: 400; color: rgba(255,255,255,.7); }
-    .ts-mono-14   { font-family: 'IBM Plex Mono', monospace; font-size: .875rem; font-weight: 400; color: rgba(255,255,255,.65); }
-    .ts-mono-12   { font-family: 'IBM Plex Mono', monospace; font-size: .75rem; font-weight: 400; color: rgba(255,255,255,.6); }
+    .type-left { display: flex; flex-direction: column; gap: 2px; }
+    .ts-chakra-40 { font-family: 'Chakra Petch', sans-serif; font-size: 2.5rem; font-weight: 700; color: #fff; line-height: 1.2; }
+    .ts-inter-24  { font-family: 'Inter', sans-serif; font-size: 1.5rem; font-weight: 400; color: #fff; }
+    .ts-mono-18   { font-family: 'IBM Plex Mono', monospace; font-size: 1.125rem; font-weight: 500; color: #fff; }
+    .ts-mono-16m  { font-family: 'IBM Plex Mono', monospace; font-size: 1rem; font-weight: 500; color: #fff; }
+    .ts-mono-16r  { font-family: 'IBM Plex Mono', monospace; font-size: 1rem; font-weight: 400; color: #fff; }
+    .ts-mono-14   { font-family: 'IBM Plex Mono', monospace; font-size: .875rem; font-weight: 400; color: #fff; }
+    .ts-mono-12   { font-family: 'IBM Plex Mono', monospace; font-size: .75rem; font-weight: 400; color: #fff; }
 
     /* ─────────────────────────────────────
        12. COLORS
@@ -559,6 +549,7 @@
     /* ─────────────────────────────────────
        13. COMPONENTS
     ───────────────────────────────────── */
+    .comp-specs-img { width: 100%; height: auto; display: block; margin-top: 2.5rem; }
     .comp__section { margin-bottom: 3rem; }
     .comp__title {
       font-family: 'IBM Plex Mono', monospace; font-size: .65rem;
@@ -848,7 +839,7 @@
       .dg { grid-template-columns: 1fr; }
       .dg__nav { flex-direction: row; flex-wrap: wrap; }
       .comp__spec-row { grid-template-columns: 1fr; }
-      .type-row { grid-template-columns: 1fr; gap: .5rem; }
+      .type-row { flex-direction: column; align-items: flex-start; gap: .5rem; }
     }
   </style>
 </head>
@@ -1197,13 +1188,34 @@
             <h3 class="dg__block-title">Typography</h3>
             <p class="dg__text">We meticulously studied the typography, drawing inspiration from various references and benchmarks within the Solana blockchain ecosystem, including Wormhole, Star Atlas, and others. Our focus was on maintaining consistency throughout the web dApp, aligning elements such as colours and component structure with the overall concept.</p>
             <div class="type-scale">
-              <div class="type-row"><span class="type-role">Header</span><span class="ts-chakra-40">1234567890</span><span class="type-spec">Chakra Petch Bold 40</span></div>
-              <div class="type-row"><span class="type-role">Block text</span><span class="ts-inter-24">1234567890</span><span class="type-spec">Inter Regular 24</span></div>
-              <div class="type-row"><span class="type-role">Subtitles</span><span class="ts-mono-18">1234567890</span><span class="type-spec">IBM Plex Mono Medium 18</span></div>
-              <div class="type-row"><span class="type-role">Button</span><span class="ts-mono-16m">1234567890</span><span class="type-spec">IBM Plex Mono Medium 16</span></div>
-              <div class="type-row"><span class="type-role">Menu</span><span class="ts-mono-16r">1234567890</span><span class="type-spec">IBM Plex Mono Regular 16</span></div>
-              <div class="type-row"><span class="type-role">Button</span><span class="ts-mono-14">1234567890</span><span class="type-spec">IBM Plex Mono Regular 14</span></div>
-              <div class="type-row"><span class="type-role">Details</span><span class="ts-mono-12">1234567890</span><span class="type-spec">IBM Plex Mono Regular 12</span></div>
+              <div class="type-row">
+                <div class="type-left"><span class="ts-chakra-40">Chakra Petch Bold 40</span><span class="ts-chakra-40">1234567890</span></div>
+                <span class="ts-chakra-40">Header</span>
+              </div>
+              <div class="type-row">
+                <div class="type-left"><span class="ts-inter-24">Inter Regular 24</span><span class="ts-inter-24">1234567890</span></div>
+                <span class="ts-inter-24">block text</span>
+              </div>
+              <div class="type-row">
+                <div class="type-left"><span class="ts-mono-18">IBM Plex Mono Medium 18</span><span class="ts-mono-18">1234567890</span></div>
+                <span class="ts-mono-18">Subtitles</span>
+              </div>
+              <div class="type-row">
+                <div class="type-left"><span class="ts-mono-16m">IBM Plex Mono Medium 16</span><span class="ts-mono-16m">1234567890</span></div>
+                <span class="ts-mono-16m">Button</span>
+              </div>
+              <div class="type-row">
+                <div class="type-left"><span class="ts-mono-16r">IBM Plex Mono Regular 16</span><span class="ts-mono-16r">1234567890</span></div>
+                <span class="ts-mono-16r">Menu</span>
+              </div>
+              <div class="type-row">
+                <div class="type-left"><span class="ts-mono-14">IBM Plex Mono Regular 14</span><span class="ts-mono-14">1234567890</span></div>
+                <span class="ts-mono-14">Button</span>
+              </div>
+              <div class="type-row">
+                <div class="type-left"><span class="ts-mono-12">IBM Plex Mono Regular 12</span><span class="ts-mono-12">1234567890</span></div>
+                <span class="ts-mono-12">Details</span>
+              </div>
             </div>
           </div>
 
@@ -1241,172 +1253,7 @@
             <h3 class="dg__block-title">Component set and specs</h3>
             <p class="dg__text">This is a brief description of the main components used in the dapp — intended to provide an idea of how everything was conceived: specially structured and consistent.</p>
             
-            <!-- Figma Frame 2608856 -->
-            <div class="q-comp-frame">
-              <!-- 1. Primary Button -->
-              <div class="q-comp-group">
-                <div class="q-comp-group__label">Primary Button</div>
-                <div class="q-comp-group__row">
-                  <button class="q-comp-p">Default</button>
-                  <button class="q-comp-p hover">Hover</button>
-                  <button class="q-comp-p disabled">Disabled</button>
-                </div>
-                <div class="q-comp-group__specs">
-                  <span>Font: IBM Plex Mono Medium 14px</span>
-                  <span>Padding: 8px 28px</span>
-                  <span>Border-radius: 2px</span>
-                  <span>Background: #FFC000</span>
-                  <span>Color: #09090f</span>
-                </div>
-              </div>
-
-              <!-- 2. Secondary Button -->
-              <div class="q-comp-group">
-                <div class="q-comp-group__label">Secondary Button</div>
-                <div class="q-comp-group__row">
-                  <button class="q-comp-s">Default</button>
-                  <button class="q-comp-s hover">Hover</button>
-                  <button class="q-comp-s disabled">Disabled</button>
-                </div>
-                <div class="q-comp-group__specs">
-                  <span>Font: IBM Plex Mono Medium 14px</span>
-                  <span>Padding: 8px 28px</span>
-                  <span>Border-radius: 2px</span>
-                  <span>Background: transparent</span>
-                  <span>Border: 1px solid rgba(255,255,255,0.28)</span>
-                  <span>Color: rgba(255,255,255,0.72)</span>
-                </div>
-              </div>
-
-              <!-- 3. Search / Explore Bar -->
-              <div class="q-comp-group">
-                <div class="q-comp-group__label">Search / Explore Bar</div>
-                <div class="q-comp-group__row">
-                  <div class="q-comp-search">
-                    <div class="q-comp-search__icon"></div>
-                    <span class="q-comp-search__text">Search collections, creators…</span>
-                  </div>
-                  <div class="q-comp-search focus">
-                    <div class="q-comp-search__icon"></div>
-                    <span class="q-comp-search__text">Search collections, creators…</span>
-                  </div>
-                </div>
-                <div class="q-comp-group__specs">
-                  <span>Font: IBM Plex Mono Regular 12px</span>
-                  <span>Padding: 7px 16px</span>
-                  <span>Border-radius: 24px</span>
-                  <span>Border: 1px solid rgba(255,255,255,0.15)</span>
-                  <span>Background: rgba(255,255,255,0.025)</span>
-                </div>
-              </div>
-
-              <!-- 4. Text Field -->
-              <div class="q-comp-group">
-                <div class="q-comp-group__label">Text Field</div>
-                <div class="q-comp-group__row">
-                  <div class="q-comp-field">
-                    <span class="q-comp-field__label">Label</span>
-                    <div class="q-comp-field__input">Placeholder text</div>
-                  </div>
-                  <div class="q-comp-field">
-                    <span class="q-comp-field__label">Focused</span>
-                    <div class="q-comp-field__input focus">Focused input</div>
-                  </div>
-                  <div class="q-comp-field">
-                    <span class="q-comp-field__label">Error</span>
-                    <div class="q-comp-field__input error">Error state</div>
-                  </div>
-                </div>
-                <div class="q-comp-group__specs">
-                  <span>Font: IBM Plex Mono Regular 11px (label), 11px (input)</span>
-                  <span>Padding: 6px 10px</span>
-                  <span>Border-radius: 1px</span>
-                  <span>Border: 1px solid rgba(255,255,255,0.15)</span>
-                  <span>Background: rgba(255,255,255,0.02)</span>
-                </div>
-              </div>
-
-              <!-- 5. Textbox (multiline) -->
-              <div class="q-comp-group">
-                <div class="q-comp-group__label">Textbox (multiline)</div>
-                <div class="q-comp-group__row">
-                  <div class="q-comp-textbox">Placeholder text…</div>
-                  <div class="q-comp-textbox focus">Focused textbox</div>
-                  <div class="q-comp-textbox error">Error state</div>
-                </div>
-                <div class="q-comp-group__specs">
-                  <span>Font: IBM Plex Mono Regular 10px</span>
-                  <span>Padding: 8px 11px</span>
-                  <span>Border-radius: 1px</span>
-                  <span>Min-height: 54px</span>
-                  <span>Min-width: 130px</span>
-                  <span>Background: rgba(18,18,24,0.7)</span>
-                </div>
-              </div>
-
-              <!-- 6. NFT Card -->
-              <div class="q-comp-group">
-                <div class="q-comp-group__label">NFT Card</div>
-                <div class="q-comp-group__row">
-                  <div class="q-comp-card">
-                    <div class="q-comp-card__img">
-                      <div class="q-comp-card__img-inner"></div>
-                    </div>
-                    <div class="q-comp-card__body">
-                      <div class="q-comp-card__cat">Category</div>
-                      <div class="q-comp-card__name">NFT Name</div>
-                    </div>
-                  </div>
-                  <div class="q-comp-card hover">
-                    <div class="q-comp-card__img">
-                      <div class="q-comp-card__img-inner"></div>
-                    </div>
-                    <div class="q-comp-card__body">
-                      <div class="q-comp-card__cat">Category</div>
-                      <div class="q-comp-card__name">NFT Name</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="q-comp-group__specs">
-                  <span>Width: 110px</span>
-                  <span>Border: 0.5px solid rgba(255,255,255,0.18)</span>
-                  <span>Border-radius: 4px</span>
-                  <span>Background: rgba(255,255,255,0.02)</span>
-                  <span>Hover: box-shadow 0 2px 12px rgba(0,0,0,0.5)</span>
-                </div>
-              </div>
-
-              <!-- 7. Primary Button (small) -->
-              <div class="q-comp-group">
-                <div class="q-comp-group__label">Primary Button (small)</div>
-                <div class="q-comp-group__row">
-                  <button class="q-comp-p q-comp-p--sm">Default</button>
-                  <button class="q-comp-p q-comp-p--sm hover">Hover</button>
-                  <button class="q-comp-p q-comp-p--sm disabled">Disabled</button>
-                </div>
-                <div class="q-comp-group__specs">
-                  <span>Font: IBM Plex Mono Medium 11px</span>
-                  <span>Padding: 6px 18px</span>
-                  <span>Border-radius: 2px</span>
-                </div>
-              </div>
-
-              <!-- 8. Secondary Button (small) -->
-              <div class="q-comp-group">
-                <div class="q-comp-group__label">Secondary Button (small)</div>
-                <div class="q-comp-group__row">
-                  <button class="q-comp-s q-comp-s--sm">Default</button>
-                  <button class="q-comp-s q-comp-s--sm hover">Hover</button>
-                  <button class="q-comp-s q-comp-s--sm disabled">Disabled</button>
-                </div>
-                <div class="q-comp-group__specs">
-                  <span>Font: IBM Plex Mono Medium 11px</span>
-                  <span>Padding: 5px 16px</span>
-                  <span>Border-radius: 2px</span>
-                </div>
-              </div>
-
-            </div><!-- /q-comp-frame -->
+            <img src="comp-specs.svg" alt="Component set and specs diagram" class="comp-specs-img" loading="lazy">
           </div><!-- /dg-components -->
 
           <!-- Micro-interaction -->
