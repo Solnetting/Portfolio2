@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Design System — Carlos Mera</title>
+  <meta name="description" content="Design system documentation for Carlos Mera's portfolio.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Chakra+Petch:wght@700&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ── DS page overrides ── */
+    body { background: #0D0D0D; color: #F5F5F5; }
+    .ds { max-width: 1200px; margin: 0 auto; padding: 2rem var(--pad); }
+    .ds h1 {
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: .5rem;
+    }
+    .ds h2 {
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #fff;
+      margin: 3rem 0 1rem;
+      padding-bottom: .5rem;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+    }
+    .ds h3 {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: rgba(255,255,255,.9);
+      margin: 2rem 0 .75rem;
+    }
+    .ds p { font-size: .9375rem; line-height: 1.7; color: rgba(255,255,255,.7); margin-bottom: 1rem; }
+    .ds .specs {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: .75rem;
+      color: rgba(255,255,255,.4);
+      margin-top: .5rem;
+      padding: .5rem .75rem;
+      background: rgba(255,255,255,.03);
+      border-radius: 4px;
+      border: 1px solid rgba(255,255,255,.06);
+    }
+    .ds .specs span { display: block; }
+    .ds .component-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+      margin: 1rem 0;
+    }
+    .ds .component-row > * { flex-shrink: 0; }
+    .ds .component-block {
+      background: rgba(255,255,255,.02);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .ds .component-block .label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: .65rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.3);
+      margin-bottom: .75rem;
+    }
+    .ds .color-swatch {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .25rem;
+      margin: .5rem;
+    }
+    .ds .color-swatch__box {
+      width: 48px;
+      height: 48px;
+      border-radius: 6px;
+      border: 1px solid rgba(255,255,255,.1);
+    }
+    .ds .color-swatch__hex {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: .6rem;
+      color: rgba(255,255,255,.35);
+    }
+    .ds .token-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .8125rem;
+      margin: 1rem 0;
+    }
+    .ds .token-table th,
+    .ds .token-table td {
+      text-align: left;
+      padding: .5rem .75rem;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .ds .token-table th {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: .65rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.3);
+    }
+    .ds .token-table td {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: .7rem;
+      color: rgba(255,255,255,.6);
+    }
+    .ds .token-table td:first-child { color: rgba(255,255,255,.8); }
+    .ds .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: .375rem;
+      font-size: .8125rem;
+      color: rgba(255,255,255,.4);
+      text-decoration: none;
+      margin-bottom: 2rem;
+      transition: color .15s;
+    }
+    .ds .back-link:hover { color: #fff; }
+    .ds .divider { border: none; border-top: 1px solid rgba(255,255,255,.06); margin: 2rem 0; }
+  </style>
+</head>
+<body>
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">CM</a>
+      <nav class="nav__links">
+        <a href="index.html#work">Work</a>
+        <a href="index.html#process">Process</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#contact">Contact</a>
+        <a href="design-system.html" class="nav__link--active">DS</a>
+        <a href="https://www.linkedin.com/in/carlosmmera/" target="_blank" rel="noopener" class="nav__cta">LinkedIn ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="ds">
+      <a href="index.html" class="back-link">← Back to portfolio</a>
+      <h1>Design System</h1>
+      <p>This document serves as the single source of truth for all components, tokens, and patterns used across the portfolio. Every UI element should reference this system to maintain visual and functional consistency.</p>
+
+      <hr class="divider">
+
+      <!-- ── TOKENS ── -->
+      <h2>Design Tokens</h2>
+      <p>Global CSS custom properties defined in <code>style.css</code>. These tokens control spacing, color, typography, and layout across every page.</p>
+
+      <h3>Spacing &amp; Layout</h3>
+      <table class="token-table">
+        <thead>
+          <tr><th>Token</th><th>Value</th><th>Usage</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>--max-w</code></td><td>1200px</td><td>Maximum content width for sections</td></tr>
+          <tr><td><code>--pad</code></td><td><code>clamp(1.5rem, 5vw, 4rem)</code></td><td>Horizontal padding for sections</td></tr>
+          <tr><td><code>--radius-sm</code></td><td>8px</td><td>Small border radius (buttons, inputs)</td></tr>
+          <tr><td><code>--radius</code></td><td>12px</td><td>Default border radius (cards, containers)</td></tr>
+          <tr><td><code>--radius-lg</code></td><td>16px</td><td>Large border radius (featured cards)</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Colors</h3>
+      <table class="token-table">
+        <thead>
+          <tr><th>Token</th><th>Value</th><th>Usage</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>--bg</code></td><td>#0D0D0D</td><td>Page background</td></tr>
+          <tr><td><code>--surface</code></td><td>#161616</td><td>Card / container surface</td></tr>
+          <tr><td><code>--surface-2</code></td><td>#1E1E1E</td><td>Secondary surface (tags, inputs)</td></tr>
+          <tr><td><code>--text-primary</code></td><td>#F5F5F5</td><td>Primary text color</td></tr>
+          <tr><td><code>--text-sec</code></td><td>#C0C0C0</td><td>Secondary text color</td></tr>
+          <tr><td><code>--text-muted</code></td><td>#909090</td><td>Muted / label text</td></tr>
+          <tr><td><code>--accent</code></td><td>#CCFF00</td><td>Primary accent (lime green)</td></tr>
+          <tr><td><code>--accent-hover</code></td><td>#B8EF00</td><td>Accent hover state</td></tr>
+          <tr><td><code>--border</code></td><td>rgba(255,255,255,.09)</td><td>Default border</td></tr>
+          <tr><td><code>--border-strong</code></td><td>rgba(255,255,255,.16)</td><td>Stronger border (hover, active)</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Typography</h3>
+      <table class="token-table">
+        <thead>
+          <tr><th>Token</th><th>Value</th><th>Usage</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>--font</code></td><td><code>'Inter', sans-serif</code></td><td>Body text, UI labels</td></tr>
+          <tr><td><code>Chakra Petch</code></td><td><code>font-family: 'Chakra Petch', sans-serif</code></td><td>Headings, display text</td></tr>
+          <tr><td><code>IBM Plex Mono</code></td><td><code>font-family: 'IBM Plex Mono', monospace</code></td><td>Code, specs, metadata</td></tr>
+        </tbody>
+      </table>
+
+      <hr class="divider">
+
+      <!-- ── BUTTONS ── -->
+      <h2>Buttons</h2>
+      <p>All buttons use the <code>.btn</code> base class with modifier classes for variants. Pill-shaped buttons use <code>border-radius: 999px</code>.</p>
+
+      <div class="component-block">
+        <div class="label">Primary Button</div>
+        <div class="component-row">
+          <button class="btn btn--primary">Default</button>
+          <button class="btn btn--primary" style="background:var(--accent-hover)">Hover</button>
+          <button class="btn btn--primary" disabled style="opacity:.4;cursor:not-allowed">Disabled</button>
+        </div>
+        <div class="specs">
+          <span>Class: <code>.btn.btn--primary</code></span>
+          <span>Background: <code>var(--accent)</code> (#CCFF00)</span>
+          <span>Color: #0A0A0A</span>
+          <span>Padding: .75rem 1.5rem</span>
+          <span>Border-radius: var(--radius-sm) (8px)</span>
+          <span>Hover: background var(--accent-hover), translateY(-1px), box-shadow</span>
+        </div>
+      </div>
+
+      <div class="component-block">
+        <div class="label">Ghost Button</div>
+        <div class="component-row">
+          <button class="btn btn--ghost">Default</button>
+          <button class="btn btn--ghost" style="color:#fff;border-color:rgba(255,255,255,.22);background:rgba(255,255,255,.04)">Hover</button>
+        </div>
+        <div class="specs">
+          <span>Class: <code>.btn.btn--ghost</code></span>
+          <span>Background: transparent</span>
+          <span>Border: 1px solid var(--border-strong)</span>
+          <span>Color: var(--text-sec)</span>
+          <span>Hover: color var(--text-primary), border-color rgba(255,255,255,.22), background rgba(255,255,255,.04)</span>
+        </div>
+      </div>
+
+      <div class="component-block">
+        <div class="label">Outline Button</div>
+        <div class="component-row">
+          <button class="btn btn--outline">Default</button>
+          <button class="btn btn--outline" style="color:var(--accent);border-color:var(--accent)">Hover</button>
+        </div>
+        <div class="specs">
+          <span>Class: <code>.btn.btn--outline</code></span>
+          <span>Background: transparent</span>
+          <span>Border: 1px solid var(--border-strong)</span>
+          <span>Color: var(--text-sec)</span>
+          <span>Hover: color var(--accent), border-color var(--accent)</span>
+        </div>
+      </div>
+
+      <div class="component-block">
+        <div class="label">Lime Pill Button</div>
+        <div class="component-row">
+          <button class="btn btn--lime-pill">Default</button>
+          <button class="btn btn--lime-pill" style="background:var(--accent-hover)">Hover</button>
+        </div>
+        <div class="specs">
+          <span>Class: <code>.btn.btn--lime-pill</code></span>
+          <span>Background: var(--accent)</span>
+          <span>Color: #0A0A0A</span>
+          <span>Border-radius: 999px</span>
+          <span>Padding: .9rem 2rem</span>
+          <span>Font-weight: 600</span>
+          <span>Hover: background var(--accent-hover), translateY(-1px)</span>
+        </div>
+      </div>
+
+      <div class="component-block">
+        <div class="label">Dark Pill Button (Secondary)</div>
+        <div class="component-row">
+          <button class="btn btn--dark-pill">Default</button>
+          <button class="btn btn--dark-pill" style="background:#a3e635;border-color:#a3e635;color:#0d0d0d">Hover</button>
+        </div>
+        <div class="specs">
+          <span>Class: <code>.btn.btn--dark-pill</code></span>
+          <span>Background: transparent</span>
+          <span>Border: 1px solid rgba(255,255,255,.3)</span>
+          <span>Color: #fff</span>
+          <span>Border-radius: 999px</span>
+          <span>Padding: .9rem 2rem</span>
+          <span>Hover: background #a3e635, border-color #a3e635, color #0d0d0d</span>
+        </div>
+      </div>
+
+      <div class="component-block">
+        <div class="label">Project Card CTA (pcard__cta)</div>
+        <div class="component-row">
+          <span class="pcard__cta">View Case Study →</span>
+        </div>
+        <div class="specs">
+          <span>Class: <code>.pcard__cta</code></span>
+          <span>Background: transparent</span>
+          <span>Border: 1px solid rgba(255,255,255,.3)</span>
+          <span>Color: #fff</span>
+          <span>Border-radius: 999px</span>
+          <span>Padding: .5rem 1.25rem</span>
+          <span>Font-size: .875rem</span>
+          <span>Font-weight: 500</span>
+          <span>Hover (on parent .pcard:hover): background #a3e635, border-color #a3e635, color #0d0d0d</span>
+        </div>
+      </div>
+
+      <div class="component-block">
+        <div class="label">Feature Card CTA (fcard__cta)</div>
+        <div class="component-row">
+          <span class="fcard__cta">View case study</span>
+        </div>
+        <div class="specs">
+          <span>Class: <code>.fcard__cta</code></span>
+          <span>Same styling as <code>.pcard__cta</code></span>
+          <span>Hover (on parent .fcard:hover): background #a3e635, border-color #a3e635, color #0d0d0d</span>
+        </div>
+      </div>
+
+      <div class="component-block">
+        <div class="label">Load More Button</div>
+        <div class="component-row">
+          <button class="work__load-more">Load more</button>
+        </div>
+        <div class="specs">
+          <span>Class: <code>.work__load-more</code></span>
+          <span>Same styling as <code>.btn--dark-pill</code></span>
+          <span>Hover: background #a3e635, border-color #a3e635, color #0d0d0d</span>
+        </div>
+      </div>
+
+      <hr class="divider">
+
+      <!-- ── TAGS ── -->
+      <h2>Tags / Labels</h2>
+      <p>Used for project categories, metadata, and filter labels.</p>
+
+      <div class="component-block">
+        <div class="label">Tag</div>
+        <div class="component-row">
+          <span class="tag">Web3</span>
+          <span class="tag">DeFi</span>
+          <span class="tag">Product Design</span>
+        </div>
+        <div class="specs">
+          <span>Class: <code>.tag</code></span>
+          <span>Font-size: .625rem</span>
+          <span>Font-weight: 600</span>
+          <span>Padding: .2rem .6rem</span>
+          <span>Border-radius: 999px</span>
+          <span>Background: var(--surface-2)</span>
+          <span>Color: var(--text-muted)</span>
+          <span>Border: 1px solid var(--border)</span>
+          <span>Text-transform: uppercase</span>
+          <span>Letter-spacing: .06em</span>
+        </div>
+      </div>
+
+      <div class="component-block">
+        <div class="label">Badge (lime dot)</div>
+        <div class="component-row">
+          <span class="badge badge--lime">Available for new projects</span>
+        </div>
+        <div class="specs">
+          <span>Class: <code>.badge.badge--lime</code></span>
+          <span>Background: rgba(204,255,0,.08)</span>
+          <span>Color: var(--accent)</span>
+          <span>Border: 1px solid rgba(204,255,0,.18)</span>
+          <span>Border-radius: 999px</span>
+          <span>Padding: .3rem .75rem</span>
+          <span>Font-size: .75rem</span>
+          <span>Font-weight: 500</span>
+          <span>Includes animated dot via <code>::before</code></span>
+        </div>
+      </div>
+
+      <hr class="divider">
+
+      <!-- ── CARDS ── -->
+      <h2>Cards</h2>
+
+      <div class="component-block">
+        <div class="label">Project Card (pcard)</div>
+        <div class="specs">
+          <span>Class: <code>.pcard</code></span>
+          <span>Display: flex, flex-direction: row</span>
+          <span>Background: var(--surface)</span>
+          <span>Border-radius: 20px</span>
+          <span>Min-height: 340px</span>
+          <span>Hover: translateY(-4px), box-shadow</span>
+          <span>Left column: <code>.pcard__left</code> (38% width, padding 3rem 2.5rem)</span>
+          <span>Right column: <code>.pcard__right</code> (flex:1, overflow hidden)</span>
+          <span>Title: <code>.pcard__title</code> (clamp 1.75rem–2.75rem, font-weight 700)</span>
+          <span>Tags: <code>.pcard__tags</code> (flex wrap, gap .375rem)</span>
+          <span>Description: <code>.pcard__desc</code> (color var(--text-sec), font-size .9375rem)</span>
+          <span>CTA: <code>.pcard__cta</code> (see Buttons section)</span>
+          <span>Glow overlay: <code>.pcard__glow</code> (radial gradient)</span>
+          <span>Image: <code>.pcard__img</code> (object-fit cover, scale on hover)</span>
+        </div>
+      </div>
+
+      <div class="component-block">
+        <div class="label">Feature Card (fcard)</div>
+        <div class="specs">
+          <span>Class: <code>.fcard</code></span>
+          <span>Display: block, position: relative</span>
+          <span>Border-radius: 2rem</span>
+          <span>Aspect-ratio: 1243 / 422</span>
+          <span>Hover: transform scale(1.01)</span>
+          <span>Content: <code>.fcard__content</code> (position absolute, left 96px, top 90px, width 360px)</span>
+          <span>Title: <code>.fcard__title</code> (Chakra Petch, 64px, font-weight 700, uppercase)</span>
+          <span>Tags: <code>.fcard__tags</code> (flex wrap, gap 4px)</span>
+          <span>Description: <code>.fcard__desc</code> (Inter, 16px, font-weight 300, letter-spacing .08em)</span>
+          <span>CTA: <code>.fcard__cta</code> (see Buttons section)</span>
+          <span>Background image: <code>.fcard__bg</code> (position absolute, object-fit cover)</span>
+        </div>
+      </div>
+
+      <div class="component-block">
+        <div class="label">Card (generic)</div>
+        <div class="specs">
+          <span>Class: <code>.card</code></span>
+          <span>Display: flex, flex-direction: column</span>
+          <span>Background: var(--surface)</span>
+          <span>Border-radius: var(--radius-lg) (16px)</span>
+          <span>Border: 1px solid var(--border)</span>
+          <span>Hover: translateY(-5px), border-color var(--border-strong), box-shadow</span>
+          <span>Image: <code>.card__image</code> (aspect-ratio 16/10, overflow hidden)</span>
+          <span>Info: <code>.card__info</code> (padding 1.25rem)</span>
+          <span>Tags: <code>.card__tags</code> (flex wrap, gap .4rem)</span>
+          <span>Title: <code>.card__title</code> (1.125rem, font-weight 600)</span>
+          <span>Description: <code>.card__desc</code> (.875rem, color var(--text-sec))</span>
+          <span>Year: <code>.card__year</code> (.75rem, color var(--text-muted))</span>
+        </div>
+      </div>
+
+      <hr class="divider">
+
+      <!-- ── NAVIGATION ── -->
+      <h2>Navigation</h2>
+
+      <div class="component-block">
+        <div class="label">Top Navigation Bar</div>
+        <div class="specs">
+          <span>Class: <code>.nav</code></span>
+          <span>Position: fixed, top:0, z-index:100</span>
+          <span>Padding: 1.25rem var(--pad)</span>
+          <span>Background: rgba(10,10,10,.7) with backdrop-filter blur(20px)</span>
+          <span>Border-bottom: 1px solid var(--border)</span>
+          <span>Inner: <code>.nav__inner</code> (max-width var(--max-w), flex, space-between)</span>
+          <span>Logo: <code>.nav__logo</code> (font-weight 700, .9375rem)</span>
+          <span>Links: <code>.nav__links</code> (flex, gap 2rem, font-size .875rem, color var(--text-sec))</span>
+          <span>Active link: <code>.nav__link--active</code> (color var(--text-primary), font-weight 600)</span>
+          <span>CTA link: <code>.nav__cta</code> (color var(--accent) !important)</span>
+          <span>Progress bar: <code>.nav__progress</code> (height 2px, bottom:0)</span>
+        </div>
+      </div>
+
+      <hr class="divider">
+
+      <!-- ── SECTIONS ── -->
+      <h2>Section Layouts</h2>
+
+      <div class="component-block">
+        <div class="label">Standard Section</div>
+        <div class="specs">
+          <span>Class: <code>.section</code></span>
+          <span>Padding: 6rem var(--pad)</span>
+          <span>Max-width: var(--max-w)</span>
+          <span>Margin: 0 auto</span>
+          <span>Label: <code>.section__label</code> (.6875rem, font-weight 600, letter-spacing .18em, uppercase, color var(--accent))</span>
+          <span>Title: <code>.section__title</code> (clamp 2rem–3rem, font-weight 700, letter-spacing -.025em)</span>
+        </div>
+      </div>
+
+      <div class="component-block">
+        <div class="label">Work Section</div>
+        <div class="specs">
+          <span>Class: <code>.work</code></span>
+          <span>Padding: 6rem var(--pad)</span>
+          <span>Inner: <code>.work__inner</code> (max-width var(--max-w), margin 0 auto)</span>
+          <span>Projects container: <code>.projects</code> (flex column, gap 1.25rem)</span>
+          <span>Load more: <code>.work__more</code> (flex column, align center, gap 1.25rem)</span>
+        </div>
+      </div>
+
+      <div class="component-block">
+        <div class="label">Process Section</div>
+        <div class="specs">
+          <span>Class: <code>.process-section</code></span>
+          <span>Border-top: 1px solid var(--border)</span>
+          <span>Padding: 5rem var(--pad)</span>
+          <span>Header: <code>.process__header</code> (flex, align center, gap 2rem)</span>
+          <span>Heading: <code>.process__heading</code> (clamp 2.5rem–4rem, font-weight 700, letter-spacing -.035em)</span>
+          <span>Row: <code>.process__row</code> (grid 280px auto 1fr, padding 1.5rem 0, border-bottom)</span>
+          <span>Number: <code>.process__num</code> (1.375rem, font-weight 700, color var(--accent))</span>
+          <span>Name: <code>.process__name</code> (clamp 1.375rem–1.875rem, font-weight 700)</span>
+          <span>Description: <code>.process__desc</code> (.9375rem, color var(--text-sec))</span>
+        </div>
+      </div>
+
+      <div class="component-block">
+        <div class="label">About Section</div>
+        <div class="specs">
+          <span>Class: <code>.section.about</code></span>
+          <span>Inner: <code>.about__inner</code> (grid 280px 1fr, gap 5rem, align-items end)</span>
+          <span>Photo: <code>.about__photo</code> (width 100%, height 340px, object-fit cover, grayscale)</span>
+          <span>Bio: <code>.about__bio</code> (1.125rem, color var(--text-sec), line-height 1.8)</span>
+        </div>
+      </div>
+
+      <div class="component-block">
+        <div class="label">Contact Section</div>
+        <div class="specs">
+          <span>Class: <code>.contact</code></span>
+          <span>Text-align: center</span>
+          <span>Padding: 7rem var(--pad) 8rem</span>
+          <span>Border-top: 1px solid var(--border)</span>
+          <span>Inner: <code>.contact__inner</code> (max-width 580px, margin 0 auto)</span>
+          <span>Heading: <code>.contact__heading</code> (clamp 2.5rem–4.5rem, font-weight 700, letter-spacing -.03em)</span>
+          <span>Sub: <code>.contact__sub</code> (1.0625rem, color var(--text-sec))</span>
+          <span>Socials: <code>.contact__socials</code> (flex, gap .75rem, color var(--text-muted))</span>
+        </div>
+      </div>
+
+      <hr class="divider">
+
+      <!-- ── ANIMATIONS ── -->
+      <h2>Animations</h2>
+
+      <div class="component-block">
+        <div class="label">Fade-in on scroll</div>
+        <div class="specs">
+          <span>Class: <code>.fade-in</code></span>
+          <span>Initial: opacity 0, translateY(48px) scale(.98)</span>
+          <span>Visible: <code>.fade-in.visible</code> (opacity 1, translateY(0) scale(1))</span>
+          <span>Transition: .75s cubic-bezier(.22,1,.36,1)</span>
+          <span>Stagger delay: <code>--stagger</code> CSS variable (0ms, 120ms, 240ms, etc.)</span>
+          <span>Applied via IntersectionObserver in <code>script.js</code></span>
+        </div>
+      </div>
+
+      <div class="component-block">
+        <div class="label">Rotating Word (Hero)</div>
+        <div class="specs">
+          <span>Class: <code>.rotating-word</code></span>
+          <span>Exit animation: <code>.rotating-word.exit</code> (translateY -55%, opacity 0)</span>
+          <span>Enter animation: <code>.rotating-word.enter</code> (translateY 55% → 0, opacity 0→1)</span>
+          <span>Wrap: <code>.rotating-word-wrap</code> (inline-block, overflow hidden, width transition)</span>
+          <span>Triggered by <code>script.js</code> every 3 seconds</span>
+        </div>
+      </div>
+
+      <hr class="divider">
+
+      <!-- ── RESPONSIVE ── -->
+      <h2>Responsive Breakpoints</h2>
+      <table class="token-table">
+        <thead>
+          <tr><th>Breakpoint</th><th>Changes</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1024px</td><td>Work grid 2 columns, process/exp layout narrower, pcard left 44%</td></tr>
+          <tr><td>900px</td><td>Process row single column, pcard flex column</td></tr>
+          <tr><td>768px</td><td>Process/exp single column, pcard vertical</td></tr>
+          <tr><td>640px</td><td>Work grid 1 column, hero actions column, skills 2 columns, nav links smaller</td></tr>
+        </tbody>
+      </table>
+
+      <hr class="divider">
+
+      <!-- ── USAGE ── -->
+      <h2>How to Use This System</h2>
+      <ol style="color:rgba(255,255,255,.7);font-size:.9375rem;line-height:1.8;padding-left:1.5rem;">
+        <li><strong>Colors:</strong> Use CSS custom properties from <code>style.css</code>. Never hardcode hex values.</li>
+        <li><strong>Spacing:</strong> Use <code>var(--pad)</code> for horizontal padding, <code>var(--max-w)</code> for max width.</li>
+        <li><strong>Typography:</strong> Use <code>var(--font)</code> for body, <code>'Chakra Petch'</code> for headings, <code>'IBM Plex Mono'</code> for code/specs.</li>
+        <li><strong>Buttons:</strong> Use <code>.btn</code> + modifier class. For pill shape, add <code>border-radius: 999px</code>.</li>
+        <li><strong>Cards:</strong> Use <code>.pcard</code> for large project cards, <code>.fcard</code> for feature cards, <code>.card</code> for generic cards.</li>
+        <li><strong>Tags:</strong> Use <code>.tag</code> class for all category labels.</li>
+        <li><strong>Animations:</strong> Add <code>.fade-in</code> class to elements that should animate on scroll.</li>
+        <li><strong>Navigation:</strong> Keep the <code>.nav</code> structure consistent across all pages.</li>
+      </ol>
+
+      <hr class="divider">
+
+      <p style="text-align:center;color:rgba(255,255,255,.3);font-size:.75rem;margin-top:3rem;">Design System v1.0 — Last updated 2026-05-07</p>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <span>© 2026 Carlos Mera</span>
+      <span>Designed &amp; built with care · Barcelona</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
