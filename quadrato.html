@@ -477,9 +477,11 @@
       font-family: 'IBM Plex Mono', monospace;
       font-size: .75rem; letter-spacing: .05em;
       color: rgba(255,255,255,.35); padding: .5rem .75rem;
-      border-radius: 4px; cursor: default;
+      border-radius: 4px; cursor: pointer;
       transition: color .2s, background .2s;
+      text-decoration: none;
     }
+    .dg__nav-item:hover { background: rgba(255,255,255,.06); color: rgba(255,255,255,.6); }
     .dg__nav-item.active { background: rgba(255,255,255,.06); color: rgba(255,255,255,.8); }
     .dg__content { min-width: 0; }
     .dg__block { margin-bottom: 6rem; scroll-margin-top: 90px; }
