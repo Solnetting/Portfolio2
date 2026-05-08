@@ -44,7 +44,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <section class="proj-hero">
       <div class="proj-hero__inner">
         <a href="index.html#work" class="proj-back">← Back to work</a>
-        <h1 class="proj-hero__title">Boop</h1>
+        <h1 class="proj-hero__title">
+          <img src="boop-logo.svg" alt="Boop" style="height:clamp(3rem,7vw,5.5rem);width:auto;display:block">
+        </h1>
         <a href="https://boop.it/" target="_blank" rel="noopener" class="proj-hero__site-link">boop.it ↗</a>
         <div class="proj-hero__meta">
           <span class="tag">Mobile App</span>
@@ -91,7 +93,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <a href="#bs-summary"  class="boop-case__nav-item active" data-s="bs-summary">Executive<br>Summary</a>
         <a href="#bs-problem"  class="boop-case__nav-item" data-s="bs-problem">Defining &amp;<br>Product approach</a>
         <a href="#bs-ia"       class="boop-case__nav-item boop-case__nav-item--sub" data-s="bs-ia">User Journey<br>(User app)</a>
+        <a href="#bs-lofi"     class="boop-case__nav-item boop-case__nav-item--sub" data-s="bs-lofi">Validating<br>functionalities</a>
 
+        <a href="#bs-hifi"     class="boop-case__nav-item" data-s="bs-hifi">High fidelity V2<br>(post event)</a>
         <a href="#bs-system"   class="boop-case__nav-item" data-s="bs-system">System &amp;<br>Scale</a>
         <a href="#bs-results"  class="boop-case__nav-item" data-s="bs-results">Results &amp;<br>Retrospective</a>
       </nav>
@@ -205,6 +209,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div id="bs-ia" style="margin-top:5rem">
             <p class="section__label">User Journey (User app)</p>
             <h3 class="proj-section__title" style="font-size:1.375rem;margin-bottom:1.75rem">User journey</h3>
+            <p class="proj-text" style="max-width:540px;margin-bottom:2rem">Before any frame was opened in Figma, every flow was mapped on paper — palm registration, payments, tickets, and the full app — to understand scope and sequence before committing to any visual direction.</p>
             <p class="section__label" style="margin-bottom:1rem">Steps</p>
             <ol class="boop-ia-steps">
               <li><strong>Entry</strong> — App download via NFC, QR, or Magic Link, followed by Login / Sign-up.</li>
@@ -287,202 +292,178 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
           </div>
 
-          <div style="margin-top:5rem">
-          <p class="section__label">Iterations</p>
-          <h2 class="proj-section__title" style="font-size:1.375rem;margin-bottom:1rem">The pivot that shaped the product</h2>
+          </div><!-- /bs-strategy -->
+        </div><!-- /bs-problem -->
 
-          <!-- ── First Approach ── -->
+
+        <!-- ─── LOW FIDELITY ─── -->
+        <div id="bs-lofi" class="boop-case__block">
+          <p class="section__label">Validating functionalities</p>
+          <h2 class="proj-section__title">Low fidelity</h2>
+
+          <p class="proj-text" style="max-width:580px;margin-bottom:2.5rem">Low-fidelity sketches were used to stress-test the core flows — registration, payment, ticketing, and the main app surfaces — before committing to any visual direction. The goal was to surface structural issues early, when changes cost nothing.</p>
+
           <div class="boop-first-approach">
-            <p class="section__label">First Approach</p>
-            <h3 class="boop-fa__title">Before pixels, the idea on paper</h3>
-            <p class="proj-text boop-fa__desc">The very first step wasn't a frame in Figma — it was mapping out everything the product needed to do. Palm registration, payment flow, tickets, events, and the full app experience sketched together to understand scope before committing to any direction.</p>
 
             <div class="boop-sketch-item">
               <div class="boop-sketch-item__header">
                 <span class="boop-sketch-sec__num">01</span>
-                <h4 class="boop-sketch-sec__name">Registration screens</h4>
+                <h4 class="boop-sketch-sec__name">Welcome screen and pairing device</h4>
               </div>
+              <p class="boop-sketch-item__desc" style="margin-bottom:1.5rem">Welcome flow + NFC device pairing — explaining what Boop does before asking users for anything.</p>
               <div class="boop-screen-grid">
-                <img src="boop-reg-1.svg"      alt="Welcome screen 1"  loading="lazy">
-                <img src="boop-reg-2.svg"      alt="Welcome screen 2"  loading="lazy">
-                <img src="boop-reg-3.svg"      alt="Welcome screen 3"  loading="lazy">
-                <img src="boop-reg-qr.svg"     alt="Scanning QR code"  loading="lazy">
-                <img src="boop-reg-form.svg"   alt="Filling form"      loading="lazy">
-                <img src="boop-reg-allset.svg" alt="All set"           loading="lazy">
+                <img src="lofi-welcome-1.png"     alt="Welcome screen 1/3"        loading="lazy">
+                <img src="lofi-welcome-2.png"     alt="Welcome screen 2/3"        loading="lazy">
+                <img src="lofi-welcome-3.png"     alt="Welcome screen 3/3"        loading="lazy">
+                <img src="lofi-tc.png"            alt="Terms & Conditions"        loading="lazy">
+                <img src="lofi-pairing-1.png"     alt="Tap phone on Boop device"  loading="lazy">
+                <img src="lofi-pairing-2.png"     alt="Pairing in progress"       loading="lazy">
+                <img src="lofi-pairing-3.png"     alt="Pairing — scanning prompt" loading="lazy">
+                <img src="lofi-pairing-done.png"  alt="All set and ready to go"   loading="lazy">
               </div>
-              <p class="boop-sketch-item__desc">The full registration flow — welcome, identity verification, QR scan, form input, and confirmation. The initial idea was to deploy Boop as a <strong>mini app within World App</strong>, leveraging World ID's biometric infrastructure rather than building palm recognition from scratch.</p>
             </div>
 
             <div class="boop-sketch-item">
               <div class="boop-sketch-item__header">
                 <span class="boop-sketch-sec__num">02</span>
-                <h4 class="boop-sketch-sec__name">Tickets &amp; Events</h4>
+                <h4 class="boop-sketch-sec__name">Scanning and registration process</h4>
               </div>
-              <img src="boop-sketch-tickets.png" alt="Tickets & Events sketch" class="boop-sketch-item__img" loading="lazy">
-              <p class="boop-sketch-item__desc">Event discovery, ticket purchase, seat selection, and ticket wallet — the commerce layer explored before the visual language existed.</p>
+              <p class="boop-sketch-item__desc" style="margin-bottom:1.5rem">First-time account creation via palm scan. Both hands are scanned sequentially — waiting, reading, and confirmation states for each.</p>
+              <div class="boop-screen-grid">
+                <img src="lofi-scan1-waiting.png"  alt="First hand — waiting"    loading="lazy">
+                <img src="lofi-scan1-reading.png"  alt="First hand — reading"    loading="lazy">
+                <img src="lofi-scan1-done.png"     alt="First hand — done"       loading="lazy">
+                <img src="lofi-scan2-waiting.png"  alt="Second hand — waiting"   loading="lazy">
+                <img src="lofi-scan2-reading.png"  alt="Second hand — reading"   loading="lazy">
+                <img src="lofi-scan2-done.png"     alt="Both palms scanned"      loading="lazy">
+              </div>
             </div>
 
             <div class="boop-sketch-item">
               <div class="boop-sketch-item__header">
                 <span class="boop-sketch-sec__num">03</span>
-                <h4 class="boop-sketch-sec__name">Main screens</h4>
+                <h4 class="boop-sketch-sec__name">Home page and core features</h4>
               </div>
-              <img src="boop-sketch-main.png" alt="Main screens sketch" class="boop-sketch-item__img" loading="lazy">
-              <p class="boop-sketch-item__desc">Home dashboard, wallet overview, activity feed, and primary navigation — the core daily surface of the app.</p>
+              <p class="boop-sketch-item__desc" style="margin-bottom:0.5rem">The idea was to unify everything in one screen — transactions, membership details, and data-sharing settings.</p>
+              <p class="boop-sketch-item__desc" style="font-style:italic;margin-bottom:1.5rem">At this point the idea was to test this in an event.</p>
+              <div class="boop-screen-grid">
+                <img src="lofi-home-1.png" alt="Home — unified screen"       loading="lazy">
+                <img src="lofi-home-2.png" alt="Transaction history"         loading="lazy">
+                <img src="lofi-home-3.png" alt="Home — token balance & VIP"  loading="lazy">
+                <img src="lofi-home-4.png" alt="Kiosk payment detail"        loading="lazy">
+              </div>
             </div>
 
             <div class="boop-sketch-item">
               <div class="boop-sketch-item__header">
                 <span class="boop-sketch-sec__num">04</span>
-                <h4 class="boop-sketch-sec__name">History</h4>
+                <h4 class="boop-sketch-sec__name">Other screens related to the event — not used</h4>
               </div>
-              <img src="boop-sketch-history.png" alt="History screens sketch" class="boop-sketch-item__img" loading="lazy">
-              <p class="boop-sketch-item__desc">Transaction log, payment history, and event attendance records — the audit trail users need to feel confident about what happened.</p>
-            </div>
-
-            <div class="boop-sketch-item">
-              <div class="boop-sketch-item__header">
-                <span class="boop-sketch-sec__num">05</span>
-                <h4 class="boop-sketch-sec__name">Profile</h4>
+              <p class="boop-sketch-item__desc" style="margin-bottom:1.5rem">Additional event-context screens that were explored but cut — including ticket upgrades and VIP package flows.</p>
+              <div class="boop-screen-grid">
+                <img src="lofi-other-1.png" alt="Entrance upgrade modal"          loading="lazy">
+                <img src="lofi-other-2.png" alt="Nethermind event — general view" loading="lazy">
+                <img src="lofi-other-3.png" alt="Nethermind event — VIP + party"  loading="lazy">
+                <img src="lofi-other-4.png" alt="Entrance upgrade — VIP details"  loading="lazy">
+                <img src="lofi-other-5.png" alt="Your tickets"                    loading="lazy">
+                <img src="lofi-other-6.png" alt="Payment setup"                   loading="lazy">
+                <img src="lofi-other-7.png" alt="Event calendar"                  loading="lazy">
+                <img src="lofi-other-8.png" alt="Personal information & profile"  loading="lazy">
               </div>
-              <img src="boop-sketch-profile.png" alt="Profile screens sketch" class="boop-sketch-item__img" loading="lazy">
-              <p class="boop-sketch-item__desc">User settings, linked accounts, biometric data management, and preferences — the control layer users rarely visit but always need.</p>
             </div>
 
           </div><!-- /boop-first-approach -->
 
-          <p class="proj-text" style="max-width:540px;margin-bottom:3rem">Modern portfolios don't just show before and after — they show why the before was wrong.</p>
-
-          <div class="boop-iter-timeline">
-
-            <div class="boop-iter-connector">
-              <div class="boop-iter-connector__line"></div>
-              <div class="boop-iter-connector__label">Usability testing</div>
-              <div class="boop-iter-connector__line"></div>
-            </div>
-
-            <div class="boop-iter-step">
-              <div class="boop-iter-step__tag boop-iter-step__tag--warn">Feedback</div>
-              <h4 class="boop-iter-step__title">What failed</h4>
-              <p class="boop-iter-step__desc">[Placeholder — specific failure surfaced in usability testing. E.g. "Users expected the palm registration to happen immediately after signup, not as a separate session. The two-session model caused 40% of testers to abandon before completing palm setup."]</p>
-              <div class="boop-ph-quote" style="margin-top:1.25rem">
-                <svg width="20" height="16" viewBox="0 0 20 16" fill="none"><path d="M0 16V9.333C0 4.533 2.667 1.467 8 0l1.333 2C6.8 2.8 5.467 4.267 5.333 6.667H9.333V16H0Zm10.667 0V9.333C10.667 4.533 13.333 1.467 18.667 0L20 2C17.467 2.8 16.133 4.267 16 6.667H20V16h-9.333Z" fill="currentColor" opacity=".2"/></svg>
-                <p class="boop-ph-quote__text">Testing participant quote will go here.</p>
-              </div>
-            </div>
-
-            <div class="boop-iter-connector">
-              <div class="boop-iter-connector__line"></div>
-              <div class="boop-iter-connector__label">Refinement</div>
-              <div class="boop-iter-connector__line"></div>
-            </div>
-
-            <div class="boop-iter-step">
-              <div class="boop-iter-step__tag boop-iter-step__tag--ok">Hi-fi</div>
-              <h4 class="boop-iter-step__title">The refined onboarding</h4>
-              <p class="boop-iter-step__desc">A 3-step onboarding that builds trust before asking for anything. Each screen answers "why" before asking "what" — reassuring users at every stage.</p>
-
-              <div class="boop-flow" style="margin-top:1.5rem">
-
-                <div class="boop-flow__item">
-                  <span class="boop-flow__label">Step 1 · Date of birth</span>
-                  <div class="boop-phone__frame">
-                    <div class="boop-screen boop-screen--light">
-                      <div class="boop-progress-bar">
-                        <div class="boop-progress-bar__seg boop-progress-bar__seg--on"></div>
-                        <div class="boop-progress-bar__seg boop-progress-bar__seg--on"></div>
-                        <div class="boop-progress-bar__seg"></div>
-                      </div>
-                      <div class="boop-ob-title" style="font-size:1.1rem;margin-top:.5rem">Date of birth</div>
-                      <div class="boop-ob-body" style="font-size:.65rem">You must be 18 or older to use Boop.</div>
-                      <div class="boop-dob">
-                        <div class="boop-dob__track"></div>
-                        <div class="boop-dob__cols">
-                          <div class="boop-dob__col">
-                            <div class="boop-dob__item boop-dob__item--dim">October</div>
-                            <div class="boop-dob__item boop-dob__item--sel">November</div>
-                            <div class="boop-dob__item boop-dob__item--dim">December</div>
-                          </div>
-                          <div class="boop-dob__col">
-                            <div class="boop-dob__item boop-dob__item--dim">11</div>
-                            <div class="boop-dob__item boop-dob__item--sel">12</div>
-                            <div class="boop-dob__item boop-dob__item--dim">13</div>
-                          </div>
-                          <div class="boop-dob__col">
-                            <div class="boop-dob__item boop-dob__item--dim">1994</div>
-                            <div class="boop-dob__item boop-dob__item--sel">1995</div>
-                            <div class="boop-dob__item boop-dob__item--dim">1996</div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="boop-btn-dark" style="margin-top:auto">Confirm</div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="boop-flow__arrow">→</div>
-
-                <div class="boop-flow__item">
-                  <span class="boop-flow__label">Step 2 · Account created</span>
-                  <div class="boop-phone__frame">
-                    <div class="boop-screen boop-screen--light">
-                      <div class="boop-progress-bar">
-                        <div class="boop-progress-bar__seg boop-progress-bar__seg--on"></div>
-                        <div class="boop-progress-bar__seg boop-progress-bar__seg--on"></div>
-                        <div class="boop-progress-bar__seg boop-progress-bar__seg--on"></div>
-                      </div>
-                      <div class="boop-success">
-                        <div class="boop-success__ring">
-                          <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
-                            <path d="M9 18L15 24L27 12" stroke="#7C8BD4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                          </svg>
-                        </div>
-                      </div>
-                      <div class="boop-ob-title" style="font-size:1.1rem">Account Created!</div>
-                      <div class="boop-ob-body" style="font-size:.65rem">Welcome to Boop. Your account is ready to use.</div>
-                      <div class="boop-btn-dark" style="margin-top:auto;font-size:.6rem">Enable Push Notifications</div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="boop-flow__arrow">→</div>
-
-                <div class="boop-flow__item">
-                  <span class="boop-flow__label">Step 3 · Palm registration</span>
-                  <div class="boop-phone__frame">
-                    <div class="boop-screen boop-screen--scanner">
-                      <div class="boop-logo" style="font-size:.9rem;align-self:center;margin-bottom:.25rem">b<span class="boop-dot"></span>op</div>
-                      <div class="boop-ob-title" style="font-size:1.05rem;text-align:left">To start scanning</div>
-                      <div class="boop-scanner-opts">
-                        <div class="boop-scanner-opt">
-                          <div class="boop-scanner-opt__icon">))</div>
-                          <div>
-                            <div class="boop-scanner-opt__title">Register at a boop scanner</div>
-                            <div class="boop-scanner-opt__sub">Hold your phone close to the scanner</div>
-                          </div>
-                          <span class="boop-scanner-opt__caret">›</span>
-                        </div>
-                        <div class="boop-scanner-opt">
-                          <div class="boop-scanner-opt__icon">⊡</div>
-                          <div>
-                            <div class="boop-scanner-opt__title">Register at home</div>
-                            <div class="boop-scanner-opt__sub">A deep scan will run the first time you interact with a boop device</div>
-                          </div>
-                          <span class="boop-scanner-opt__caret">›</span>
-                        </div>
-                      </div>
-                      <div class="boop-scanner-wave"></div>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-
+          <div style="margin-top:3rem;padding-top:0">
+            <p class="section__label" style="margin-bottom:1.25rem">Preliminary insights</p>
+            <p class="proj-text" style="max-width:580px">Usability tests were run with the app only — the device wasn't ready for testing yet. Users found the app <strong>simple and easy to use</strong>, but consistently asked for separate screens. Having transactions, settings, and a profile entry point all in one place felt narrow and created <strong>high cognitive load</strong>. The unified screen didn't leave room to scale. The core takeaway: the product needed <strong>dedicated sections</strong>, not a single surface trying to do everything. Despite this, users clearly understood what Boop was about — the concept landed, the structure didn't.</p>
           </div>
-          </div><!-- /iterations -->
-          </div><!-- /bs-strategy -->
-        </div><!-- /bs-problem -->
+
+        </div><!-- /bs-lofi -->
+
+
+        <!-- ─── HIGH FIDELITY V2 ─── -->
+        <div id="bs-hifi" class="boop-case__block">
+          <p class="section__label">Post event</p>
+          <h2 class="proj-section__title">High fidelity V2</h2>
+
+          <div class="boop-s3-wrap" style="margin-top:3rem">
+            <div class="s3-composition" id="boopS3">
+
+              <!-- Festival Pass -->
+              <div class="s3-card s3-card--festival">
+                <img src="boop-festival-pass.png" alt="Festival Pass">
+                <div class="s3-card-glint"></div>
+              </div>
+
+              <!-- Indigo Navy VISA -->
+              <div class="s3-card s3-card--indigo">
+                <div class="s3-card-texture"></div>
+                <div class="s3-card-shine"></div>
+                <div class="s3-card-chip s3-card-chip--indigo"></div>
+                <span class="s3-card-network">VISA</span>
+                <span class="s3-card-number">•••• •••• •••• 2345</span>
+                <span class="s3-card-holder">JAMES MARTINEZ</span>
+                <div class="s3-card-glint"></div>
+              </div>
+
+              <!-- Violet Mastercard -->
+              <div class="s3-card s3-card--violet">
+                <div class="s3-card-texture"></div>
+                <div class="s3-card-shine"></div>
+                <div class="s3-card-chip s3-card-chip--violet"></div>
+                <div class="s3-card-mc"></div>
+                <span class="s3-card-number">•••• •••• •••• 8821</span>
+                <span class="s3-card-holder">SARAH CHEN</span>
+                <div class="s3-card-glint"></div>
+              </div>
+
+              <!-- Black Mastercard -->
+              <div class="s3-card s3-card--dark">
+                <div class="s3-card-texture"></div>
+                <div class="s3-card-shine"></div>
+                <div class="s3-card-chip s3-card-chip--dark"></div>
+                <div class="s3-card-mc"></div>
+                <span class="s3-card-number">•••• •••• •••• 4417</span>
+                <span class="s3-card-holder">RYO NAKAMURA</span>
+                <div class="s3-card-glint"></div>
+              </div>
+
+              <!-- White VISA -->
+              <div class="s3-card s3-card--white">
+                <div class="s3-card-texture"></div>
+                <div class="s3-card-shine s3-card-shine--dark"></div>
+                <div class="s3-card-chip s3-card-chip--white"></div>
+                <span class="s3-card-network s3-card-network--dark">VISA</span>
+                <span class="s3-card-number s3-card-number--dark">•••• •••• •••• 9903</span>
+                <span class="s3-card-holder s3-card-holder--dark">ALEX PATEL</span>
+                <div class="s3-card-glint"></div>
+              </div>
+
+              <!-- Active Pass -->
+              <div class="s3-card s3-card--active">
+                <img src="boop-active-pass.png" alt="Active Pass">
+                <div class="s3-card-glint"></div>
+              </div>
+
+              <!-- iPhone -->
+              <div class="s3-iphone-wrap">
+                <div class="iphone17-frame">
+                  <div class="iphone17-dynamic-island"></div>
+                  <div class="iphone17-btn-action"></div>
+                  <div class="iphone17-btn-vol-up"></div>
+                  <div class="iphone17-btn-vol-down"></div>
+                  <div class="iphone17-btn-side"></div>
+                  <div class="iphone17-screen">
+                    <img src="boop-perm-screen.png" alt="Permissions Screen">
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div><!-- /bs-hifi -->
 
 
         <!-- ─── 5. SYSTEM & SCALE ─── -->
@@ -682,6 +663,69 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       window.addEventListener('scroll', update, { passive: true });
       update();
+    })();
+  </script>
+
+  <!-- GSAP for card fan-out animation -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script>
+    (function () {
+      const comp = document.getElementById('boopS3');
+      if (!comp) return;
+
+      const CARDS = [
+        { sel: '.s3-card--dark',     cssLeft: 199, cssTop:  37, finalRot: -69.94 },
+        { sel: '.s3-card--white',    cssLeft: 274, cssTop:  45, finalRot: -53.33 },
+        { sel: '.s3-card--active',   cssLeft: 330, cssTop:  74, finalRot: -31.56 },
+        { sel: '.s3-card--violet',   cssLeft:  40, cssTop:  53, finalRot:  29.11 },
+        { sel: '.s3-card--indigo',   cssLeft:  36, cssTop: 121, finalRot:   0    },
+        { sel: '.s3-card--festival', cssLeft:   1, cssTop: 229, finalRot:   0    },
+      ];
+      const PHX = 290, PHY = 295, CW = 150, CH = 95;
+
+      const entries = CARDS.map(d => {
+        const el = comp.querySelector(d.sel);
+        if (!el) return null;
+        return {
+          el,
+          glint:    el.querySelector('.s3-card-glint'),
+          finalRot: d.finalRot,
+          startX:   PHX - (d.cssLeft + CW),
+          startY:   PHY - (d.cssTop  + CH),
+          startRot: d.finalRot + (d.finalRot >= 0 ? 75 : -75),
+        };
+      }).filter(Boolean);
+
+      entries.forEach(({ el, startX, startY, startRot }) => {
+        gsap.set(el, { x: startX, y: startY, rotation: startRot, opacity: 0, scale: 0.55, transformOrigin: 'center center', transformPerspective: 900 });
+      });
+
+      let fired = false;
+      const observer = new IntersectionObserver(([entry]) => {
+        if (!entry.isIntersecting || fired) return;
+        fired = true;
+        observer.disconnect();
+
+        const tl = gsap.timeline();
+        entries.forEach(({ el, glint, finalRot }, i) => {
+          const d = i * 0.14;
+          tl.to(el, { x: 0, y: 0, rotation: finalRot, opacity: 1, scale: 1, duration: 0.72, ease: 'back.out(1.6)' }, d);
+          tl.to(el, { rotationY: 22, duration: 0.22, ease: 'power2.out' }, d + 0.18);
+          tl.to(el, { rotationY: 0,  duration: 0.32, ease: 'power2.inOut' }, d + 0.40);
+          tl.fromTo(el,
+            { boxShadow: '0 4px 12px rgba(0,0,0,0.15)' },
+            { boxShadow: '0 24px 48px rgba(0,0,0,0.55), 0 0 20px rgba(255,255,255,0.06)', duration: 0.36, ease: 'power2.out', yoyo: true, repeat: 1 },
+            d + 0.15);
+          if (glint) {
+            tl.fromTo(glint,
+              { x: '-120%', opacity: 0 },
+              { x: '240%', opacity: 1, duration: 0.42, ease: 'power1.inOut', onComplete: () => gsap.set(glint, { opacity: 0 }) },
+              d + 0.30);
+          }
+        });
+      }, { threshold: 0.25 });
+
+      observer.observe(comp);
     })();
   </script>
 </body>

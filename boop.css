@@ -689,6 +689,109 @@
   max-width: 560px;
 }
 
+/* ── Phone + Cards composition (boop.it) ── */
+.boop-s3-wrap {
+  overflow: visible;
+  padding: 3rem 0 5rem;
+  display: flex;
+  justify-content: flex-start;
+}
+.s3-composition {
+  position: relative;
+  width: 640px;
+  height: 640px;
+  overflow: visible;
+  flex-shrink: 0;
+}
+.s3-iphone-wrap { position: absolute; left: 160px; top: 30px; z-index: 10; }
+.iphone17-frame {
+  position: relative;
+  width: 260px;
+  background: linear-gradient(160deg, #2c2c2e, #1a1a1c);
+  border-radius: 50px;
+  padding: 13px;
+  box-shadow: 0 0 0 1px rgba(255,255,255,.12), 0 0 0 2px #000,
+              0 50px 100px rgba(0,0,0,.8), 0 20px 40px rgba(0,0,0,.5);
+}
+.iphone17-dynamic-island {
+  position: absolute; top: 21px; left: 50%; transform: translate(-50%);
+  width: 84px; height: 26px; background: #000; border-radius: 13px; z-index: 10;
+}
+.iphone17-btn-action  { position: absolute; left: -3px; top:  94px; width: 3px; height: 24px; background: #3a3a3c; border-radius: 2px 0 0 2px; }
+.iphone17-btn-vol-up  { position: absolute; left: -3px; top: 130px; width: 3px; height: 34px; background: #3a3a3c; border-radius: 2px 0 0 2px; }
+.iphone17-btn-vol-down{ position: absolute; left: -3px; top: 173px; width: 3px; height: 34px; background: #3a3a3c; border-radius: 2px 0 0 2px; }
+.iphone17-btn-side    { position: absolute; right:-3px; top: 138px; width: 3px; height: 64px; background: #3a3a3c; border-radius: 0 2px 2px 0; }
+.iphone17-screen { border-radius: 38px; overflow: hidden; line-height: 0; background: #f0f1f5; }
+.iphone17-screen img { width: 100%; display: block; }
+
+.s3-card {
+  position: absolute; width: 300px; height: 189px;
+  border-radius: 16px; overflow: hidden; will-change: transform, opacity;
+}
+.s3-card-texture {
+  position: absolute; inset: 0;
+  background-image: repeating-linear-gradient(45deg, transparent, transparent 3px, rgba(255,255,255,.018) 3px, rgba(255,255,255,.018) 6px);
+  pointer-events: none; z-index: 0;
+}
+.s3-card-shine {
+  position: absolute; top: 28px; left: -55%; width: 210%; height: 55px;
+  background: rgba(255,255,255,.06); transform: rotate(20deg);
+  pointer-events: none; z-index: 1;
+}
+.s3-card-shine--dark { background: rgba(0,0,0,.03); }
+.s3-card-glint {
+  position: absolute; inset: 0; width: 55%;
+  background: linear-gradient(100deg, transparent 0%, rgba(255,255,255,0) 20%,
+    rgba(255,255,255,.32) 42%, rgba(210,235,255,.28) 50%,
+    rgba(255,210,230,.22) 58%, rgba(255,255,255,0) 80%, transparent 100%);
+  transform: translate(-120%) skew(-8deg); opacity: 0;
+  pointer-events: none; z-index: 20; border-radius: inherit;
+}
+.s3-card-chip {
+  position: absolute; left: 24px; top: 58px;
+  width: 44px; height: 34px; border-radius: 5px; z-index: 2;
+}
+.s3-card-chip--indigo { background: rgba(178,209,255,.38); border: 1px solid rgba(178,209,255,.8); }
+.s3-card-chip--violet { background: rgba(217,184,255,.38); border: 1px solid rgba(217,184,255,.8); }
+.s3-card-chip--dark   { background: rgba(128,128,128,.38); border: 1px solid rgba(128,128,128,.8); }
+.s3-card-chip--white  { background: rgba(153,153,153,.38); border: 1px solid #999; }
+.s3-card-mc { position: absolute; right: 20px; top: 18px; width: 48px; height: 30px; z-index: 2; }
+.s3-card-mc::before, .s3-card-mc::after {
+  content: ''; position: absolute; width: 30px; height: 30px; border-radius: 50%; top: 0;
+}
+.s3-card-mc::before { left: 0; background: #eb001b; }
+.s3-card-mc::after  { right: 0; background: #f79e1b; opacity: .9; }
+.s3-card-network {
+  position: absolute; right: 20px; top: 20px; z-index: 2;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 20px; font-weight: 700; font-style: italic; color: rgba(255,255,255,.9);
+}
+.s3-card-number {
+  position: absolute; left: 24px; bottom: 38px; z-index: 2;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 14px; color: rgba(255,255,255,.85); letter-spacing: 1.4px;
+}
+.s3-card-holder {
+  position: absolute; left: 24px; bottom: 16px; z-index: 2;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 16px; font-weight: 500; color: rgba(255,255,255,.9); letter-spacing: .3px;
+}
+.s3-card-network--dark { color: rgba(10,10,10,.9); }
+.s3-card-number--dark  { color: rgba(10,10,10,.85); }
+.s3-card-holder--dark  { color: rgba(10,10,10,.9); }
+
+.s3-card--festival,
+.s3-card--active { background: transparent; border-radius: 11px; overflow: hidden; }
+.s3-card--festival img { position: absolute; width: 139.84%; height: 130.32%; left: -20.78%; top: -15.62%; max-width: none; pointer-events: none; }
+.s3-card--active  img { position: absolute; width: 139.38%; height: 131.53%; left: -20.51%; top: -15.77%; max-width: none; pointer-events: none; }
+
+.s3-card--festival { left:   1px; top: 229px; z-index: 2; }
+.s3-card--indigo   { background: #1a3a8b; left:  36px; top: 121px; z-index: 1; }
+.s3-card--violet   { background: #3d1a6e; left:  40px; top:  53px; z-index: 3; transform: rotate(29.11deg); }
+.s3-card--dark     { background: #2e2e2e; box-shadow: 0 0 8px rgba(255,255,255,.2); left: 199px; top: 37px; z-index: 4; transform: rotate(-69.94deg); }
+.s3-card--white    { background: #fff;    left: 274px; top:  45px; z-index: 5; transform: rotate(-53.33deg); }
+.s3-card--active   {                      left: 330px; top:  74px; z-index: 6; transform: rotate(-31.56deg); }
+
 /* ─ Restaking hero screenshot ─ */
 .rs-hero-cover {
   aspect-ratio: 16 / 8;
