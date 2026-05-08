@@ -90,7 +90,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p class="boop-case__nav-title">Case study</p>
         <a href="#bs-summary"  class="boop-case__nav-item active" data-s="bs-summary">Executive<br>Summary</a>
         <a href="#bs-problem"  class="boop-case__nav-item" data-s="bs-problem">Defining &amp;<br>Product approach</a>
-        <a href="#bs-strategy" class="boop-case__nav-item" data-s="bs-strategy">Strategy &amp;<br>Approach</a>
+        <a href="#bs-ia"       class="boop-case__nav-item boop-case__nav-item--sub" data-s="bs-ia">User Journey<br>(User app)</a>
+
         <a href="#bs-system"   class="boop-case__nav-item" data-s="bs-system">System &amp;<br>Scale</a>
         <a href="#bs-results"  class="boop-case__nav-item" data-s="bs-results">Results &amp;<br>Retrospective</a>
       </nav>
@@ -116,7 +117,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div id="bs-problem" class="boop-case__block">
           <p class="section__label">Defining &amp; Product approach</p>
 
-          <div style="margin-top:3rem">
+          <div style="margin-top:5rem">
             <h2 class="proj-section__title">How it works</h2>
             <div class="boop-steps">
               <div class="boop-step">
@@ -143,7 +144,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
           </div>
 
-          <div style="margin-top:3rem">
+          <div style="margin-top:5rem">
             <h2 class="proj-section__title">Design principles</h2>
             <div class="boop-venta-grid">
               <div class="boop-venta">
@@ -168,32 +169,125 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               </div>
             </div>
           </div>
-        </div>
 
+          <div id="bs-strategy" style="margin-top:5rem">
+          <h2 class="proj-section__title">Research and benchmarking</h2>
 
-        <!-- ─── 3. STRATEGY & INSIGHTS ─── -->
-        <div id="bs-strategy" class="boop-case__block">
-          <p class="section__label">Strategy & Approach</p>
-          <h2 class="proj-section__title">What research changed</h2>
+          <p class="proj-text">The research phase analyzed the gap between technical capability and user trust by auditing market leaders and banking ecosystems. While <strong>Amazon One</strong> and <strong>Tencent</strong> proved the speed and high retention (70%+) of palm biometrics, they remain limited by centralized data privacy and regional silos. Specialized players like <strong>Redrock Biometrics</strong> and <strong>Arobix</strong> offer superior touchless accuracy but lack consumer-facing ecosystems, whereas <strong>World App (World ID)</strong> provided the blueprint for decentralized identity using zero-knowledge proofs. Integrating these insights with an analysis of <strong>Revolut</strong> and modern banking apps confirmed that while financial hardware is already biometric-ready, a massive opportunity remains for an anonymous, platform-agnostic key that prioritizes user sovereignty over data collection.</p>
 
-          <div class="boop-insight-block">
-            <div class="boop-insight-block__label">Key Insight</div>
-            <p class="boop-insight-block__text">[Placeholder — the single research finding that redirected the design. E.g. "Users didn't distrust biometrics — they distrusted the company holding the data. Shifting to a zero-knowledge model was the pivot that unlocked trust."]</p>
+          <div class="boop-research-grid">
+            <div class="boop-research-grid__item boop-research-grid__item--feature">
+              <img src="research-amazon-one.png" alt="Amazon One palm scanner" loading="lazy">
+              <span class="boop-research-grid__label">Amazon One</span>
+            </div>
+            <div class="boop-research-grid__item">
+              <img src="research-humanity-protocol.png" alt="Humanity Protocol app" loading="lazy">
+              <span class="boop-research-grid__label">Humanity Protocol</span>
+            </div>
+            <div class="boop-research-grid__item">
+              <img src="research-revolut.png" alt="Revolut app" loading="lazy">
+              <span class="boop-research-grid__label">Revolut</span>
+            </div>
+            <div class="boop-research-grid__item">
+              <img src="research-palm-scan.png" alt="Palm verification" loading="lazy">
+              <span class="boop-research-grid__label">Palm scanning UX</span>
+            </div>
+            <div class="boop-research-grid__item">
+              <img src="research-redrock.png" alt="Redrock Biometrics" loading="lazy">
+              <span class="boop-research-grid__label">Redrock Biometrics</span>
+            </div>
+            <div class="boop-research-grid__item">
+              <img src="research-world-id.png" alt="World ID verification" loading="lazy">
+              <span class="boop-research-grid__label">World ID</span>
+            </div>
           </div>
 
-          <div style="margin-top:3rem">
-            <p class="section__label">Information Architecture</p>
-            <h3 class="proj-section__title" style="font-size:1.375rem;margin-bottom:1rem">The logic behind the journey</h3>
-            <p class="proj-text" style="max-width:560px">The IA wasn't just a map — it was a set of decisions about what the user should never have to think about.</p>
-            <div class="boop-ph-block">
-              <div class="ph" style="min-height:220px">
-                <div class="ph__icon">⎇</div>
-                <span class="ph__label">Information Architecture / User Flow Map<br>Coming soon</span>
+          <div id="bs-ia" style="margin-top:5rem">
+            <p class="section__label">User Journey (User app)</p>
+            <h3 class="proj-section__title" style="font-size:1.375rem;margin-bottom:1.75rem">User journey</h3>
+            <p class="section__label" style="margin-bottom:1rem">Steps</p>
+            <ol class="boop-ia-steps">
+              <li><strong>Entry</strong> — App download via NFC, QR, or Magic Link, followed by Login / Sign-up.</li>
+              <li><strong>Verification</strong> — User provides Date of Birth and grants Biometric Access permissions.</li>
+              <li><strong>Scanning Choice</strong> — User selects between Boop Device or Phone Scanning.</li>
+              <li><strong>Error Handling</strong> — A "Scan Fails / Retry" loop manages unsuccessful biometric captures.</li>
+              <li><strong>Registration</strong> — User completes the process by scanning both hands.</li>
+              <li><strong>Card Integration</strong> — User enters Cards Screen to add a card (scan or manual) and links palm(s) to it.</li>
+              <li><strong>Activity</strong> — User reviews All Transactions and specific Transaction Details.</li>
+              <li><strong>Management</strong> — User updates permissions, links different hands, changes account name, or adds new devices.</li>
+            </ol>
+            <div class="boop-ia-diagram">
+              <div class="boop-ia-canvas">
+                <!-- SVG connector layer -->
+                <svg class="boop-ia-svg" viewBox="0 0 760 868" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" aria-hidden="true">
+                  <defs>
+                    <marker id="ia-arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="rgba(255,255,255,0.38)"/>
+                    </marker>
+                    <marker id="ia-arr-err" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+                      <path d="M0,0 L6,3 L0,6 Z" fill="rgba(220,90,70,0.7)"/>
+                    </marker>
+                  </defs>
+                  <!-- Main flow -->
+                  <path d="M380,60 V88"/>
+                  <path d="M380,136 V164"/>
+                  <path d="M380,212 V240"/>
+                  <path d="M380,288 V316"/>
+                  <path d="M380,364 V392"/>
+                  <!-- Biometric → scan branches -->
+                  <path d="M380,440 V462 H200 V476"/>
+                  <path d="M380,440 V476"/>
+                  <path class="ia-connector--error" d="M380,440 V462 H560 V476"/>
+                  <!-- Phone merges back to trunk → Registration -->
+                  <path class="ia-no-marker" d="M200,524 V546 H380"/>
+                  <path d="M380,524 V560"/>
+                  <!-- Registration → 4 feature areas -->
+                  <path d="M380,608 V626 H125 V636"/>
+                  <path d="M380,608 V626 H295 V636"/>
+                  <path d="M380,608 V626 H465 V636"/>
+                  <path d="M380,608 V626 H635 V636"/>
+                  <!-- Add card sub-branches -->
+                  <path d="M125,696 V714 H75 V724"/>
+                  <path d="M125,696 V714 H165 V724"/>
+                  <!-- Transaction detail -->
+                  <path d="M295,696 V724"/>
+                  <!-- Scan + Manual converge → Link palm -->
+                  <path class="ia-no-marker" d="M75,772 V790 H120"/>
+                  <path d="M165,772 V790 H120 V800"/>
+                </svg>
+
+                <!-- Nodes -->
+                <div class="ia-node ia-node--entry" style="left:230px;top:16px;width:300px;height:44px">
+                  User downloads the app via NFC, QR code or magic link
+                </div>
+                <div class="ia-node" style="left:310px;top:96px;width:140px;height:40px">Splash screen</div>
+                <div class="ia-node" style="left:310px;top:172px;width:140px;height:40px">Login / Sign screen</div>
+                <div class="ia-node" style="left:310px;top:248px;width:140px;height:40px">Create a new account</div>
+                <div class="ia-node" style="left:310px;top:324px;width:140px;height:40px">Onboarding</div>
+                <div class="ia-node" style="left:310px;top:400px;width:140px;height:40px">Sets DOB & enables biometric access</div>
+                <!-- Scan methods -->
+                <div class="ia-node" style="left:130px;top:484px;width:140px;height:40px">Scanning at home with phone</div>
+                <div class="ia-node" style="left:310px;top:484px;width:140px;height:40px">Scanning with a Boop device</div>
+                <div class="ia-node ia-node--error" style="left:490px;top:484px;width:140px;height:40px">Scan fails — retry</div>
+                <!-- Registration milestone -->
+                <div class="ia-node ia-node--highlight" style="left:300px;top:568px;width:160px;height:40px">Registration — scan both hands</div>
+                <!-- 4 core features -->
+                <div class="ia-node ia-node--feature" style="left:75px;top:644px;width:100px;height:52px">Add a card (cards screen)</div>
+                <div class="ia-node ia-node--feature" style="left:235px;top:644px;width:120px;height:52px">All transactions</div>
+                <div class="ia-node ia-node--feature" style="left:395px;top:644px;width:140px;height:52px">Change permissions / link a hand</div>
+                <div class="ia-node ia-node--feature" style="left:565px;top:644px;width:140px;height:52px">Change name / add new device</div>
+                <!-- Add card sub-nodes -->
+                <div class="ia-node ia-node--feature ia-node--sub" style="left:35px;top:732px;width:80px;height:40px">Add card by scanning</div>
+                <div class="ia-node ia-node--feature ia-node--sub" style="left:125px;top:732px;width:80px;height:40px">Add card manually</div>
+                <!-- Transaction detail -->
+                <div class="ia-node ia-node--feature ia-node--sub" style="left:245px;top:732px;width:100px;height:40px">Transaction detail page</div>
+                <!-- Palm linking -->
+                <div class="ia-node ia-node--feature ia-node--sub" style="left:45px;top:808px;width:150px;height:40px">Setting palm(s) to the card</div>
               </div>
             </div>
           </div>
 
-          <div style="margin-top:3rem">
+          <div style="margin-top:5rem">
           <p class="section__label">Iterations</p>
           <h2 class="proj-section__title" style="font-size:1.375rem;margin-bottom:1rem">The pivot that shaped the product</h2>
 
@@ -387,7 +481,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
           </div>
           </div><!-- /iterations -->
-        </div><!-- /bs-strategy -->
+          </div><!-- /bs-strategy -->
+        </div><!-- /bs-problem -->
 
 
         <!-- ─── 5. SYSTEM & SCALE ─── -->
@@ -570,20 +665,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <script>
     (function () {
       const navItems = document.querySelectorAll('#boopNav .boop-case__nav-item');
-      const blocks   = document.querySelectorAll('.boop-case__block[id]');
-      if (!navItems.length || !blocks.length) return;
+      if (!navItems.length) return;
 
-      const spy = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (!entry.isIntersecting) return;
-          const id = entry.target.id;
-          navItems.forEach(item => {
-            item.classList.toggle('active', item.dataset.s === id);
-          });
-        });
-      }, { rootMargin: '-25% 0px -65% 0px' });
+      const ids     = Array.from(navItems).map(i => i.dataset.s).filter(Boolean);
+      const targets = ids.map(id => document.getElementById(id)).filter(Boolean);
+      if (!targets.length) return;
 
-      blocks.forEach(b => spy.observe(b));
+      function update() {
+        const trigger = window.scrollY + window.innerHeight * 0.35;
+        let active = targets[0].id;
+        for (const t of targets) {
+          if (t.getBoundingClientRect().top + window.scrollY <= trigger) active = t.id;
+        }
+        navItems.forEach(item => item.classList.toggle('active', item.dataset.s === active));
+      }
+
+      window.addEventListener('scroll', update, { passive: true });
+      update();
     })();
   </script>
 </body>

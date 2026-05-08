@@ -21,8 +21,8 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  padding: 1.25rem .875rem 1rem;
-  gap: .625rem;
+  padding: 1.25rem 1rem 1rem;
+  gap: 0.5rem;
   min-height: 420px;
   position: relative;
 }
@@ -77,7 +77,7 @@
 
 /* ─ Splash ─ */
 .boop-splash-headline {
-  font-size: .7rem;
+  font-size: 0.75rem;
   font-weight: 500;
   color: #3A3A3A;
   line-height: 1.45;
@@ -152,8 +152,8 @@
   background: #070707;
   color: #fff;
   border-radius: 999px;
-  padding: .65rem 1rem;
-  font-size: .65rem;
+  padding: 0.75rem 1rem;
+  font-size: 0.75rem;
   font-weight: 600;
   text-align: center;
   width: 100%;
@@ -165,8 +165,8 @@
   color: #070707;
   border: 1px solid #C4C8D2;
   border-radius: 999px;
-  padding: .65rem 1rem;
-  font-size: .65rem;
+  padding: 0.75rem 1rem;
+  font-size: 0.75rem;
   font-weight: 500;
   text-align: center;
   width: 100%;
@@ -174,7 +174,7 @@
 
 /* ─ Onboarding text ─ */
 .boop-ob-title {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 700;
   letter-spacing: -.02em;
   color: #070707;
@@ -182,7 +182,7 @@
 }
 
 .boop-ob-body {
-  font-size: .68rem;
+  font-size: 0.75rem;
   color: #6B6B70;
   line-height: 1.55;
   max-width: 170px;
@@ -263,7 +263,7 @@
 /* ─ Progress bar ─ */
 .boop-progress-bar {
   display: flex;
-  gap: .375rem;
+  gap: 0.5rem;
   width: 100%;
 }
 
@@ -309,25 +309,25 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: .2rem;
+  gap: 0.25rem;
 }
 
 .boop-dob__item {
-  font-size: .65rem;
+  font-size: 0.75rem;
   font-weight: 500;
   color: #A0A3AE;
-  padding: .3rem 0;
+  padding: 0.25rem 0;
 }
 
 .boop-dob__item--sel {
-  font-size: .8rem;
+  font-size: 0.75rem;
   font-weight: 700;
   color: #070707;
 }
 
 .boop-dob__item--dim {
   opacity: .5;
-  font-size: .58rem;
+  font-size: 0.5rem;
 }
 
 /* ─ Success ─ */
@@ -368,7 +368,7 @@
 }
 
 .boop-scanner-opt__icon {
-  font-size: .9rem;
+  font-size: 1rem;
   opacity: .5;
   flex-shrink: 0;
   width: 18px;
@@ -376,20 +376,20 @@
 }
 
 .boop-scanner-opt__title {
-  font-size: .65rem;
+  font-size: 0.75rem;
   font-weight: 600;
   color: #070707;
   margin-bottom: .15rem;
 }
 
 .boop-scanner-opt__sub {
-  font-size: .55rem;
+  font-size: 0.5rem;
   color: #888;
   line-height: 1.4;
 }
 
 .boop-scanner-opt__caret {
-  font-size: .8rem;
+  font-size: 0.75rem;
   color: #C0C3CC;
   margin-left: auto;
   flex-shrink: 0;
@@ -410,13 +410,13 @@
 .boop-home-hd { width: 100%; }
 
 .boop-home-title {
-  font-size: .9rem;
+  font-size: 1rem;
   font-weight: 700;
   color: #070707;
 }
 
 .boop-home-sub {
-  font-size: .55rem;
+  font-size: 0.5rem;
   color: #999;
   margin-top: .1rem;
 }
@@ -425,7 +425,7 @@
   background: #fff;
   border: 1.5px dashed #CDD0D8;
   border-radius: 12px;
-  padding: .625rem .75rem;
+  padding: 0.5rem .75rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -434,13 +434,13 @@
 }
 
 .boop-empty-card__title {
-  font-size: .65rem;
+  font-size: 0.75rem;
   font-weight: 600;
   color: #070707;
 }
 
 .boop-empty-card__sub {
-  font-size: .55rem;
+  font-size: 0.5rem;
   color: #999;
   margin-top: .1rem;
 }
@@ -449,7 +449,7 @@
   background: #E8F4E8;
   color: #3A8A3A;
   border-radius: 999px;
-  padding: .1rem .35rem;
+  padding: .1rem 0.25rem;
   font-size: .5rem;
   font-weight: 600;
 }
@@ -458,15 +458,15 @@
   background: #070707;
   color: #fff;
   border-radius: 999px;
-  padding: .35rem .7rem;
-  font-size: .6rem;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.5rem;
   font-weight: 600;
   white-space: nowrap;
   flex-shrink: 0;
 }
 
 .boop-tx-date {
-  font-size: .58rem;
+  font-size: 0.5rem;
   color: #999;
   font-weight: 500;
 }
@@ -482,7 +482,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: .55rem .75rem;
+  padding: 0.5rem .75rem;
 }
 
 .boop-tx--border {
@@ -490,24 +490,24 @@
 }
 
 .boop-tx__name {
-  font-size: .65rem;
+  font-size: 0.75rem;
   font-weight: 500;
   color: #070707;
 }
 
 .boop-tx__time {
-  font-size: .55rem;
+  font-size: 0.5rem;
   color: #B0B3BC;
 }
 
 .boop-tx__amt {
-  font-size: .65rem;
+  font-size: 0.75rem;
   font-weight: 500;
   color: #070707;
 }
 
 .boop-tx__rejected {
-  font-size: .6rem;
+  font-size: 0.5rem;
   font-weight: 500;
   color: #D94040;
 }
@@ -517,7 +517,7 @@
   background: #7B5EA7;
   color: #fff;
   border-radius: 999px;
-  padding: .1rem .4rem;
+  padding: .1rem 0.5rem;
   font-size: .5rem;
   font-weight: 500;
   margin-top: .15rem;
@@ -525,7 +525,7 @@
 
 .boop-tx-sigs {
   padding: .5rem .75rem;
-  font-size: .6rem;
+  font-size: 0.5rem;
   color: #3B82F6;
   font-weight: 500;
   border-top: 1px solid #F0F0F4;
@@ -545,12 +545,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: .2rem;
+  gap: 0.25rem;
   color: #B0B3BC;
 }
 
 .boop-nav-item span {
-  font-size: .45rem;
+  font-size: 0.5rem;
   font-weight: 500;
 }
 
@@ -588,8 +588,8 @@
 }
 
 .boop-sketch-caption {
-  padding: .875rem 1.25rem;
-  font-size: .8125rem;
+  padding: 1rem 1.25rem;
+  font-size: 0.75rem;
   color: var(--text-muted);
   border-top: 1px solid var(--border);
   line-height: 1.55;
@@ -603,11 +603,11 @@
 }
 
 .boop-fa__title {
-  font-size: 1.375rem;
+  font-size: 1.5rem;
   font-weight: 700;
   letter-spacing: -.02em;
   color: var(--text-primary);
-  margin: .375rem 0 1rem;
+  margin: 0.5rem 0 1rem;
 }
 
 .boop-fa__desc {
@@ -635,7 +635,7 @@
 }
 
 .boop-sketch-sec__num {
-  font-size: .6875rem;
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: .12em;
   color: var(--accent);
@@ -671,7 +671,7 @@
   height: auto;
   display: block;
   border: 1px solid var(--border);
-  border-radius: .625rem;
+  border-radius: 0.5rem;
   background: #fff;
 }
 
@@ -683,7 +683,7 @@
 }
 
 .boop-sketch-item__desc {
-  font-size: .9375rem;
+  font-size: 1rem;
   color: var(--text-sec);
   line-height: 1.7;
   max-width: 560px;
@@ -732,7 +732,7 @@
 .boop-flow__item {
   display: flex;
   flex-direction: column;
-  gap: .625rem;
+  gap: 0.5rem;
 }
 
 .boop-flow__item .boop-phone__frame {
@@ -740,7 +740,7 @@
 }
 
 .boop-flow__label {
-  font-size: .625rem;
+  font-size: 0.5rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: .1em;
@@ -775,12 +775,12 @@
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: .625rem;
+  gap: 0.5rem;
   margin-top: 1.5rem;
 }
 
 .boop-feat-list li {
-  font-size: .9375rem;
+  font-size: 1rem;
   color: var(--text-sec);
   padding-left: 1.25rem;
   position: relative;
@@ -794,6 +794,42 @@
   color: var(--accent);
   font-size: .75rem;
   top: .15rem;
+}
+
+/* ─ Research benchmarking grid ─ */
+.boop-research-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-top: 2rem;
+}
+.boop-research-grid__item--feature {
+  grid-column: span 3;
+}
+.boop-research-grid__item {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  min-height: 240px;
+}
+.boop-research-grid__item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.boop-research-grid__label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #fff;
+  background: linear-gradient(to top, rgba(0,0,0,.6) 0%, transparent 100%);
 }
 
 /* ─ Venta boxes (design principles) ─ */
@@ -812,7 +848,7 @@
 }
 .boop-venta__num {
   display: block;
-  font-size: .6875rem;
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: .12em;
   color: var(--accent);
@@ -822,17 +858,17 @@
   font-size: 1rem;
   font-weight: 600;
   color: var(--text-primary);
-  margin-bottom: .625rem;
+  margin-bottom: 0.5rem;
 }
 .boop-venta__desc {
-  font-size: .875rem;
+  font-size: 1rem;
   color: var(--text-sec);
   line-height: 1.65;
 }
 
 /* ─ Steps ─ */
 .boop-steps-label {
-  font-size: .6875rem;
+  font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: .12em;
@@ -857,7 +893,7 @@
 }
 
 .boop-step__num {
-  font-size: .6875rem;
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: .1em;
   color: var(--accent);
@@ -866,14 +902,14 @@
 }
 
 .boop-step__title {
-  font-size: .9375rem;
+  font-size: 1rem;
   font-weight: 600;
   color: var(--text-primary);
-  margin-bottom: .375rem;
+  margin-bottom: 0.5rem;
 }
 
 .boop-step__body {
-  font-size: .875rem;
+  font-size: 1rem;
   color: var(--text-sec);
   line-height: 1.65;
 }
@@ -898,7 +934,7 @@
 }
 
 .boop-case__nav-title {
-  font-size: .625rem;
+  font-size: 0.5rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: .12em;
@@ -908,7 +944,7 @@
 }
 
 .boop-case__nav-item {
-  font-size: .8125rem;
+  font-size: 0.75rem;
   line-height: 1.4;
   color: var(--text-muted);
   padding: .5rem .75rem;
@@ -920,10 +956,26 @@
 .boop-case__nav-item:hover  { background: var(--surface); color: var(--text-sec); }
 .boop-case__nav-item.active { background: var(--surface); color: var(--text-primary); font-weight: 500; }
 
+.boop-case__nav-item--sub {
+  font-size: .75rem;
+  padding-left: 2rem;
+  position: relative;
+}
+.boop-case__nav-item--sub::before {
+  content: '';
+  position: absolute;
+  left: 0.875rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 60%;
+  background: var(--border-strong);
+}
+
 .boop-case__content { min-width: 0; }
 
 .boop-case__block {
-  margin-bottom: 7rem;
+  margin-bottom: 12rem;
   scroll-margin-top: 90px;
 }
 
@@ -946,7 +998,7 @@
 }
 
 .boop-narrative-card__eyebrow {
-  font-size: .6875rem;
+  font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: .12em;
@@ -964,10 +1016,10 @@
   align-items: flex-start;
 }
 
-.boop-ph-quote svg { flex-shrink: 0; margin-top: .2rem; color: var(--text-muted); }
+.boop-ph-quote svg { flex-shrink: 0; margin-top: 0.25rem; color: var(--text-muted); }
 
 .boop-ph-quote__text {
-  font-size: .9375rem;
+  font-size: 1rem;
   font-style: italic;
   color: var(--text-muted);
   line-height: 1.65;
@@ -991,7 +1043,7 @@
 .boop-kpi:first-child { border-top: 1px solid var(--border); }
 
 .boop-kpi__num {
-  font-size: .625rem;
+  font-size: 0.5rem;
   font-weight: 700;
   letter-spacing: .1em;
   text-transform: uppercase;
@@ -1002,14 +1054,14 @@
 }
 
 .boop-kpi__label {
-  font-size: .9375rem;
+  font-size: 1rem;
   font-weight: 600;
   color: var(--text-primary);
-  margin-bottom: .2rem;
+  margin-bottom: 0.25rem;
 }
 
 .boop-kpi__value {
-  font-size: .875rem;
+  font-size: 1rem;
   color: var(--text-muted);
 }
 
@@ -1023,7 +1075,7 @@
 }
 
 .boop-insight-block__label {
-  font-size: .625rem;
+  font-size: 0.5rem;
   font-weight: 700;
   letter-spacing: .12em;
   text-transform: uppercase;
@@ -1032,7 +1084,7 @@
 }
 
 .boop-insight-block__text {
-  font-size: 1.0625rem;
+  font-size: 1rem;
   line-height: 1.7;
   color: var(--text-sec);
   font-style: italic;
@@ -1055,11 +1107,11 @@
 
 .boop-iter-step__tag {
   display: inline-block;
-  font-size: .6rem;
+  font-size: 0.5rem;
   font-weight: 700;
   letter-spacing: .12em;
   text-transform: uppercase;
-  padding: .25rem .65rem;
+  padding: .25rem 0.75rem;
   border-radius: 999px;
   background: rgba(255,255,255,.08);
   color: var(--text-muted);
@@ -1070,14 +1122,14 @@
 .boop-iter-step__tag--ok   { background: rgba(52,211,153,.12); color: #34D399; }
 
 .boop-iter-step__title {
-  font-size: 1.125rem;
+  font-size: 1rem;
   font-weight: 600;
   color: var(--text-primary);
   margin-bottom: .5rem;
 }
 
 .boop-iter-step__desc {
-  font-size: .9rem;
+  font-size: 1rem;
   color: var(--text-sec);
   line-height: 1.65;
 }
@@ -1099,7 +1151,7 @@
 }
 
 .boop-iter-connector__label {
-  font-size: .55rem;
+  font-size: 0.5rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: .1em;
@@ -1133,7 +1185,7 @@
 }
 
 .boop-metric__label {
-  font-size: .875rem;
+  font-size: 1rem;
   color: var(--text-muted);
   line-height: 1.4;
 }
@@ -1144,7 +1196,7 @@
 }
 
 .boop-next-steps__label {
-  font-size: .6875rem;
+  font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: .12em;
@@ -1167,7 +1219,7 @@
 .boop-next-step:first-child { border-top: 1px solid var(--border); }
 
 .boop-next-step__num {
-  font-size: .6875rem;
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: .1em;
   color: var(--accent);
@@ -1177,16 +1229,141 @@
 }
 
 .boop-next-step__title {
-  font-size: .9375rem;
+  font-size: 1rem;
   font-weight: 600;
   color: var(--text-primary);
-  margin-bottom: .375rem;
+  margin-bottom: 0.5rem;
 }
 
 .boop-next-step__body {
-  font-size: .875rem;
+  font-size: 1rem;
   color: var(--text-sec);
   line-height: 1.65;
+}
+
+/* ─ IA Steps ─ */
+.boop-ia-steps {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 2.5rem;
+  counter-reset: ia-step;
+}
+
+.boop-ia-steps li {
+  counter-increment: ia-step;
+  display: flex;
+  gap: 1rem;
+  align-items: baseline;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.875rem;
+  color: var(--text-sec);
+  line-height: 1.6;
+}
+
+.boop-ia-steps li:first-child { border-top: 1px solid var(--border); }
+
+.boop-ia-steps li::before {
+  content: counter(ia-step, decimal-leading-zero);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  color: var(--accent);
+  min-width: 1.75rem;
+  padding-top: 0.15rem;
+  flex-shrink: 0;
+}
+
+.boop-ia-steps li strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* ─ IA Diagram ─ */
+.boop-ia-diagram {
+  overflow-x: auto;
+  margin-top: 2.5rem;
+  padding-bottom: 1rem;
+}
+
+.boop-ia-canvas {
+  position: relative;
+  width: 760px;
+  height: 868px;
+}
+
+.boop-ia-svg {
+  position: absolute;
+  inset: 0;
+  width: 760px;
+  height: 868px;
+  pointer-events: none;
+}
+
+.boop-ia-svg path {
+  fill: none;
+  stroke: rgba(255,255,255,0.22);
+  stroke-width: 1.5;
+  marker-end: url(#ia-arr);
+}
+
+.boop-ia-svg path.ia-no-marker {
+  marker-end: none;
+}
+
+.boop-ia-svg path.ia-connector--error {
+  stroke: rgba(220,90,70,0.5);
+  stroke-dasharray: 5 4;
+  marker-end: url(#ia-arr-err);
+}
+
+.ia-node {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 0.875rem;
+  background: var(--surface-2);
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: var(--radius-sm);
+  font-size: 0.6875rem;
+  line-height: 1.45;
+  color: var(--text-primary);
+  font-weight: 500;
+  box-sizing: border-box;
+}
+
+.ia-node--entry {
+  background: var(--surface);
+  border-color: rgba(255,255,255,0.22);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.ia-node--highlight {
+  border-color: rgba(204,255,0,0.35);
+  background: rgba(204,255,0,0.05);
+}
+
+.ia-node--error {
+  background: rgba(220,80,60,0.12);
+  border: 1px dashed rgba(220,90,70,0.65);
+  color: rgba(230,120,100,0.95);
+}
+
+.ia-node--feature {
+  background: rgba(204,255,0,0.05);
+  border-color: rgba(204,255,0,0.22);
+  color: rgba(204,255,0,0.85);
+}
+
+.ia-node--sub {
+  opacity: 0.75;
+  font-size: 0.625rem;
 }
 
 /* ─ Responsive ─ */
@@ -1194,10 +1371,12 @@
   .boop-case { grid-template-columns: 1fr; gap: 0; padding-top: 3rem; }
   .boop-case__nav { position: static; flex-direction: row; flex-wrap: wrap; gap: .25rem; margin-bottom: 3rem; padding: 1rem; background: var(--surface); border-radius: 10px; }
   .boop-case__nav-title { display: none; }
-  .boop-case__nav-item { font-size: .75rem; padding: .375rem .625rem; }
+  .boop-case__nav-item { font-size: .75rem; padding: 0.5rem 0.5rem; }
   .boop-showcase { grid-template-columns: 1fr; justify-items: center; }
   .boop-overview { grid-template-columns: 1fr; gap: 3rem; }
   .boop-venta-grid { grid-template-columns: repeat(2, 1fr); }
+  .boop-research-grid { grid-template-columns: repeat(2, 1fr); }
+  .boop-research-grid__item--feature { grid-column: span 2; }
   .boop-narrative-grid { grid-template-columns: 1fr; }
   .boop-metrics-grid { grid-template-columns: 1fr 1fr; }
   .boop-iter-timeline { flex-direction: column; }
@@ -1218,6 +1397,8 @@
 
 @media (max-width: 768px) {
   .boop-venta-grid { grid-template-columns: 1fr 1fr; }
+  .boop-research-grid { grid-template-columns: 1fr 1fr; }
+  .boop-research-grid__item--feature { grid-column: span 2; }
   .boop-cover {
     aspect-ratio: auto;
     padding: 2rem 1rem 0;
