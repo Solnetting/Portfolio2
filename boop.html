@@ -566,65 +566,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <p class="proj-text" style="max-width:560px;margin-bottom:3rem">A design system isn't about colours — it's about efficiency and trust at scale. Every component was built to be unambiguous, consistent, and extensible.</p>
 
           <div class="boop-showcase">
-            <div class="boop-phone__frame boop-phone__frame--lg">
-              <div class="boop-screen boop-screen--home">
-                <div class="boop-home-hd">
-                  <div class="boop-home-title">Transactions</div>
-                  <div class="boop-home-sub">List of all your transactions</div>
-                </div>
-                <div class="boop-empty-card">
-                  <div>
-                    <div class="boop-empty-card__title">No payment card</div>
-                    <div class="boop-empty-card__sub">Add one to pay with <span class="boop-pts">+10 points</span></div>
-                  </div>
-                  <div class="boop-add-btn">+ Add card</div>
-                </div>
-                <div class="boop-tx-date">April 10</div>
-                <div class="boop-tx-group">
-                  <div class="boop-tx">
-                    <div><div class="boop-tx__name">Kiosk payment</div><div class="boop-tx__time">14:21</div></div>
-                    <div class="boop-tx__amt">-2,45 £</div>
-                  </div>
-                  <div class="boop-tx boop-tx--border">
-                    <div><div class="boop-tx__name">Entrance</div><div class="boop-tx__time">14:21</div></div>
-                    <div style="text-align:right">
-                      <div class="boop-tx__rejected">Rejected</div>
-                      <div class="boop-tx__tag">Age verification</div>
-                    </div>
-                  </div>
-                  <div class="boop-tx boop-tx--border">
-                    <div><div class="boop-tx__name">Kiosk payment</div><div class="boop-tx__time">14:21</div></div>
-                    <div class="boop-tx__amt">-2,45 £</div>
-                  </div>
-                  <div class="boop-tx-sigs">All Signatures →</div>
-                </div>
-                <div class="boop-tx-date">April 9</div>
-                <div class="boop-tx-group">
-                  <div class="boop-tx">
-                    <div><div class="boop-tx__name">Kiosk payment</div><div class="boop-tx__time">14:21</div></div>
-                    <div class="boop-tx__amt">-2,45 £</div>
-                  </div>
-                </div>
-                <div class="boop-bottom-nav">
-                  <div class="boop-nav-item boop-nav-item--on">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/></svg>
-                    <span>Payments</span>
-                  </div>
-                  <div class="boop-nav-item">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="4" width="14" height="9" rx="2" stroke="currentColor" stroke-width="1.5"/></svg>
-                    <span>Card</span>
-                  </div>
-                  <div class="boop-nav-item">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2L10 5H14L11 8L12 12L8 10L4 12L5 8L2 5H6L8 2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
-                    <span>Permissions</span>
-                  </div>
-                  <div class="boop-nav-item">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="6" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M2 14c0-3.314 2.686-6 6-6s6 2.686 6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-                    <span>Account</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <img src="home_payments_no_age.png" alt="Boop Transactions screen" class="boop-showcase__img">
 
             <div class="boop-showcase__copy">
               <h3 class="boop-showcase__title">Component logic — four-tab navigation</h3>
@@ -1070,6 +1012,462 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
           </div><!-- /button -->
 
+          <!-- Input Component -->
+          <div class="boop-ds-section">
+            <h3 class="boop-ds-section__title">Input</h3>
+            <p class="boop-ds-section__desc">Floating-label text field for collecting user information. 62px height, 12px radius, 16px horizontal padding. Supports placeholder, helper text, and six interaction states.</p>
+
+            <div class="boop-input-grid">
+
+              <div class="boop-input-group">
+                <span class="boop-input-group__label">Empty</span>
+                <div class="boop-input-wrap">
+                  <div class="boop-input-box boop-input-box--default">
+                    <span class="boop-input-lbl">Card Number</span>
+                    <span class="boop-input-placeholder">•••• •••• •••• ••••</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="boop-input-group">
+                <span class="boop-input-group__label">Focused</span>
+                <div class="boop-input-wrap">
+                  <div class="boop-input-box boop-input-box--focus">
+                    <span class="boop-input-lbl">Cardholder Name</span>
+                    <span class="boop-input-placeholder">Enter name</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="boop-input-group">
+                <span class="boop-input-group__label">Filled</span>
+                <div class="boop-input-wrap">
+                  <div class="boop-input-box boop-input-box--default">
+                    <span class="boop-input-lbl">Card Number</span>
+                    <span class="boop-input-value">4452 2320 1900 9031</span>
+                  </div>
+                  <span class="boop-input-helper">Your card information is secure</span>
+                </div>
+              </div>
+
+              <div class="boop-input-group">
+                <span class="boop-input-group__label">Error</span>
+                <div class="boop-input-wrap">
+                  <div class="boop-input-box boop-input-box--error">
+                    <span class="boop-input-lbl">Expiry Date</span>
+                    <span class="boop-input-value">MM / YY</span>
+                  </div>
+                  <span class="boop-input-helper boop-input-helper--error">Please enter a valid expiry date</span>
+                </div>
+              </div>
+
+              <div class="boop-input-group">
+                <span class="boop-input-group__label">Success</span>
+                <div class="boop-input-wrap">
+                  <div class="boop-input-box boop-input-box--success">
+                    <span class="boop-input-lbl">Cardholder Name</span>
+                    <span class="boop-input-value">Carlos Mera</span>
+                  </div>
+                  <span class="boop-input-helper boop-input-helper--success">Name verified successfully</span>
+                </div>
+              </div>
+
+              <div class="boop-input-group">
+                <span class="boop-input-group__label">Disabled</span>
+                <div class="boop-input-wrap">
+                  <div class="boop-input-box boop-input-box--disabled">
+                    <span class="boop-input-lbl">Account ID</span>
+                    <span class="boop-input-value boop-input-value--disabled">ACC-00482</span>
+                  </div>
+                  <span class="boop-input-helper">This field cannot be edited</span>
+                </div>
+              </div>
+
+            </div><!-- /boop-input-grid -->
+
+            <div class="boop-btn-specs">
+              <div class="boop-btn-specs__row"><span class="boop-btn-specs__key">Height</span><span class="boop-btn-specs__val">62px</span></div>
+              <div class="boop-btn-specs__row"><span class="boop-btn-specs__key">Border radius</span><span class="boop-btn-specs__val">12px</span></div>
+              <div class="boop-btn-specs__row"><span class="boop-btn-specs__key">Padding</span><span class="boop-btn-specs__val">16px · 12px</span></div>
+              <div class="boop-btn-specs__row"><span class="boop-btn-specs__key">Label</span><span class="boop-btn-specs__val">12px Medium #A3A3A3</span></div>
+              <div class="boop-btn-specs__row"><span class="boop-btn-specs__key">Value</span><span class="boop-btn-specs__val">16px Regular</span></div>
+              <div class="boop-btn-specs__row"><span class="boop-btn-specs__key">Default border</span><span class="boop-btn-specs__val">1px #A4A7AE</span></div>
+              <div class="boop-btn-specs__row"><span class="boop-btn-specs__key">Focus border</span><span class="boop-btn-specs__val">2px #3B82F6</span></div>
+              <div class="boop-btn-specs__row"><span class="boop-btn-specs__key">Error border</span><span class="boop-btn-specs__val">2px #EF4444</span></div>
+            </div>
+          </div><!-- /input -->
+
+          <!-- Selector Component -->
+          <div class="boop-ds-section">
+            <h3 class="boop-ds-section__title">Selector</h3>
+            <p class="boop-ds-section__desc">Segmented control for switching between views or modes. Full-pill container at 68px with an 8px inset, active pill at 52px.</p>
+
+            <div class="boop-sel-demo">
+
+              <div class="boop-sel-group">
+                <span class="boop-sel-group__label">First active</span>
+                <div class="boop-sel">
+                  <button class="boop-sel__item boop-sel__item--active">Payments</button>
+                  <button class="boop-sel__item">Reimbursements</button>
+                </div>
+              </div>
+
+              <div class="boop-sel-group">
+                <span class="boop-sel-group__label">Second active</span>
+                <div class="boop-sel">
+                  <button class="boop-sel__item">Payments</button>
+                  <button class="boop-sel__item boop-sel__item--active">Reimbursements</button>
+                </div>
+              </div>
+
+              <div class="boop-sel-group">
+                <span class="boop-sel-group__label">Three options</span>
+                <div class="boop-sel">
+                  <button class="boop-sel__item boop-sel__item--active">Overview</button>
+                  <button class="boop-sel__item">History</button>
+                  <button class="boop-sel__item">Settings</button>
+                </div>
+              </div>
+
+            </div><!-- /boop-sel-demo -->
+
+            <div class="boop-btn-specs">
+              <div class="boop-btn-specs__row"><span class="boop-btn-specs__key">Container height</span><span class="boop-btn-specs__val">68px</span></div>
+              <div class="boop-btn-specs__row"><span class="boop-btn-specs__key">Active pill height</span><span class="boop-btn-specs__val">52px</span></div>
+              <div class="boop-btn-specs__row"><span class="boop-btn-specs__key">Inset padding</span><span class="boop-btn-specs__val">8px</span></div>
+              <div class="boop-btn-specs__row"><span class="boop-btn-specs__key">Border radius</span><span class="boop-btn-specs__val">full (pill)</span></div>
+              <div class="boop-btn-specs__row"><span class="boop-btn-specs__key">Text</span><span class="boop-btn-specs__val">16px Medium</span></div>
+              <div class="boop-btn-specs__row"><span class="boop-btn-specs__key">Active text</span><span class="boop-btn-specs__val">#070707</span></div>
+              <div class="boop-btn-specs__row"><span class="boop-btn-specs__key">Inactive text</span><span class="boop-btn-specs__val">#717680</span></div>
+              <div class="boop-btn-specs__row"><span class="boop-btn-specs__key">Container bg</span><span class="boop-btn-specs__val">#F2F4F7</span></div>
+            </div>
+          </div><!-- /selector -->
+
+          <!-- Option Card Component -->
+          <div class="boop-ds-section">
+            <h3 class="boop-ds-section__title">Option Card</h3>
+            <p class="boop-ds-section__desc">Glass-effect radio button card for selecting a single option. 80px height, 8px radius, backdrop blur. Used in recovery and onboarding flows.</p>
+
+            <div class="boop-optcard-demo">
+
+              <!-- States row -->
+              <div class="boop-optcard-states">
+                <div class="boop-optcard-group">
+                  <span class="boop-optcard-group__label">Unselected</span>
+                  <div class="boop-optcard">
+                    <svg class="boop-optcard__radio" viewBox="0 0 16 16" fill="none">
+                      <circle cx="8" cy="8" r="7.5" stroke="rgba(255,255,255,0.3)"/>
+                    </svg>
+                    <span class="boop-optcard__label">Recover with an Orb</span>
+                  </div>
+                </div>
+                <div class="boop-optcard-group">
+                  <span class="boop-optcard-group__label">Selected</span>
+                  <div class="boop-optcard boop-optcard--selected">
+                    <svg class="boop-optcard__radio" viewBox="0 0 16 16" fill="none">
+                      <circle cx="8" cy="8" r="7.5" stroke="rgba(255,255,255,0.3)"/>
+                      <circle cx="8" cy="8" r="4" fill="rgba(255,255,255,0.9)"/>
+                    </svg>
+                    <span class="boop-optcard__label">Recover with an Orb</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Multiple options example -->
+              <div class="boop-optcard-group">
+                <span class="boop-optcard-group__label">Multiple options</span>
+                <div class="boop-optcard-list">
+                  <div class="boop-optcard boop-optcard--selected">
+                    <svg class="boop-optcard__radio" viewBox="0 0 16 16" fill="none">
+                      <circle cx="8" cy="8" r="7.5" stroke="rgba(255,255,255,0.3)"/>
+                      <circle cx="8" cy="8" r="4" fill="rgba(255,255,255,0.9)"/>
+                    </svg>
+                    <span class="boop-optcard__label">Recover with an Orb</span>
+                  </div>
+                  <div class="boop-optcard">
+                    <svg class="boop-optcard__radio" viewBox="0 0 16 16" fill="none">
+                      <circle cx="8" cy="8" r="7.5" stroke="rgba(255,255,255,0.3)"/>
+                    </svg>
+                    <span class="boop-optcard__label">Use backup email</span>
+                  </div>
+                  <div class="boop-optcard">
+                    <svg class="boop-optcard__radio" viewBox="0 0 16 16" fill="none">
+                      <circle cx="8" cy="8" r="7.5" stroke="rgba(255,255,255,0.3)"/>
+                    </svg>
+                    <span class="boop-optcard__label">Contact support</span>
+                  </div>
+                </div>
+              </div>
+
+            </div><!-- /boop-optcard-demo -->
+
+            <div class="boop-btn-specs">
+              <div class="boop-btn-specs__row"><span class="boop-btn-specs__key">Height</span><span class="boop-btn-specs__val">80px</span></div>
+              <div class="boop-btn-specs__row"><span class="boop-btn-specs__key">Border radius</span><span class="boop-btn-specs__val">8px</span></div>
+              <div class="boop-btn-specs__row"><span class="boop-btn-specs__key">Padding</span><span class="boop-btn-specs__val">16px</span></div>
+              <div class="boop-btn-specs__row"><span class="boop-btn-specs__key">Gap</span><span class="boop-btn-specs__val">8px</span></div>
+              <div class="boop-btn-specs__row"><span class="boop-btn-specs__key">Background</span><span class="boop-btn-specs__val">rgba(255,255,255,0.4)</span></div>
+              <div class="boop-btn-specs__row"><span class="boop-btn-specs__key">Backdrop blur</span><span class="boop-btn-specs__val">20px</span></div>
+              <div class="boop-btn-specs__row"><span class="boop-btn-specs__key">Border</span><span class="boop-btn-specs__val">#CBD5E1 (slate-300)</span></div>
+              <div class="boop-btn-specs__row"><span class="boop-btn-specs__key">Radio size</span><span class="boop-btn-specs__val">16 × 16px</span></div>
+            </div>
+          </div><!-- /option-card -->
+
+          <!-- Toggle Component -->
+          <div class="boop-ds-section">
+            <h3 class="boop-ds-section__title">Toggle</h3>
+            <p class="boop-ds-section__desc">Boolean switch with ON/OFF text labels. 62px wide pill, two sizes. ON uses black (#070707), OFF uses gray (#A3A3A3). Optional bottom label below the track.</p>
+
+            <div class="boop-toggle-demo">
+              <div class="boop-toggle-row">
+
+                <div class="boop-toggle-group">
+                  <span class="boop-toggle-group__label">S · ON</span>
+                  <div class="boop-toggle boop-toggle--s boop-toggle--on">
+                    <span class="boop-toggle__text">ON</span>
+                    <div class="boop-toggle__knob"></div>
+                  </div>
+                  <span class="boop-toggle__sublabel">Scanning</span>
+                </div>
+
+                <div class="boop-toggle-group">
+                  <span class="boop-toggle-group__label">S · OFF</span>
+                  <div class="boop-toggle boop-toggle--s boop-toggle--off">
+                    <div class="boop-toggle__knob"></div>
+                    <span class="boop-toggle__text">OFF</span>
+                  </div>
+                  <span class="boop-toggle__sublabel">Scanning</span>
+                </div>
+
+                <div class="boop-toggle-group">
+                  <span class="boop-toggle-group__label">M · ON</span>
+                  <div class="boop-toggle boop-toggle--m boop-toggle--on">
+                    <span class="boop-toggle__text">ON</span>
+                    <div class="boop-toggle__knob boop-toggle__knob--m"></div>
+                  </div>
+                  <span class="boop-toggle__sublabel">Scanning</span>
+                </div>
+
+                <div class="boop-toggle-group">
+                  <span class="boop-toggle-group__label">M · OFF</span>
+                  <div class="boop-toggle boop-toggle--m boop-toggle--off">
+                    <div class="boop-toggle__knob boop-toggle__knob--m"></div>
+                    <span class="boop-toggle__text">OFF</span>
+                  </div>
+                  <span class="boop-toggle__sublabel">Scanning</span>
+                </div>
+
+                <div class="boop-toggle-group">
+                  <span class="boop-toggle-group__label">Disabled</span>
+                  <div class="boop-toggle boop-toggle--s boop-toggle--on boop-toggle--disabled">
+                    <span class="boop-toggle__text">ON</span>
+                    <div class="boop-toggle__knob"></div>
+                  </div>
+                  <span class="boop-toggle__sublabel">Scanning</span>
+                </div>
+
+                <div class="boop-toggle-group">
+                  <span class="boop-toggle-group__label">No label</span>
+                  <div class="boop-toggle boop-toggle--s boop-toggle--off">
+                    <div class="boop-toggle__knob"></div>
+                    <span class="boop-toggle__text">OFF</span>
+                  </div>
+                </div>
+
+              </div>
+            </div><!-- /boop-toggle-demo -->
+
+            <div class="boop-btn-specs">
+              <div class="boop-btn-specs__row"><span class="boop-btn-specs__key">Width</span><span class="boop-btn-specs__val">62px</span></div>
+              <div class="boop-btn-specs__row"><span class="boop-btn-specs__key">Height S</span><span class="boop-btn-specs__val">28px</span></div>
+              <div class="boop-btn-specs__row"><span class="boop-btn-specs__key">Height M</span><span class="boop-btn-specs__val">32px</span></div>
+              <div class="boop-btn-specs__row"><span class="boop-btn-specs__key">Knob S</span><span class="boop-btn-specs__val">24px</span></div>
+              <div class="boop-btn-specs__row"><span class="boop-btn-specs__key">Knob M</span><span class="boop-btn-specs__val">28px</span></div>
+              <div class="boop-btn-specs__row"><span class="boop-btn-specs__key">ON bg</span><span class="boop-btn-specs__val">#070707</span></div>
+              <div class="boop-btn-specs__row"><span class="boop-btn-specs__key">OFF bg</span><span class="boop-btn-specs__val">#A3A3A3</span></div>
+              <div class="boop-btn-specs__row"><span class="boop-btn-specs__key">Label text</span><span class="boop-btn-specs__val">14px Regular white</span></div>
+            </div>
+          </div><!-- /toggle -->
+
+          <!-- Transaction Item Component -->
+          <div class="boop-ds-section">
+            <h3 class="boop-ds-section__title">Transaction Item</h3>
+            <p class="boop-ds-section__desc">List row for displaying transaction details. Two right-side variants — price or status. Optional colored badge. Full-width with 16px vertical padding and a bottom divider.</p>
+
+            <div class="boop-txn-list">
+
+              <div class="boop-txn">
+                <div class="boop-txn__left">
+                  <span class="boop-txn__title">Kiosk payment</span>
+                  <span class="boop-txn__time">14:21</span>
+                </div>
+                <div class="boop-txn__right">
+                  <span class="boop-txn__amount">£-2,45</span>
+                  <span class="boop-txn__badge boop-txn__badge--error">Age verification</span>
+                </div>
+              </div>
+
+              <div class="boop-txn">
+                <div class="boop-txn__left">
+                  <span class="boop-txn__title">Entrance</span>
+                  <span class="boop-txn__time">14:21</span>
+                </div>
+                <div class="boop-txn__right">
+                  <span class="boop-txn__status" style="color:#EF4444">Rejected</span>
+                  <span class="boop-txn__badge boop-txn__badge--error">Age verification</span>
+                </div>
+              </div>
+
+              <div class="boop-txn">
+                <div class="boop-txn__left">
+                  <span class="boop-txn__title">Entrance</span>
+                  <span class="boop-txn__time">14:21</span>
+                </div>
+                <div class="boop-txn__right">
+                  <span class="boop-txn__status" style="color:#22C55E">Approved</span>
+                </div>
+              </div>
+
+              <div class="boop-txn">
+                <div class="boop-txn__left">
+                  <span class="boop-txn__title">Coffee &amp; Croissant</span>
+                  <span class="boop-txn__time">09:15</span>
+                </div>
+                <div class="boop-txn__right">
+                  <span class="boop-txn__amount">£-4,20</span>
+                </div>
+              </div>
+
+              <div class="boop-txn">
+                <div class="boop-txn__left">
+                  <span class="boop-txn__title">Transaction sent</span>
+                  <span class="boop-txn__time">18:32</span>
+                </div>
+                <div class="boop-txn__right">
+                  <span class="boop-txn__amount">£-45,67</span>
+                  <span class="boop-txn__badge boop-txn__badge--warning">Pending</span>
+                </div>
+              </div>
+
+            </div><!-- /boop-txn-list -->
+
+            <div class="boop-btn-specs">
+              <div class="boop-btn-specs__row"><span class="boop-btn-specs__key">Row padding</span><span class="boop-btn-specs__val">16px vertical</span></div>
+              <div class="boop-btn-specs__row"><span class="boop-btn-specs__key">Divider</span><span class="boop-btn-specs__val">#E2E8F0</span></div>
+              <div class="boop-btn-specs__row"><span class="boop-btn-specs__key">Title</span><span class="boop-btn-specs__val">16px Medium #334155</span></div>
+              <div class="boop-btn-specs__row"><span class="boop-btn-specs__key">Time</span><span class="boop-btn-specs__val">12px Regular #64748B</span></div>
+              <div class="boop-btn-specs__row"><span class="boop-btn-specs__key">Badge padding</span><span class="boop-btn-specs__val">8px · 2px</span></div>
+              <div class="boop-btn-specs__row"><span class="boop-btn-specs__key">Badge radius</span><span class="boop-btn-specs__val">12px</span></div>
+              <div class="boop-btn-specs__row"><span class="boop-btn-specs__key">Badge error</span><span class="boop-btn-specs__val">#991B1B @ 70%</span></div>
+              <div class="boop-btn-specs__row"><span class="boop-btn-specs__key">Badge warning</span><span class="boop-btn-specs__val">#F59E0B @ 70%</span></div>
+            </div>
+          </div><!-- /transaction-item -->
+
+          <!-- Stepper Component -->
+          <div class="boop-ds-section">
+            <h3 class="boop-ds-section__title">Stepper</h3>
+            <p class="boop-ds-section__desc">Step-based progress indicator for multi-step flows. Full-width pill segments, 8px gap, two heights: small (4px) and large (8px).</p>
+
+            <div class="boop-stepper-demo">
+
+              <div class="boop-stepper-group">
+                <span class="boop-stepper-group__label">Small · 4px</span>
+                <div class="boop-stepper-rows">
+                  <div class="boop-stepper-row">
+                    <span class="boop-stepper-row__caption">1 / 4</span>
+                    <div class="boop-stepper boop-stepper--sm">
+                      <div class="boop-stepper__seg boop-stepper__seg--on"></div>
+                      <div class="boop-stepper__seg boop-stepper__seg--off"></div>
+                      <div class="boop-stepper__seg boop-stepper__seg--off"></div>
+                      <div class="boop-stepper__seg boop-stepper__seg--off"></div>
+                    </div>
+                  </div>
+                  <div class="boop-stepper-row">
+                    <span class="boop-stepper-row__caption">2 / 4</span>
+                    <div class="boop-stepper boop-stepper--sm">
+                      <div class="boop-stepper__seg boop-stepper__seg--on"></div>
+                      <div class="boop-stepper__seg boop-stepper__seg--on"></div>
+                      <div class="boop-stepper__seg boop-stepper__seg--off"></div>
+                      <div class="boop-stepper__seg boop-stepper__seg--off"></div>
+                    </div>
+                  </div>
+                  <div class="boop-stepper-row">
+                    <span class="boop-stepper-row__caption">3 / 4</span>
+                    <div class="boop-stepper boop-stepper--sm">
+                      <div class="boop-stepper__seg boop-stepper__seg--on"></div>
+                      <div class="boop-stepper__seg boop-stepper__seg--on"></div>
+                      <div class="boop-stepper__seg boop-stepper__seg--on"></div>
+                      <div class="boop-stepper__seg boop-stepper__seg--off"></div>
+                    </div>
+                  </div>
+                  <div class="boop-stepper-row">
+                    <span class="boop-stepper-row__caption">4 / 4</span>
+                    <div class="boop-stepper boop-stepper--sm">
+                      <div class="boop-stepper__seg boop-stepper__seg--on"></div>
+                      <div class="boop-stepper__seg boop-stepper__seg--on"></div>
+                      <div class="boop-stepper__seg boop-stepper__seg--on"></div>
+                      <div class="boop-stepper__seg boop-stepper__seg--on"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="boop-stepper-group">
+                <span class="boop-stepper-group__label">Large · 8px</span>
+                <div class="boop-stepper-rows">
+                  <div class="boop-stepper-row">
+                    <span class="boop-stepper-row__caption">1 / 4</span>
+                    <div class="boop-stepper boop-stepper--lg">
+                      <div class="boop-stepper__seg boop-stepper__seg--on"></div>
+                      <div class="boop-stepper__seg boop-stepper__seg--off"></div>
+                      <div class="boop-stepper__seg boop-stepper__seg--off"></div>
+                      <div class="boop-stepper__seg boop-stepper__seg--off"></div>
+                    </div>
+                  </div>
+                  <div class="boop-stepper-row">
+                    <span class="boop-stepper-row__caption">2 / 4</span>
+                    <div class="boop-stepper boop-stepper--lg">
+                      <div class="boop-stepper__seg boop-stepper__seg--on"></div>
+                      <div class="boop-stepper__seg boop-stepper__seg--on"></div>
+                      <div class="boop-stepper__seg boop-stepper__seg--off"></div>
+                      <div class="boop-stepper__seg boop-stepper__seg--off"></div>
+                    </div>
+                  </div>
+                  <div class="boop-stepper-row">
+                    <span class="boop-stepper-row__caption">3 / 4</span>
+                    <div class="boop-stepper boop-stepper--lg">
+                      <div class="boop-stepper__seg boop-stepper__seg--on"></div>
+                      <div class="boop-stepper__seg boop-stepper__seg--on"></div>
+                      <div class="boop-stepper__seg boop-stepper__seg--on"></div>
+                      <div class="boop-stepper__seg boop-stepper__seg--off"></div>
+                    </div>
+                  </div>
+                  <div class="boop-stepper-row">
+                    <span class="boop-stepper-row__caption">4 / 4</span>
+                    <div class="boop-stepper boop-stepper--lg">
+                      <div class="boop-stepper__seg boop-stepper__seg--on"></div>
+                      <div class="boop-stepper__seg boop-stepper__seg--on"></div>
+                      <div class="boop-stepper__seg boop-stepper__seg--on"></div>
+                      <div class="boop-stepper__seg boop-stepper__seg--on"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div><!-- /boop-stepper-demo -->
+
+            <div class="boop-btn-specs">
+              <div class="boop-btn-specs__row"><span class="boop-btn-specs__key">Height (small)</span><span class="boop-btn-specs__val">4px</span></div>
+              <div class="boop-btn-specs__row"><span class="boop-btn-specs__key">Height (large)</span><span class="boop-btn-specs__val">8px</span></div>
+              <div class="boop-btn-specs__row"><span class="boop-btn-specs__key">Segment gap</span><span class="boop-btn-specs__val">8px</span></div>
+              <div class="boop-btn-specs__row"><span class="boop-btn-specs__key">Border radius</span><span class="boop-btn-specs__val">full (pill)</span></div>
+              <div class="boop-btn-specs__row"><span class="boop-btn-specs__key">Active</span><span class="boop-btn-specs__val">#070707</span></div>
+              <div class="boop-btn-specs__row"><span class="boop-btn-specs__key">Inactive</span><span class="boop-btn-specs__val">#E5E5E5</span></div>
+              <div class="boop-btn-specs__row"><span class="boop-btn-specs__key">Steps</span><span class="boop-btn-specs__val">4 or 5</span></div>
+              <div class="boop-btn-specs__row"><span class="boop-btn-specs__key">Width</span><span class="boop-btn-specs__val">100% (flexible)</span></div>
+            </div>
+          </div><!-- /stepper -->
+
 
         </div>
 
@@ -1080,25 +1478,75 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <h2 class="proj-section__title">Closing the loop</h2>
           <p class="proj-text" style="max-width:560px;margin-bottom:3rem">Did we hit the goals set in section 2? Here's where the numbers and the human feedback meet.</p>
 
-          <div class="boop-metrics-grid">
-            <div class="boop-metric">
-              <div class="boop-metric__val">[X]%</div>
-              <div class="boop-metric__label">Onboarding completion rate</div>
-            </div>
-            <div class="boop-metric">
-              <div class="boop-metric__val">[X]%</div>
-              <div class="boop-metric__label">Reduction in payment drop-off</div>
-            </div>
-            <div class="boop-metric">
-              <div class="boop-metric__val">[X]/5</div>
-              <div class="boop-metric__label">Average trust score (survey)</div>
-            </div>
-          </div>
+          <!-- Research & Usability Insights -->
+          <div class="boop-insights">
+            <h3 class="boop-insights__heading">Research &amp; Usability Insights</h3>
+            <p class="proj-text" style="max-width:640px;margin-bottom:2.5rem">During the initial testing phase, we discovered that 90% of users successfully navigated the base payment flow without assistance. However, several critical friction points during the biometric enrollment and card management phases led to key design iterations.</p>
 
-          <div class="boop-ph-quote" style="margin-top:3rem;max-width:640px">
-            <svg width="20" height="16" viewBox="0 0 20 16" fill="none"><path d="M0 16V9.333C0 4.533 2.667 1.467 8 0l1.333 2C6.8 2.8 5.467 4.267 5.333 6.667H9.333V16H0Zm10.667 0V9.333C10.667 4.533 13.333 1.467 18.667 0L20 2C17.467 2.8 16.133 4.267 16 6.667H20V16h-9.333Z" fill="currentColor" opacity=".2"/></svg>
-            <p class="boop-ph-quote__text">Qualitative user feedback / testing quote will go here — a verbatim response that captures the emotional reaction to the product.</p>
-          </div>
+            <div class="boop-insight-list">
+
+              <div class="boop-insight">
+                <div class="boop-insight__num">1</div>
+                <div class="boop-insight__body">
+                  <h4 class="boop-insight__title">Bridging the "Hardware-Mobile" Gap</h4>
+                  <div class="boop-insight__block">
+                    <span class="boop-insight__tag">Discovery</span>
+                    <p>We originally assumed users would focus entirely on the physical Boop device during palm enrollment. Instead, testers remained fixated on their mobile screens, leading to a "disconnection" from the hardware process.</p>
+                  </div>
+                  <div class="boop-insight__block">
+                    <span class="boop-insight__tag boop-insight__tag--pivot">Pivot</span>
+                    <p>To reunite the two experiences, we implemented contextual haptic feedback and "Happy Path" system notifications. Now, if a user needs to adjust their hand position or switch hands, the phone "taps" them with a specific haptic pattern — an immediate physical cue that doesn't require constant screen monitoring.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="boop-insight">
+                <div class="boop-insight__num">2</div>
+                <div class="boop-insight__body">
+                  <h4 class="boop-insight__title">Enhancing Transaction Transparency</h4>
+                  <div class="boop-insight__block">
+                    <span class="boop-insight__tag">Discovery</span>
+                    <p>Users felt the transaction history was too abstract. They struggled to recognize payments without a visual anchor for the physical establishment.</p>
+                  </div>
+                  <div class="boop-insight__block">
+                    <span class="boop-insight__tag boop-insight__tag--pivot">Pivot</span>
+                    <p>We introduced establishment-specific iconography. Every transaction now features a brand or category icon (e.g. a "Kiosk" or "Cafe" badge), allowing users to categorize their spending at a glance.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="boop-insight">
+                <div class="boop-insight__num">3</div>
+                <div class="boop-insight__body">
+                  <h4 class="boop-insight__title">Gesture-Based Card Management</h4>
+                  <div class="boop-insight__block">
+                    <span class="boop-insight__tag">Discovery</span>
+                    <p>While the app was intuitive, users expressed a preference for more tactile interactions when linking their physical cards to their Boop Identity.</p>
+                  </div>
+                  <div class="boop-insight__block">
+                    <span class="boop-insight__tag boop-insight__tag--pivot">Pivot — Future Iteration</span>
+                    <p>We are moving away from standard taps toward a drag-and-drop / pull-to-link system. This allows users to "drop" their digital cards onto the Boop ID, making the link feel more permanent and secure.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="boop-insight">
+                <div class="boop-insight__num">4</div>
+                <div class="boop-insight__body">
+                  <h4 class="boop-insight__title">Managing Data Limitations with Design</h4>
+                  <div class="boop-insight__block">
+                    <span class="boop-insight__tag">Discovery</span>
+                    <p>Users wanted their digital card visuals in the app to be 100% identical to their physical cards. However, API limitations on retrieving specific card skins created a visual mismatch.</p>
+                  </div>
+                  <div class="boop-insight__block">
+                    <span class="boop-insight__tag boop-insight__tag--pivot">Pivot</span>
+                    <p>We shifted toward a "Universal Boop Card" aesthetic that focuses on branding and utility rather than mimicking physical plastic — setting a clearer expectation of the digital-first nature of the service.</p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div><!-- /boop-insights -->
 
           <div class="boop-next-steps">
             <div class="boop-next-steps__label">What I'd do with more time</div>
@@ -1145,7 +1593,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <footer class="footer">
     <div class="footer__inner">
-      <span>© 2025 Carlos Mera</span>
+      <span>© 2026 Carlos Mera</span>
       <span>Designed &amp; built with care · Barcelona</span>
     </div>
   </footer>
@@ -1171,6 +1619,44 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       window.addEventListener('scroll', update, { passive: true });
       update();
+    })();
+  </script>
+
+  <!-- Boop case study scroll reveals -->
+  <script>
+    (function () {
+      const SELECTORS = [
+        '.boop-case__block .section__label',
+        '.boop-case__block .proj-section__title',
+        '.boop-case__block > .proj-text',
+        '.boop-case__block > p',
+        '.boop-overview__col',
+        '.boop-screen-grid',
+        '.boop-phone-grid',
+        '.boop-flow__item',
+        '.boop-showcase',
+        '.proj-ds-card',
+        '.boop-ds-section',
+        '.boop-metric',
+        '.boop-ph-quote',
+        '.boop-next-steps__label',
+        '.boop-next-step',
+        '.boop-insights__heading',
+        '.boop-insights > .proj-text',
+        '.boop-insight',
+        '.boop-research-grid__item',
+        '.boop-venta-grid > *',
+        '.boop-benchmarks',
+        '.boop-heuristics',
+      ];
+      SELECTORS.forEach(sel => {
+        document.querySelectorAll(sel).forEach(el => {
+          if (!el.classList.contains('fade-in')) {
+            el.classList.add('fade-in');
+            observer.observe(el);
+          }
+        });
+      });
     })();
   </script>
 
