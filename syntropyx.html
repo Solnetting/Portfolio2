@@ -115,13 +115,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     var input = document.getElementById('sx-gate__input');
     var btn   = document.getElementById('sx-gate__btn');
     var err   = document.getElementById('sx-gate__err');
+    var cancel = document.getElementById('sx-gate__cancel');
+
+    function _gtag() { if (typeof gtag === 'function') gtag.apply(null, arguments); }
+
+    _gtag('event', 'gate_view', { project: 'SyntropyX' });
 
     function unlock() {
       if (input.value === '1234') {
+        _gtag('event', 'gate_success', { project: 'SyntropyX' });
         gate.style.transition = 'opacity .4s';
         gate.style.opacity = '0';
         setTimeout(function () { gate.remove(); }, 400);
       } else {
+        _gtag('event', 'gate_fail', { project: 'SyntropyX' });
         err.textContent = 'Incorrect password.';
         input.classList.add('sx-error');
         input.value = '';
@@ -133,6 +140,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     input.addEventListener('keydown', function (e) {
       if (e.key === 'Enter') unlock();
       err.textContent = '';
+    });
+    cancel.addEventListener('click', function () {
+      _gtag('event', 'gate_cancel', { project: 'SyntropyX' });
     });
 
   })();
@@ -789,5 +799,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </footer>
 
   <script src="script.js"></script>
+  <script src="analytics.js"></script>
 </body>
 </html>
