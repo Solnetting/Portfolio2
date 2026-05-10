@@ -117,10 +117,12 @@ a   { color: inherit; text-decoration: none; }
 .hero {
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 8rem var(--pad) 0;
   text-align: center;
+  background: var(--bg);
 }
 
 .hero__inner {
@@ -341,6 +343,38 @@ a   { color: inherit; text-decoration: none; }
   box-shadow: 0 32px 80px rgba(0,0,0,.55);
 }
 
+.pcard__num {
+  flex: 0 0 88px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2rem 1.5rem;
+  border-right: 1px solid var(--border);
+}
+
+.pcard__num-label {
+  font-size: 0.6rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.pcard__num-value {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: -.04em;
+  line-height: 1;
+}
+
+.pcard__num-total {
+  font-size: 0.6rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
 .pcard__left {
   flex: 0 0 38%;
   padding: 3rem 2.5rem;
@@ -418,6 +452,24 @@ a   { color: inherit; text-decoration: none; }
   background: radial-gradient(ellipse at 50% 45%, rgba(20,184,166,.18) 0%, transparent 65%);
 }
 
+/* P2P Explorer card preview */
+.p2p-index-img {
+  position: absolute;
+  right: 32px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 80%;
+  width: auto;
+  border-radius: 8px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.45);
+  pointer-events: none;
+  transition: transform .45s ease;
+}
+
+.pcard:hover .p2p-index-img {
+  transform: translateY(-50%) scale(1.04);
+}
+
 .pcard__screen {
   position: absolute;
   inset: 0;
@@ -441,7 +493,9 @@ a   { color: inherit; text-decoration: none; }
 
 /* ── FIGMA DARK CARDS (Boop & Quadrato) ── */
 .fcard {
-  display: block;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
   position: relative;
   overflow: hidden;
   border-radius: 2rem;
@@ -456,9 +510,20 @@ a   { color: inherit; text-decoration: none; }
 .fcard--boop    { background: #161616; }
 .fcard--quadrato { background: #161616; }
 
+.fcard__num {
+  flex: 0 0 88px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2rem 1.5rem;
+  border-right: 1px solid var(--border);
+  position: relative;
+  z-index: 3;
+}
+
 .fcard__content {
   position: absolute;
-  left: 48px;
+  left: 128px;
   top: 90px;
   width: 360px;
   display: flex;
@@ -799,7 +864,9 @@ a   { color: inherit; text-decoration: none; }
 /* ── Stats bar ── */
 .stats-bar {
   border-bottom: 1px solid var(--border);
-  padding: 4rem var(--pad);
+  padding: 3rem var(--pad) 3rem;
+  width: 100%;
+  margin-top: 3rem;
 }
 
 .stats-bar__inner {
@@ -1272,6 +1339,10 @@ a   { color: inherit; text-decoration: none; }
   .pcard { flex-direction: column; min-height: auto; }
   .pcard__left { flex: none; padding: 2rem 1.75rem; }
   .pcard__right { aspect-ratio: 16/9; }
+  .stats-bar { padding: 2rem var(--pad); margin-top: 1.5rem; }
+  .stats-bar__inner { gap: 1.75rem 2.5rem; flex-wrap: wrap; justify-content: flex-start; }
+  .stats-bar__value { font-size: clamp(1.75rem, 7vw, 2.5rem); }
+  .stats-bar__label { font-size: 0.875rem; }
 }
 
 @media (max-width: 640px) {
@@ -1282,5 +1353,10 @@ a   { color: inherit; text-decoration: none; }
   .skills { grid-template-columns: repeat(2, 1fr); }
   .nav__links { gap: 1.25rem; font-size: 0.75rem; }
   .footer__inner { flex-direction: column; gap: .5rem; text-align: center; }
-  .hero { min-height: auto; padding-top: 7rem; }
+  .hero { padding-top: 7rem; }
+  .stats-bar__inner { flex-direction: column; gap: 1.5rem; }
+  .stats-bar__item { flex-direction: row; align-items: baseline; gap: 0.6rem; }
+  .stats-bar__value { font-size: clamp(1.5rem, 8vw, 2rem); }
+  .pcard__num { display: none; }
 }
+

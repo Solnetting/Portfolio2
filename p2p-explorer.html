@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M5BDFLX8');</script>
+<!-- End Google Tag Manager -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>P2P Explorer — Carlos Mera</title>
+  <meta name="description" content="P2P Explorer — Real-time Starknet node network explorer. Designed by Carlos Mera.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="project.css">
+  <link rel="stylesheet" href="boop.css">
+  <style>
+    /* ── P2P Explorer specific overrides ── */
+    .p2p-hero-icon {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .p2p-hero-icon__svg {
+      width: clamp(3rem, 6vw, 4.5rem);
+      height: clamp(3rem, 6vw, 4.5rem);
+    }
+    .p2p-hero-icon__name {
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: 700;
+      letter-spacing: -.03em;
+      line-height: 1;
+    }
+
+    .p2p-node-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .p2p-node {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+    }
+    .p2p-node__label {
+      font-size: .6875rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: .75rem;
+    }
+    .p2p-node__title {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: .75rem;
+    }
+    .p2p-node__body {
+      font-size: .9375rem;
+      color: var(--text-sec);
+      line-height: 1.65;
+    }
+    .p2p-node__list {
+      list-style: none;
+      margin-top: .75rem;
+      display: flex;
+      flex-direction: column;
+      gap: .4rem;
+    }
+    .p2p-node__list li {
+      font-size: .875rem;
+      color: var(--text-muted);
+      padding-left: 1rem;
+      position: relative;
+    }
+    .p2p-node__list li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: .75rem;
+    }
+
+    .p2p-decision-group {
+      margin-top: 2.5rem;
+    }
+    .p2p-decision-group__title {
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      padding-bottom: .5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .p2p-decision-list {
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
+    }
+    .p2p-decision {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    .p2p-decision__dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      margin-top: .45rem;
+      flex-shrink: 0;
+    }
+    .p2p-decision__dot--pending {
+      background: transparent;
+      border: 1.5px solid var(--text-muted);
+    }
+    .p2p-decision__text {
+      font-size: .9375rem;
+      color: var(--text-sec);
+      line-height: 1.55;
+    }
+
+    .p2p-test-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      margin-top: 1.5rem;
+    }
+    .p2p-test-block__title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+    }
+    .p2p-test-steps {
+      display: flex;
+      flex-direction: column;
+      gap: .6rem;
+      counter-reset: step;
+    }
+    .p2p-test-step {
+      display: flex;
+      gap: .875rem;
+      align-items: flex-start;
+      counter-increment: step;
+    }
+    .p2p-test-step__num {
+      font-size: .75rem;
+      font-weight: 700;
+      color: var(--accent);
+      min-width: 1.5rem;
+      padding-top: .1rem;
+    }
+    .p2p-test-step__text {
+      font-size: .9rem;
+      color: var(--text-sec);
+      line-height: 1.55;
+    }
+
+    .p2p-status-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .p2p-status-col {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+    }
+    .p2p-status-col__label {
+      font-size: .6875rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+    .p2p-status-col--done .p2p-status-col__label { color: #4ADE80; }
+    .p2p-status-col--left .p2p-status-col__label { color: var(--text-muted); }
+    .p2p-status-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: .6rem;
+    }
+    .p2p-status-list li {
+      font-size: .9rem;
+      color: var(--text-sec);
+      padding-left: 1.25rem;
+      position: relative;
+      line-height: 1.5;
+    }
+    .p2p-status-col--done .p2p-status-list li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: #4ADE80;
+      font-size: .8rem;
+    }
+    .p2p-status-col--left .p2p-status-list li::before {
+      content: '○';
+      position: absolute;
+      left: 0;
+      color: var(--text-muted);
+      font-size: .75rem;
+    }
+
+    .p2p-crawler-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .p2p-crawler-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+    }
+    .p2p-crawler-item__icon {
+      margin-bottom: .75rem;
+      color: var(--accent);
+    }
+    .p2p-crawler-item__title {
+      font-size: .9375rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: .4rem;
+    }
+    .p2p-crawler-item__desc {
+      font-size: .8375rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .p2p-retro-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      margin-top: 1.25rem;
+    }
+    .p2p-retro-card__title {
+      font-size: .875rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: .5rem;
+    }
+    .p2p-retro-card__body {
+      font-size: .875rem;
+      color: var(--text-sec);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+      .p2p-node-grid,
+      .p2p-status-grid { grid-template-columns: 1fr; }
+      .p2p-crawler-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 480px) {
+      .p2p-crawler-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M5BDFLX8"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+  <header class="nav" id="nav">
+    <div class="nav__progress"><div class="nav__progress-fill" id="navProgress"></div></div>
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">CM</a>
+      <nav class="nav__links">
+        <a href="index.html#work">Work</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#contact">Contact</a>
+        <a href="https://www.linkedin.com/in/carlosmmera/" target="_blank" rel="noopener" class="nav__cta">LinkedIn ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="project">
+
+    <!-- ─── HERO ─── -->
+    <section class="proj-hero">
+      <div class="proj-hero__inner">
+        <a href="index.html#work" class="proj-back">← Back to work</a>
+        <div class="p2p-hero-icon">
+          <svg class="p2p-hero-icon__svg" viewBox="0 0 48 48" fill="none">
+            <circle cx="24" cy="24" r="6" stroke="#CCFF00" stroke-width="2"/>
+            <circle cx="8"  cy="12" r="4" stroke="#CCFF00" stroke-width="1.5" opacity=".6"/>
+            <circle cx="40" cy="12" r="4" stroke="#CCFF00" stroke-width="1.5" opacity=".6"/>
+            <circle cx="8"  cy="36" r="4" stroke="#CCFF00" stroke-width="1.5" opacity=".6"/>
+            <circle cx="40" cy="36" r="4" stroke="#CCFF00" stroke-width="1.5" opacity=".6"/>
+            <line x1="12" y1="14" x2="20" y2="20" stroke="#CCFF00" stroke-width="1.2" opacity=".5"/>
+            <line x1="36" y1="14" x2="28" y2="20" stroke="#CCFF00" stroke-width="1.2" opacity=".5"/>
+            <line x1="12" y1="34" x2="20" y2="28" stroke="#CCFF00" stroke-width="1.2" opacity=".5"/>
+            <line x1="36" y1="34" x2="28" y2="28" stroke="#CCFF00" stroke-width="1.2" opacity=".5"/>
+          </svg>
+          <h1 class="p2p-hero-icon__name">P2P Explorer</h1>
+        </div>
+        <div class="proj-hero__meta">
+          <span class="tag">Web3</span>
+          <span class="tag">Infrastructure</span>
+          <span class="tag">Starknet</span>
+          <span class="tag">Nethermind</span>
+        </div>
+        <a href="https://mainnet.aztecnodes.xyz/" target="_blank" rel="noopener" class="proj-hero__site-link">mainnet.aztecnodes.xyz ↗</a>
+        <p class="proj-hero__tagline">Real-time Starknet node network explorer — global distribution, client versions, and network health</p>
+        <div class="proj-hero__details">
+          <div class="proj-detail">
+            <span class="proj-detail__label">Role</span>
+            <span class="proj-detail__value">Product Designer</span>
+          </div>
+          <div class="proj-detail">
+            <span class="proj-detail__label">Timeline</span>
+            <span class="proj-detail__value">2023 – 2024</span>
+          </div>
+          <div class="proj-detail">
+            <span class="proj-detail__label">Platform</span>
+            <span class="proj-detail__value">Web App</span>
+          </div>
+          <div class="proj-detail">
+            <span class="proj-detail__label">Tools</span>
+            <span class="proj-detail__value">Figma · Claude Code</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════
+         CASE STUDY — Sticky left nav + content
+    ═══════════════════════════════════════ -->
+    <div class="boop-case">
+
+      <!-- Sticky left nav -->
+      <nav class="boop-case__nav" id="p2pNav">
+        <p class="boop-case__nav-title">Case study</p>
+        <a href="#p2p-overview"      class="boop-case__nav-item active" data-s="p2p-overview">Overview &amp;<br>Goals</a>
+        <a href="#p2p-architecture"  class="boop-case__nav-item" data-s="p2p-architecture">Network<br>Architecture</a>
+        <a href="#p2p-mvp"           class="boop-case__nav-item" data-s="p2p-mvp">MVP Scope</a>
+        <a href="#p2p-decisions"     class="boop-case__nav-item" data-s="p2p-decisions">Technical<br>Decisions</a>
+        <a href="#p2p-testing"       class="boop-case__nav-item" data-s="p2p-testing">Testing<br>Strategy</a>
+        <a href="#p2p-status"        class="boop-case__nav-item" data-s="p2p-status">Status &amp;<br>Roadmap</a>
+        <a href="#p2p-retro"         class="boop-case__nav-item" data-s="p2p-retro">Retrospective</a>
+      </nav>
+
+      <!-- Scrolling content -->
+      <div class="boop-case__content">
+
+
+        <!-- ─── 1. OVERVIEW ─── -->
+        <div id="p2p-overview" class="boop-case__block">
+          <p class="section__label">Overview &amp; Goals</p>
+          <h2 class="proj-section__title">Making the invisible network visible</h2>
+          <p class="proj-text">The P2P Explorer started as a Nethermind initiative to surface the Starknet peer-to-peer network — a layer that existed but had no public face. The result is a live network crawler and explorer that turns raw libp2p data into a human-readable dashboard: where are the nodes, what software are they running, and is the network healthy?</p>
+          <p class="proj-text">Initially scoped as the P2P MVP (synchronising Juno nodes via a peer-to-peer network), the project evolved into a broader vision: a public-facing explorer that gives the Starknet community a real-time pulse on the base layer.</p>
+
+          <div style="margin-top:3.5rem">
+            <h2 class="proj-section__title">Three goals, one dashboard</h2>
+            <div class="boop-venta-grid">
+              <div class="boop-venta">
+                <span class="boop-venta__num">01</span>
+                <h4 class="boop-venta__title">Make the network feel real</h4>
+                <p class="boop-venta__desc">Provide a global perspective on where Starknet nodes are, how many people support the base layer, and which geographies are most active.</p>
+              </div>
+              <div class="boop-venta">
+                <span class="boop-venta__num">02</span>
+                <h4 class="boop-venta__title">Inform upgrade decisions</h4>
+                <p class="boop-venta__desc">Let the community see at a glance what software all nodes are running and the global distribution of client versions — critical data for protocol governance.</p>
+              </div>
+              <div class="boop-venta">
+                <span class="boop-venta__num">03</span>
+                <h4 class="boop-venta__title">Indicate network health</h4>
+                <p class="boop-venta__desc">Measure block propagation latency across the network, how well it responds to reorgs, and the rate at which new blocks reach all nodes.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- ─── 2. NETWORK ARCHITECTURE ─── -->
+        <div id="p2p-architecture" class="boop-case__block">
+          <p class="section__label">Network Architecture</p>
+          <h2 class="proj-section__title">Two types of nodes, one network</h2>
+          <p class="proj-text">The Starknet P2P network is built on libp2p and designed around two distinct node roles. Understanding this distinction was foundational to designing both the MVP and the explorer UI — every metric, every status indicator maps back to one of these two roles.</p>
+
+          <div class="p2p-node-grid">
+            <div class="p2p-node">
+              <p class="p2p-node__label">Type 01</p>
+              <h3 class="p2p-node__title">Boot Nodes</h3>
+              <p class="p2p-node__body">Discovery nodes that act as the network's entry point. They publish new blocks into the network by gossiping blocks from the Starknet feeder gateway to all peers.</p>
+              <ul class="p2p-node__list">
+                <li>Sync only from the feeder gateway</li>
+                <li>Serve blocks to connecting peers</li>
+                <li>Do not sync from other nodes</li>
+                <li>Required for any normal node to join</li>
+              </ul>
+            </div>
+            <div class="p2p-node">
+              <p class="p2p-node__label">Type 02</p>
+              <h3 class="p2p-node__title">Normal Nodes</h3>
+              <p class="p2p-node__body">Full nodes that sync exclusively from the P2P network. They use libp2p's Kademlia DHT for peer discovery, requiring at least one boot node address to bootstrap.</p>
+              <ul class="p2p-node__list">
+                <li>Sync blocks, transactions, and receipts from peers</li>
+                <li>Use Kademlia DHT for discovery</li>
+                <li>Determine sync height from peer information</li>
+                <li>Listen for new blocks gossiped by boot nodes</li>
+              </ul>
+            </div>
+          </div>
+
+          <div style="margin-top:3rem">
+            <h2 class="proj-section__title">How sync flows through the network</h2>
+            <div class="boop-steps">
+              <div class="boop-step">
+                <span class="boop-step__num">01</span>
+                <div>
+                  <h4 class="boop-step__title">Boot node picks up new block</h4>
+                  <p class="boop-step__body">The sequencer publishes a new block through the feeder gateway. Boot nodes, syncing directly from this gateway, pick it up immediately.</p>
+                </div>
+              </div>
+              <div class="boop-step">
+                <span class="boop-step__num">02</span>
+                <div>
+                  <h4 class="boop-step__title">Block is gossiped across the network</h4>
+                  <p class="boop-step__body">Boot nodes gossip the new block to all connected peers. Without a consensus mechanism, this gossip protocol is the only path for block propagation.</p>
+                </div>
+              </div>
+              <div class="boop-step">
+                <span class="boop-step__num">03</span>
+                <div>
+                  <h4 class="boop-step__title">Normal nodes discover peers and sync</h4>
+                  <p class="boop-step__body">Normal nodes use Kademlia DHT to discover peers, negotiate a target height from what the network reports, and pull block data from their peers.</p>
+                </div>
+              </div>
+              <div class="boop-step">
+                <span class="boop-step__num">04</span>
+                <div>
+                  <h4 class="boop-step__title">Node reaches tip and listens</h4>
+                  <p class="boop-step__body">Once synced, a normal node listens for gossiped new blocks and begins serving data to its own connected peers, contributing to the network.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- ─── 3. MVP SCOPE ─── -->
+        <div id="p2p-mvp" class="boop-case__block">
+          <p class="section__label">MVP Scope</p>
+          <h2 class="proj-section__title">What's in the first version</h2>
+          <p class="proj-text">The MVP is intentionally narrow: a network of Juno nodes that can synchronise a shared database using the P2P network and serve RPC requests across all Starknet networks. This is not a multi-client effort yet — Pathfinder and other full nodes are explicitly out of scope for this iteration.</p>
+
+          <div style="margin-top:2.5rem">
+            <h2 class="proj-section__title">Scope boundaries</h2>
+            <div class="boop-venta-grid">
+              <div class="boop-venta">
+                <span class="boop-venta__num">In</span>
+                <h4 class="boop-venta__title">Juno node sync via P2P</h4>
+                <p class="boop-venta__desc">Juno nodes synchronise blocks, transactions, receipts, state diffs, and classes from each other without touching the feeder gateway.</p>
+              </div>
+              <div class="boop-venta">
+                <span class="boop-venta__num">In</span>
+                <h4 class="boop-venta__title">RPC on all networks</h4>
+                <p class="boop-venta__desc">P2P-synced nodes serve full Starknet RPC requests — mainnet, testnet — passing existing RPC test suites.</p>
+              </div>
+              <div class="boop-venta">
+                <span class="boop-venta__num">In</span>
+                <h4 class="boop-venta__title">Boot + Normal node roles</h4>
+                <p class="boop-venta__desc">The two-tier node model is fully operational: boot nodes publish, normal nodes discover and sync.</p>
+              </div>
+              <div class="boop-venta">
+                <span class="boop-venta__num">Out</span>
+                <h4 class="boop-venta__title">Other client interop</h4>
+                <p class="boop-venta__desc">Pathfinder, Deoxys, and Papyrus compatibility is a future milestone. This iteration is Juno-to-Juno only.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- ─── 4. TECHNICAL DECISIONS ─── -->
+        <div id="p2p-decisions" class="boop-case__block">
+          <p class="section__label">Technical Decisions</p>
+          <h2 class="proj-section__title">What we locked in — and what we didn't</h2>
+          <p class="proj-text">The implementation required a series of foundational technical choices, many of which had downstream design implications for how the explorer would surface node behaviour and network state. These decisions also shaped the complexity of the rollout.</p>
+
+          <div class="p2p-decision-group">
+            <p class="p2p-decision-group__title">Decisions made</p>
+            <div class="p2p-decision-list">
+              <div class="p2p-decision">
+                <div class="p2p-decision__dot"></div>
+                <p class="p2p-decision__text"><strong>Two node types</strong> — Boot nodes and normal nodes with distinct roles and sync strategies.</p>
+              </div>
+              <div class="p2p-decision">
+                <div class="p2p-decision__dot"></div>
+                <p class="p2p-decision__text"><strong>libp2p Kademlia DHT</strong> for discovery, chosen over rendezvous protocol for better decentralisation.</p>
+              </div>
+              <div class="p2p-decision">
+                <div class="p2p-decision__dot"></div>
+                <p class="p2p-decision__text"><strong>Ed25519 key scheme</strong> for node identity derivation, aligned with the existing Starknet P2P spec.</p>
+              </div>
+              <div class="p2p-decision">
+                <div class="p2p-decision__dot"></div>
+                <p class="p2p-decision__text"><strong>Protocol Buffers</strong> for message serialisation — typed, efficient, and cross-client compatible.</p>
+              </div>
+              <div class="p2p-decision">
+                <div class="p2p-decision__dot"></div>
+                <p class="p2p-decision__text"><strong>All block body parts from one peer</strong> — instead of fetching different parts from a range of peers, reducing coordination overhead.</p>
+              </div>
+              <div class="p2p-decision">
+                <div class="p2p-decision__dot"></div>
+                <p class="p2p-decision__text"><strong>CurrentBlockHeaderRequest</strong> message added to the spec, enabling nodes to query a peer's current chain tip.</p>
+              </div>
+              <div class="p2p-decision">
+                <div class="p2p-decision__dot"></div>
+                <p class="p2p-decision__text"><strong>Events added to transaction receipts</strong> — a spec extension required for full block reconstruction by normal nodes.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="p2p-decision-group">
+            <p class="p2p-decision-group__title">Still to be decided</p>
+            <div class="p2p-decision-list">
+              <div class="p2p-decision">
+                <div class="p2p-decision__dot p2p-decision__dot--pending"></div>
+                <p class="p2p-decision__text"><strong>Block request batching</strong> — how many blocks to request per peer: one block per peer, or a range in a single request.</p>
+              </div>
+              <div class="p2p-decision">
+                <div class="p2p-decision__dot p2p-decision__dot--pending"></div>
+                <p class="p2p-decision__text"><strong>Blacklisting strategy</strong> — how misbehaving peers are identified, penalised, and removed from the peer set.</p>
+              </div>
+              <div class="p2p-decision">
+                <div class="p2p-decision__dot p2p-decision__dot--pending"></div>
+                <p class="p2p-decision__text"><strong>Class chunking</strong> — whether class definitions can always be transmitted without chunking, or if large classes need segmentation.</p>
+              </div>
+              <div class="p2p-decision">
+                <div class="p2p-decision__dot p2p-decision__dot--pending"></div>
+                <p class="p2p-decision__text"><strong>Transaction receipt commitment</strong> — currently no way to verify that a receipt was transmitted correctly; verification mechanism TBD.</p>
+              </div>
+              <div class="p2p-decision">
+                <div class="p2p-decision__dot p2p-decision__dot--pending"></div>
+                <p class="p2p-decision__text"><strong>Single vs multiple protocols</strong> — whether all message types share a single protocol ID or each block component has its own.</p>
+              </div>
+              <div class="p2p-decision">
+                <div class="p2p-decision__dot p2p-decision__dot--pending"></div>
+                <p class="p2p-decision__text"><strong>StateDiff and Block Body message changes</strong> — the current spec lacks DeployedContracts and ReplacedClasses; the resolution approach is still under discussion.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- ─── 5. TESTING STRATEGY ─── -->
+        <div id="p2p-testing" class="boop-case__block">
+          <p class="section__label">Testing Strategy</p>
+          <h2 class="proj-section__title">How we know it works</h2>
+          <p class="proj-text">The testing strategy spans two levels: end-to-end tests that validate real network behaviour with actual Juno nodes, and integration/unit tests built on libp2p's Mocknet for fast, isolated verification of protocol correctness.</p>
+
+          <div class="p2p-test-block">
+            <h3 class="p2p-test-block__title">E2E — Initial Sync</h3>
+            <div class="p2p-test-steps">
+              <div class="p2p-test-step">
+                <span class="p2p-test-step__num">01</span>
+                <p class="p2p-test-step__text">Set up the boot node and sync it to block <em>K</em> from the feeder gateway.</p>
+              </div>
+              <div class="p2p-test-step">
+                <span class="p2p-test-step__num">02</span>
+                <p class="p2p-test-step__text">Spin up <em>N</em> P2P nodes configured to sync directly from the boot node.</p>
+              </div>
+              <div class="p2p-test-step">
+                <span class="p2p-test-step__num">03</span>
+                <p class="p2p-test-step__text">Verify all P2P nodes have reached block <em>K</em> and the block data is consistent.</p>
+              </div>
+              <div class="p2p-test-step">
+                <span class="p2p-test-step__num">04</span>
+                <p class="p2p-test-step__text">Run the full existing RPC test suite against each P2P node to confirm correct data serving.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="p2p-test-block">
+            <h3 class="p2p-test-block__title">E2E — Continuous Sync</h3>
+            <div class="p2p-test-steps">
+              <div class="p2p-test-step">
+                <span class="p2p-test-step__num">01</span>
+                <p class="p2p-test-step__text">P2P nodes periodically receive updates about joined/disconnected peers and new blocks via gossip.</p>
+              </div>
+              <div class="p2p-test-step">
+                <span class="p2p-test-step__num">02</span>
+                <p class="p2p-test-step__text">Continuously monitor each node's progress using <code style="font-size:.85em;background:var(--surface-2);padding:.1em .4em;border-radius:4px;">starknet_blockNumber</code> and assert forward progress.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="p2p-test-block">
+            <h3 class="p2p-test-block__title">E2E — Resilience Scenarios</h3>
+            <div class="p2p-test-steps">
+              <div class="p2p-test-step">
+                <span class="p2p-test-step__num">→</span>
+                <p class="p2p-test-step__text">All peers resume syncing correctly when a boot node goes down and then recovers.</p>
+              </div>
+              <div class="p2p-test-step">
+                <span class="p2p-test-step__num">→</span>
+                <p class="p2p-test-step__text">A normal node that disconnects mid-sync can resume from its last known state without re-syncing from genesis.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="p2p-test-block">
+            <h3 class="p2p-test-block__title">Integration/Unit — libp2p Mocknet</h3>
+            <div class="p2p-test-steps">
+              <div class="p2p-test-step">
+                <span class="p2p-test-step__num">→</span>
+                <p class="p2p-test-step__text">Networks of varying sizes (boot nodes + normal nodes) all reach the same sync height.</p>
+              </div>
+              <div class="p2p-test-step">
+                <span class="p2p-test-step__num">→</span>
+                <p class="p2p-test-step__text">Nodes disconnect, reconnect, and continue syncing without data loss or stalls.</p>
+              </div>
+              <div class="p2p-test-step">
+                <span class="p2p-test-step__num">→</span>
+                <p class="p2p-test-step__text">Messages gossip correctly to all nodes in the network within expected latency bounds.</p>
+              </div>
+              <div class="p2p-test-step">
+                <span class="p2p-test-step__num">→</span>
+                <p class="p2p-test-step__text">Incorrect messages and invalid signatures are rejected and do not propagate through the network.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- ─── 6. STATUS & ROADMAP ─── -->
+        <div id="p2p-status" class="boop-case__block">
+          <p class="section__label">Status &amp; Roadmap</p>
+          <h2 class="proj-section__title">Where the implementation stands</h2>
+          <p class="proj-text">The P2P work is mid-flight. The foundational layer — discovery, adapters, spec changes, and header sync — is in place. Putting a complete block into the database and supporting live continuous sync are the remaining critical milestones before the MVP is shippable.</p>
+
+          <div class="p2p-status-grid">
+            <div class="p2p-status-col p2p-status-col--done">
+              <p class="p2p-status-col__label">Done</p>
+              <ul class="p2p-status-list">
+                <li>Necessary P2P spec changes (7 PRs across client teams)</li>
+                <li>Data adapters between P2P and Juno formats</li>
+                <li>Discovery setup via Kademlia DHT</li>
+                <li>Block header syncing (not yet persisted to DB)</li>
+                <li>Yamux multiplexer integration validated</li>
+              </ul>
+            </div>
+            <div class="p2p-status-col p2p-status-col--left">
+              <p class="p2p-status-col__label">Remaining</p>
+              <ul class="p2p-status-list">
+                <li>Put full block data into the database</li>
+                <li>Support continuous sync (live block following)</li>
+                <li>End-to-end and integration test suite</li>
+                <li>Blacklisting for misbehaving nodes</li>
+                <li>Missing transaction fields (reported by community)</li>
+                <li>V3 transaction support</li>
+                <li>StateDiff spec modifications and migration</li>
+              </ul>
+            </div>
+          </div>
+
+          <div style="margin-top:3.5rem">
+            <h2 class="proj-section__title">The network crawler vision</h2>
+            <p class="proj-text">Beyond the MVP sync work, the longer-term goal is a public network crawler — a live map of every Starknet node globally. The data it surfaces directly informs the three goals of the explorer.</p>
+
+            <div class="p2p-crawler-grid">
+              <div class="p2p-crawler-item">
+                <div class="p2p-crawler-item__icon">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="1.4"/><circle cx="3" cy="5" r="2" stroke="currentColor" stroke-width="1.2" opacity=".6"/><circle cx="17" cy="5" r="2" stroke="currentColor" stroke-width="1.2" opacity=".6"/><circle cx="3" cy="15" r="2" stroke="currentColor" stroke-width="1.2" opacity=".6"/><circle cx="17" cy="15" r="2" stroke="currentColor" stroke-width="1.2" opacity=".6"/><line x1="5" y1="6" x2="8" y2="9" stroke="currentColor" stroke-width=".9"/><line x1="15" y1="6" x2="12" y2="9" stroke="currentColor" stroke-width=".9"/><line x1="5" y1="14" x2="8" y2="11" stroke="currentColor" stroke-width=".9"/><line x1="15" y1="14" x2="12" y2="11" stroke="currentColor" stroke-width=".9"/></svg>
+                </div>
+                <h4 class="p2p-crawler-item__title">Client type</h4>
+                <p class="p2p-crawler-item__desc">Juno, Pathfinder, Deoxys, Papyrus — distribution across all full-node implementations.</p>
+              </div>
+              <div class="p2p-crawler-item">
+                <div class="p2p-crawler-item__icon">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.4"/><path d="M2 10h16M10 2a12 12 0 0 1 3 8 12 12 0 0 1-3 8 12 12 0 0 1-3-8 12 12 0 0 1 3-8z" stroke="currentColor" stroke-width="1.2"/></svg>
+                </div>
+                <h4 class="p2p-crawler-item__title">Geographic distribution</h4>
+                <p class="p2p-crawler-item__desc">Real-time semi-obfuscated global node map. Where is Starknet running?</p>
+              </div>
+              <div class="p2p-crawler-item">
+                <div class="p2p-crawler-item__icon">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="7" width="14" height="9" rx="2" stroke="currentColor" stroke-width="1.4"/><path d="M7 7V5a3 3 0 0 1 6 0v2" stroke="currentColor" stroke-width="1.4"/></svg>
+                </div>
+                <h4 class="p2p-crawler-item__title">Client version</h4>
+                <p class="p2p-crawler-item__desc">Version breakdown across the network — essential for upgrade readiness and governance.</p>
+              </div>
+              <div class="p2p-crawler-item">
+                <div class="p2p-crawler-item__icon">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.4"/><path d="M10 6v4l3 2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+                </div>
+                <h4 class="p2p-crawler-item__title">Block propagation latency</h4>
+                <p class="p2p-crawler-item__desc">How fast does a new block reach every node? Measured with a global relay infrastructure.</p>
+              </div>
+              <div class="p2p-crawler-item">
+                <div class="p2p-crawler-item__icon">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="3" width="16" height="12" rx="2" stroke="currentColor" stroke-width="1.4"/><path d="M6 17h8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+                </div>
+                <h4 class="p2p-crawler-item__title">Underlying network</h4>
+                <p class="p2p-crawler-item__desc">AWS, GCP, Hetzner, TOR — tracks infrastructure concentration and network health.</p>
+              </div>
+              <div class="p2p-crawler-item">
+                <div class="p2p-crawler-item__icon">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 17 L10 5 L17 17" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M5.5 13h9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+                </div>
+                <h4 class="p2p-crawler-item__title">Topology coefficient</h4>
+                <p class="p2p-crawler-item__desc">A novel graph metric reflecting topological consistency — how well-connected and resilient is the network?</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- ─── 7. RETROSPECTIVE ─── -->
+        <div id="p2p-retro" class="boop-case__block">
+          <p class="section__label">Retrospective</p>
+          <h2 class="proj-section__title">What slowed us down — and what we learned</h2>
+          <p class="proj-text">The P2P MVP surfaced a common trap in protocol-level work: assuming that an early PoC represents the full shape of the problem. The initial implementation obscured how much coordination, rework, and cross-team alignment a production-grade P2P sync actually requires.</p>
+
+          <div class="p2p-retro-card">
+            <h4 class="p2p-retro-card__title">The PoC created a false baseline</h4>
+            <p class="p2p-retro-card__body">The initial PoC included informal "hacks" to the P2P spec that gave a misleading picture of the effort required to reach production quality. Timelines were set against that baseline — and were off.</p>
+          </div>
+
+          <div class="p2p-retro-card">
+            <h4 class="p2p-retro-card__title">Spec alignment across teams was the real bottleneck</h4>
+            <p class="p2p-retro-card__body">Seven open PRs for P2P spec changes created a continuous overhead of cross-team discussion, review, and rework. Even moving ahead of merged PRs meant staying in sync with live debates. At one point, handler unit tests were intentionally dropped to keep pace with spec changes — a debt that needed repayment later.</p>
+          </div>
+
+          <div class="p2p-retro-card">
+            <h4 class="p2p-retro-card__title">Design questions surface late in protocol work</h4>
+            <p class="p2p-retro-card__body">Only once initial sync started materialising did the detailed design questions appear — block batching, blacklisting, StateDiff structure, StateUpdate derivation. These aren't avoidable, but planning buffer for them is essential.</p>
+          </div>
+
+          <div class="p2p-retro-card">
+            <h4 class="p2p-retro-card__title">The StateDiff problem had no clean answer</h4>
+            <p class="p2p-retro-card__body">The P2P spec's StateDiff lacked DeployedContracts and ReplacedClasses. Multiple resolution approaches were explored — adding a StateUpdate message, adding old_root to StateDiff, or changing core DB representation. Each had significant trade-offs. The short-term resolution was Option 2 (old_root in StateDiff), deferring the larger structural changes.</p>
+          </div>
+        </div>
+
+
+      </div><!-- /boop-case__content -->
+    </div><!-- /boop-case -->
+
+
+    <nav class="proj-nav">
+      <a href="index.html#work" class="proj-nav__back">← All projects</a>
+      <div class="proj-nav__next">
+        <span class="proj-nav__label">Next project</span>
+        <a href="boop.html" class="proj-nav__title">Boop →</a>
+      </div>
+    </nav>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <span>© 2026 Carlos Mera</span>
+      <span>Designed &amp; built with care · Barcelona</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    (function () {
+      const navItems = document.querySelectorAll('#p2pNav .boop-case__nav-item');
+      if (!navItems.length) return;
+
+      const ids     = Array.from(navItems).map(i => i.dataset.s).filter(Boolean);
+      const targets = ids.map(id => document.getElementById(id)).filter(Boolean);
+      if (!targets.length) return;
+
+      function update() {
+        const trigger = window.scrollY + window.innerHeight * 0.35;
+        let active = targets[0].id;
+        for (const t of targets) {
+          if (t.getBoundingClientRect().top + window.scrollY <= trigger) active = t.id;
+        }
+        navItems.forEach(item => item.classList.toggle('active', item.dataset.s === active));
+      }
+
+      window.addEventListener('scroll', update, { passive: true });
+      update();
+    })();
+  </script>
+
+  <script>
+    (function () {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+      }, { threshold: 0.12 });
+
+      [
+        '.boop-case__block .section__label',
+        '.boop-case__block .proj-section__title',
+        '.boop-case__block > .proj-text',
+        '.boop-venta-grid > *',
+        '.boop-steps .boop-step',
+        '.p2p-node',
+        '.p2p-test-block',
+        '.p2p-status-col',
+        '.p2p-crawler-item',
+        '.p2p-retro-card',
+      ].forEach(sel => {
+        document.querySelectorAll(sel).forEach(el => {
+          if (!el.classList.contains('fade-in')) {
+            el.classList.add('fade-in');
+            observer.observe(el);
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

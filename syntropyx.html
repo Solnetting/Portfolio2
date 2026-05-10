@@ -18,12 +18,117 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="project.css">
   <link rel="stylesheet" href="syntropyx.css">
+  <style>
+    #sx-gate {
+      position: fixed; inset: 0; z-index: 9999;
+      background: #080808;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 2rem;
+    }
+    #sx-gate__logo {
+      font-size: 0.75rem; letter-spacing: .18em; text-transform: uppercase;
+      color: #555; font-weight: 500;
+    }
+    #sx-gate__title {
+      font-size: clamp(1.5rem, 4vw, 2.25rem);
+      font-weight: 700; color: #fff;
+      letter-spacing: -.02em; text-align: center;
+      line-height: 1.15;
+    }
+    #sx-gate__sub {
+      font-size: 0.9rem; color: #666; text-align: center;
+      margin-top: -.5rem;
+    }
+    #sx-gate__form {
+      display: flex; flex-direction: column;
+      align-items: center; gap: 0.75rem;
+      width: min(340px, 90vw);
+    }
+    #sx-gate__input {
+      width: 100%; padding: 0.85rem 1rem;
+      background: #111; border: 1px solid #2a2a2a;
+      border-radius: 10px; color: #fff;
+      font-size: 1.05rem; letter-spacing: .15em;
+      text-align: center; outline: none;
+      transition: border-color .2s;
+      font-family: inherit;
+    }
+    #sx-gate__input:focus { border-color: #ccff00; }
+    #sx-gate__input.sx-error { border-color: #ff4444; animation: sx-shake .3s; }
+    #sx-gate__btn {
+      width: 100%; padding: 0.85rem;
+      background: #ccff00; color: #080808;
+      border: none; border-radius: 10px;
+      font-size: 0.9rem; font-weight: 700;
+      letter-spacing: .04em; cursor: pointer;
+      font-family: inherit;
+      transition: opacity .15s;
+    }
+    #sx-gate__btn:hover { opacity: .88; }
+    #sx-gate__err {
+      font-size: 0.8rem; color: #ff4444;
+      min-height: 1em; text-align: center;
+    }
+    #sx-gate__cancel {
+      font-size: 0.8rem; color: #555;
+      text-decoration: none; text-align: center;
+      transition: color .15s;
+    }
+    #sx-gate__cancel:hover { color: #999; }
+    @keyframes sx-shake {
+      0%,100%{transform:translateX(0)}
+      25%{transform:translateX(-6px)}
+      75%{transform:translateX(6px)}
+    }
+  </style>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M5BDFLX8"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
+
+  <!-- ── Password gate ── -->
+  <div id="sx-gate">
+    <span id="sx-gate__logo">Carlos Mera — Portfolio</span>
+    <h2 id="sx-gate__title">SyntropyX<br>Case Study</h2>
+    <p id="sx-gate__sub">This project is password-protected.</p>
+    <div id="sx-gate__form">
+      <input id="sx-gate__input" type="password" placeholder="Enter password" autocomplete="off">
+      <button id="sx-gate__btn">Unlock →</button>
+      <span id="sx-gate__err"></span>
+      <a href="index.html#work" id="sx-gate__cancel">← Back to portfolio</a>
+    </div>
+  </div>
+  <script>
+  (function () {
+    var gate  = document.getElementById('sx-gate');
+    var input = document.getElementById('sx-gate__input');
+    var btn   = document.getElementById('sx-gate__btn');
+    var err   = document.getElementById('sx-gate__err');
+
+    function unlock() {
+      if (input.value === '1234') {
+        gate.style.transition = 'opacity .4s';
+        gate.style.opacity = '0';
+        setTimeout(function () { gate.remove(); }, 400);
+      } else {
+        err.textContent = 'Incorrect password.';
+        input.classList.add('sx-error');
+        input.value = '';
+        setTimeout(function () { input.classList.remove('sx-error'); }, 400);
+      }
+    }
+
+    btn.addEventListener('click', unlock);
+    input.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') unlock();
+      err.textContent = '';
+    });
+
+  })();
+  </script>
 
   <header class="nav" id="nav">
     <div class="nav__progress"><div class="nav__progress-fill" id="navProgress"></div></div>
