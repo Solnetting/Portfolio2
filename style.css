@@ -1338,10 +1338,42 @@ a   { color: inherit; text-decoration: none; }
 @media (max-width: 768px) {
   .process__layout { grid-template-columns: 1fr; gap: 2rem; }
   .exp__layout { grid-template-columns: 1fr; gap: 2rem; }
+
+  /* pcard — stack vertically */
   .pcard { flex-direction: column; min-height: auto; }
   .pcard__left { flex: none; padding: 2rem 1.75rem; }
   .pcard__right { aspect-ratio: 16/9; }
   .pcard__num, .fcard__num { display: none; }
+
+  /* fcard — reset absolute layout, stack vertically */
+  .fcard {
+    flex-direction: column;
+    aspect-ratio: unset;
+    min-height: auto;
+  }
+  .fcard__content {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: auto;
+    padding: 1.75rem;
+    gap: 16px;
+    z-index: 2;
+  }
+  .fcard__title { font-size: 2rem; }
+  .fcard__logo  { width: 120px; }
+  .fcard__phones-img {
+    position: relative;
+    right: auto;
+    top: auto;
+    transform: none;
+    height: 200px;
+    width: 100%;
+    object-fit: contain;
+    object-position: center right;
+    order: -1;
+  }
+
   .stats-bar { padding: 2rem var(--pad); margin-top: 1.5rem; }
   .stats-bar__inner { gap: 1.75rem 2.5rem; flex-wrap: wrap; justify-content: flex-start; }
   .stats-bar__value { font-size: clamp(1.75rem, 7vw, 2.5rem); }
