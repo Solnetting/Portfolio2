@@ -85,14 +85,30 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     }
     #sx-gate__cancel:hover { color: #999; }
     #sx-gate__contact {
-      font-size: 0.8rem; color: #444; text-align: center;
-      margin-top: 1rem;
+      font-size: 0.8rem; color: #555; text-align: center;
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #1e1e1e;
+      width: min(340px, 90vw);
     }
     #sx-gate__contact a {
-      color: #666; text-decoration: none;
-      transition: color .15s;
+      display: inline-block;
+      margin-top: 0.6rem;
+      padding: 0.65rem 1.5rem;
+      background: transparent;
+      border: 1px solid #ccff00;
+      border-radius: 999px;
+      color: #ccff00;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: .04em;
+      text-decoration: none;
+      transition: background .2s, color .2s;
     }
-    #sx-gate__contact a:hover { color: #ccff00; }
+    #sx-gate__contact a:hover {
+      background: #ccff00;
+      color: #080808;
+    }
     @keyframes sx-shake {
       0%,100%{transform:translateX(0)}
       25%{transform:translateX(-6px)}
@@ -117,7 +133,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <span id="sx-gate__err"></span>
       <a href="index.html#work" id="sx-gate__cancel">← Back to portfolio</a>
     </div>
-    <p id="sx-gate__contact">Don't have the password? <a href="mailto:carlosmera.design@gmail.com">Request access →</a></p>
+    <div id="sx-gate__contact">
+      <span>Don't have the password?</span><br>
+      <a href="mailto:carlosmera.design@gmail.com">Request access →</a>
+    </div>
   </div>
   <script>
   (function () {
