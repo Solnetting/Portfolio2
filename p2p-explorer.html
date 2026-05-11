@@ -273,10 +273,81 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       line-height: 1.6;
     }
 
+    /* ── Issue list (The Problem section) ── */
+    .p2p-issue-list {
+      margin-top: 2.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .p2p-issue {
+      display: grid;
+      grid-template-columns: 2.5rem 1fr;
+      gap: 2rem;
+      padding: 1.75rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .p2p-issue__num {
+      font-size: .6875rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      color: var(--accent);
+      padding-top: .25rem;
+    }
+    .p2p-issue__title {
+      font-size: 1.0625rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: .4rem;
+    }
+    .p2p-issue__desc {
+      font-size: .9rem;
+      color: var(--text-sec);
+      line-height: 1.6;
+    }
+
+    /* ── Pillar list (Design Vision section) ── */
+    .p2p-pillar-list {
+      margin-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+    .p2p-pillar {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 2.5rem;
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+      align-items: start;
+    }
+    .p2p-pillar__label {
+      font-size: .6875rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: .4rem;
+    }
+    .p2p-pillar__tag {
+      font-size: .75rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+    .p2p-pillar__title {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: .5rem;
+    }
+    .p2p-pillar__body {
+      font-size: .9375rem;
+      color: var(--text-sec);
+      line-height: 1.65;
+    }
+
     @media (max-width: 768px) {
       .p2p-node-grid,
       .p2p-status-grid { grid-template-columns: 1fr; }
       .p2p-crawler-grid { grid-template-columns: 1fr 1fr; }
+      .p2p-issue { grid-template-columns: 2rem 1fr; gap: 1rem; }
+      .p2p-pillar { grid-template-columns: 1fr; gap: .75rem; }
     }
     @media (max-width: 480px) {
       .p2p-crawler-grid { grid-template-columns: 1fr; }
@@ -378,22 +449,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <p class="proj-text">P2P networks are often black boxes. For the Starknet community and its stakeholders, there was no way to tell if the network was actually healthy, who was running nodes, or whether decentralisation was real — or just a claim.</p>
           <p class="proj-text">The user need was clear: stakeholders needed to see the <em>reality</em> of the network to make confident decisions about protocol upgrades. The problem was that the underlying data — IPs, latency, node types, client versions — is technical, dry, and impossible to parse in raw form.</p>
 
-          <div style="margin-top:2.5rem">
-            <div class="boop-venta-grid">
-              <div class="boop-venta">
-                <span class="boop-venta__num">01</span>
-                <h4 class="boop-venta__title">No visibility into health</h4>
-                <p class="boop-venta__desc">Was the network propagating blocks fast enough? Were nodes syncing correctly? There was no dashboard to answer these questions.</p>
+          <div class="p2p-issue-list">
+            <div class="p2p-issue">
+              <span class="p2p-issue__num">01</span>
+              <div>
+                <h4 class="p2p-issue__title">No visibility into health</h4>
+                <p class="p2p-issue__desc">Was the network propagating blocks fast enough? Were nodes syncing correctly? There was no dashboard to answer these questions.</p>
               </div>
-              <div class="boop-venta">
-                <span class="boop-venta__num">02</span>
-                <h4 class="boop-venta__title">Upgrade decisions were blind</h4>
-                <p class="boop-venta__desc">Hard fork readiness depends on knowing which client versions are live on the network. Without visibility, upgrade coordination was guesswork.</p>
+            </div>
+            <div class="p2p-issue">
+              <span class="p2p-issue__num">02</span>
+              <div>
+                <h4 class="p2p-issue__title">Upgrade decisions were blind</h4>
+                <p class="p2p-issue__desc">Hard fork readiness depends on knowing which client versions are live on the network. Without visibility, upgrade coordination was guesswork.</p>
               </div>
-              <div class="boop-venta">
-                <span class="boop-venta__num">03</span>
-                <h4 class="boop-venta__title">Decentralisation was unproven</h4>
-                <p class="boop-venta__desc">AWS-hosted nodes look identical to home-hosted ones in raw data. Proving true decentralisation required a new kind of visualisation.</p>
+            </div>
+            <div class="p2p-issue">
+              <span class="p2p-issue__num">03</span>
+              <div>
+                <h4 class="p2p-issue__title">Decentralisation was unproven</h4>
+                <p class="p2p-issue__desc">AWS-hosted nodes look identical to home-hosted ones in raw data. Proving true decentralisation required a new kind of visualisation.</p>
               </div>
             </div>
           </div>
@@ -406,22 +481,35 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <h2 class="proj-section__title">Three pillars, one dashboard</h2>
           <p class="proj-text">The Explorer was designed around three strategic objectives drawn from the project roadmap. Each pillar shaped what data to surface, how to visualise it, and who the primary audience was.</p>
 
-          <div style="margin-top:2rem">
-            <div class="p2p-node-grid">
-              <div class="p2p-node">
-                <p class="p2p-node__label">Pillar 01</p>
-                <h3 class="p2p-node__title">Legitimacy &amp; Realness</h3>
-                <p class="p2p-node__body">A 3D global representation of nodes makes the network <em>feel real</em>. Geographic distribution — AWS data centers vs. home-hosted — turns an abstract claim about decentralisation into a map you can see.</p>
+          <div class="p2p-pillar-list">
+            <div class="p2p-pillar">
+              <div>
+                <p class="p2p-pillar__label">Pillar 01</p>
+                <p class="p2p-pillar__tag">Legitimacy &amp;<br>Realness</p>
               </div>
-              <div class="p2p-node">
-                <p class="p2p-node__label">Pillar 02</p>
-                <h3 class="p2p-node__title">Governance Support</h3>
-                <p class="p2p-node__body">High-level visualisations of Client Versions (Juno, Pathfinder, Deoxys, Papyrus) let the community know at a glance whether the network is ready for a hard fork or major upgrade.</p>
+              <div>
+                <h3 class="p2p-pillar__title">Make the network feel real</h3>
+                <p class="p2p-pillar__body">A 3D global representation of nodes makes the network tangible. Geographic distribution — AWS data centres vs. home-hosted — turns an abstract claim about decentralisation into a map you can actually see.</p>
               </div>
-              <div class="p2p-node">
-                <p class="p2p-node__label">Pillar 03</p>
-                <h3 class="p2p-node__title">Health Monitoring</h3>
-                <p class="p2p-node__body">Intuitive "Health Gauges" for complex metrics: Block Propagation Latency, Reorg responsiveness, and sync status — translated from raw numbers into meaningful indicators.</p>
+            </div>
+            <div class="p2p-pillar">
+              <div>
+                <p class="p2p-pillar__label">Pillar 02</p>
+                <p class="p2p-pillar__tag">Governance<br>Support</p>
+              </div>
+              <div>
+                <h3 class="p2p-pillar__title">Inform the upgrade decision</h3>
+                <p class="p2p-pillar__body">High-level visualisations of Client Versions (Juno, Pathfinder, Deoxys, Papyrus) let the community know at a glance whether the network is ready for a hard fork or major protocol upgrade.</p>
+              </div>
+            </div>
+            <div class="p2p-pillar">
+              <div>
+                <p class="p2p-pillar__label">Pillar 03</p>
+                <p class="p2p-pillar__tag">Health<br>Monitoring</p>
+              </div>
+              <div>
+                <h3 class="p2p-pillar__title">Translate metrics into meaning</h3>
+                <p class="p2p-pillar__body">Intuitive "Health Gauges" for Block Propagation Latency, Reorg responsiveness, and sync status — translating raw numbers into indicators anyone can read, not just protocol engineers.</p>
               </div>
             </div>
           </div>
