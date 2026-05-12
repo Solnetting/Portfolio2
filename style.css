@@ -1150,6 +1150,12 @@ a   { color: inherit; text-decoration: none; }
   line-height: 1.65;
 }
 
+.exp__cv-cta {
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+
 /* ── About ── */
 .section.about {
   max-width: none;
