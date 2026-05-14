@@ -113,21 +113,44 @@ expTabs.forEach(tab => {
   const cards = document.querySelectorAll('.projects > a');
   if (!filterBtns.length) return;
 
+  const active = new Set();
+
+  function applyFilters() {
+    cards.forEach(card => {
+      if (active.size === 0) {
+        card.style.display = '';
+      } else {
+        const tags = (card.dataset.tags || '').split(',');
+        card.style.display = tags.some(t => active.has(t)) ? 'flex' : 'none';
+      }
+    });
+  }
+
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('work__filter--active'));
-      btn.classList.add('work__filter--active');
-
       const filter = btn.dataset.filter;
 
-      cards.forEach(card => {
-        if (filter === 'all') {
-          card.style.display = '';
+      if (filter === 'all') {
+        active.clear();
+        filterBtns.forEach(b => b.classList.remove('work__filter--active'));
+        btn.classList.add('work__filter--active');
+      } else {
+        document.querySelector('.work__filter[data-filter="all"]').classList.remove('work__filter--active');
+
+        if (active.has(filter)) {
+          active.delete(filter);
+          btn.classList.remove('work__filter--active');
         } else {
-          const tags = (card.dataset.tags || '').split(',');
-          card.style.display = tags.includes(filter) ? 'flex' : 'none';
+          active.add(filter);
+          btn.classList.add('work__filter--active');
         }
-      });
+
+        if (active.size === 0) {
+          document.querySelector('.work__filter[data-filter="all"]').classList.add('work__filter--active');
+        }
+      }
+
+      applyFilters();
     });
   });
 })();
