@@ -107,6 +107,31 @@ expTabs.forEach(tab => {
   update();
 })();
 
+// Project tag filters
+(function () {
+  const filterBtns = document.querySelectorAll('.work__filter');
+  const cards = document.querySelectorAll('.projects > a');
+  if (!filterBtns.length) return;
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('work__filter--active'));
+      btn.classList.add('work__filter--active');
+
+      const filter = btn.dataset.filter;
+
+      cards.forEach(card => {
+        if (filter === 'all') {
+          card.style.display = '';
+        } else {
+          const tags = (card.dataset.tags || '').split(',');
+          card.style.display = tags.includes(filter) ? 'flex' : 'none';
+        }
+      });
+    });
+  });
+})();
+
 // Load more / Show less projects
 (function () {
   const btn = document.getElementById('loadMore');
