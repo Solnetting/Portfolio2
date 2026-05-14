@@ -140,10 +140,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
        1. HERO — proj-hero overrides for Quadrato
     ───────────────────────────────────── */
     .q-proj-hero { padding-top: 4rem; }
+    .q-proj-hero .proj-back {
+      color: rgba(255,255,255,.75);
+    }
+    .q-proj-hero .proj-back:hover {
+      color: #fff;
+    }
     .q-hero-title {
       font-family: 'Chakra Petch', sans-serif;
       letter-spacing: .04em;
       text-transform: uppercase;
+      font-size: clamp(2rem, 4.5vw, 4rem);
     }
     .q-hero-cover {
       aspect-ratio: 16 / 7;
