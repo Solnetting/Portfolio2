@@ -435,6 +435,40 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       color: rgba(255,255,255,.55);
     }
 
+    /* ── Lo-fi section ── */
+    .p2p-lofi-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+      margin-top: 2rem;
+    }
+    .p2p-lofi-frame {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    .p2p-lofi-frame__label {
+      font-size: .6875rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      padding: 1rem 1.25rem .75rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .p2p-lofi-frame__img {
+      width: 100%;
+      display: block;
+      border-bottom: 1px solid var(--border);
+    }
+    .p2p-lofi-frame__caption {
+      font-size: .875rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      padding: 1rem 1.25rem 1.25rem;
+    }
+
     /* ── Benchmark section ── */
     .p2p-bench-grid {
       display: grid;
@@ -578,6 +612,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p class="boop-case__nav-title">Case study</p>
         <a href="#p2p-problem"    class="boop-case__nav-item active" data-s="p2p-problem">The Problem</a>
         <a href="#p2p-pillars"    class="boop-case__nav-item" data-s="p2p-pillars">Design Vision</a>
+        <a href="#p2p-lofi"       class="boop-case__nav-item" data-s="p2p-lofi">Lo-fi</a>
         <a href="#p2p-solutions"  class="boop-case__nav-item" data-s="p2p-solutions">Key Solutions</a>
         <a href="#p2p-benchmark"  class="boop-case__nav-item" data-s="p2p-benchmark">Benchmark</a>
         <a href="#p2p-arch"       class="boop-case__nav-item" data-s="p2p-arch">Architecture</a>
@@ -659,6 +694,36 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <p class="p2p-pillar__body">Intuitive "Health Gauges" for Block Propagation Latency, Reorg responsiveness, and sync status — translating raw numbers into indicators anyone can read, not just protocol engineers.</p>
               </div>
             </div>
+          </div>
+        </div>
+
+
+        <!-- ─── 3. LO-FI EXPLORATION ─── -->
+        <div id="p2p-lofi" class="boop-case__block">
+          <p class="section__label">Lo-fi</p>
+          <h2 class="proj-section__title">Wireframes — three iterations</h2>
+          <p class="proj-text">Before committing to visual direction, I explored the core layout in greyscale wireframes. The three rounds tested how to balance the map, the stats panel, and the filter bar — progressively moving from a flat rectangular map to a globe, and expanding the sidebar data model with each pass.</p>
+
+          <div class="p2p-lofi-stack">
+
+            <div class="p2p-lofi-frame">
+              <div class="p2p-lofi-frame__label">V1 — Dashboard layout</div>
+              <img src="lofi-v1.png" alt="Lo-fi wireframe V1 — flat map with stats panel and filter bar" class="p2p-lofi-frame__img">
+              <p class="p2p-lofi-frame__caption">Flat rectangular map with a structured stats panel (Blocks, TPS, Client type, Sync status) and a filter bar anchored to the bottom. Established the two-column split and the core data categories.</p>
+            </div>
+
+            <div class="p2p-lofi-frame">
+              <div class="p2p-lofi-frame__label">V2 — Globe + sidebar categories</div>
+              <img src="lofi-v2.png" alt="Lo-fi wireframe V2 — globe with sidebar listing data categories" class="p2p-lofi-frame__img">
+              <p class="p2p-lofi-frame__caption">Switched the map to a globe with node clusters and peer-connection lines. The sidebar became a flat index of data categories (Nodes, Sync status, OS, Version, Network, History) — testing what information architecture the panel needed to hold.</p>
+            </div>
+
+            <div class="p2p-lofi-frame">
+              <div class="p2p-lofi-frame__label">V3 — Expanded data panel</div>
+              <img src="lofi-v3.png" alt="Lo-fi wireframe V3 — globe with fully expanded sidebar including node history chart" class="p2p-lofi-frame__img">
+              <p class="p2p-lofi-frame__caption">Globe retained, sidebar fully expanded. Added the Nodes over time chart with a 7D / 30D / All toggle, inline breakdowns for OS and Client type, and new modules for Block Latency and TPS — establishing the final scope of the dashboard.</p>
+            </div>
+
           </div>
         </div>
 
@@ -1085,6 +1150,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         '.p2p-decision',
         '.p2p-crawler-item',
         '.p2p-retro-card',
+        '.p2p-lofi-frame',
         '.p2p-bench-card',
       ].forEach(sel => {
         document.querySelectorAll(sel).forEach(el => {
