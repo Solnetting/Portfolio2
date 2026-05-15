@@ -579,8 +579,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <a href="#p2p-problem"    class="boop-case__nav-item active" data-s="p2p-problem">The Problem</a>
         <a href="#p2p-pillars"    class="boop-case__nav-item" data-s="p2p-pillars">Design Vision</a>
         <a href="#p2p-solutions"  class="boop-case__nav-item" data-s="p2p-solutions">Key Solutions</a>
-        <a href="#p2p-arch"       class="boop-case__nav-item" data-s="p2p-arch">Architecture</a>
         <a href="#p2p-benchmark"  class="boop-case__nav-item" data-s="p2p-benchmark">Benchmark</a>
+        <a href="#p2p-arch"       class="boop-case__nav-item" data-s="p2p-arch">Architecture</a>
         <a href="#p2p-ds"         class="boop-case__nav-item" data-s="p2p-ds">Design System</a>
         <a href="#p2p-impact"     class="boop-case__nav-item" data-s="p2p-impact">Impact &amp;<br>Reflection</a>
       </nav>
@@ -727,62 +727,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
 
 
-        <!-- ─── 4. ARCHITECTURE ─── -->
-        <div id="p2p-arch" class="boop-case__block">
-          <p class="section__label">Architecture</p>
-          <h2 class="proj-section__title">Two node types, one network</h2>
-          <p class="proj-text">The Starknet P2P layer (built on libp2p) uses two distinct node roles. Every metric in the Explorer maps back to one of them — understanding this distinction was foundational to every design decision.</p>
-
-          <div class="p2p-node-grid">
-            <div class="p2p-node">
-              <p class="p2p-node__label">Type 01</p>
-              <h3 class="p2p-node__title">Boot Nodes</h3>
-              <p class="p2p-node__body">Entry points that sync from the feeder gateway and gossip new blocks to all peers. Every normal node needs at least one boot node to join the network.</p>
-            </div>
-            <div class="p2p-node">
-              <p class="p2p-node__label">Type 02</p>
-              <h3 class="p2p-node__title">Normal Nodes</h3>
-              <p class="p2p-node__body">Full nodes that sync exclusively via P2P. They use Kademlia DHT for peer discovery, pull block data from peers, and contribute to the network once synced.</p>
-            </div>
-          </div>
-
-          <div style="margin-top:2.5rem">
-            <h2 class="proj-section__title">How a block reaches every node</h2>
-            <div class="boop-steps">
-              <div class="boop-step">
-                <span class="boop-step__num">01</span>
-                <div>
-                  <h4 class="boop-step__title">Boot node picks up new block</h4>
-                  <p class="boop-step__body">Sequencer publishes via feeder gateway → boot nodes pick it up immediately.</p>
-                </div>
-              </div>
-              <div class="boop-step">
-                <span class="boop-step__num">02</span>
-                <div>
-                  <h4 class="boop-step__title">Block gossiped across the network</h4>
-                  <p class="boop-step__body">Boot nodes gossip to all peers. Without consensus, gossip is the sole propagation path.</p>
-                </div>
-              </div>
-              <div class="boop-step">
-                <span class="boop-step__num">03</span>
-                <div>
-                  <h4 class="boop-step__title">Normal nodes discover and sync</h4>
-                  <p class="boop-step__body">Via Kademlia DHT, nodes find peers, negotiate a target height, and pull block data.</p>
-                </div>
-              </div>
-              <div class="boop-step">
-                <span class="boop-step__num">04</span>
-                <div>
-                  <h4 class="boop-step__title">Node reaches tip and contributes</h4>
-                  <p class="boop-step__body">Once at chain tip, it listens for gossip and serves data to its own peers.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-        <!-- ─── 5. BENCHMARK ─── -->
+        <!-- ─── 4. BENCHMARK ─── -->
         <div id="p2p-benchmark" class="boop-case__block">
           <p class="section__label">Benchmark</p>
           <h2 class="proj-section__title">Prior art in P2P network visualisation</h2>
@@ -860,6 +805,61 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               </div>
             </div>
 
+          </div>
+        </div>
+
+
+        <!-- ─── 5. ARCHITECTURE ─── -->
+        <div id="p2p-arch" class="boop-case__block">
+          <p class="section__label">Architecture</p>
+          <h2 class="proj-section__title">Two node types, one network</h2>
+          <p class="proj-text">The Starknet P2P layer (built on libp2p) uses two distinct node roles. Every metric in the Explorer maps back to one of them — understanding this distinction was foundational to every design decision.</p>
+
+          <div class="p2p-node-grid">
+            <div class="p2p-node">
+              <p class="p2p-node__label">Type 01</p>
+              <h3 class="p2p-node__title">Boot Nodes</h3>
+              <p class="p2p-node__body">Entry points that sync from the feeder gateway and gossip new blocks to all peers. Every normal node needs at least one boot node to join the network.</p>
+            </div>
+            <div class="p2p-node">
+              <p class="p2p-node__label">Type 02</p>
+              <h3 class="p2p-node__title">Normal Nodes</h3>
+              <p class="p2p-node__body">Full nodes that sync exclusively via P2P. They use Kademlia DHT for peer discovery, pull block data from peers, and contribute to the network once synced.</p>
+            </div>
+          </div>
+
+          <div style="margin-top:2.5rem">
+            <h2 class="proj-section__title">How a block reaches every node</h2>
+            <div class="boop-steps">
+              <div class="boop-step">
+                <span class="boop-step__num">01</span>
+                <div>
+                  <h4 class="boop-step__title">Boot node picks up new block</h4>
+                  <p class="boop-step__body">Sequencer publishes via feeder gateway → boot nodes pick it up immediately.</p>
+                </div>
+              </div>
+              <div class="boop-step">
+                <span class="boop-step__num">02</span>
+                <div>
+                  <h4 class="boop-step__title">Block gossiped across the network</h4>
+                  <p class="boop-step__body">Boot nodes gossip to all peers. Without consensus, gossip is the sole propagation path.</p>
+                </div>
+              </div>
+              <div class="boop-step">
+                <span class="boop-step__num">03</span>
+                <div>
+                  <h4 class="boop-step__title">Normal nodes discover and sync</h4>
+                  <p class="boop-step__body">Via Kademlia DHT, nodes find peers, negotiate a target height, and pull block data.</p>
+                </div>
+              </div>
+              <div class="boop-step">
+                <span class="boop-step__num">04</span>
+                <div>
+                  <h4 class="boop-step__title">Node reaches tip and contributes</h4>
+                  <p class="boop-step__body">Once at chain tip, it listens for gossip and serves data to its own peers.</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
