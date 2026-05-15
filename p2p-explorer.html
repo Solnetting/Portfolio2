@@ -478,23 +478,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       border-bottom: 1px solid var(--border);
     }
     .p2p-hifi-scroll {
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
       gap: 1rem;
-      overflow-x: auto;
-      padding-bottom: 1rem;
-      scrollbar-width: thin;
-      scrollbar-color: var(--border) transparent;
-      -webkit-overflow-scrolling: touch;
     }
-    .p2p-hifi-scroll::-webkit-scrollbar { height: 4px; }
-    .p2p-hifi-scroll::-webkit-scrollbar-track { background: transparent; }
-    .p2p-hifi-scroll::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 999px; }
     .p2p-hifi-phone {
-      flex: 0 0 220px;
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
     }
     .p2p-hifi-phone__label {
       font-size: .625rem;
@@ -514,7 +508,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     }
     @media (max-width: 768px) {
       .p2p-hifi-grid { grid-template-columns: 1fr; }
-      .p2p-hifi-phone { flex: 0 0 160px; }
+      .p2p-hifi-scroll { grid-template-columns: repeat(2, 1fr); }
     }
 
     /* ── Live metrics stat row ── */
