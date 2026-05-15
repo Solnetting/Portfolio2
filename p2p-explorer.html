@@ -435,6 +435,41 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       color: rgba(255,255,255,.55);
     }
 
+    /* ── Hi-fi section ── */
+    .p2p-hifi-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+    .p2p-hifi-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+    .p2p-hifi-frame {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    .p2p-hifi-frame__label {
+      font-size: .6875rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      padding: .875rem 1.25rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .p2p-hifi-frame__img {
+      width: 100%;
+      display: block;
+    }
+    @media (max-width: 768px) {
+      .p2p-hifi-grid { grid-template-columns: 1fr; }
+    }
+
     /* ── Live metrics stat row ── */
     .p2p-stat-row {
       display: grid;
@@ -653,6 +688,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <a href="#p2p-solutions"  class="boop-case__nav-item" data-s="p2p-solutions">Key Solutions</a>
         <a href="#p2p-benchmark"  class="boop-case__nav-item" data-s="p2p-benchmark">Benchmark</a>
         <a href="#p2p-lofi"       class="boop-case__nav-item" data-s="p2p-lofi">Lo-fi</a>
+        <a href="#p2p-hifi"       class="boop-case__nav-item" data-s="p2p-hifi">Hi-fi</a>
         <a href="#p2p-arch"       class="boop-case__nav-item" data-s="p2p-arch">Architecture</a>
         <a href="#p2p-ds"         class="boop-case__nav-item" data-s="p2p-ds">Design System</a>
         <a href="#p2p-impact"     class="boop-case__nav-item" data-s="p2p-impact">Results</a>
@@ -906,6 +942,52 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <div class="p2p-lofi-frame__label">V3 — Expanded data panel</div>
               <img src="lofi-v3.png" alt="Lo-fi wireframe V3 — globe with fully expanded sidebar including node history chart" class="p2p-lofi-frame__img">
               <p class="p2p-lofi-frame__caption">Globe retained, sidebar fully expanded. Added the Nodes over time chart with a 7D / 30D / All toggle, inline breakdowns for OS and Client type, and new modules for Block Latency and TPS — establishing the final scope of the dashboard.</p>
+            </div>
+
+          </div>
+        </div>
+
+
+        <!-- ─── 5. HI-FI ─── -->
+        <div id="p2p-hifi" class="boop-case__block">
+          <p class="section__label">Hi-fi</p>
+          <h2 class="proj-section__title">Desktop — final designs</h2>
+          <p class="proj-text">The high-fidelity screens applied the Aztec design system to the validated wireframe structure. The result is a fully dark-mode dashboard with a 3D/2D globe toggle, a live stats sidebar, and three explorer views: Node list, Distribution by region, and Node history.</p>
+
+          <div class="p2p-hifi-stack">
+
+            <div class="p2p-hifi-frame p2p-hifi-frame--full">
+              <div class="p2p-hifi-frame__label">3D Globe — main view</div>
+              <img src="hifi-3d-map.png" alt="Hi-fi 3D globe map with node clusters and stats panel" class="p2p-hifi-frame__img">
+            </div>
+
+            <div class="p2p-hifi-frame p2p-hifi-frame--full">
+              <div class="p2p-hifi-frame__label">2D Map — alternate view</div>
+              <img src="hifi-2d-map.png" alt="Hi-fi 2D world map with node clusters and stats panel" class="p2p-hifi-frame__img">
+            </div>
+
+            <div class="p2p-hifi-grid">
+
+              <div class="p2p-hifi-frame">
+                <div class="p2p-hifi-frame__label">Node list — with detail panel</div>
+                <img src="hifi-node-list.png" alt="Hi-fi node list with expanded node detail panel" class="p2p-hifi-frame__img">
+              </div>
+
+              <div class="p2p-hifi-frame">
+                <div class="p2p-hifi-frame__label">Node list — default state</div>
+                <img src="hifi-node-list-detail.png" alt="Hi-fi node list default view" class="p2p-hifi-frame__img">
+              </div>
+
+              <div class="p2p-hifi-frame">
+                <div class="p2p-hifi-frame__label">Distribution by region</div>
+                <img src="hifi-distribution.png" alt="Hi-fi distribution by region with pie chart" class="p2p-hifi-frame__img">
+              </div>
+
+              <div class="p2p-hifi-frame">
+                <div class="p2p-hifi-frame__label">Node history</div>
+                <img src="hifi-node-history.png" alt="Hi-fi node history chart" class="p2p-hifi-frame__img">
+              </div>
+
             </div>
 
           </div>
@@ -1212,6 +1294,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         '.p2p-decision',
         '.p2p-crawler-item',
         '.p2p-retro-card',
+        '.p2p-hifi-frame',
         '.p2p-stat',
         '.p2p-lofi-frame',
         '.p2p-bench-card',
