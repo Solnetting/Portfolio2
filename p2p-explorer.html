@@ -435,12 +435,71 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       color: rgba(255,255,255,.55);
     }
 
+    /* ── Benchmark section ── */
+    .p2p-bench-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+    .p2p-bench-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .p2p-bench-card__img {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+      border-bottom: 1px solid var(--border);
+    }
+    .p2p-bench-card__body {
+      padding: 1.125rem 1.25rem 1.25rem;
+      flex: 1;
+    }
+    .p2p-bench-card__name {
+      font-size: .9375rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: .2rem;
+    }
+    .p2p-bench-card__url {
+      font-size: .75rem;
+      color: var(--accent);
+      letter-spacing: .02em;
+      margin-bottom: .6rem;
+      display: block;
+    }
+    .p2p-bench-card__desc {
+      font-size: .8375rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+    .p2p-bench-card__tag {
+      display: inline-block;
+      margin-top: .75rem;
+      font-size: .625rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid var(--border-strong);
+      border-radius: 999px;
+      padding: .2rem .55rem;
+    }
+
     @media (max-width: 768px) {
       .p2p-node-grid,
       .p2p-status-grid { grid-template-columns: 1fr; }
       .p2p-crawler-grid { grid-template-columns: 1fr 1fr; }
       .p2p-issue { grid-template-columns: 2rem 1fr; gap: 1rem; }
       .p2p-pillar { grid-template-columns: 1fr; gap: .75rem; }
+      .p2p-bench-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 480px) {
       .p2p-crawler-grid { grid-template-columns: 1fr; }
@@ -521,6 +580,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <a href="#p2p-pillars"    class="boop-case__nav-item" data-s="p2p-pillars">Design Vision</a>
         <a href="#p2p-solutions"  class="boop-case__nav-item" data-s="p2p-solutions">Key Solutions</a>
         <a href="#p2p-arch"       class="boop-case__nav-item" data-s="p2p-arch">Architecture</a>
+        <a href="#p2p-benchmark"  class="boop-case__nav-item" data-s="p2p-benchmark">Benchmark</a>
         <a href="#p2p-ds"         class="boop-case__nav-item" data-s="p2p-ds">Design System</a>
         <a href="#p2p-impact"     class="boop-case__nav-item" data-s="p2p-impact">Impact &amp;<br>Reflection</a>
       </nav>
@@ -718,6 +778,88 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+
+
+        <!-- ─── 5. BENCHMARK ─── -->
+        <div id="p2p-benchmark" class="boop-case__block">
+          <p class="section__label">Benchmark</p>
+          <h2 class="proj-section__title">Prior art in P2P network visualisation</h2>
+          <p class="proj-text">Before designing the Explorer, I mapped the existing landscape of P2P and blockchain network dashboards. Each reference shaped a specific design decision — from the globe interaction model to the level of data transparency.</p>
+
+          <div class="p2p-bench-grid">
+
+            <div class="p2p-bench-card">
+              <img class="p2p-bench-card__img" src="benchmark-bitnodes.png" alt="Bitnodes.io screenshot">
+              <div class="p2p-bench-card__body">
+                <p class="p2p-bench-card__name">Bitnodes.io</p>
+                <span class="p2p-bench-card__url">bitnodes.io</span>
+                <p class="p2p-bench-card__desc">Live map of reachable Bitcoin nodes. Sets the standard for geographic node distribution — cyan dots on a dark globe with client version breakdowns in the header. Informed the semi-obfuscated map approach.</p>
+                <span class="p2p-bench-card__tag">Node Map</span>
+              </div>
+            </div>
+
+            <div class="p2p-bench-card">
+              <img class="p2p-bench-card__img" src="benchmark-ethernodes.png" alt="Ethernodes.org screenshot">
+              <div class="p2p-bench-card__body">
+                <p class="p2p-bench-card__name">Ethernodes.org</p>
+                <span class="p2p-bench-card__url">ethernodes.org</span>
+                <p class="p2p-bench-card__desc">Ethereum mainnet statistics by country, client type, and OS. The country-by-country breakdown and client diversity tabs directly shaped how the Explorer surfaces upgrade readiness data.</p>
+                <span class="p2p-bench-card__tag">Client Diversity</span>
+              </div>
+            </div>
+
+            <div class="p2p-bench-card">
+              <img class="p2p-bench-card__img" src="benchmark-panascais.png" alt="Panascais.net screenshot">
+              <div class="p2p-bench-card__body">
+                <p class="p2p-bench-card__name">Panascais.net</p>
+                <span class="p2p-bench-card__url">panascais.net</span>
+                <p class="p2p-bench-card__desc">Geographic zone visualisation for sampling plans across Europe. Strong reference for how tiered zones (Core / Standard / Extended) can be rendered on a map without overwhelming the user with raw coordinates.</p>
+                <span class="p2p-bench-card__tag">Zone Mapping</span>
+              </div>
+            </div>
+
+            <div class="p2p-bench-card">
+              <img class="p2p-bench-card__img" src="benchmark-solanabeach.png" alt="Solana Beach screenshot">
+              <div class="p2p-bench-card__body">
+                <p class="p2p-bench-card__name">Solana Beach</p>
+                <span class="p2p-bench-card__url">solanabeach.io</span>
+                <p class="p2p-bench-card__desc">Solana blockchain explorer combining a live validator globe with real-time TPS and epoch data. Key reference for integrating on-chain metrics (slot height, epoch progress) alongside a geographic node map in a single dashboard.</p>
+                <span class="p2p-bench-card__tag">Explorer · Validators</span>
+              </div>
+            </div>
+
+            <div class="p2p-bench-card">
+              <img class="p2p-bench-card__img" src="benchmark-canopy.png" alt="Canopy Next Gen Now screenshot">
+              <div class="p2p-bench-card__body">
+                <p class="p2p-bench-card__name">Next Gen Now — Canopy</p>
+                <span class="p2p-bench-card__url">nextgennow.canopyplanet.org</span>
+                <p class="p2p-bench-card__desc">Interactive 3D globe as primary navigation for environmental impact data. Benchmark for using the globe not just as a backdrop but as the main interaction surface — time-scrubbing through years on a rotating earth.</p>
+                <span class="p2p-bench-card__tag">3D Globe · Storytelling</span>
+              </div>
+            </div>
+
+            <div class="p2p-bench-card">
+              <img class="p2p-bench-card__img" src="benchmark-jito.png" alt="Jito Network screenshot">
+              <div class="p2p-bench-card__body">
+                <p class="p2p-bench-card__name">Jito Network</p>
+                <span class="p2p-bench-card__url">jito.network</span>
+                <p class="p2p-bench-card__desc">Solana staking and validator stats with a 3D globe showing active validator positions. Informs how to pair a validator detail panel with live globe rotation — especially the current/next leader pattern relevant to block propagation.</p>
+                <span class="p2p-bench-card__tag">Staking · Validator Stats</span>
+              </div>
+            </div>
+
+            <div class="p2p-bench-card">
+              <img class="p2p-bench-card__img" src="benchmark-streamr.png" alt="Streamr Network screenshot">
+              <div class="p2p-bench-card__body">
+                <p class="p2p-bench-card__name">Streamr Network</p>
+                <span class="p2p-bench-card__url">streamr.network</span>
+                <p class="p2p-bench-card__desc">Decentralised data network visualised as a dark globe with live orange connection lines between nodes. The strongest reference for rendering peer-to-peer data flow — connection lines as first-class visual elements, not overlays.</p>
+                <span class="p2p-bench-card__tag">P2P Flow · Data Network</span>
+              </div>
+            </div>
+
           </div>
         </div>
 
@@ -943,6 +1085,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         '.p2p-decision',
         '.p2p-crawler-item',
         '.p2p-retro-card',
+        '.p2p-bench-card',
       ].forEach(sel => {
         document.querySelectorAll(sel).forEach(el => {
           if (!el.classList.contains('fade-in')) {
