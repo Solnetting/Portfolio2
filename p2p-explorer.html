@@ -512,41 +512,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     }
 
     /* ── Live metrics stat row ── */
-    .p2p-stat-row {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1rem;
-      margin-top: 2rem;
+    .p2p-live-stats {
+      display: flex;
+      gap: 3.5rem;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      margin-top: 2.5rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid var(--border);
     }
-    .p2p-stat {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 1.25rem 1.5rem;
-    }
-    .p2p-stat__value {
-      font-size: clamp(1.75rem, 3vw, 2.25rem);
-      font-weight: 700;
-      color: var(--accent);
-      letter-spacing: -.02em;
-      line-height: 1;
-      margin-bottom: .35rem;
-    }
-    .p2p-stat__label {
-      font-size: .75rem;
-      color: var(--text-muted);
-      line-height: 1.4;
-    }
-    .p2p-stat__sub {
-      font-size: .7rem;
-      color: var(--text-muted);
-      margin-top: .5rem;
-      padding-top: .5rem;
-      border-top: 1px solid var(--border);
-      line-height: 1.45;
-    }
-    @media (max-width: 768px) {
-      .p2p-stat-row { grid-template-columns: 1fr 1fr; }
+    @media (max-width: 600px) {
+      .p2p-live-stats { gap: 2rem 3rem; }
     }
 
     /* ── Lo-fi section ── */
@@ -732,7 +708,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <a href="#p2p-hifi"       class="boop-case__nav-item" data-s="p2p-hifi">Hi-fi</a>
         <a href="#p2p-arch"       class="boop-case__nav-item" data-s="p2p-arch">Architecture</a>
         <a href="#p2p-ds"         class="boop-case__nav-item" data-s="p2p-ds">Design System</a>
-        <a href="#p2p-impact"     class="boop-case__nav-item" data-s="p2p-impact">Results</a>
+        <a href="#p2p-impact"     class="boop-case__nav-item" data-s="p2p-impact">Results &amp; Impact</a>
       </nav>
 
       <!-- Scrolling content -->
@@ -1252,31 +1228,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
         <!-- ─── 6. IMPACT & REFLECTION ─── -->
         <div id="p2p-impact" class="boop-case__block">
-          <p class="section__label">Results</p>
+          <p class="section__label">Results &amp; Impact</p>
           <h2 class="proj-section__title">From CLI tool to strategic dashboard</h2>
           <p class="proj-text">The design moved the project from a "dev-only CLI" to a Strategic Dashboard for the Starknet community — a tool that indicates network health, coordinates upgrade decisions, and serves as a live proof of decentralisation.</p>
 
           <!-- Live metrics — scraped May 15 2026 -->
-          <div class="p2p-stat-row">
-            <div class="p2p-stat">
-              <p class="p2p-stat__value">142</p>
-              <p class="p2p-stat__label">Live nodes tracked</p>
-              <p class="p2p-stat__sub">Peak: ~195 nodes<br>Nov 2024 – May 2025</p>
+          <div class="p2p-live-stats">
+            <div class="stats-bar__item">
+              <span class="stats-bar__value">142</span>
+              <span class="stats-bar__label">live nodes tracked</span>
             </div>
-            <div class="p2p-stat">
-              <p class="p2p-stat__value">10+</p>
-              <p class="p2p-stat__label">Countries represented</p>
-              <p class="p2p-stat__sub">US · Finland · Germany<br>France · Switzerland · UK…</p>
+            <div class="stats-bar__item">
+              <span class="stats-bar__value">10+</span>
+              <span class="stats-bar__label">countries represented</span>
             </div>
-            <div class="p2p-stat">
-              <p class="p2p-stat__value">3×</p>
-              <p class="p2p-stat__label">Node growth in 6 weeks</p>
-              <p class="p2p-stat__sub">65 nodes at launch<br>→ 190+ by end of Dec</p>
+            <div class="stats-bar__item">
+              <span class="stats-bar__value">3×</span>
+              <span class="stats-bar__label">node growth in 6 weeks</span>
             </div>
-            <div class="p2p-stat">
-              <p class="p2p-stat__value">2</p>
-              <p class="p2p-stat__label">Client versions tracked</p>
-              <p class="p2p-stat__sub">v4.2.x — 70.42%<br>v4.1.x — 29.58%</p>
+            <div class="stats-bar__item">
+              <span class="stats-bar__value">~195</span>
+              <span class="stats-bar__label">peak nodes</span>
             </div>
           </div>
 
@@ -1387,7 +1359,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         '.p2p-crawler-item',
         '.p2p-retro-card',
         '.p2p-hifi-frame',
-        '.p2p-stat',
         '.p2p-lofi-frame',
         '.p2p-bench-card',
       ].forEach(sel => {
