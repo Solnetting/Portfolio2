@@ -382,6 +382,59 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       line-height: 1.65;
     }
 
+    /* ── Colour palettes ── */
+    .aztec-palettes {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      margin-top: 2.5rem;
+    }
+    .aztec-palette__name {
+      font-size: .6875rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: .75rem;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+    .aztec-palette__badge {
+      font-size: .6rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: #A9CC1F;
+      border: 1px solid rgba(169,204,31,.3);
+      border-radius: 999px;
+      padding: .15rem .45rem;
+    }
+    .aztec-palette__swatches {
+      display: flex;
+      gap: .5rem;
+      flex-wrap: wrap;
+    }
+    .aztec-swatch {
+      width: 80px;
+      height: 64px;
+      border-radius: 8px;
+      position: relative;
+      flex-shrink: 0;
+    }
+    .aztec-swatch span {
+      position: absolute;
+      bottom: 6px;
+      left: 8px;
+      font-size: .6rem;
+      font-weight: 600;
+      letter-spacing: .04em;
+      color: rgba(0,0,0,.55);
+    }
+    .aztec-swatch--light span {
+      color: rgba(255,255,255,.55);
+    }
+
     @media (max-width: 768px) {
       .p2p-node-grid,
       .p2p-status-grid { grid-template-columns: 1fr; }
@@ -468,6 +521,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <a href="#p2p-pillars"    class="boop-case__nav-item" data-s="p2p-pillars">Design Vision</a>
         <a href="#p2p-solutions"  class="boop-case__nav-item" data-s="p2p-solutions">Key Solutions</a>
         <a href="#p2p-arch"       class="boop-case__nav-item" data-s="p2p-arch">Architecture</a>
+        <a href="#p2p-ds"         class="boop-case__nav-item" data-s="p2p-ds">Design System</a>
         <a href="#p2p-impact"     class="boop-case__nav-item" data-s="p2p-impact">Impact &amp;<br>Reflection</a>
       </nav>
 
@@ -668,7 +722,116 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
 
 
-        <!-- ─── 5. IMPACT & REFLECTION ─── -->
+        <!-- ─── 5. DESIGN SYSTEM ─── -->
+        <div id="p2p-ds" class="boop-case__block">
+          <p class="section__label">Design System</p>
+          <h2 class="proj-section__title">Aztec colour tokens</h2>
+          <p class="proj-text">The Aztec DS is built on nine named palettes. Each scale runs from a light tint to a deep dark, giving components a consistent range for backgrounds, borders, text, and interactive states.</p>
+
+          <div class="aztec-palettes">
+
+            <!-- Parchment -->
+            <div class="aztec-palette">
+              <p class="aztec-palette__name">Parchment</p>
+              <div class="aztec-palette__swatches">
+                <div class="aztec-swatch" style="background:#FCFBFA"><span>#FCFBFA</span></div>
+                <div class="aztec-swatch" style="background:#F6F3EC"><span>#F6F3EC</span></div>
+                <div class="aztec-swatch" style="background:#CCCABF"><span>#CCCABF</span></div>
+                <div class="aztec-swatch" style="background:#918B7F"><span>#918B7F</span></div>
+                <div class="aztec-swatch" style="background:#564D3F"><span>#564D3F</span></div>
+                <div class="aztec-swatch aztec-swatch--light" style="background:#1A130A"><span>INK</span></div>
+              </div>
+            </div>
+
+            <!-- Chartreuse (Brand) -->
+            <div class="aztec-palette">
+              <p class="aztec-palette__name">Chartreuse <span class="aztec-palette__badge">Brand</span></p>
+              <div class="aztec-palette__swatches">
+                <div class="aztec-swatch" style="background:#E8FFBF"><span>#E8FFBF</span></div>
+                <div class="aztec-swatch" style="background:#E1FF8C"><span>#E1FF8C</span></div>
+                <div class="aztec-swatch" style="background:#A9CC1F"><span>#A9CC1F</span></div>
+                <div class="aztec-swatch aztec-swatch--light" style="background:#7F9917"><span>#7F9917</span></div>
+              </div>
+            </div>
+
+            <!-- Orchid (Brand) -->
+            <div class="aztec-palette">
+              <p class="aztec-palette__name">Orchid <span class="aztec-palette__badge">Brand</span></p>
+              <div class="aztec-palette__swatches">
+                <div class="aztec-swatch" style="background:#FFA7E0"><span>#FFA7E0</span></div>
+                <div class="aztec-swatch" style="background:#FF6AEA"><span>#FF6AEA</span></div>
+                <div class="aztec-swatch" style="background:#CC24C3"><span>#CC24C3</span></div>
+                <div class="aztec-swatch aztec-swatch--light" style="background:#991B92"><span>#991B92</span></div>
+              </div>
+            </div>
+
+            <!-- Malachite -->
+            <div class="aztec-palette">
+              <p class="aztec-palette__name">Malachite</p>
+              <div class="aztec-palette__swatches">
+                <div class="aztec-swatch aztec-swatch--light" style="background:#29665F"><span>#29665F</span></div>
+                <div class="aztec-swatch aztec-swatch--light" style="background:#19534A"><span>#19534A</span></div>
+                <div class="aztec-swatch aztec-swatch--light" style="background:#00382C"><span>#00382C</span></div>
+              </div>
+            </div>
+
+            <!-- Aqua -->
+            <div class="aztec-palette">
+              <p class="aztec-palette__name">Aqua</p>
+              <div class="aztec-palette__swatches">
+                <div class="aztec-swatch" style="background:#D3FEFA"><span>#D3FEFA</span></div>
+                <div class="aztec-swatch" style="background:#9BFDF4"><span>#9BFDF4</span></div>
+                <div class="aztec-swatch" style="background:#22C8BA"><span>#22C8BA</span></div>
+                <div class="aztec-swatch aztec-swatch--light" style="background:#19958C"><span>#19958C</span></div>
+              </div>
+            </div>
+
+            <!-- Vermillion -->
+            <div class="aztec-palette">
+              <p class="aztec-palette__name">Vermillion</p>
+              <div class="aztec-palette__swatches">
+                <div class="aztec-swatch" style="background:#FFAAAA"><span>#FFAAAA</span></div>
+                <div class="aztec-swatch" style="background:#FF5555"><span>#FF5555</span></div>
+                <div class="aztec-swatch aztec-swatch--light" style="background:#CC0000"><span>#CC0000</span></div>
+                <div class="aztec-swatch aztec-swatch--light" style="background:#990000"><span>#990000</span></div>
+              </div>
+            </div>
+
+            <!-- Lapis -->
+            <div class="aztec-palette">
+              <p class="aztec-palette__name">Lapis</p>
+              <div class="aztec-palette__swatches">
+                <div class="aztec-swatch aztec-swatch--light" style="background:#335380"><span>#335380</span></div>
+                <div class="aztec-swatch aztec-swatch--light" style="background:#1C3B5C"><span>#1C3B5C</span></div>
+                <div class="aztec-swatch aztec-swatch--light" style="background:#001C47"><span>#001C47</span></div>
+              </div>
+            </div>
+
+            <!-- Aubergine -->
+            <div class="aztec-palette">
+              <p class="aztec-palette__name">Aubergine</p>
+              <div class="aztec-palette__swatches">
+                <div class="aztec-swatch aztec-swatch--light" style="background:#80336A"><span>#80336A</span></div>
+                <div class="aztec-swatch aztec-swatch--light" style="background:#5C1C4C"><span>#5C1C4C</span></div>
+                <div class="aztec-swatch aztec-swatch--light" style="background:#47003B"><span>#47003B</span></div>
+              </div>
+            </div>
+
+            <!-- Oxblood -->
+            <div class="aztec-palette">
+              <p class="aztec-palette__name">Oxblood</p>
+              <div class="aztec-palette__swatches">
+                <div class="aztec-swatch aztec-swatch--light" style="background:#804033"><span>#804033</span></div>
+                <div class="aztec-swatch aztec-swatch--light" style="background:#5C271C"><span>#5C271C</span></div>
+                <div class="aztec-swatch aztec-swatch--light" style="background:#470B00"><span>#470B00</span></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+
+        <!-- ─── 6. IMPACT & REFLECTION ─── -->
         <div id="p2p-impact" class="boop-case__block">
           <p class="section__label">Impact &amp; Reflection</p>
           <h2 class="proj-section__title">From CLI tool to strategic dashboard</h2>
