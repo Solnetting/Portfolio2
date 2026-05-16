@@ -1467,8 +1467,8 @@ a   { color: inherit; text-decoration: none; }
 
 /* ── AI-Augmented shimmer reveal ── */
 @keyframes ai-shimmer {
-  0%   { background-position: -150% center; }
-  100% { background-position: 150% center; }
+  0%   { background-position: 100% center; }
+  100% { background-position: 0% center; }
 }
 
 .hero__ai-label {
@@ -1479,13 +1479,13 @@ a   { color: inherit; text-decoration: none; }
   line-height: 2;
   background: linear-gradient(
     90deg,
-    rgba(255,255,255,0.28) 0%,
-    rgba(255,255,255,0.28) 30%,
+    rgba(255,255,255,0.88) 0%,
+    rgba(255,255,255,0.88) 30%,
     rgba(255,255,255,1)    44%,
     #A9CC1F                50%,
     rgba(255,255,255,1)    56%,
-    rgba(255,255,255,0.88) 70%,
-    rgba(255,255,255,0.88) 100%
+    rgba(255,255,255,0.28) 70%,
+    rgba(255,255,255,0.28) 100%
   );
   background-size: 300% 100%;
   -webkit-background-clip: text;
