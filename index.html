@@ -782,15 +782,13 @@ Keep answers short and friendly.`;
       return wrap;
     }
 
-    // Auto-greet after shimmer animation ends (~2.8s), then collapse and light up button
+    // Auto-greet after shimmer animation ends (~2.8s), then collapse
     setTimeout(() => {
       addMessage('bot', 'Hey! I\'m Carlos\'s AI assistant. Ask me anything about his work, skills, or experience.');
       greetingShown = true;
       openPanel();
-      setTimeout(() => {
-        closePanel();
-        setTimeout(() => btn.classList.add('chat-btn--lit'), 300);
-      }, 3800);
+      btn.classList.add('chat-btn--lit');
+      setTimeout(closePanel, 3800);
     }, 3000);
 
     async function sendMessage() {
