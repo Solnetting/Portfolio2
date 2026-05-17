@@ -728,10 +728,25 @@ Keep answers short and friendly.`;
     const send = document.getElementById('chatSend');
     const history = [];
 
+    let greetingShown = false;
+
+    function openPanel() {
+      panel.classList.add('is-open');
+      btn.classList.add('is-open');
+    }
+
+    function closePanel() {
+      panel.classList.remove('is-open');
+      btn.classList.remove('is-open');
+    }
+
     function togglePanel() {
       const open = panel.classList.toggle('is-open');
       btn.classList.toggle('is-open', open);
-      if (open && messages.children.length === 0) addMessage('bot', 'Hey! I\'m Carlos\'s AI assistant. Ask me about his work, skills, or experience.');
+      if (open && !greetingShown) {
+        addMessage('bot', 'Hey! I\'m Carlos\'s AI assistant. Ask me anything about his work, skills, or experience.');
+        greetingShown = true;
+      }
       if (open) input.focus();
     }
 
@@ -746,6 +761,14 @@ Keep answers short and friendly.`;
       messages.scrollTop = messages.scrollHeight;
       return wrap;
     }
+
+    // Auto-greet after shimmer animation ends (~2.8s), then collapse
+    setTimeout(() => {
+      addMessage('bot', 'Hey! I\'m Carlos\'s AI assistant. Ask me anything about his work, skills, or experience.');
+      greetingShown = true;
+      openPanel();
+      setTimeout(closePanel, 3800);
+    }, 3000);
 
     async function sendMessage() {
       const text = input.value.trim();
