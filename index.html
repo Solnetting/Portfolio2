@@ -559,6 +559,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     function clearLogs() {
       localStorage.removeItem(_LOG_KEY);
     }
+    function getFreq() {
+      return getLogs().freq;
+    }
+    window._chatLogs = { getLogs: getLogs, clearLogs: clearLogs, getFreq: getFreq };
+    console.log('_chatLogs initialized');
   </script>
 
   <!-- ── AI Chat Widget ── -->
