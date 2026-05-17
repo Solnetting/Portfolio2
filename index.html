@@ -538,5 +538,251 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <script src="script.js"></script>
   <script src="analytics.js"></script>
 
+  <!-- ── AI Chat Widget ── -->
+  <style>
+    .chat-btn {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--accent, #A9CC1F);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 24px rgba(169,204,31,0.35);
+      z-index: 9999;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .chat-btn:hover { transform: scale(1.08); box-shadow: 0 6px 32px rgba(169,204,31,0.5); }
+    .chat-btn svg { width: 24px; height: 24px; fill: #040C09; }
+    .chat-btn .chat-btn__close { display: none; }
+    .chat-btn.is-open .chat-btn__open { display: none; }
+    .chat-btn.is-open .chat-btn__close { display: block; }
+
+    .chat-panel {
+      position: fixed;
+      bottom: 5.5rem;
+      right: 2rem;
+      width: 360px;
+      max-height: 520px;
+      background: #0D1A10;
+      border: 1px solid rgba(169,204,31,0.2);
+      border-radius: 16px;
+      display: flex;
+      flex-direction: column;
+      z-index: 9998;
+      overflow: hidden;
+      box-shadow: 0 8px 48px rgba(0,0,0,0.6);
+      transform: translateY(12px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.22s, transform 0.22s;
+    }
+    .chat-panel.is-open { opacity: 1; transform: translateY(0); pointer-events: all; }
+
+    .chat-panel__header {
+      padding: 1rem 1.25rem 0.75rem;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .chat-panel__dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #A9CC1F;
+      box-shadow: 0 0 6px #A9CC1F;
+    }
+    .chat-panel__title { font-size: 0.8rem; font-weight: 600; color: #fff; }
+    .chat-panel__sub { font-size: 0.7rem; color: rgba(255,255,255,0.4); margin-left: auto; }
+
+    .chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(169,204,31,0.2) transparent;
+    }
+    .chat-msg { display: flex; flex-direction: column; gap: 0.2rem; max-width: 85%; }
+    .chat-msg--user { align-self: flex-end; align-items: flex-end; }
+    .chat-msg--bot  { align-self: flex-start; }
+    .chat-msg__bubble {
+      padding: 0.55rem 0.85rem;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      line-height: 1.5;
+      white-space: pre-wrap;
+    }
+    .chat-msg--user .chat-msg__bubble { background: #A9CC1F; color: #040C09; font-weight: 500; border-bottom-right-radius: 4px; }
+    .chat-msg--bot  .chat-msg__bubble { background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.88); border-bottom-left-radius: 4px; }
+    .chat-msg--bot.is-typing .chat-msg__bubble::after {
+      content: '●●●';
+      font-size: 0.6rem;
+      letter-spacing: 2px;
+      animation: typing-dots 1s infinite;
+    }
+    @keyframes typing-dots {
+      0%,100% { opacity: 0.3; }
+      50%      { opacity: 1; }
+    }
+
+    .chat-input-row {
+      display: flex;
+      gap: 0.5rem;
+      padding: 0.75rem 1rem;
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+    .chat-input {
+      flex: 1;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      padding: 0.5rem 0.75rem;
+      font-size: 0.8rem;
+      color: #fff;
+      outline: none;
+      font-family: inherit;
+      resize: none;
+    }
+    .chat-input::placeholder { color: rgba(255,255,255,0.3); }
+    .chat-input:focus { border-color: rgba(169,204,31,0.4); }
+    .chat-send {
+      width: 36px; height: 36px;
+      background: #A9CC1F;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      transition: opacity 0.15s;
+    }
+    .chat-send:disabled { opacity: 0.4; cursor: default; }
+    .chat-send svg { width: 16px; height: 16px; fill: #040C09; }
+
+    @media (max-width: 480px) {
+      .chat-panel { right: 1rem; left: 1rem; width: auto; }
+      .chat-btn { right: 1rem; bottom: 1rem; }
+    }
+  </style>
+
+  <!-- Chat toggle button -->
+  <button class="chat-btn" id="chatBtn" aria-label="Open AI chat">
+    <svg class="chat-btn__open" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2.05 21.95l4.782-1.387A9.953 9.953 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2Zm0 2a8 8 0 1 1 0 16 7.964 7.964 0 0 1-3.965-1.054l-.282-.164-2.938.851.852-2.938-.164-.282A7.964 7.964 0 0 1 4 12a8 8 0 0 1 8-8Zm-1 4v4H7v2h4v4h2v-4h4v-2h-4V8h-2Z"/></svg>
+    <svg class="chat-btn__close" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+  </button>
+
+  <!-- Chat panel -->
+  <div class="chat-panel" id="chatPanel" role="dialog" aria-label="AI assistant">
+    <div class="chat-panel__header">
+      <div class="chat-panel__dot"></div>
+      <span class="chat-panel__title">Ask about Carlos</span>
+      <span class="chat-panel__sub">AI · DeepSeek</span>
+    </div>
+    <div class="chat-messages" id="chatMessages"></div>
+    <div class="chat-input-row">
+      <textarea class="chat-input" id="chatInput" rows="1" placeholder="Ask me anything…"></textarea>
+      <button class="chat-send" id="chatSend" aria-label="Send">
+        <svg viewBox="0 0 24 24"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <script>
+  (() => {
+    const KEY = 'sk-6d387081896044ccaa4d6bc0307a08ff';
+    const ENDPOINT = 'https://api.deepseek.com/chat/completions';
+    const SYSTEM = `You are an AI assistant embedded in Carlos Mera's design portfolio at carlos-mera.com. Answer questions about Carlos clearly and concisely.
+
+Carlos Mera is a Product Designer with an AI-Augmented Design Workflow based in Barcelona, Spain. He has 4+ years of experience specialising in Web3, DeFi, and fintech products.
+
+Current role: Product Designer at Nethermind (May 2024 – present, remote). Projects include:
+- Aztec Node Explorer (mainnet.aztecnodes.xyz): real-time network dashboard, 142+ live nodes, 10+ countries, 3× node growth in 6 weeks, peak ~195 nodes.
+- Boop (boop.it): palm-based biometric payment & identity app for iOS and Android.
+- SyntropyX: multi-chain DeFi vault platform (BTC, ETH & more).
+- Restaking.Info: Layer 2 Ethereum restaking analytics dashboard.
+
+Previous: UX/UI Designer at NATEEVO (May 2022–May 2024, Barcelona hybrid) — designed for ImaginBank, WatchesandWonders, Manor, Samsung, SEAT, Towerbank.
+
+Skills: Figma, Design Systems, UX Research, Interaction Design, Prototyping, Motion Design, Claude Code, MCP, Framer, HTML/CSS, Developer Handoff. Domains: Web3/DeFi, Fintech/Blockchain, Mobile, B2B SaaS, Healthcare.
+
+Education: Ironhack UX/UI Bootcamp (2020, Barcelona); Bachelor's Visual Design & Communication, ISDi (2011–2016, Havana); Professional Photography, EFTI (Madrid).
+
+Contact: carlosmera.design@gmail.com · linkedin.com/in/carlosmmera · behance.net/hdkrlosde26
+
+Keep answers short and friendly. If asked something unrelated to Carlos or his work, politely redirect.`;
+
+    const btn = document.getElementById('chatBtn');
+    const panel = document.getElementById('chatPanel');
+    const messages = document.getElementById('chatMessages');
+    const input = document.getElementById('chatInput');
+    const send = document.getElementById('chatSend');
+    const history = [];
+
+    function togglePanel() {
+      const open = panel.classList.toggle('is-open');
+      btn.classList.toggle('is-open', open);
+      if (open && messages.children.length === 0) addMessage('bot', 'Hey! I\'m Carlos\'s AI assistant. Ask me about his work, skills, or experience.');
+      if (open) input.focus();
+    }
+
+    function addMessage(role, text) {
+      const wrap = document.createElement('div');
+      wrap.className = `chat-msg chat-msg--${role === 'user' ? 'user' : 'bot'}`;
+      const bubble = document.createElement('div');
+      bubble.className = 'chat-msg__bubble';
+      bubble.textContent = text;
+      wrap.appendChild(bubble);
+      messages.appendChild(wrap);
+      messages.scrollTop = messages.scrollHeight;
+      return wrap;
+    }
+
+    async function sendMessage() {
+      const text = input.value.trim();
+      if (!text) return;
+      input.value = '';
+      input.style.height = 'auto';
+      send.disabled = true;
+
+      addMessage('user', text);
+      history.push({ role: 'user', content: text });
+
+      const typing = addMessage('bot', '');
+      typing.classList.add('is-typing');
+
+      try {
+        const res = await fetch(ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${KEY}` },
+          body: JSON.stringify({ model: 'deepseek-chat', messages: [{ role: 'system', content: SYSTEM }, ...history] })
+        });
+        const data = await res.json();
+        const reply = data.choices?.[0]?.message?.content ?? 'Sorry, I couldn\'t get a response.';
+        typing.classList.remove('is-typing');
+        typing.querySelector('.chat-msg__bubble').textContent = reply;
+        history.push({ role: 'assistant', content: reply });
+      } catch {
+        typing.classList.remove('is-typing');
+        typing.querySelector('.chat-msg__bubble').textContent = 'Connection error. Please try again.';
+      }
+
+      send.disabled = false;
+      messages.scrollTop = messages.scrollHeight;
+      input.focus();
+    }
+
+    btn.addEventListener('click', togglePanel);
+    send.addEventListener('click', sendMessage);
+    input.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); } });
+    input.addEventListener('input', () => { input.style.height = 'auto'; input.style.height = Math.min(input.scrollHeight, 100) + 'px'; });
+  })();
+  </script>
+
 </body>
 </html>
