@@ -538,6 +538,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <script src="script.js"></script>
   <script src="analytics.js"></script>
 
+  <!-- ── Chat Logging ── -->
+  <script>
+    var _LOG_KEY = 'portfolio_ai_logs';
+    function logQuestion(question) {
+      try {
+        var store = getLogs();
+        store.raw.push({ question: question, timestamp: new Date().toISOString(), url: location.href });
+        var key = question.trim().toLowerCase();
+        store.freq[key] = (store.freq[key] || 0) + 1;
+        localStorage.setItem(_LOG_KEY, JSON.stringify(store));
+      } catch(e) {}
+    }
+    function getLogs() {
+      try {
+        var raw = localStorage.getItem(_LOG_KEY);
+        return raw ? JSON.parse(raw) : { raw: [], freq: {} };
+      } catch(e) { return { raw: [], freq: {} }; }
+    }
+    function clearLogs() {
+      localStorage.removeItem(_LOG_KEY);
+    }
+  </script>
+
   <!-- ── AI Chat Widget ── -->
   <style>
     .chat-btn {
@@ -830,31 +853,6 @@ Keep answers short and friendly.`;
     input.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); } });
     input.addEventListener('input', () => { input.style.height = 'auto'; input.style.height = Math.min(input.scrollHeight, 100) + 'px'; });
 
-    // ── Logging utilities ──
-    const LOG_KEY = 'portfolio_ai_logs';
-
-    function logQuestion(question) {
-      try {
-        const store = getLogs();
-        store.raw.push({ question, timestamp: new Date().toISOString(), url: location.href });
-        const key = question.trim().toLowerCase();
-        store.freq[key] = (store.freq[key] || 0) + 1;
-        localStorage.setItem(LOG_KEY, JSON.stringify(store));
-      } catch {}
-    }
-
-    function getLogs() {
-      try {
-        const raw = localStorage.getItem(LOG_KEY);
-        return raw ? JSON.parse(raw) : { raw: [], freq: {} };
-      } catch { return { raw: [], freq: {} }; }
-    }
-
-    function clearLogs() {
-      localStorage.removeItem(LOG_KEY);
-    }
-
-    window._chatLogs = { getLogs, clearLogs };
   })();
   </script>
 
