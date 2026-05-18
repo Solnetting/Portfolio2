@@ -796,14 +796,17 @@ Keep answers short and friendly.`;
       btn.classList.remove('is-open');
     }
 
+    // Local only — no API call
+    function showGreeting() {
+      if (greetingShown) return;
+      addMessage('bot', 'Hey! I\'m Carlos\'s AI assistant. Ask me anything about his work, skills, or experience.');
+      greetingShown = true;
+    }
+
     function togglePanel() {
       const open = panel.classList.toggle('is-open');
       btn.classList.toggle('is-open', open);
-      if (open && !greetingShown) {
-        addMessage('bot', 'Hey! I\'m Carlos\'s AI assistant. Ask me anything about his work, skills, or experience.');
-        greetingShown = true;
-      }
-      if (open) input.focus();
+      if (open) { showGreeting(); input.focus(); }
     }
 
     function addMessage(role, text) {
@@ -818,10 +821,9 @@ Keep answers short and friendly.`;
       return wrap;
     }
 
-    // Auto-greet after shimmer animation ends (~2.8s), then collapse
+    // After shimmer animation ends (~2.8s): show greeting locally, open panel, light up button
     setTimeout(() => {
-      addMessage('bot', 'Hey! I\'m Carlos\'s AI assistant. Ask me anything about his work, skills, or experience.');
-      greetingShown = true;
+      showGreeting();
       openPanel();
       btn.classList.add('chat-btn--lit');
     }, 3000);
