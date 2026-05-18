@@ -549,6 +549,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         store.freq[key] = (store.freq[key] || 0) + 1;
         localStorage.setItem(_LOG_KEY, JSON.stringify(store));
       } catch(e) {}
+      // Fire-and-forget to Supabase via serverless function
+      fetch('/api/log', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ question: question, url: location.href })
+      }).catch(function() {});
     }
     function getLogs() {
       try {
