@@ -22,9 +22,114 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <meta name="description" content="Carlos Mera is a Product Designer with an AI-Augmented Design Workflow based in Barcelona, specializing in Web3, DeFi, and fintech products.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Chakra+Petch:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Chakra+Petch:wght@700&family=Space+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="dissect.css">
+  <style>
+    @keyframes drift-scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .drift {
+      width: 100%;
+      overflow: hidden;
+      padding: 2rem 0 2.5rem;
+      mask-image: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
+      -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
+    }
+    .drift-track {
+      display: flex;
+      gap: 22px;
+      width: max-content;
+      animation: drift-scroll 90s linear infinite;
+    }
+    .drift-track:hover { animation-play-state: paused; }
+    .drift-card {
+      width: 300px;
+      flex-shrink: 0;
+      background: #0d0d10;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.55s cubic-bezier(0.2,0.7,0.2,1),
+                  border-color 0.55s cubic-bezier(0.2,0.7,0.2,1);
+    }
+    .drift-card:hover { transform: translateY(-6px); border-color: rgba(255,255,255,0.14); }
+    .drift-card:hover .drift-img { transform: scale(1.04); }
+    .drift-art {
+      position: relative;
+      width: 100%;
+      padding-top: 75%;
+      overflow: hidden;
+    }
+    .drift-art--contain { background: radial-gradient(120% 90% at 20% 0%, #1a1a1f 0%, #0c0c10 55%, #07070a 100%); }
+    .drift-art--cover { background: #0c0c10; }
+    .drift-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.55s cubic-bezier(0.2,0.7,0.2,1);
+    }
+    .drift-img--cover { object-fit: cover; object-position: center; }
+    .drift-img--contain { object-fit: contain; padding: 8% 12%; }
+    .drift-img--contain-right { object-fit: contain; }
+    .drift-vignette {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 50%, rgba(8,8,10,0.45) 100%);
+      pointer-events: none;
+    }
+    .drift-grain {
+      position: absolute;
+      inset: 0;
+      opacity: 0.05;
+      mix-blend-mode: overlay;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23g)'/%3E%3C/svg%3E");
+    }
+    .drift-corner {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.45);
+      background: rgba(8,8,10,0.6);
+      padding: 2px 6px;
+      border-radius: 3px;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .drift-meta { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 5px; }
+    .drift-title {
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+      font-size: 20px;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      color: #f3f1ee;
+      line-height: 1.2;
+    }
+    .drift-tagline { font-size: 12px; color: #c9c6c0; line-height: 1.45; }
+    .drift-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 10px;
+      border-top: 1px dashed rgba(255,255,255,0.1);
+      margin-top: 4px;
+    }
+    .drift-role, .drift-year {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #7e7a73;
+    }
+  </style>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -64,56 +169,50 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </div>
 
-      <!-- ── Work marquee ── -->
-      <div class="work-marquee">
-        <div class="work-marquee__track">
-          <img src="boop-phone-1.png" alt="Boop">
-          <img src="boop-phone-2.png" alt="Boop">
-          <img src="boop-phone-3.png" alt="Boop">
-          <img src="boop-active-pass.png" alt="Boop">
-          <img src="restaking-mobile.png" alt="Restaking.Info">
-          <img src="restaking-laptop.png" alt="Restaking.Info">
-          <img src="restaking-dashboard.png" alt="Restaking.Info">
-          <img src="aztec-mobile.png" alt="Aztec">
-          <img src="restaking-hero.png" alt="Restaking.Info">
-          <img src="restaking-riseshot.png" alt="Restaking.Info">
-          <img src="boop-riseshot.png" alt="Boop">
-          <img src="aztec-hero.png" alt="Aztec Node Explorer">
-          <img src="hifi-auth-01-splash.png" alt="Hi-fi">
-          <img src="hifi-auth-02-identity.png" alt="Hi-fi">
-          <img src="hifi-mobile-main.png" alt="Hi-fi">
-          <img src="hifi-node-history.png" alt="Aztec">
-          <img src="hifi-mobile-filters.jpg" alt="Aztec">
-          <img src="quadrato-cover.png" alt="Quadrato">
-          <img src="towerbank-mobile.png" alt="Towerbank">
-          <img src="syntropyx-portfolio.jpg" alt="SyntropyX">
-          <img src="syntropyx-borrowing.png" alt="SyntropyX">
-          <img src="restaking-operator.png" alt="Restaking.Info">
-          <!-- duplicate for seamless loop -->
-          <img src="boop-phone-1.png" alt="Boop">
-          <img src="boop-phone-2.png" alt="Boop">
-          <img src="boop-phone-3.png" alt="Boop">
-          <img src="boop-active-pass.png" alt="Boop">
-          <img src="restaking-mobile.png" alt="Restaking.Info">
-          <img src="restaking-laptop.png" alt="Restaking.Info">
-          <img src="restaking-dashboard.png" alt="Restaking.Info">
-          <img src="aztec-mobile.png" alt="Aztec">
-          <img src="restaking-hero.png" alt="Restaking.Info">
-          <img src="restaking-riseshot.png" alt="Restaking.Info">
-          <img src="boop-riseshot.png" alt="Boop">
-          <img src="aztec-hero.png" alt="Aztec Node Explorer">
-          <img src="hifi-auth-01-splash.png" alt="Hi-fi">
-          <img src="hifi-auth-02-identity.png" alt="Hi-fi">
-          <img src="hifi-mobile-main.png" alt="Hi-fi">
-          <img src="hifi-node-history.png" alt="Aztec">
-          <img src="hifi-mobile-filters.jpg" alt="Aztec">
-          <img src="quadrato-cover.png" alt="Quadrato">
-          <img src="towerbank-mobile.png" alt="Towerbank">
-          <img src="syntropyx-portfolio.jpg" alt="SyntropyX">
-          <img src="syntropyx-borrowing.png" alt="SyntropyX">
-          <img src="restaking-operator.png" alt="Restaking.Info">
-        </div>
+      <!-- ── Drift Carousel ── -->
+      <div class="drift">
+        <div class="drift-track" id="driftTrack"></div>
       </div>
+      <script>
+      (function() {
+        var PROJECTS = [
+          { num:'01', title:'Boop',            tagline:'Palm-based payment and identity',        role:'Product Design',     year:'2024', image:'boop-phones.png',         fit:'contain', pad:'right' },
+          { num:'02', title:'Quadrato',         tagline:'Fractional NFT ownership on Solana',     role:'Product Design',     year:'2023', image:'quadrato-cover.png',      fit:'cover' },
+          { num:'03', title:'Aztec Explorer',   tagline:'Real-time node network explorer',        role:'Product Design',     year:'2025', image:'aztec-mobile.png',        fit:'contain' },
+          { num:'04', title:'Restaking.Info',   tagline:'DeFi restaking analytics dashboard',     role:'Product Design',     year:'2024', image:'restaking-riseshot.png',  fit:'cover' },
+          { num:'05', title:'SyntropyX',        tagline:'Structured DeFi vault platform',         role:'Product Design',     year:'2025', image:'syntropyx-portfolio.jpg', fit:'cover' },
+          { num:'06', title:'SX Borrowing',     tagline:'Collateralised lending flow',            role:'Interaction Design', year:'2025', image:'syntropyx-borrowing.png', fit:'cover' },
+          { num:'07', title:'Boop Pass',        tagline:'Festival pass + active state UI',        role:'Mobile Lead',        year:'2024', image:'boop-active-pass.png',    fit:'cover' },
+          { num:'08', title:'Boop Onboarding',  tagline:'Wave-to-pay registration flow',          role:'UX + Motion',        year:'2024', image:'boop-riseshot.png',       fit:'cover' },
+          { num:'09', title:'Restaking Mobile', tagline:'Restaking analytics, pocket-sized',      role:'Mobile Design',      year:'2024', image:'restaking-mobile.png',    fit:'contain' },
+          { num:'10', title:'Towerbank',        tagline:'Neobank wallet, redesigned',             role:'UX/UI',              year:'2023', image:'towerbank-mobile.png',    fit:'contain' },
+          { num:'11', title:'Boop Tickets',     tagline:'Event ticket management UI',             role:'Product Design',     year:'2024', image:'boop-phone-2.png',        fit:'contain' },
+          { num:'12', title:'Boop Profile',     tagline:'User identity & verification screen',    role:'UX',                 year:'2024', image:'boop-phone-3.png',        fit:'contain' },
+        ];
+        function makeCard(p) {
+          var artClass = p.fit === 'contain' ? 'drift-art drift-art--contain' : 'drift-art drift-art--cover';
+          var imgClass = p.fit === 'contain' ? (p.pad === 'right' ? 'drift-img drift-img--contain-right' : 'drift-img drift-img--contain') : 'drift-img drift-img--cover';
+          return '<div class="drift-card">' +
+            '<div class="' + artClass + '">' +
+              '<img class="' + imgClass + '" src="' + p.image + '" alt="" loading="lazy">' +
+              '<div class="drift-vignette" aria-hidden="true"></div>' +
+              '<div class="drift-grain" aria-hidden="true"></div>' +
+              '<div class="drift-corner">' + p.num + '</div>' +
+            '</div>' +
+            '<div class="drift-meta">' +
+              '<div class="drift-title">' + p.title + '</div>' +
+              '<div class="drift-tagline">' + p.tagline + '</div>' +
+              '<div class="drift-footer">' +
+                '<span class="drift-role">' + p.role + '</span>' +
+                '<span class="drift-year">' + p.year + '</span>' +
+              '</div>' +
+            '</div>' +
+          '</div>';
+        }
+        var track = document.getElementById('driftTrack');
+        if (track) track.innerHTML = PROJECTS.concat(PROJECTS).map(makeCard).join('');
+      })();
+      </script>
 
       <div class="stats-bar">
         <div class="stats-bar__inner">
