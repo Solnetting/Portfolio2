@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E2T7YBM5FS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-E2T7YBM5FS');
+</script>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M5BDFLX8');</script>
+<!-- End Google Tag Manager -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carlos Mera — Product Designer | AI-Augmented Design Workflow</title>
+  <meta name="description" content="Carlos Mera is a Product Designer with an AI-Augmented Design Workflow based in Barcelona, specializing in Web3, DeFi, and fintech products.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Chakra+Petch:wght@700&family=Space+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="dissect.css">
+  <style>
+    /* ── Drift Carousel ── */
+    @keyframes drift-scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .drift {
+      width: 100%;
+      overflow: hidden;
+      padding: 2rem 0 2.5rem;
+      mask-image: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
+      -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
+    }
+    .drift-track {
+      display: flex;
+      gap: 22px;
+      width: max-content;
+      animation: drift-scroll 90s linear infinite;
+    }
+    .drift-track:hover { animation-play-state: paused; }
+    .drift-card {
+      width: 300px;
+      flex-shrink: 0;
+      background: #0d0d10;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.55s cubic-bezier(0.2,0.7,0.2,1),
+                  border-color 0.55s cubic-bezier(0.2,0.7,0.2,1);
+    }
+    .drift-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(255,255,255,0.14);
+    }
+    .drift-card:hover .drift-img { transform: scale(1.04); }
+    .drift-art {
+      position: relative;
+      width: 100%;
+      padding-top: 75%;
+      overflow: hidden;
+    }
+    .drift-art--contain {
+      background: radial-gradient(120% 90% at 20% 0%, #1a1a1f 0%, #0c0c10 55%, #07070a 100%);
+    }
+    .drift-art--cover { background: #0c0c10; }
+    .drift-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.55s cubic-bezier(0.2,0.7,0.2,1);
+    }
+    .drift-img--cover { object-fit: cover; object-position: center; }
+    .drift-img--contain { object-fit: contain; padding: 8% 12%; }
+    .drift-img--contain-right { object-fit: contain; }
+    .drift-vignette {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 50%, rgba(8,8,10,0.45) 100%);
+      pointer-events: none;
+    }
+    .drift-grain {
+      position: absolute;
+      inset: 0;
+      opacity: 0.05;
+      mix-blend-mode: overlay;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23g)'/%3E%3C/svg%3E");
+    }
+    .drift-corner {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.45);
+      background: rgba(8,8,10,0.6);
+      padding: 2px 6px;
+      border-radius: 3px;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .drift-meta {
+      padding: 14px 16px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .drift-title {
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+      font-size: 20px;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      color: #f3f1ee;
+      line-height: 1.2;
+    }
+    .drift-tagline {
+      font-size: 12px;
+      color: #c9c6c0;
+      line-height: 1.45;
+    }
+    .drift-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 10px;
+      border-top: 1px dashed rgba(255,255,255,0.1);
+      margin-top: 4px;
+    }
+    .drift-role,
+    .drift-year {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #7e7a73;
+    }
+
+    /* ── Process V2 Grid ── */
+    .process__grid-v2 {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1rem;
+      margin-top: 3rem;
+    }
+    .process__card-v2 {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px;
+      padding: 1.5rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      transition: border-color 0.2s;
+    }
+    .process__card-v2:hover { border-color: rgba(169,204,31,0.3); }
+    .process__num-v2 {
+      font-size: 0.7rem;
+      color: var(--accent);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+    }
+    .process__name-v2 {
+      font-size: 1.05rem;
+      color: #fff;
+      font-weight: 600;
+      margin: 0;
+    }
+    .process__sub-v2 {
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.3);
+      line-height: 1.4;
+    }
+    .process__brief-v2 {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.6;
+      margin-top: 0.25rem;
+    }
+
+    /* ── About V2 ── */
+    .about__inner-v2 {
+      display: flex;
+      gap: 3rem;
+      align-items: flex-start;
+    }
+    .about__bio-v2 {
+      font-size: 1rem;
+      color: var(--text-sec);
+      line-height: 1.7;
+      margin-bottom: 1.25rem;
+    }
+    .about__skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .skill-chip {
+      font-size: 0.72rem;
+      font-weight: 500;
+      padding: 0.3rem 0.75rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.6);
+      white-space: nowrap;
+    }
+
+    /* ── Experience Timeline ── */
+    .exp__timeline {
+      display: flex;
+      flex-direction: column;
+      margin-top: 2rem;
+    }
+    .exp__tl-item {
+      display: grid;
+      grid-template-columns: 160px 24px 1fr;
+      gap: 0 1.5rem;
+      padding-bottom: 2rem;
+    }
+    .exp__tl-left {
+      text-align: right;
+      padding-top: 0.25rem;
+    }
+    .exp__tl-period {
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.3);
+      white-space: nowrap;
+      line-height: 1.4;
+    }
+    .exp__tl-line {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+    .exp__tl-line::after {
+      content: '';
+      position: absolute;
+      top: 18px;
+      bottom: -2rem;
+      width: 1px;
+      background: rgba(255,255,255,0.08);
+    }
+    .exp__tl-item:last-child .exp__tl-line::after { display: none; }
+    .exp__tl-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--bg, #0D0D0D);
+      box-shadow: 0 0 8px rgba(169,204,31,0.5);
+      flex-shrink: 0;
+      margin-top: 4px;
+      z-index: 1;
+    }
+    .exp__tl-dot--sm {
+      width: 8px; height: 8px;
+      background: rgba(255,255,255,0.2);
+      border-color: transparent;
+      box-shadow: none;
+    }
+    .exp__tl-dot--edu {
+      width: 8px; height: 8px;
+      background: transparent;
+      border: 2px solid rgba(255,255,255,0.25);
+      box-shadow: none;
+    }
+    .exp__tl-body { padding-top: 0.1rem; }
+    .exp__tl-company {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.35);
+      margin: 0 0 0.2rem;
+    }
+    .exp__tl-role {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #fff;
+      margin: 0 0 0.6rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .exp__tl-type {
+      font-size: 0.62rem;
+      font-weight: 500;
+      padding: 0.15rem 0.5rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.07);
+      color: rgba(255,255,255,0.35);
+    }
+    .exp__tl-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0;
+    }
+    .exp__tl-chips .exp__project:not(:last-child)::after {
+      content: ' —';
+      color: rgba(255,255,255,0.2);
+      font-weight: 400;
+      margin-right: 0.4rem;
+    }
+    .exp__tl-desc {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.4);
+      margin: 0;
+    }
+    .exp__tl-divider {
+      padding: 0.5rem 0 1.5rem calc(160px + 24px + 3rem);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.18);
+    }
+    .exp__cv-cta-v2 {
+      margin-top: 0.5rem;
+      padding-left: calc(160px + 24px + 3rem);
+    }
+
+    @media (max-width: 1024px) {
+      .process__grid-v2 { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 700px) {
+      .process__grid-v2 { grid-template-columns: repeat(2, 1fr); }
+      .about__inner-v2 { flex-direction: column; gap: 1.5rem; }
+      .exp__tl-item { grid-template-columns: 90px 20px 1fr; gap: 0 1rem; }
+      .exp__tl-divider,
+      .exp__cv-cta-v2 { padding-left: calc(90px + 20px + 2rem); }
+    }
+    @media (max-width: 480px) {
+      .process__grid-v2 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M5BDFLX8"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+  <div class="site-banner">This portfolio is under construction — be patient :)</div>
+
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="#" class="nav__logo">CM</a>
+      <nav class="nav__links">
+        <a href="#work">Work</a>
+        <a href="#process">Process</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a href="carlosmera_CV.pdf" download="carlosmera_CV.pdf" class="nav__cv" data-ga-event="cv_download" data-ga-label="CV nav" data-ga-category="nav">CV ↓</a>
+        <a href="https://www.linkedin.com/in/carlosmmera/" target="_blank" rel="noopener" class="nav__cta" data-ga-event="outbound_click" data-ga-label="LinkedIn" data-ga-category="nav">LinkedIn ↗</a>
+      </nav>
+    </div>
+    <div class="nav__progress"><div class="nav__progress-fill" id="navProgress"></div></div>
+  </header>
+
+  <main>
+
+    <!-- ── HERO ── -->
+    <section class="hero" id="hero">
+      <div class="hero__inner">
+        <span class="badge badge--lime">Available for new projects</span>
+        <h1 class="hero__title">Product Designer<span class="hero__ai-label">AI-Augmented Design Workflow</span></h1>
+        <p class="hero__tagline">I bridge Design &amp; Engineering — building hi-fi prototypes with code, AI agents, and real workflows.</p>
+        <p class="hero__meta">End-to-end · AI-augmented · Barcelona-based</p>
+        <div class="hero__actions">
+          <a href="#work" class="btn btn--lime-pill" data-ga-event="cta_click" data-ga-label="View selected work" data-ga-category="hero">View selected work</a>
+          <a href="#process" class="btn btn--dark-pill" data-ga-event="cta_click" data-ga-label="Explore my process" data-ga-category="hero">Explore my process</a>
+        </div>
+      </div>
+
+      <!-- ── Drift Carousel ── -->
+      <div class="drift">
+        <div class="drift-track" id="driftTrack"></div>
+      </div>
+      <script>
+      (function() {
+        var PROJECTS = [
+          { num:'01', title:'Boop',             tagline:'Palm-based payment and identity',         role:'Product Design',     year:'2024', image:'boop-phones.png',         fit:'contain', pad:'right' },
+          { num:'02', title:'Quadrato',          tagline:'Fractional NFT ownership on Solana',      role:'Product Design',     year:'2023', image:'quadrato-cover.png',      fit:'cover' },
+          { num:'03', title:'Aztec Explorer',    tagline:'Real-time node network explorer',         role:'Product Design',     year:'2025', image:'aztec-mobile.png',        fit:'contain' },
+          { num:'04', title:'Restaking.Info',    tagline:'DeFi restaking analytics dashboard',      role:'Product Design',     year:'2024', image:'restaking-riseshot.png',  fit:'cover' },
+          { num:'05', title:'SyntropyX',         tagline:'Structured DeFi vault platform',          role:'Product Design',     year:'2025', image:'syntropyx-portfolio.jpg', fit:'cover' },
+          { num:'06', title:'SX Borrowing',      tagline:'Collateralised lending flow',             role:'Interaction Design', year:'2025', image:'syntropyx-borrowing.png', fit:'cover' },
+          { num:'07', title:'Boop Pass',         tagline:'Festival pass + active state UI',         role:'Mobile Lead',        year:'2024', image:'boop-active-pass.png',    fit:'cover' },
+          { num:'08', title:'Boop Onboarding',   tagline:'Wave-to-pay registration flow',           role:'UX + Motion',        year:'2024', image:'boop-riseshot.png',       fit:'cover' },
+          { num:'09', title:'Restaking Mobile',  tagline:'Restaking analytics, pocket-sized',       role:'Mobile Design',      year:'2024', image:'restaking-mobile.png',    fit:'contain' },
+          { num:'10', title:'Towerbank',         tagline:'Neobank wallet, redesigned',              role:'UX/UI',              year:'2023', image:'towerbank-mobile.png',    fit:'contain' },
+          { num:'11', title:'Boop Tickets',      tagline:'Event ticket management UI',              role:'Product Design',     year:'2024', image:'boop-phone-2.png',        fit:'contain' },
+          { num:'12', title:'Boop Profile',      tagline:'User identity & verification screen',     role:'UX',                 year:'2024', image:'boop-phone-3.png',        fit:'contain' },
+        ];
+
+        function makeCard(p) {
+          var artClass = p.fit === 'contain' ? 'drift-art drift-art--contain' : 'drift-art drift-art--cover';
+          var imgClass = p.fit === 'contain' ? (p.pad === 'right' ? 'drift-img drift-img--contain-right' : 'drift-img drift-img--contain') : 'drift-img drift-img--cover';
+          return '<div class="drift-card">' +
+            '<div class="' + artClass + '">' +
+              '<img class="' + imgClass + '" src="' + p.image + '" alt="" loading="lazy">' +
+              '<div class="drift-vignette" aria-hidden="true"></div>' +
+              '<div class="drift-grain" aria-hidden="true"></div>' +
+              '<div class="drift-corner">' + p.num + '</div>' +
+            '</div>' +
+            '<div class="drift-meta">' +
+              '<div class="drift-title">' + p.title + '</div>' +
+              '<div class="drift-tagline">' + p.tagline + '</div>' +
+              '<div class="drift-footer">' +
+                '<span class="drift-role">' + p.role + '</span>' +
+                '<span class="drift-year">' + p.year + '</span>' +
+              '</div>' +
+            '</div>' +
+          '</div>';
+        }
+
+        var track = document.getElementById('driftTrack');
+        if (track) {
+          var all = PROJECTS.concat(PROJECTS);
+          track.innerHTML = all.map(makeCard).join('');
+        }
+      })();
+      </script>
+
+      <div class="stats-bar">
+        <div class="stats-bar__inner">
+          <div class="stats-bar__item">
+            <span class="stats-bar__value">4+</span>
+            <span class="stats-bar__label">years exp.</span>
+          </div>
+          <div class="stats-bar__item">
+            <span class="stats-bar__value">Web3 &amp; Fintech</span>
+            <span class="stats-bar__label">domains</span>
+          </div>
+          <div class="stats-bar__item">
+            <span class="stats-bar__value">AI-augmented</span>
+            <span class="stats-bar__label">workflow</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ── SELECTED WORK ── -->
+    <section class="work" id="work">
+      <div class="work__inner">
+      <p class="section__label">Selected Work</p>
+
+      <div class="work__filters">
+        <button class="work__filter work__filter--active" data-filter="all">All</button>
+        <button class="work__filter" data-filter="web3">Web3</button>
+        <button class="work__filter" data-filter="defi">DeFi</button>
+        <button class="work__filter" data-filter="mobile app">Mobile App</button>
+        <button class="work__filter" data-filter="payment">Payment</button>
+        <button class="work__filter" data-filter="nft">NFT</button>
+        <button class="work__filter" data-filter="solana">Solana</button>
+        <button class="work__filter" data-filter="infrastructure">Infrastructure</button>
+        <button class="work__filter" data-filter="dashboard">Dashboard</button>
+        <button class="work__filter" data-filter="design system">Design System</button>
+        <button class="work__filter" data-filter="b2b saas">B2B SaaS</button>
+      </div>
+
+      <div class="projects">
+
+        <!-- Boop -->
+        <a href="boop.html" class="fcard fcard--boop fade-in" data-ga-event="project_click" data-ga-label="Boop" data-ga-category="project_cards" data-tags="mobile app,fintech,payment">
+          <div class="fcard__num">
+            <span class="pcard__num-label">Index</span>
+            <span class="pcard__num-value">01</span>
+            <span class="pcard__num-total">of 07</span>
+          </div>
+          <img class="fcard__phones-img" src="boop-phones.png" alt="" loading="lazy">
+          <div class="fcard__content">
+            <div class="fcard__info">
+              <img class="fcard__logo" src="boop-logo.svg" alt="Boop">
+              <div class="fcard__tags">
+                <span class="tag">MOBILE APP</span>
+                <span class="tag">FINTECH</span>
+                <span class="tag">PAYMENT</span>
+              </div>
+              <p class="fcard__desc">Palm-based payment and identity - wave your hand to pay and access</p>
+            </div>
+            <span class="fcard__cta">View case study</span>
+          </div>
+        </a>
+
+        <!-- Quadrato -->
+        <a href="quadrato.html" class="fcard fcard--quadrato fade-in" data-ga-event="project_click" data-ga-label="Quadrato" data-ga-category="project_cards" data-tags="web3,nft,solana">
+          <div class="fcard__num">
+            <span class="pcard__num-label">Index</span>
+            <span class="pcard__num-value">02</span>
+            <span class="pcard__num-total">of 07</span>
+          </div>
+          <img class="fcard__bg" src="quadrato-bg.png" alt="" loading="lazy">
+          <div class="fcard__content">
+            <div class="fcard__info">
+              <div class="fcard__heading">
+                <h3 class="fcard__title">QUADRATO</h3>
+                <div class="fcard__tags">
+                  <span class="tag">WEB3</span>
+                  <span class="tag">NFT</span>
+                  <span class="tag">SOLANA</span>
+                </div>
+              </div>
+              <p class="fcard__desc">NFT protocol democratising fractional ownership standards on Solana.</p>
+            </div>
+            <span class="fcard__cta">View case study</span>
+          </div>
+        </a>
+
+        <!-- Aztec -->
+        <a href="p2p-explorer.html" class="pcard fade-in" data-ga-event="project_click" data-ga-label="Aztec" data-ga-category="project_cards" data-tags="web3,infrastructure,starknet">
+          <div class="pcard__num">
+            <span class="pcard__num-label">Index</span>
+            <span class="pcard__num-value">03</span>
+            <span class="pcard__num-total">of 07</span>
+          </div>
+          <div class="pcard__left">
+            <div class="pcard__icon">
+              <img src="aztec-logo.svg" alt="Aztec" style="height:28px;width:auto;filter:brightness(0) invert(1);">
+            </div>
+            <h3 class="pcard__title">Aztec Node Explorer</h3>
+            <div class="pcard__tags">
+              <span class="tag">Web3</span>
+              <span class="tag">Infrastructure</span>
+              <span class="tag">Aztec</span>
+            </div>
+            <p class="pcard__desc">Real-time Aztec node network explorer — global distribution, client versions, and network health at a glance.</p>
+            <span class="pcard__cta">View case study →</span>
+          </div>
+          <div class="pcard__right">
+            <div class="pcard__glow"></div>
+            <img src="aztec-card.png" alt="Aztec Node Explorer" class="aztec-card-img">
+          </div>
+        </a>
+
+        <!-- Restaking.Info -->
+        <a href="restaking.html" class="pcard fade-in" data-ga-event="project_click" data-ga-label="Restaking.Info" data-ga-category="project_cards" data-tags="defi,dashboard">
+          <div class="pcard__num">
+            <span class="pcard__num-label">Index</span>
+            <span class="pcard__num-value">04</span>
+            <span class="pcard__num-total">of 07</span>
+          </div>
+          <div class="pcard__left">
+            <div class="pcard__icon">
+              <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+                <circle cx="11" cy="18" r="7" stroke="var(--accent)" stroke-width="1.6"/>
+                <circle cx="25" cy="18" r="7" stroke="var(--accent)" stroke-width="1.6" opacity=".5"/>
+                <path d="M16.5 13.5A7 7 0 0 1 19.5 18a7 7 0 0 1-3 4.5" stroke="var(--accent)" stroke-width="1.2" opacity=".7"/>
+              </svg>
+            </div>
+            <h3 class="pcard__title">Restaking.Info</h3>
+            <div class="pcard__tags">
+              <span class="tag">DeFi</span>
+              <span class="tag">Dashboard</span>
+            </div>
+            <p class="pcard__desc">DeFi restaking analytics and portfolio management dashboard.</p>
+            <span class="pcard__cta">View on Behance →</span>
+          </div>
+          <div class="pcard__right">
+            <div class="pcard__glow pcard__glow--teal"></div>
+            <div class="pcard__screen" style="background:#060d10;overflow:hidden;">
+              <img src="restaking-hero.png" alt="Restaking.Info" style="width:100%;height:100%;object-fit:contain;object-position:center center;">
+            </div>
+          </div>
+        </a>
+
+        <!-- SyntropyX -->
+        <a href="syntropyx.html" class="pcard fade-in" data-ga-event="project_click" data-ga-label="SyntropyX" data-ga-category="project_cards" data-tags="web3,defi,product design">
+          <div class="pcard__num">
+            <span class="pcard__num-label">Index</span>
+            <span class="pcard__num-value">05</span>
+            <span class="pcard__num-total">of 07</span>
+          </div>
+          <div class="pcard__left">
+            <div class="pcard__icon">
+              <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+                <rect width="36" height="36" rx="8" fill="var(--accent)"/>
+                <path d="M10 18h16M18 10l8 8-8 8" stroke="#0D0D0D" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3 class="pcard__title">SyntropyX</h3>
+            <div class="pcard__tags">
+              <span class="tag">Web3</span>
+              <span class="tag">DeFi</span>
+              <span class="tag">Product Design</span>
+            </div>
+            <p class="pcard__desc">DeFi structured vault platform — deposit, mint, stake, earn.</p>
+            <span class="pcard__cta">View Case Study →</span>
+          </div>
+          <div class="pcard__right">
+            <div class="pcard__glow"></div>
+            <div class="pcard__screen sx-index-cover">
+              <div class="sx-index-cover__grid">
+                <div class="sx-index-card">
+                  <div class="sx-index-label">Net Value</div>
+                  <div class="sx-index-value">$6,456</div>
+                </div>
+                <div class="sx-index-card">
+                  <div class="sx-index-label">Net APY</div>
+                  <div class="sx-index-value sx-index-value--green">4.04%</div>
+                </div>
+                <div class="sx-index-card sx-index-card--wide">
+                  <div class="sx-index-label">Total locked value</div>
+                  <div class="sx-index-value">$12.3M</div>
+                  <div class="sx-index-bar"><div style="width:58%"></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Dissect -->
+        <a href="dissect.html" class="pcard fade-in" data-ga-event="project_click" data-ga-label="Dissect" data-ga-category="project_cards" data-tags="design system,web3,defi">
+          <div class="pcard__num">
+            <span class="pcard__num-label">Index</span>
+            <span class="pcard__num-value">06</span>
+            <span class="pcard__num-total">of 07</span>
+          </div>
+          <div class="pcard__left">
+            <div class="pcard__icon">
+              <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+                <path d="M18 3L33 12V24L18 33L3 24V12L18 3Z" stroke="var(--accent)" stroke-width="1.6"/>
+                <path d="M18 3V33M3 12L33 12M3 24L33 24" stroke="var(--accent)" stroke-width="1" opacity=".35"/>
+              </svg>
+            </div>
+            <h3 class="pcard__title">Dissect</h3>
+            <div class="pcard__tags">
+              <span class="tag">Design System</span>
+              <span class="tag">Web3</span>
+              <span class="tag">DeFi</span>
+            </div>
+            <p class="pcard__desc">NFT fractional lending platform — landing page &amp; full design system.</p>
+            <span class="pcard__cta">View Case Study →</span>
+          </div>
+          <div class="pcard__right">
+            <div class="pcard__glow pcard__glow--blue"></div>
+            <div class="pcard__screen dissect-index-cover">
+              <div class="dissect-index-cover__cube">
+                <svg viewBox="0 0 240 230" fill="none">
+                  <polygon points="120,20 210,68 120,116 30,68" stroke="rgba(110,165,255,0.65)" stroke-width="1.2" fill="rgba(59,130,246,0.06)"/>
+                  <polygon points="30,68 120,116 120,210 30,162" stroke="rgba(110,165,255,0.45)" stroke-width="1.2" fill="rgba(59,130,246,0.03)"/>
+                  <polygon points="120,116 210,68 210,162 120,210" stroke="rgba(110,165,255,0.55)" stroke-width="1.2" fill="rgba(59,130,246,0.07)"/>
+                  <polygon points="120,20 210,68 210,162 120,210 30,162 30,68" stroke="rgba(110,165,255,0.13)" stroke-width="1" fill="none"/>
+                  <line x1="120" y1="20" x2="120" y2="2" stroke="rgba(110,165,255,0.35)" stroke-width="1"/>
+                  <line x1="210" y1="68" x2="230" y2="57" stroke="rgba(110,165,255,0.28)" stroke-width="1"/>
+                  <line x1="30" y1="68" x2="10" y2="57" stroke="rgba(110,165,255,0.28)" stroke-width="1"/>
+                  <circle cx="120" cy="20" r="2.5" fill="rgba(110,165,255,0.7)"/>
+                  <circle cx="210" cy="68" r="2.5" fill="rgba(110,165,255,0.6)"/>
+                  <circle cx="30" cy="68" r="2.5" fill="rgba(110,165,255,0.55)"/>
+                  <circle cx="120" cy="116" r="2" fill="rgba(110,165,255,0.45)"/>
+                </svg>
+              </div>
+              <span class="dissect-index-cover__logo">Dissect</span>
+              <div class="dissect-index-cover__card">
+                <div class="dissect-index-cover__row dissect-index-cover__row--apy">
+                  <span>APY</span><span>25%</span>
+                </div>
+                <div class="dissect-index-cover__row">
+                  <span>Fraction price</span><span>3 SOL</span>
+                </div>
+                <div class="dissect-index-cover__row">
+                  <span>Duration</span><span>7 days</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- WAARM -->
+        <a href="https://www.behance.net/gallery/142179465/WAARM" class="pcard fade-in pcard--hidden" target="_blank" rel="noopener" data-ga-event="outbound_click" data-ga-label="WAARM Behance" data-ga-category="project_cards" data-tags="b2b saas,ux case study">
+          <div class="pcard__num">
+            <span class="pcard__num-label">Index</span>
+            <span class="pcard__num-value">07</span>
+            <span class="pcard__num-total">of 07</span>
+          </div>
+          <div class="pcard__left">
+            <div class="pcard__icon">
+              <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+                <path d="M18 5C18 5 7 13 7 21a11 11 0 0 0 22 0C29 13 18 5 18 5Z" stroke="var(--accent)" stroke-width="1.6" fill="none"/>
+                <path d="M13 23c0-4 5-10 5-10s5 6 5 10" stroke="var(--accent)" stroke-width="1.2" opacity=".5"/>
+              </svg>
+            </div>
+            <h3 class="pcard__title">WAARM</h3>
+            <div class="pcard__tags">
+              <span class="tag">B2B SaaS</span>
+              <span class="tag">UX Case Study</span>
+            </div>
+            <p class="pcard__desc">Carbon management platform for enterprise sustainability goals.</p>
+            <span class="pcard__cta">View on Behance →</span>
+          </div>
+          <div class="pcard__right">
+            <div class="pcard__glow pcard__glow--teal"></div>
+            <img class="pcard__img" src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/dff649142179465.6267fcf5472f9.jpg" alt="WAARM Carbon Platform" loading="lazy"/>
+          </div>
+        </a>
+
+      </div>
+
+      <div class="work__more">
+        <button class="work__load-more" id="loadMore">Load more</button>
+        <a href="https://www.behance.net/hdkrlosde26" target="_blank" rel="noopener" class="work__all work__all--hidden" id="behanceLink">All projects on Behance →</a>
+      </div>
+      </div><!-- /.work__inner -->
+    </section>
+
+    <!-- ── PROCESS ── -->
+    <section class="process-section" id="process">
+      <div class="process-section__inner">
+
+        <div class="process__header">
+          <h2 class="process__heading">My Process</h2>
+          <div class="process__header-line"></div>
+        </div>
+
+        <div class="process__grid-v2">
+
+          <div class="process__card-v2 fade-in">
+            <span class="process__num-v2">01</span>
+            <h3 class="process__name-v2">Discover</h3>
+            <p class="process__sub-v2">Audit · Research · Benchmarking</p>
+            <p class="process__brief-v2">Heuristic audits and AI-assisted synthesis to understand the "why" before touching a canvas.</p>
+          </div>
+
+          <div class="process__card-v2 fade-in">
+            <span class="process__num-v2">02</span>
+            <h3 class="process__name-v2">Define</h3>
+            <p class="process__sub-v2">Problem Framing · Strategic Flows</p>
+            <p class="process__brief-v2">IA and user flows anchored to a clear "Job to be Done" and specific user pain points.</p>
+          </div>
+
+          <div class="process__card-v2 fade-in">
+            <span class="process__num-v2">03</span>
+            <h3 class="process__name-v2">Design</h3>
+            <p class="process__sub-v2">Lo-fi → Logic Validation → Hi-fi</p>
+            <p class="process__brief-v2">Wireframes, edge case stress-testing, then high-fidelity UI — logic first, visual layer after.</p>
+          </div>
+
+          <div class="process__card-v2 fade-in">
+            <span class="process__num-v2">04</span>
+            <h3 class="process__name-v2">Validate</h3>
+            <p class="process__sub-v2">Prototyping · User Testing</p>
+            <p class="process__brief-v2">Task-based usability sessions to refine friction points and iterate until it feels intuitive.</p>
+          </div>
+
+          <div class="process__card-v2 fade-in">
+            <span class="process__num-v2">05</span>
+            <h3 class="process__name-v2">Deliver</h3>
+            <p class="process__sub-v2">Handoff · Implementation Support</p>
+            <p class="process__brief-v2">Design tokens, component states, a11y specs, and Design QA during the build.</p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ── ABOUT ── -->
+    <section class="section about" id="about">
+      <div class="about__inner-v2 fade-in">
+        <img src="profile.jpg" alt="Carlos Mera" class="about__photo" />
+        <div class="about__content">
+          <p class="section__label">About</p>
+          <p class="about__bio-v2">Product Designer with 4+ years bridging design and engineering in Web3, DeFi, and fintech. Currently at Nethermind, previously at NATEEVO. I work with an AI-augmented pipeline — Claude Code, MCP, and agents are part of how I design every day.</p>
+          <div class="about__skills-grid">
+            <span class="skill-chip">Figma</span>
+            <span class="skill-chip">Design Systems</span>
+            <span class="skill-chip">UX Research</span>
+            <span class="skill-chip">Interaction Design</span>
+            <span class="skill-chip">Prototyping</span>
+            <span class="skill-chip">Motion Design</span>
+            <span class="skill-chip">Claude Code</span>
+            <span class="skill-chip">MCP</span>
+            <span class="skill-chip">V0</span>
+            <span class="skill-chip">Framer</span>
+            <span class="skill-chip">HTML / CSS</span>
+            <span class="skill-chip">Web3 / DeFi</span>
+            <span class="skill-chip">Fintech</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ── EXPERIENCE & EDUCATION ── -->
+    <section class="exp-section" id="exp">
+      <div class="exp-section__inner">
+        <p class="section__label">Experience &amp; Education</p>
+
+        <div class="exp__timeline">
+
+          <div class="exp__tl-item">
+            <div class="exp__tl-left">
+              <span class="exp__tl-period">May 2024 – Present</span>
+            </div>
+            <div class="exp__tl-line"><div class="exp__tl-dot"></div></div>
+            <div class="exp__tl-body">
+              <p class="exp__tl-company">Nethermind · Full-time · Remote</p>
+              <h3 class="exp__tl-role">Product Designer</h3>
+              <div class="exp__tl-chips">
+                <span class="exp__project">Boop</span>
+                <span class="exp__project">SyntropyX</span>
+                <span class="exp__project">Restaking.Info</span>
+                <span class="exp__project">Aztec Node Explorer</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="exp__tl-item">
+            <div class="exp__tl-left">
+              <span class="exp__tl-period">May 2022 – May 2024</span>
+            </div>
+            <div class="exp__tl-line"><div class="exp__tl-dot"></div></div>
+            <div class="exp__tl-body">
+              <p class="exp__tl-company">NATEEVO · Full-time · Barcelona, Hybrid</p>
+              <h3 class="exp__tl-role">UX/UI Designer</h3>
+              <div class="exp__tl-chips">
+                <span class="exp__project">ImaginBank</span>
+                <span class="exp__project">WatchesandWonders</span>
+                <span class="exp__project">Manor</span>
+                <span class="exp__project">Samsung</span>
+                <span class="exp__project">SEAT</span>
+                <span class="exp__project">Towerbank</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="exp__tl-item">
+            <div class="exp__tl-left">
+              <span class="exp__tl-period">Dec 2023 – Feb 2024</span>
+            </div>
+            <div class="exp__tl-line"><div class="exp__tl-dot exp__tl-dot--sm"></div></div>
+            <div class="exp__tl-body">
+              <p class="exp__tl-company">Dissect · Remote</p>
+              <h3 class="exp__tl-role">Product Designer <span class="exp__tl-type">Co-op</span></h3>
+              <p class="exp__tl-desc">Full design system for a Web3/DeFi NFT lending platform.</p>
+            </div>
+          </div>
+
+          <div class="exp__tl-item">
+            <div class="exp__tl-left">
+              <span class="exp__tl-period">Nov 2023 – Jan 2024</span>
+            </div>
+            <div class="exp__tl-line"><div class="exp__tl-dot exp__tl-dot--sm"></div></div>
+            <div class="exp__tl-body">
+              <p class="exp__tl-company">OPOS · Remote</p>
+              <h3 class="exp__tl-role">Product Designer <span class="exp__tl-type">Co-op</span></h3>
+              <p class="exp__tl-desc">Solana blockchain fundamental analysis dashboard.</p>
+            </div>
+          </div>
+
+          <div class="exp__tl-item">
+            <div class="exp__tl-left">
+              <span class="exp__tl-period">Oct 2020 – Jan 2022</span>
+            </div>
+            <div class="exp__tl-line"><div class="exp__tl-dot exp__tl-dot--sm"></div></div>
+            <div class="exp__tl-body">
+              <p class="exp__tl-company">Widitrade · Madrid</p>
+              <h3 class="exp__tl-role">Lead Graphic Designer</h3>
+              <p class="exp__tl-desc">Visual design and brand identity for a fintech e-commerce platform.</p>
+            </div>
+          </div>
+
+          <div class="exp__tl-divider">Education</div>
+
+          <div class="exp__tl-item">
+            <div class="exp__tl-left">
+              <span class="exp__tl-period">2020 · Barcelona</span>
+            </div>
+            <div class="exp__tl-line"><div class="exp__tl-dot exp__tl-dot--edu"></div></div>
+            <div class="exp__tl-body">
+              <p class="exp__tl-company">Ironhack</p>
+              <h3 class="exp__tl-role">UX/UI Design Bootcamp</h3>
+            </div>
+          </div>
+
+          <div class="exp__tl-item">
+            <div class="exp__tl-left">
+              <span class="exp__tl-period">2011–2016 · Havana</span>
+            </div>
+            <div class="exp__tl-line"><div class="exp__tl-dot exp__tl-dot--edu"></div></div>
+            <div class="exp__tl-body">
+              <p class="exp__tl-company">ISDI</p>
+              <h3 class="exp__tl-role">Visual Communication &amp; Integral Design</h3>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="exp__cv-cta-v2">
+          <a href="carlosmera_CV.pdf" download="carlosmera_CV.pdf" class="btn btn--dark-pill" data-ga-event="cv_download" data-ga-label="CV exp section" data-ga-category="exp_section">Download CV ↓</a>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ── CONTACT ── -->
+    <section class="contact" id="contact">
+      <div class="contact__inner fade-in">
+        <p class="section__label">Contact</p>
+        <h2 class="contact__heading">Let's build<br>something together</h2>
+        <p class="contact__sub">
+          Open to new opportunities — freelance projects, full-time roles,
+          or just a good conversation about design.
+        </p>
+        <a href="mailto:carlosmera.design@gmail.com" class="btn btn--primary btn--lg">carlosmera.design@gmail.com</a>
+        <div class="contact__socials">
+          <a href="https://www.linkedin.com/in/carlosmmera/" target="_blank" rel="noopener">LinkedIn</a>
+          <span>·</span>
+          <a href="https://www.behance.net/hdkrlosde26" target="_blank" rel="noopener">Behance</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <span>© 2026 Carlos Mera</span>
+      <span>Designed &amp; built with care · Barcelona</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="analytics.js"></script>
+
+  <!-- ── Chat Logging ── -->
+  <script>
+    var _LOG_KEY = 'portfolio_ai_logs';
+    function logQuestion(question) {
+      try {
+        var store = getLogs();
+        store.raw.push({ question: question, timestamp: new Date().toISOString(), url: location.href });
+        var key = question.trim().toLowerCase();
+        store.freq[key] = (store.freq[key] || 0) + 1;
+        localStorage.setItem(_LOG_KEY, JSON.stringify(store));
+      } catch(e) {}
+      fetch('/api/log', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ question: question, url: location.href })
+      }).catch(function() {});
+    }
+    function getLogs() {
+      try {
+        var raw = localStorage.getItem(_LOG_KEY);
+        return raw ? JSON.parse(raw) : { raw: [], freq: {} };
+      } catch(e) { return { raw: [], freq: {} }; }
+    }
+    function clearLogs() { localStorage.removeItem(_LOG_KEY); }
+    function getFreq() { return getLogs().freq; }
+    window._chatLogs = { getLogs: getLogs, clearLogs: clearLogs, getFreq: getFreq };
+    console.log('_chatLogs initialized');
+  </script>
+
+  <!-- ── AI Chat Widget ── -->
+  <style>
+    .chat-btn {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #8A8A8E;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 24px rgba(138,138,142,0.3);
+      z-index: 9999;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .chat-btn:hover { transform: scale(1.08); }
+
+    @keyframes btn-shimmer {
+      0%   { background-position: 100% center; box-shadow: 0 4px 24px rgba(138,138,142,0.3); }
+      100% { background-position: 0% center;   box-shadow: 0 4px 24px rgba(169,204,31,0.35); }
+    }
+    .chat-btn--lit {
+      background: linear-gradient(
+        90deg,
+        #A9CC1F  0%,
+        #A9CC1F  28%,
+        #e8f89a  42%,
+        #ffffff  50%,
+        #e8f89a  58%,
+        #8A8A8E  72%,
+        #8A8A8E  100%
+      );
+      background-size: 300% 100%;
+      animation: btn-shimmer 1.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+    .chat-btn--lit:hover { box-shadow: 0 6px 32px rgba(169,204,31,0.5); }
+    .chat-btn svg { width: 24px; height: 24px; fill: #040C09; }
+    .chat-btn .chat-btn__close { display: none; }
+    .chat-btn.is-open .chat-btn__open { display: none; }
+    .chat-btn.is-open .chat-btn__close { display: block; }
+
+    .chat-panel {
+      position: fixed;
+      bottom: 5.5rem;
+      right: 2rem;
+      width: 360px;
+      max-height: 520px;
+      background: #0D1A10;
+      border: 1px solid rgba(169,204,31,0.2);
+      border-radius: 16px;
+      display: flex;
+      flex-direction: column;
+      z-index: 9998;
+      overflow: hidden;
+      box-shadow: 0 8px 48px rgba(0,0,0,0.6);
+      transform: translateY(12px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.22s, transform 0.22s;
+    }
+    .chat-panel.is-open { opacity: 1; transform: translateY(0); pointer-events: all; }
+
+    .chat-panel__header {
+      padding: 1rem 1.25rem 0.75rem;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .chat-panel__dot { width: 8px; height: 8px; border-radius: 50%; background: #A9CC1F; box-shadow: 0 0 6px #A9CC1F; }
+    .chat-panel__title { font-size: 0.8rem; font-weight: 600; color: #fff; }
+    .chat-panel__sub { font-size: 0.7rem; color: rgba(255,255,255,0.4); margin-left: auto; }
+
+    .chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(169,204,31,0.2) transparent;
+    }
+    .chat-msg { display: flex; flex-direction: column; gap: 0.2rem; max-width: 85%; min-width: 0; }
+    .chat-msg--user { align-self: flex-end; align-items: flex-end; }
+    .chat-msg--bot  { align-self: flex-start; }
+    .chat-msg__bubble {
+      padding: 0.55rem 0.85rem;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      line-height: 1.5;
+      white-space: pre-wrap;
+      word-break: break-word;
+      overflow-wrap: break-word;
+      min-width: 0;
+      max-width: 100%;
+    }
+    .chat-msg--user .chat-msg__bubble { background: #A9CC1F; color: #040C09; font-weight: 500; border-bottom-right-radius: 4px; }
+    .chat-msg--bot  .chat-msg__bubble { background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.88); border-bottom-left-radius: 4px; }
+    .chat-msg--bot.is-typing .chat-msg__bubble::after {
+      content: '●●●';
+      font-size: 0.6rem;
+      letter-spacing: 2px;
+      animation: typing-dots 1s infinite;
+    }
+    @keyframes typing-dots {
+      0%,100% { opacity: 0.3; }
+      50%      { opacity: 1; }
+    }
+
+    .chat-input-row {
+      display: flex;
+      gap: 0.5rem;
+      padding: 0.75rem 1rem;
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+    .chat-input {
+      flex: 1;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      padding: 0.5rem 0.75rem;
+      font-size: 0.8rem;
+      color: #fff;
+      outline: none;
+      font-family: inherit;
+      resize: none;
+    }
+    .chat-input::placeholder { color: rgba(255,255,255,0.3); }
+    .chat-input:focus { border-color: rgba(169,204,31,0.4); }
+    .chat-send {
+      width: 36px; height: 36px;
+      background: #A9CC1F;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      transition: opacity 0.15s;
+    }
+    .chat-send:disabled { opacity: 0.4; cursor: default; }
+    .chat-send svg { width: 16px; height: 16px; fill: #040C09; }
+
+    @media (max-width: 480px) {
+      .chat-panel { right: 1rem; left: 1rem; width: auto; }
+      .chat-btn { right: 1rem; bottom: 1rem; }
+    }
+  </style>
+
+  <button class="chat-btn" id="chatBtn" aria-label="Open AI chat">
+    <svg class="chat-btn__open" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2.05 21.95l4.782-1.387A9.953 9.953 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2Zm0 2a8 8 0 1 1 0 16 7.964 7.964 0 0 1-3.965-1.054l-.282-.164-2.938.851.852-2.938-.164-.282A7.964 7.964 0 0 1 4 12a8 8 0 0 1 8-8Zm-1 4v4H7v2h4v4h2v-4h4v-2h-4V8h-2Z"/></svg>
+    <svg class="chat-btn__close" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+  </button>
+
+  <div class="chat-panel" id="chatPanel" role="dialog" aria-label="AI assistant">
+    <div class="chat-panel__header">
+      <div class="chat-panel__dot"></div>
+      <span class="chat-panel__title">Ask about Carlos</span>
+      <span class="chat-panel__sub">AI · Groq</span>
+    </div>
+    <div class="chat-messages" id="chatMessages"></div>
+    <div class="chat-input-row">
+      <textarea class="chat-input" id="chatInput" rows="1" placeholder="Ask me anything…"></textarea>
+      <button class="chat-send" id="chatSend" aria-label="Send">
+        <svg viewBox="0 0 24 24"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <script>
+  (() => {
+    const MAX_HISTORY = 6;
+    const btn = document.getElementById('chatBtn');
+    const panel = document.getElementById('chatPanel');
+    const messages = document.getElementById('chatMessages');
+    const input = document.getElementById('chatInput');
+    const send = document.getElementById('chatSend');
+    const history = [];
+    let greetingShown = false;
+
+    function openPanel() { panel.classList.add('is-open'); btn.classList.add('is-open'); }
+    function closePanel() { panel.classList.remove('is-open'); btn.classList.remove('is-open'); }
+
+    function showGreeting() {
+      if (greetingShown) return;
+      addMessage('bot', 'Hey! I\'m Carlos\'s AI assistant. Ask me anything about his work, skills, or experience.');
+      greetingShown = true;
+    }
+
+    function togglePanel() {
+      const open = panel.classList.toggle('is-open');
+      btn.classList.toggle('is-open', open);
+      if (open) { showGreeting(); input.focus(); }
+    }
+
+    function addMessage(role, text) {
+      const wrap = document.createElement('div');
+      wrap.className = `chat-msg chat-msg--${role === 'user' ? 'user' : 'bot'}`;
+      const bubble = document.createElement('div');
+      bubble.className = 'chat-msg__bubble';
+      bubble.textContent = text;
+      wrap.appendChild(bubble);
+      messages.appendChild(wrap);
+      messages.scrollTop = messages.scrollHeight;
+      return wrap;
+    }
+
+    setTimeout(() => {
+      showGreeting();
+      openPanel();
+      btn.classList.add('chat-btn--lit');
+    }, 3000);
+
+    async function sendMessage() {
+      const text = input.value.trim();
+      if (!text) return;
+      input.value = '';
+      input.style.height = 'auto';
+      send.disabled = true;
+
+      addMessage('user', text);
+      history.push({ role: 'user', content: text });
+      logQuestion(text);
+
+      const typing = addMessage('bot', '');
+      typing.classList.add('is-typing');
+
+      try {
+        const trimmed = history.slice(-MAX_HISTORY);
+        const res = await fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ messages: trimmed })
+        });
+        const data = await res.json();
+        const reply = data.reply ?? 'Sorry, I couldn\'t get a response.';
+        typing.classList.remove('is-typing');
+        typing.querySelector('.chat-msg__bubble').textContent = reply;
+        history.push({ role: 'assistant', content: reply });
+      } catch {
+        typing.classList.remove('is-typing');
+        typing.querySelector('.chat-msg__bubble').textContent = 'Connection error. Please try again.';
+      }
+
+      send.disabled = false;
+      messages.scrollTop = messages.scrollHeight;
+      input.focus();
+    }
+
+    btn.addEventListener('click', togglePanel);
+    send.addEventListener('click', sendMessage);
+    input.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); } });
+    input.addEventListener('input', () => { input.style.height = 'auto'; input.style.height = Math.min(input.scrollHeight, 100) + 'px'; });
+  })();
+  </script>
+
+</body>
+</html>
