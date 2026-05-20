@@ -391,8 +391,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           { num:'02', title:'Quadrato',          tagline:'Fractional NFT ownership on Solana',      role:'Product Design',     year:'2023', image:'quadrato-cover.png',      fit:'cover' },
           { num:'03', title:'Aztec Explorer',    tagline:'Real-time node network explorer',         role:'Product Design',     year:'2025', image:'aztec-mobile.png',        fit:'contain' },
           { num:'04', title:'Restaking.Info',    tagline:'DeFi restaking analytics dashboard',      role:'Product Design',     year:'2024', image:'restaking-riseshot.png',  fit:'cover' },
-          { num:'05', title:'SyntropyX',         tagline:'Structured DeFi vault platform',          role:'Product Design',     year:'2025', image:'syntropyx-portfolio.jpg', fit:'cover' },
-          { num:'06', title:'SX Borrowing',      tagline:'Collateralised lending flow',             role:'Interaction Design', year:'2025', image:'syntropyx-borrowing.png', fit:'cover' },
+          { num:'05', title:'🔒 SyX._rx95_Rh',    tagline:'Structured DeFi vault platform',          role:'Product Design',     year:'2025', image:'syntropyx-portfolio.jpg', fit:'cover' },
+          { num:'06', title:'🔒 SyX._rx95_Rh / Borrow', tagline:'Collateralised lending flow',    role:'Interaction Design', year:'2025', image:'syntropyx-borrowing.png', fit:'cover' },
           { num:'07', title:'Boop Pass',         tagline:'Festival pass + active state UI',         role:'Mobile Lead',        year:'2024', image:'boop-active-pass.png',    fit:'cover' },
           { num:'08', title:'Boop Onboarding',   tagline:'Wave-to-pay registration flow',           role:'UX + Motion',        year:'2024', image:'boop-riseshot.png',       fit:'cover' },
           { num:'09', title:'Restaking Mobile',  tagline:'Restaking analytics, pocket-sized',       role:'Mobile Design',      year:'2024', image:'restaking-mobile.png',    fit:'contain' },
@@ -587,7 +587,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <path d="M10 18h16M18 10l8 8-8 8" stroke="#0D0D0D" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </div>
-            <h3 class="pcard__title">SyntropyX</h3>
+            <h3 class="pcard__title">🔒 SyX._rx95_Rh</h3>
             <div class="pcard__tags">
               <span class="tag">Web3</span>
               <span class="tag">DeFi</span>
