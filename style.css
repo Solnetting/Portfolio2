@@ -1235,6 +1235,11 @@ a   { color: inherit; text-decoration: none; }
   line-height: 1.65;
 }
 
+.exp__project {
+  color: #fff;
+  font-weight: 600;
+}
+
 .exp__cv-cta {
   margin-top: 2.5rem;
   padding-bottom: 2rem;
