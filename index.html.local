@@ -400,6 +400,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
           { num:'08', title:'Dissect',           tagline:'NFT-collateralised lending',               role:'DeFi · NFT',         year:'2023', image:'dissect-cover.jpg',       fit:'cover' },
           { num:'09', title:'Dissect Design System', tagline:'Design principles and guidelines',    role:'DS',                 year:'2023', image:'dissect-ds.svg',          fit:'cover' },
+          { num:'10', title:'ImaginBank',        tagline:'Bizum payment flow',                      role:'Fintech · UiSquad',  year:'2022', image:'imaginbank-cover.png',    fit:'cover' },
         ];
 
         function makeCard(p) {
