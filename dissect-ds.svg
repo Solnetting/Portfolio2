@@ -8,12 +8,8 @@
   <!-- Background -->
   <rect width="300" height="225" fill="#07070e"/>
 
-  <!-- DISSECT logo — top right -->
-  <text x="294" y="22"
-    font-family="'Arial Black','Impact','Helvetica Neue',Arial,sans-serif"
-    font-size="13" font-weight="900"
-    fill="white" letter-spacing="2"
-    text-anchor="end">DISSECT</text>
+  <!-- DISSECT logo top-right (correct SVG, scaled to 96×12) -->
+  <image href="dissect-logo.svg" x="194" y="10" width="96" height="12"/>
 
   <!-- Vertical annotation line -->
   <line x1="38" y1="30" x2="38" y2="78" stroke="rgba(255,255,255,0.22)" stroke-width="0.6"/>
