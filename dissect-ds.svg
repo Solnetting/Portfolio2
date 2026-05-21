@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 225">
+  <defs>
+    <pattern id="hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="7" stroke="rgba(255,255,255,0.13)" stroke-width="1.2"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="300" height="225" fill="#07070e"/>
+
+  <!-- Vertical annotation line -->
+  <line x1="38" y1="6" x2="38" y2="74" stroke="rgba(255,255,255,0.22)" stroke-width="0.6"/>
+  <line x1="33" y1="74" x2="43" y2="74" stroke="rgba(255,255,255,0.22)" stroke-width="0.6"/>
+  <text x="42" y="22" font-family="ui-monospace,monospace" font-size="7" fill="rgba(255,255,255,0.32)">280px</text>
+
+  <!-- Hatching strip behind title block -->
+  <rect x="6" y="74" width="218" height="54" fill="url(#hatch)"/>
+
+  <!-- Design system heading -->
+  <text x="6" y="116"
+    font-family="'Arial Black','Helvetica Neue',Arial,sans-serif"
+    font-size="31" font-weight="900"
+    fill="white" letter-spacing="-0.4">Design system</text>
+
+  <!-- DISSECT wordmark -->
+  <text x="6" y="128"
+    font-family="'Arial Black','Helvetica Neue',Arial,sans-serif"
+    font-size="10" font-weight="900"
+    fill="white" letter-spacing="1.5">DISSECT</text>
+
+  <!-- Side annotations -->
+  <text x="1" y="81"  font-family="ui-monospace,monospace" font-size="6" fill="rgba(255,255,255,0.32)">8px</text>
+  <text x="1" y="127" font-family="ui-monospace,monospace" font-size="6" fill="rgba(255,255,255,0.32)">64px</text>
+
+  <!-- Horizontal annotation line -->
+  <line x1="6"   y1="136" x2="294" y2="136" stroke="rgba(255,255,255,0.18)" stroke-width="0.6"/>
+  <text x="200" y="146" font-family="ui-monospace,monospace" font-size="7" fill="rgba(255,255,255,0.32)">280px</text>
+
+  <!-- Description -->
+  <text x="6" y="164" font-family="Arial,sans-serif" font-size="8.5" fill="rgba(255,255,255,0.42)">Design principles and guidelines</text>
+  <text x="6" y="176" font-family="Arial,sans-serif" font-size="8.5" fill="rgba(255,255,255,0.42)">for desktop, tablet and mobile</text>
+</svg>
