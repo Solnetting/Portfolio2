@@ -37,9 +37,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       mask-image: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
       -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
       opacity: 0.7;
-      transition: opacity 0.4s ease;
+      filter: grayscale(1);
+      transition: opacity 0.4s ease, filter 0.4s ease;
     }
-    .drift:hover { opacity: 1; }
+    .drift:hover { opacity: 1; filter: grayscale(0); }
     .drift-track {
       display: flex;
       gap: 22px;
@@ -1100,11 +1101,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       return wrap;
     }
 
-    // After shimmer animation ends (~2.8s): show greeting locally, open panel, light up button
+    // After shimmer animation ends (~2.8s): show greeting, open panel, then auto-close after 3.5s
     setTimeout(() => {
       showGreeting();
       openPanel();
       btn.classList.add('chat-btn--lit');
+      setTimeout(() => { closePanel(); }, 3500);
     }, 3000);
 
     // Chat hint bubble: appears after 2s, hides after 4s, hides permanently when panel opens
