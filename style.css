@@ -101,7 +101,7 @@ a   { color: inherit; text-decoration: none; }
   color: var(--text-primary);
   font-weight: 600;
 }
-.nav__cta { color: var(--accent) !important; font-weight: 500; }
+.nav__cta { color: var(--text-sec); font-weight: 400; }
 .nav__cv {
   color: var(--text-muted);
   font-size: .875rem;
