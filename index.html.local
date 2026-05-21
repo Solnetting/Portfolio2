@@ -114,6 +114,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       display: flex;
       flex-direction: column;
       gap: 5px;
+      text-align: left;
+      align-items: flex-start;
     }
     .drift-title {
       font-family: 'Space Grotesk', system-ui, sans-serif;
