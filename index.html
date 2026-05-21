@@ -41,9 +41,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       display: flex;
       gap: 22px;
       width: max-content;
-      animation: drift-scroll 90s linear infinite;
+      will-change: transform;
+      cursor: grab;
     }
-    .drift-track:hover { animation-play-state: paused; }
+    .drift-track.is-dragging { cursor: grabbing; }
     .drift-card {
       width: 300px;
       flex-shrink: 0;
@@ -207,7 +208,60 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           '</div>';
         }
         var track = document.getElementById('driftTrack');
-        if (track) track.innerHTML = PROJECTS.concat(PROJECTS).map(makeCard).join('');
+        if (!track) return;
+        track.innerHTML = PROJECTS.concat(PROJECTS).map(makeCard).join('');
+
+        requestAnimationFrame(function init() {
+          var loopW   = track.scrollWidth / 2;
+          var offset  = 0;
+          var speed   = 0.5;
+          var dragging    = false;
+          var dragStartX  = 0;
+          var dragStartOff = 0;
+          var velocity    = 0;
+          var lastX       = 0;
+
+          function tick() {
+            if (!dragging) {
+              offset += speed;
+              if (offset >= loopW) offset -= loopW;
+            }
+            track.style.transform = 'translateX(-' + offset + 'px)';
+            requestAnimationFrame(tick);
+          }
+          tick();
+
+          function onDragStart(x) {
+            dragging     = true;
+            dragStartX   = x;
+            dragStartOff = offset;
+            lastX        = x;
+            velocity     = 0;
+            track.classList.add('is-dragging');
+          }
+          function onDragMove(x) {
+            if (!dragging) return;
+            velocity = lastX - x;
+            lastX    = x;
+            offset   = dragStartOff + (dragStartX - x);
+            offset   = ((offset % loopW) + loopW) % loopW;
+          }
+          function onDragEnd() {
+            if (!dragging) return;
+            dragging = false;
+            track.classList.remove('is-dragging');
+            speed = Math.max(0.2, Math.min(3, 0.5 + velocity * 0.4));
+            setTimeout(function() { speed = 0.5; }, 800);
+          }
+
+          track.addEventListener('mousedown',  function(e) { onDragStart(e.clientX); e.preventDefault(); });
+          window.addEventListener('mousemove', function(e) { onDragMove(e.clientX); });
+          window.addEventListener('mouseup',   onDragEnd);
+
+          track.addEventListener('touchstart', function(e) { onDragStart(e.touches[0].clientX); }, { passive: true });
+          track.addEventListener('touchmove',  function(e) { onDragMove(e.touches[0].clientX); },  { passive: true });
+          track.addEventListener('touchend',   onDragEnd);
+        });
       })();
       </script>
 
