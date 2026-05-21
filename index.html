@@ -987,7 +987,48 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       .chat-panel { right: 1rem; left: 1rem; width: auto; }
       .chat-btn { right: 1rem; bottom: 1rem; }
     }
+    .chat-bubble {
+      position: fixed;
+      bottom: 5.8rem;
+      right: 2rem;
+      background: rgba(18,18,22,0.97);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 12px 12px 2px 12px;
+      padding: 10px 14px;
+      font-size: 13px;
+      line-height: 1.4;
+      color: rgba(255,255,255,0.88);
+      white-space: nowrap;
+      pointer-events: none;
+      opacity: 0;
+      transform: translateY(8px) scale(0.96);
+      transition: opacity 0.35s ease, transform 0.35s ease;
+      z-index: 9998;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    }
+    .chat-bubble::after {
+      content: '';
+      position: absolute;
+      bottom: -7px;
+      right: 18px;
+      width: 12px;
+      height: 12px;
+      background: rgba(18,18,22,0.97);
+      border-right: 1px solid rgba(255,255,255,0.12);
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+      transform: rotate(45deg);
+    }
+    .chat-bubble.is-visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+    @media (max-width: 480px) {
+      .chat-bubble { right: 1rem; }
+    }
   </style>
+
+  <!-- Chat hint bubble -->
+  <div class="chat-bubble" id="chatBubble">Ask me anything about Carlos ✦</div>
 
   <!-- Chat toggle button -->
   <button class="chat-btn" id="chatBtn" aria-label="Open AI chat">
@@ -1065,6 +1106,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       openPanel();
       btn.classList.add('chat-btn--lit');
     }, 3000);
+
+    // Chat hint bubble: appears after 2s, hides after 4s, hides permanently when panel opens
+    (function() {
+      var bubble = document.getElementById('chatBubble');
+      if (!bubble) return;
+      var bubbleTimer = setTimeout(function() {
+        bubble.classList.add('is-visible');
+        setTimeout(function() { bubble.classList.remove('is-visible'); }, 4000);
+      }, 2000);
+      btn.addEventListener('click', function() {
+        clearTimeout(bubbleTimer);
+        bubble.classList.remove('is-visible');
+        bubble.style.display = 'none';
+      }, { once: true });
+    })();
 
     async function sendMessage() {
       const text = input.value.trim();
