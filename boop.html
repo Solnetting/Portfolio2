@@ -669,8 +669,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                           transform="rotate(-90 77.5 77.5)"
                           style="transition:stroke-dashoffset 1.2s cubic-bezier(.4,0,.2,1);"/>
                       </svg>
-                      <!-- Blurred checkmark — fades in after ring completes -->
-                      <svg id="bdCheckSvg" style="position:absolute;opacity:0;transition:opacity .4s ease;filter:blur(1.8px);" width="78" height="60" viewBox="0 0 78 60">
+                      <!-- Checkmark — fades in after ring completes -->
+                      <svg id="bdCheckSvg" style="position:absolute;opacity:0;transition:opacity .4s ease;" width="78" height="60" viewBox="0 0 78 60">
                         <path d="M4 36 L27 54 L74 6" stroke="#8892C6" stroke-width="9" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
                       </svg>
                     </div>
@@ -883,10 +883,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                                                 p => { conf.style.background = p ? '#2d2d2d' : '#070707'; conf.style.transform = p ? 'scale(.97)' : ''; },
                                                                 () => setTimeout(() => {
                                                                   goTo(5);
-                                                                  /* ring draws clockwise (1.2s), then circle bg + checkmark fade in */
+                                                                  /* ring draws clockwise (1.2s), then pops off and circle + checkmark fade in */
                                                                   setTimeout(() => {
                                                                     document.getElementById('bdRingPath').style.strokeDashoffset = '0';
                                                                     setTimeout(() => {
+                                                                      /* instant ring removal */
+                                                                      const ring = document.getElementById('bdRingPath');
+                                                                      ring.style.transition = 'none';
+                                                                      ring.style.opacity = '0';
+                                                                      /* circle + checkmark appear */
                                                                       document.getElementById('bdCircleBg').style.opacity = '1';
                                                                       document.getElementById('bdCheckSvg').style.opacity  = '1';
                                                                     }, 1250);
