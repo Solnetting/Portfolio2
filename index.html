@@ -768,64 +768,135 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <!-- ── VOICES ── -->
     <style>
-      .voices { padding: 5rem 0; }
+      .voices { padding: 5rem 0; overflow: hidden; }
       .voices__inner { max-width: 900px; margin: 0 auto; padding: 0 2rem; }
-      .voices__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2.5rem; }
-      .vcard { background: #0d0d10; border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 2rem; display: flex; flex-direction: column; gap: 1.25rem; }
-      .vcard__quote { font-family: 'Chakra Petch', sans-serif; font-size: 4rem; line-height: 0.7; color: #A9CC1F; opacity: 0.5; }
-      .vcard__text { font-size: 0.9rem; line-height: 1.75; color: rgba(255,255,255,0.68); flex: 1; }
-      .vcard__author { display: flex; align-items: center; gap: 0.85rem; padding-bottom: 1.25rem; border-bottom: 1px solid rgba(255,255,255,0.07); margin-bottom: 0.25rem; }
+      .voices__header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 2.5rem; }
+      .voices__arrows { display: flex; gap: .5rem; }
+      .voices__arrow { width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(255,255,255,.12); background: transparent; color: rgba(255,255,255,.5); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1rem; transition: border-color .15s, color .15s; }
+      .voices__arrow:hover { border-color: rgba(255,255,255,.4); color: #fff; }
+      .voices__arrow:disabled { opacity: .25; cursor: default; }
+
+      .voices__viewport { overflow: hidden; }
+      .voices__track { display: flex; gap: 1.25rem; transition: transform .45s cubic-bezier(.4,0,.2,1); will-change: transform; }
+      .vcard { flex: 0 0 calc(50% - .625rem); background: #0d0d10; border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 2rem; display: flex; flex-direction: column; gap: 1.25rem; box-sizing: border-box; }
+      .vcard__author { display: flex; align-items: center; gap: 0.85rem; padding-bottom: 1.25rem; border-bottom: 1px solid rgba(255,255,255,0.07); }
       .vcard__avatar { width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.12); flex-shrink: 0; overflow: hidden; background: #0d0d10; }
       .vcard__avatar img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
       .vcard__info { display: flex; flex-direction: column; gap: 3px; }
       .vcard__name { font-size: 0.85rem; font-weight: 600; color: #f3f1ee; }
       .vcard__role { font-size: 0.75rem; color: rgba(255,255,255,0.38); letter-spacing: 0.03em; }
-      @media (max-width: 700px) { .voices__grid { grid-template-columns: 1fr; } }
+      .vcard__quote { font-family: 'Chakra Petch', sans-serif; font-size: 4rem; line-height: 0.7; color: #A9CC1F; opacity: 0.5; }
+      .vcard__text { font-size: 0.9rem; line-height: 1.75; color: rgba(255,255,255,0.68); overflow: hidden; display: -webkit-box; -webkit-line-clamp: 7; -webkit-box-orient: vertical; }
+      .vcard__text.expanded { display: block; -webkit-line-clamp: unset; }
+      .vcard__read-more { align-self: flex-start; font-size: 0.75rem; color: rgba(255,255,255,.35); background: none; border: none; cursor: pointer; padding: 0; letter-spacing: .04em; transition: color .15s; margin-top: -.25rem; }
+      .vcard__read-more:hover { color: rgba(255,255,255,.7); }
+
+      .voices__dots { display: flex; gap: .5rem; justify-content: center; margin-top: 2rem; }
+      .voices__dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,.15); border: none; cursor: pointer; padding: 0; transition: background .2s, transform .2s; }
+      .voices__dot.active { background: #A9CC1F; transform: scale(1.3); }
+
+      @media (max-width: 700px) {
+        .vcard { flex: 0 0 85%; }
+      }
     </style>
     <section class="voices" id="voices">
       <div class="voices__inner">
-        <p class="section__label">What colleagues say</p>
-        <div class="voices__grid">
-
-          <div class="vcard fade-in">
-            <div class="vcard__author">
-              <div class="vcard__avatar"><img src="avatar-jorik.png" alt="Jorik Schellekens"></div>
-              <div class="vcard__info">
-                <span class="vcard__name">Jorik Schellekens</span>
-                <span class="vcard__role">Co-CTO @ Nethermind · CoFounder @ Boop.it</span>
-              </div>
-            </div>
-            <div class="vcard__quote">"</div>
-            <p class="vcard__text">Carlos lead the design for our incubated startup at Nethermind. Carlos has a great eye, incredible attention to detail and threw himself into the work. He was also rapidly becoming AI native in his workflow, pushing new techniques to accelerate his design process. He was ready to throw himself into the code side the moment he could, keen to close the gap between design and implementation. He was never afraid to push back and improve the product spec. Always positive energy and can do — the team loved working with him. If we'd had the budget we'd have kept him with us.</p>
+        <div class="voices__header">
+          <p class="section__label" style="margin:0">What colleagues say</p>
+          <div class="voices__arrows">
+            <button class="voices__arrow" id="vPrev" aria-label="Previous">&#8592;</button>
+            <button class="voices__arrow" id="vNext" aria-label="Next">&#8594;</button>
           </div>
+        </div>
 
-          <div class="vcard fade-in">
-            <div class="vcard__author">
-              <div class="vcard__avatar"><img src="avatar-roy.png" alt="Roy Neubert"></div>
-              <div class="vcard__info">
-                <span class="vcard__name">Roy Neubert</span>
-                <span class="vcard__role">Creative Director · Nethermind</span>
+        <div class="voices__viewport">
+          <div class="voices__track" id="vTrack">
+
+            <div class="vcard fade-in">
+              <div class="vcard__author">
+                <div class="vcard__avatar"><img src="avatar-jorik.png" alt="Jorik Schellekens"></div>
+                <div class="vcard__info">
+                  <span class="vcard__name">Jorik Schellekens</span>
+                  <span class="vcard__role">Co-CTO @ Nethermind · CoFounder @ Boop.it</span>
+                </div>
               </div>
+              <div class="vcard__quote">"</div>
+              <p class="vcard__text">Carlos lead the design for our incubated startup at Nethermind. Carlos has a great eye, incredible attention to detail and threw himself into the work. He was also rapidly becoming AI native in his workflow, pushing new techniques to accelerate his design process. He was ready to throw himself into the code side the moment he could, keen to close the gap between design and implementation. He was never afraid to push back and improve the product spec. Always positive energy and can do — the team loved working with him. If we'd had the budget we'd have kept him with us.</p>
+              <button class="vcard__read-more">Read more</button>
             </div>
-            <div class="vcard__quote">"</div>
-            <p class="vcard__text">Carlos was a pleasure to work with at Nethermind. He hit the ground running and demonstrated strong critical thinking and attention to detail from the outset, delivering a number of well-received projects for a variety of stakeholders. His curious and proactive approach made him incredibly easy and enjoyable to work with — always rising to the occasion and never afraid of a challenge. Carlos is a passionate product designer, and I believe that passion clearly shows in the quality of his work, making him a valuable asset to any team.</p>
-          </div>
 
-          <div class="vcard fade-in">
-            <div class="vcard__author">
-              <div class="vcard__avatar"><img src="avatar-paul.png" alt="Paul Barradas"></div>
-              <div class="vcard__info">
-                <span class="vcard__name">Paul Barradas</span>
-                <span class="vcard__role">Design Engineer · Nethermind</span>
+            <div class="vcard fade-in">
+              <div class="vcard__author">
+                <div class="vcard__avatar"><img src="avatar-roy.png" alt="Roy Neubert"></div>
+                <div class="vcard__info">
+                  <span class="vcard__name">Roy Neubert</span>
+                  <span class="vcard__role">Creative Director · Nethermind</span>
+                </div>
               </div>
+              <div class="vcard__quote">"</div>
+              <p class="vcard__text">Carlos was a pleasure to work with at Nethermind. He hit the ground running and demonstrated strong critical thinking and attention to detail from the outset, delivering a number of well-received projects for a variety of stakeholders. His curious and proactive approach made him incredibly easy and enjoyable to work with — always rising to the occasion and never afraid of a challenge. Carlos is a passionate product designer, and I believe that passion clearly shows in the quality of his work, making him a valuable asset to any team.</p>
+              <button class="vcard__read-more">Read more</button>
             </div>
-            <div class="vcard__quote">"</div>
-            <p class="vcard__text">Working with Carlos has shown me what great product design actually means beyond visuals. He has a strong understanding of UX/UI, but what stands out the most is his approach to design thinking. Before focusing on aesthetics, he makes sure the product is truly usable, intuitive, and aligned with user needs. Carlos is very thoughtful throughout the entire process — he consistently prioritizes creating experiences that genuinely make people's lives easier, paying close attention to research, usability, feedback, and product alignment from start to finish. One of his strongest qualities is ownership. He is proactive in gathering feedback from stakeholders, collaborating across teams, and making sure there are no loose ends in the product experience. That combination of curiosity, responsibility, research mindset, and user-centered thinking is what makes Carlos an exceptional product designer.</p>
-          </div>
 
+            <div class="vcard fade-in">
+              <div class="vcard__author">
+                <div class="vcard__avatar"><img src="avatar-paul.png" alt="Paul Barradas"></div>
+                <div class="vcard__info">
+                  <span class="vcard__name">Paul Barradas</span>
+                  <span class="vcard__role">Design Engineer · Nethermind</span>
+                </div>
+              </div>
+              <div class="vcard__quote">"</div>
+              <p class="vcard__text">Working with Carlos has shown me what great product design actually means beyond visuals. He has a strong understanding of UX/UI, but what stands out the most is his approach to design thinking. Before focusing on aesthetics, he makes sure the product is truly usable, intuitive, and aligned with user needs. Carlos is very thoughtful throughout the entire process — he consistently prioritizes creating experiences that genuinely make people's lives easier, paying close attention to research, usability, feedback, and product alignment from start to finish. One of his strongest qualities is ownership. He is proactive in gathering feedback from stakeholders, collaborating across teams, and making sure there are no loose ends in the product experience. That combination of curiosity, responsibility, research mindset, and user-centered thinking is what makes Carlos an exceptional product designer.</p>
+              <button class="vcard__read-more">Read more</button>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="voices__dots" id="vDots">
+          <button class="voices__dot active"></button>
+          <button class="voices__dot"></button>
+          <button class="voices__dot"></button>
         </div>
       </div>
     </section>
+    <script>
+      (function () {
+        const track = document.getElementById('vTrack');
+        const cards = Array.from(track.children);
+        const dots  = Array.from(document.querySelectorAll('.voices__dot'));
+        const prev  = document.getElementById('vPrev');
+        const next  = document.getElementById('vNext');
+        const perPage = window.innerWidth <= 700 ? 1 : 2;
+        const total = cards.length;
+        let cur = 0;
+
+        function go(n) {
+          cur = Math.max(0, Math.min(n, total - perPage));
+          const cardW = cards[0].offsetWidth;
+          const gap = 20;
+          track.style.transform = `translateX(-${cur * (cardW + gap)}px)`;
+          dots.forEach((d, i) => d.classList.toggle('active', i === cur));
+          prev.disabled = cur === 0;
+          next.disabled = cur >= total - perPage;
+        }
+
+        prev.addEventListener('click', () => go(cur - 1));
+        next.addEventListener('click', () => go(cur + 1));
+        dots.forEach((d, i) => d.addEventListener('click', () => go(i)));
+
+        document.querySelectorAll('.vcard__read-more').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const txt = btn.previousElementSibling;
+            const expanded = txt.classList.toggle('expanded');
+            btn.textContent = expanded ? 'Read less' : 'Read more';
+          });
+        });
+
+        go(0);
+      })();
+    </script>
 
 
     <!-- ── CONTACT ── -->
