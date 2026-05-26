@@ -611,6 +611,56 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     </div>
                   </div>
 
+                  <!-- Screen 4: date of birth — fully HTML, picker animates 1/1/2000 → Nov 12 1995 -->
+                  <div class="bd-screen" style="background:#ecf0f6;display:flex;flex-direction:column;justify-content:space-between;">
+                    <div style="padding:37px 12px 0;display:flex;flex-direction:column;gap:20px;">
+                      <!-- Nav -->
+                      <div style="display:flex;flex-direction:column;gap:8px;">
+                        <div style="display:flex;align-items:center;gap:4px;">
+                          <svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path d="M20 12H4M4 12l6-6M4 12l6 6" stroke="#070707" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                          <span style="font:700 9px/1 'Inter',sans-serif;color:#070707;">Back</span>
+                        </div>
+                        <div style="display:flex;gap:4px;">
+                          <div style="flex:1;height:2px;background:#070707;border-radius:2px;"></div>
+                          <div style="flex:1;height:2px;background:#070707;border-radius:2px;"></div>
+                          <div style="flex:1;height:2px;background:#e5e5e5;border-radius:2px;"></div>
+                        </div>
+                      </div>
+                      <!-- Title + picker -->
+                      <div style="display:flex;flex-direction:column;gap:14px;align-items:center;">
+                        <div style="text-align:center;">
+                          <p style="margin:0 0 4px;font:700 18px/1.2 'Inter',sans-serif;color:#070707;">Date of birth</p>
+                          <p style="margin:0;font:400 7px/1.4 'Inter',sans-serif;color:#525252;">You must be 18 or older to use Boop.</p>
+                        </div>
+                        <!-- Picker widget -->
+                        <div style="position:relative;width:100%;height:110px;overflow:hidden;">
+                          <!-- Selection band -->
+                          <div style="position:absolute;top:50%;left:3px;right:3px;height:22px;transform:translateY(-50%);background:rgba(255,255,255,0.55);border-radius:6px;z-index:1;pointer-events:none;"></div>
+                          <!-- Top/bottom fades -->
+                          <div style="position:absolute;inset:0 0 auto 0;height:36px;background:linear-gradient(#ecf0f6 25%,transparent);z-index:2;pointer-events:none;"></div>
+                          <div style="position:absolute;inset:auto 0 0 0;height:36px;background:linear-gradient(transparent,#ecf0f6 75%);z-index:2;pointer-events:none;"></div>
+                          <!-- Columns -->
+                          <div style="display:flex;height:100%;overflow:hidden;">
+                            <div style="flex:0 0 55%;overflow:hidden;"><div id="bdPMonth" style="transition:transform 1.3s cubic-bezier(.4,0,.2,1);"></div></div>
+                            <div style="flex:0 0 15%;overflow:hidden;text-align:center;"><div id="bdPDay" style="transition:transform 1.3s cubic-bezier(.4,0,.2,1);"></div></div>
+                            <div style="flex:0 0 30%;overflow:hidden;"><div id="bdPYear" style="transition:transform 1.3s cubic-bezier(.4,0,.2,1);"></div></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Confirm button — starts disabled -->
+                    <div style="background:rgba(255,255,255,0.4);padding:22px 12px;box-sizing:border-box;">
+                      <button id="bdConfirmBtn" style="
+                        display:flex;align-items:center;justify-content:center;
+                        width:100%;height:33px;border-radius:100px;
+                        background:#a3a3a3;color:#fff;
+                        font:700 10px 'Inter',sans-serif;
+                        border:none;cursor:default;
+                        transition:background .5s;
+                      ">Confirm</button>
+                    </div>
+                  </div>
+
                 </div>
 
                 <!-- Fixed Continue button — lives outside the slide track, never moves -->
@@ -694,6 +744,33 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 el.style.transform  = pressed ? 'scale(.97)' : '';
               }
 
+              /* ── Date picker initialisation ── */
+              (function() {
+                const RH = 22; // row height px — picker is 110px tall, 5 visible rows
+                const P = ['','','']; // 3 phantom rows above/below for centering
+                // translateY to place item at index i in the center: 44 - i*RH
+                // (44 = 55px centre − 11px half-row)
+                function mkCol(el, items, selIdx, initIdx) {
+                  el.innerHTML = [...P, ...items, ...P].map((t, i) =>
+                    `<div style="height:${RH}px;display:flex;align-items:center;
+                      font-family:'Inter',sans-serif;
+                      font-size:${i===selIdx?14:10}px;
+                      font-weight:${i===selIdx?700:400};
+                      color:${i===selIdx?'#0d0d0d':'#8a8a8a'};
+                      white-space:nowrap;padding-left:2px;">${t}</div>`
+                  ).join('');
+                  el.style.transform = `translateY(${44 - initIdx * RH}px)`;
+                }
+                const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+                const days   = Array.from({length:31}, (_,i) => String(i+1));
+                const years  = Array.from({length:21}, (_,i) => String(1990+i));
+                // selIdx = final selected index (with 3 phantoms prepended)
+                // initIdx = starting index (Jan=3, Day1=3, Year2000=13)
+                mkCol(document.getElementById('bdPMonth'), months, 13, 3); // Jan→Nov (idx3→13)
+                mkCol(document.getElementById('bdPDay'),   days,   14, 3); // 1→12   (idx3→14)
+                mkCol(document.getElementById('bdPYear'),  years,   8, 13);// 2000→1995 (idx13→8)
+              })();
+
               function run() {
                 setTimeout(() => {
                   /* Screen 0 → tap Create a new account */
@@ -741,7 +818,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                           setCursorX('50%');
                                           animateTap('89%',
                                             pressed => pressBtn(abt, pressed),
-                                            () => { /* end */ }
+                                            () => {
+                                              /* slide to Screen 4 (date of birth) */
+                                              setTimeout(() => {
+                                                setCursorX('50%');
+                                                goTo(4);
+                                                /* after slide settles, spin pickers then activate Confirm */
+                                                setTimeout(() => {
+                                                  const RH = 22;
+                                                  document.getElementById('bdPMonth').style.transform = `translateY(${44-13*RH}px)`;
+                                                  document.getElementById('bdPDay').style.transform   = `translateY(${44-14*RH}px)`;
+                                                  document.getElementById('bdPYear').style.transform  = `translateY(${44-8*RH}px)`;
+                                                  setTimeout(() => {
+                                                    document.getElementById('bdConfirmBtn').style.background = '#070707';
+                                                  }, 1500);
+                                                }, 600);
+                                              }, 600);
+                                            }
                                           );
                                         }, 900);
                                       }
