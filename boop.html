@@ -475,13 +475,81 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
           <p class="proj-text" style="max-width:580px;margin-top:2.5rem">Over 5+ months of iterations, the product was continuously refined to reach this point. Despite being satisfied with where it landed, the team recognised Boop as a living product — one that would require ongoing iteration informed by real user behaviour post-launch.</p>
 
-          <!-- ── iPhone 16 mockup ── -->
-          <div style="display:flex;justify-content:center;margin:4rem 0;">
-            <div style="position:relative;width:260px;">
-              <img src="hifi-auth-01-splash.png" alt="Boop splash screen" style="position:absolute;top:2.5%;left:5.5%;width:89%;display:block;">
-              <img src="iphone16-ultramarine.png" alt="" style="width:100%;display:block;position:relative;z-index:2;">
+          <!-- ── iPhone 16 interactive demo ── -->
+          <div style="display:flex;flex-direction:column;align-items:center;margin:4rem 0;gap:1rem;">
+            <div id="boopDemo" style="position:relative;width:260px;flex-shrink:0;">
+
+              <!-- Screen viewport — clips screens + handles border-radius naturally -->
+              <div id="boopScreenPort" style="
+                position:absolute;
+                top:2.5%;left:5.5%;width:89%;height:95.5%;
+                overflow:hidden;
+                border-radius:11.5%;
+                z-index:1;
+              ">
+                <!-- Sliding track: screen 1 + screen 2 stacked vertically -->
+                <div id="boopSlider" style="
+                  display:flex;flex-direction:column;
+                  width:100%;
+                  transition:transform .42s cubic-bezier(.4,0,.2,1);
+                ">
+                  <img src="hifi-auth-01-splash.png" alt="Boop — splash" style="width:100%;display:block;flex-shrink:0;">
+                  <img src="hifi-auth-02-identity.png" alt="Boop — identity" style="width:100%;display:block;flex-shrink:0;">
+                </div>
+
+                <!-- Tap zone: Create a new account button (~77% down screen 1) -->
+                <button id="boopTapCreate" aria-label="Create a new account" style="
+                  position:absolute;top:77%;left:5%;width:90%;height:8%;
+                  background:transparent;border:none;cursor:pointer;z-index:5;
+                  border-radius:50px;
+                "></button>
+
+                <!-- Tap zone: Next button (~88% down screen 2) — only active after transition -->
+                <button id="boopTapNext" aria-label="Next" style="
+                  position:absolute;top:calc(100% + 88%);left:5%;width:90%;height:8%;
+                  background:transparent;border:none;cursor:pointer;z-index:5;
+                  border-radius:50px;
+                "></button>
+              </div>
+
+              <!-- iPhone frame on top -->
+              <img src="iphone16-ultramarine.png" alt="" style="width:100%;display:block;position:relative;z-index:2;pointer-events:none;">
             </div>
+
+            <!-- Hint label -->
+            <p id="boopDemoHint" style="font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.25);margin:0;">Tap · Create a new account</p>
           </div>
+
+          <script>
+            (function () {
+              const slider  = document.getElementById('boopSlider');
+              const port    = document.getElementById('boopScreenPort');
+              const hint    = document.getElementById('boopDemoHint');
+              const tapCreate = document.getElementById('boopTapCreate');
+              const tapNext   = document.getElementById('boopTapNext');
+              let screen = 0;
+
+              function goTo(n) {
+                screen = n;
+                const h = port.offsetHeight;
+                slider.style.transform = `translateY(-${n * h}px)`;
+                hint.textContent = n === 0 ? 'Tap · Create a new account' : 'Tap · Next';
+                /* shift tap zones with the slider */
+                tapCreate.style.top = n === 0 ? '77%' : 'calc(100% + 77%)';
+                tapNext.style.top   = n === 0 ? 'calc(100% + 88%)' : '88%';
+              }
+
+              tapCreate.addEventListener('click', () => goTo(1));
+              tapNext.addEventListener('click',   () => goTo(0));
+
+              /* subtle press feedback on each tap zone */
+              [tapCreate, tapNext].forEach(btn => {
+                btn.addEventListener('pointerdown',  () => { slider.style.transition = 'none'; slider.style.filter = 'brightness(.95)'; });
+                btn.addEventListener('pointerup',    () => { slider.style.transition = ''; slider.style.filter = ''; });
+                btn.addEventListener('pointerleave', () => { slider.style.filter = ''; });
+              });
+            })();
+          </script>
 
           <!-- ── Screen sections ── -->
           <div class="boop-hifi-screens-wrap">
