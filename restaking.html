@@ -457,37 +457,35 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     .rs-sec { scroll-margin-top: 90px; }
 
-    /* Hi-fi showcase */
-    .rs-hifi-showcase {
-      display: grid;
-      grid-template-columns: 1.1fr 1fr;
-      gap: 2rem;
-      align-items: start;
+    /* Hi-fi showcase — stacked single-column cards */
+    .rs-hifi-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 4rem;
       margin-top: 3rem;
     }
-    .rs-hifi-showcase__mockup img {
+    .rs-hifi-card__meta {
+      margin-bottom: 1rem;
+    }
+    .rs-hifi-card__name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: .8125rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.7);
+      margin: 0 0 .25rem;
+    }
+    .rs-hifi-card__desc {
+      font-size: .875rem;
+      color: rgba(255,255,255,.35);
+      margin: 0;
+      line-height: 1.5;
+    }
+    .rs-hifi-card__img img {
       width: 100%;
       height: auto;
       display: block;
-    }
-    .rs-hifi-showcase__screen {
-      border-radius: 14px;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,.1);
-      box-shadow:
-        0 0 0 1px rgba(75,168,212,.08),
-        0 24px 80px rgba(0,0,0,.6),
-        0 4px 16px rgba(0,0,0,.4);
-      background: #0d0f1a;
-    }
-    .rs-hifi-showcase__screen img {
-      width: 100%;
-      height: auto;
-      display: block;
-      border-radius: 14px;
-    }
-    @media (max-width: 900px) {
-      .rs-hifi-showcase { grid-template-columns: 1fr; }
     }
 
     /* Figma flows grid */
@@ -994,7 +992,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="rs-iter">
           <span class="rs-iter__tag">Hi-fi</span>
           <div>
-            <h4 class="rs-iter__title">End-to-end in Figma</h4>
+            <h4 class="rs-iter__title">Desktop and Mobile</h4>
             <p class="rs-iter__body">Designed and owned entirely in Figma — from component architecture to interactive flows. Every major section is a named flow covering the full state space: the AVS detail maps three sub-views (Total Value, Operators, Re-stakers); the Operator flow covers the list, search match, empty state, 404 error, operator detail, and the AVS-Operators tab. Nothing left to chance.</p>
           </div>
         </div>
@@ -1011,15 +1009,72 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </div>
 
-      <!-- Hi-fi showcase -->
-      <div class="rs-hifi-showcase">
-        <div class="rs-hifi-showcase__mockup">
-          <img src="hifi-rs-permissionless-mockup.png" alt="Restaking.Info — Permissionless tokens, laptop mockup">
+      <!-- Hi-fi showcase — stacked mockup cards -->
+      <p class="section__label" style="margin-top:3.5rem">Desktop and Mobile</p>
+
+      <div class="rs-hifi-cards">
+
+        <div class="rs-hifi-card">
+          <div class="rs-hifi-card__meta">
+            <p class="rs-hifi-card__name">Overview</p>
+            <p class="rs-hifi-card__desc">Global EigenLayer TVL with top AVS / operator leaderboards and historical bar chart</p>
+          </div>
+          <div class="rs-hifi-card__img">
+            <img src="hifi-rs-overview.png" alt="Restaking.Info — Overview dashboard">
+          </div>
         </div>
-        <div class="rs-hifi-showcase__screen">
-          <img src="hifi-rs-permissionless.png" alt="Restaking.Info — Permissionless tokens, full screen">
+
+        <div class="rs-hifi-card">
+          <div class="rs-hifi-card__meta">
+            <p class="rs-hifi-card__name">AVS Detail</p>
+            <p class="rs-hifi-card__desc">Per-AVS analytics — TVL timeline, LST distribution treemap, and payment token breakdown</p>
+          </div>
+          <div class="rs-hifi-card__img">
+            <img src="hifi-rs-avs.png" alt="Restaking.Info — AVS detail (EigenDA)">
+          </div>
         </div>
-      </div>
+
+        <div class="rs-hifi-card">
+          <div class="rs-hifi-card__meta">
+            <p class="rs-hifi-card__name">Operator Detail</p>
+            <p class="rs-hifi-card__desc">Operator profile page — TVL trend, ETH distribution breakdown, and LST composition</p>
+          </div>
+          <div class="rs-hifi-card__img">
+            <img src="hifi-rs-operator-detail.png" alt="Restaking.Info — Operator detail (P2P.org)">
+          </div>
+        </div>
+
+        <div class="rs-hifi-card">
+          <div class="rs-hifi-card__meta">
+            <p class="rs-hifi-card__name">LST — Liquidity Staked Tokens</p>
+            <p class="rs-hifi-card__desc">Token-level view of staking protocols, unbonding periods, and TVL distribution</p>
+          </div>
+          <div class="rs-hifi-card__img">
+            <img src="hifi-rs-lst.png" alt="Restaking.Info — Liquidity Staked Tokens">
+          </div>
+        </div>
+
+        <div class="rs-hifi-card">
+          <div class="rs-hifi-card__meta">
+            <p class="rs-hifi-card__name">LRT — Liquidity Restaking Tokens</p>
+            <p class="rs-hifi-card__desc">External LRT volume trends, token list, and share of EigenLayer TVL</p>
+          </div>
+          <div class="rs-hifi-card__img">
+            <img src="hifi-rs-lrt.png" alt="Restaking.Info — Liquidity Restaking Tokens">
+          </div>
+        </div>
+
+        <div class="rs-hifi-card">
+          <div class="rs-hifi-card__meta">
+            <p class="rs-hifi-card__name">API Subscription</p>
+            <p class="rs-hifi-card__desc">Conversion confirmation screen — the entry point for the API-as-a-service revenue stream</p>
+          </div>
+          <div class="rs-hifi-card__img">
+            <img src="hifi-rs-api.png" alt="Restaking.Info — API subscription confirmation">
+          </div>
+        </div>
+
+      </div><!-- /rs-hifi-cards -->
 
     </div>
 
