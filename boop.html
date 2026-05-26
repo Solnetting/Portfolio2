@@ -477,34 +477,55 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
           <!-- ── iPhone 16 auto-animated demo ── -->
           <style>
-            @keyframes boop-ripple {
-              0%   { transform:translate(-50%,-50%) scale(0); opacity:.5; }
-              60%  { transform:translate(-50%,-50%) scale(1);   opacity:.25; }
-              100% { transform:translate(-50%,-50%) scale(1.4); opacity:0; }
+            @keyframes bd-cursor-in  { from{opacity:0;transform:translate(-50%,-50%) scale(.4)} to{opacity:1;transform:translate(-50%,-50%) scale(1)} }
+            @keyframes bd-cursor-out { from{opacity:1;transform:translate(-50%,-50%) scale(1)} to{opacity:0;transform:translate(-50%,-50%) scale(.4)} }
+            @keyframes bd-ripple     { 0%{transform:translate(-50%,-50%) scale(0);opacity:.45} 100%{transform:translate(-50%,-50%) scale(2);opacity:0} }
+
+            #bdBtn {
+              display:block;width:90%;margin:0 auto;
+              height:34px;border-radius:100px;
+              background:#070707;color:#fff;
+              font-family:'Inter',sans-serif;font-size:13px;font-weight:500;
+              border:none;cursor:default;
+              transition:background .15s, transform .12s;
+              position:relative;z-index:3;
             }
-            @keyframes boop-cursor-in  { from { opacity:0; transform:translate(-50%,-50%) scale(.5); } to { opacity:1; transform:translate(-50%,-50%) scale(1); } }
-            @keyframes boop-cursor-out { from { opacity:1; transform:translate(-50%,-50%) scale(1); } to { opacity:0; transform:translate(-50%,-50%) scale(.5); } }
+            #bdBtn.pressed { background:#2d2d2d; transform:scale(.97); }
           </style>
+
           <div style="display:flex;flex-direction:column;align-items:center;margin:4rem 0;gap:1rem;">
             <div style="position:relative;width:260px;flex-shrink:0;">
 
               <!-- Screen viewport -->
-              <div id="bPort" style="position:absolute;top:2.5%;left:5.5%;width:89%;height:95.5%;overflow:hidden;border-radius:11.5%;z-index:1;">
+              <div id="bdPort" style="position:absolute;top:2.5%;left:5.5%;width:89%;height:95.5%;overflow:hidden;border-radius:11.5%;z-index:1;">
 
-                <!-- Sliding track -->
-                <div id="bSlide" style="display:flex;flex-direction:column;width:100%;transition:transform .45s cubic-bezier(.4,0,.2,1);">
-                  <img src="hifi-auth-01-splash.png" style="width:100%;display:block;flex-shrink:0;">
-                  <img src="hifi-auth-02-identity.png" style="width:100%;display:block;flex-shrink:0;">
+                <!-- Sliding track: screen 0 (splash+btn) | screen 1 (scanner) -->
+                <div id="bdSlide" style="display:flex;flex-direction:column;width:100%;transition:transform .45s cubic-bezier(.4,0,.2,1);">
+
+                  <!-- Screen 0: splash bg + real HTML button on top -->
+                  <div style="position:relative;width:100%;flex-shrink:0;">
+                    <img src="boop-splash-nobtn.png" style="width:100%;display:block;">
+                    <!-- Button panel overlaid at ~72.5% from top -->
+                    <div style="position:absolute;bottom:0;left:0;width:100%;padding:0 0 4% 0;background:rgba(240,239,244,0.96);">
+                      <div style="padding:5% 5% 0;">
+                        <button id="bdBtn">Create a new account</button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Screen 1: scanner tap prompt -->
+                  <div style="width:100%;flex-shrink:0;">
+                    <img src="boop-scanner-tap.png" style="width:100%;display:block;">
+                  </div>
+
                 </div>
 
-                <!-- Button press overlay (darkens the button on "press") -->
-                <div id="bBtnOverlay" style="position:absolute;left:4%;width:92%;height:7%;border-radius:100px;background:rgba(0,0,0,0);transition:background .1s;pointer-events:none;z-index:4;top:77.5%;"></div>
+                <!-- Tap cursor -->
+                <div id="bdCursor" style="position:absolute;width:26px;height:26px;border-radius:50%;background:rgba(0,0,0,0.32);pointer-events:none;z-index:8;opacity:0;top:80%;left:50%;transform:translate(-50%,-50%);box-shadow:0 2px 10px rgba(0,0,0,.25);"></div>
 
-                <!-- Tap cursor (finger dot) -->
-                <div id="bCursor" style="position:absolute;width:28px;height:28px;border-radius:50%;background:rgba(0,0,0,0.35);pointer-events:none;z-index:6;opacity:0;top:81%;left:50%;transform:translate(-50%,-50%);box-shadow:0 2px 12px rgba(0,0,0,.3);"></div>
+                <!-- Ripple -->
+                <div id="bdRipple" style="position:absolute;width:50px;height:50px;border-radius:50%;border:1.5px solid rgba(0,0,0,0.18);pointer-events:none;z-index:7;opacity:0;top:80%;left:50%;transform:translate(-50%,-50%);"></div>
 
-                <!-- Ripple ring -->
-                <div id="bRipple" style="position:absolute;width:60px;height:60px;border-radius:50%;border:2px solid rgba(0,0,0,0.2);pointer-events:none;z-index:5;opacity:0;top:81%;left:50%;transform:translate(-50%,-50%);"></div>
               </div>
 
               <!-- iPhone frame -->
@@ -514,87 +535,66 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
           <script>
             (function () {
-              const port    = document.getElementById('bPort');
-              const slide   = document.getElementById('bSlide');
-              const overlay = document.getElementById('bBtnOverlay');
-              const cursor  = document.getElementById('bCursor');
-              const ripple  = document.getElementById('bRipple');
-              let cur = 0;
-
-              /* Button positions per screen [top%, left%] */
-              const BTN = [
-                { top: '81%', left: '50%', overlayTop: '77.5%' },  /* screen 0: Create new account */
-                { top: '91%', left: '50%', overlayTop: '88%'   },  /* screen 1: Next */
-              ];
+              const port   = document.getElementById('bdPort');
+              const slide  = document.getElementById('bdSlide');
+              const btn    = document.getElementById('bdBtn');
+              const cursor = document.getElementById('bdCursor');
+              const ripple = document.getElementById('bdRipple');
 
               function goTo(n) {
-                cur = n;
                 const h = port.offsetHeight;
                 slide.style.transform = `translateY(-${n * h}px)`;
               }
 
-              function setCursorPos(s) {
-                cursor.style.top  = BTN[s].top;
-                cursor.style.left = BTN[s].left;
-                ripple.style.top  = BTN[s].top;
-                ripple.style.left = BTN[s].left;
-                overlay.style.top = BTN[s].overlayTop;
+              function setCursorY(pct) {
+                cursor.style.top = pct;
+                ripple.style.top = pct;
               }
 
-              function animateTap(onScreen, cb) {
-                setCursorPos(onScreen);
+              function animateTap(yPct, onPress, cb) {
+                setCursorY(yPct);
+                /* 1 — cursor appears */
+                cursor.style.animation = 'none'; cursor.offsetHeight;
+                cursor.style.animation = 'bd-cursor-in .22s forwards';
 
-                /* 1. cursor fades in */
-                cursor.style.animation = 'none';
-                cursor.style.opacity   = '0';
-                cursor.offsetHeight;
-                cursor.style.animation = 'boop-cursor-in .25s forwards';
-
-                /* 2. press (scale down cursor, darken button) */
+                /* 2 — press */
                 setTimeout(() => {
+                  onPress(true);
                   cursor.style.animation = 'none';
-                  cursor.style.transform = 'translate(-50%,-50%) scale(.7)';
                   cursor.style.opacity   = '1';
-                  overlay.style.background = 'rgba(0,0,0,0.12)';
-                }, 350);
+                  cursor.style.transform = 'translate(-50%,-50%) scale(.65)';
+                }, 380);
 
-                /* 3. release + ripple */
+                /* 3 — release + ripple */
                 setTimeout(() => {
+                  onPress(false);
                   cursor.style.transform = 'translate(-50%,-50%) scale(1)';
-                  overlay.style.background = 'rgba(0,0,0,0)';
-                  ripple.style.animation = 'none';
+                  ripple.style.animation = 'none'; ripple.offsetHeight;
                   ripple.style.opacity = '1';
-                  ripple.offsetHeight;
-                  ripple.style.animation = 'boop-ripple .5s forwards';
-                }, 500);
+                  ripple.style.animation = 'bd-ripple .55s forwards';
+                }, 560);
 
-                /* 4. cursor fades out */
-                setTimeout(() => {
-                  cursor.style.animation = 'boop-cursor-out .2s forwards';
-                }, 600);
+                /* 4 — cursor out */
+                setTimeout(() => { cursor.style.animation = 'bd-cursor-out .2s forwards'; }, 660);
 
-                /* 5. done */
-                setTimeout(cb, 750);
+                setTimeout(cb, 820);
               }
 
               function loop() {
-                /* Step 1: pause on screen 0, then tap */
                 setTimeout(() => {
-                  animateTap(0, () => {
-                    /* Step 2: slide to screen 1 */
-                    goTo(1);
-
-                    /* Step 3: pause on screen 1, then tap Next */
-                    setTimeout(() => {
-                      animateTap(1, () => {
-                        /* Step 4: slide back */
+                  /* tap "Create a new account" */
+                  animateTap('80%',
+                    pressed => btn.classList.toggle('pressed', pressed),
+                    () => {
+                      goTo(1);
+                      /* pause on scanner screen, then slide back */
+                      setTimeout(() => {
                         goTo(0);
-                        /* Step 5: loop */
-                        setTimeout(loop, 1200);
-                      });
-                    }, 2000);
-                  });
-                }, 1800);
+                        setTimeout(loop, 1400);
+                      }, 3000);
+                    }
+                  );
+                }, 2000);
               }
 
               loop();
