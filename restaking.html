@@ -477,6 +477,40 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       display: block;
     }
 
+    /* Business model pillars */
+    .rs-biz-pillars {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .rs-biz-pillar {
+      display: flex;
+      gap: 1.25rem;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .rs-biz-pillar:first-child { padding-top: 0; }
+    .rs-biz-pillar:last-child { border-bottom: none; padding-bottom: 0; }
+    .rs-biz-pillar__num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .6875rem;
+      color: rgba(255,255,255,.2);
+      flex-shrink: 0;
+      padding-top: .125rem;
+      width: 1.5rem;
+    }
+    .rs-biz-pillar__title {
+      font-size: .9375rem;
+      font-weight: 600;
+      color: rgba(255,255,255,.8);
+      margin-bottom: .35rem;
+    }
+    .rs-biz-pillar__body {
+      font-size: .875rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,.42);
+    }
+
     /* Nav map */
     .rs-nav-map {
       display: flex;
@@ -645,6 +679,38 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="rs-nav-map__item">Rewards <span class="rs-nav-map__badge">New</span></div>
           <div class="rs-nav-map__item">Events</div>
           <div class="rs-nav-map__item">API</div>
+        </div>
+      </div>
+
+      <div style="margin-top:4.5rem">
+        <p class="section__label">Business model</p>
+        <div class="rs-2col" style="margin-top:1.5rem">
+          <div class="rs-biz-pillars">
+            <div class="rs-biz-pillar">
+              <span class="rs-biz-pillar__num">01</span>
+              <div>
+                <h4 class="rs-biz-pillar__title">API as a service</h4>
+                <p class="rs-biz-pillar__body">All restaking data — TVL, operator metrics, AVS status, LST distribution — exposed through a paid API. Protocols, dashboards, and developers pay for programmatic access to clean, normalised on-chain data without having to index it themselves.</p>
+              </div>
+            </div>
+            <div class="rs-biz-pillar">
+              <span class="rs-biz-pillar__num">02</span>
+              <div>
+                <h4 class="rs-biz-pillar__title">Operator promotion</h4>
+                <p class="rs-biz-pillar__body">Operators — starting with Nethermind's own — can pay to be featured and promoted within the dashboard. The platform turns its own analytics into a distribution channel for the operator business, creating a direct commercial loop between the product and Nethermind's restaking infrastructure.</p>
+              </div>
+            </div>
+            <div class="rs-biz-pillar">
+              <span class="rs-biz-pillar__num">03</span>
+              <div>
+                <h4 class="rs-biz-pillar__title">Support plan</h4>
+                <p class="rs-biz-pillar__body">A $1.99/month subscription that removes promotions from the interface — a lightweight way to monetise power users who want a clean, ad-free experience while keeping the core product free.</p>
+              </div>
+            </div>
+          </div>
+          <div>
+            <img class="rs-img" src="lofi-rs-support.png" alt="Restaking.Info — Promote your operator CTA and Support Plan lo-fi" style="border-radius:6px">
+          </div>
         </div>
       </div>
 
