@@ -481,8 +481,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             @keyframes bd-cursor-out { from{opacity:1;transform:translate(-50%,-50%) scale(1)} to{opacity:0;transform:translate(-50%,-50%) scale(.4)} }
             @keyframes bd-ripple     { 0%{transform:translate(-50%,-50%) scale(0);opacity:.45} 100%{transform:translate(-50%,-50%) scale(2);opacity:0} }
 
-            /* Screens fill the full port height via flex-basis:100% */
-            .bd-screen { flex:0 0 100%; min-height:0; position:relative; overflow:hidden; }
+            /* Screens fill the full port — row flex, each takes 100% width */
+            .bd-screen { flex:0 0 100%; min-width:0; position:relative; overflow:hidden; }
             .bd-screen img { width:100%;height:100%;object-fit:cover;display:block; }
 
             /* Primary CTA — Figma: h-55, #070707, Inter Medium 20px — scaled ×0.59 */
@@ -524,7 +524,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <div id="bdPort" style="position:absolute;top:2.5%;left:5.5%;width:89%;height:95.5%;overflow:hidden;z-index:1;">
 
                 <!-- Sliding track — height:100% lets bd-screen flex:0 0 100% fill correctly -->
-                <div id="bdSlide" style="display:flex;flex-direction:column;width:100%;height:100%;transition:transform .45s cubic-bezier(.4,0,.2,1);">
+                <div id="bdSlide" style="display:flex;flex-direction:row;width:100%;height:100%;transition:transform .45s cubic-bezier(.4,0,.2,1);">
 
                   <!-- Screen 0: splash bg + button panel overlay (exact Figma layout, scaled ×0.59) -->
                   <div class="bd-screen">
@@ -614,8 +614,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               const ripple = document.getElementById('bdRipple');
 
               function goTo(n) {
-                const h = port.offsetHeight;
-                slide.style.transform = `translateY(-${n * h}px)`;
+                const w = port.offsetWidth;
+                slide.style.transform = `translateX(-${n * w}px)`;
               }
 
               function setCursorY(pct) {
@@ -665,7 +665,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     () => {
                       goTo(1);
                       /* fade in after slide settles (450ms transition + buffer) */
-                      setTimeout(() => { contBtn.style.opacity = '1'; }, 520);
+                      setTimeout(() => { contBtn.style.opacity = '1'; }, 250);
 
                       /* Screen 1 → tap Continue */
                       setTimeout(() => {
@@ -675,7 +675,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             /* fade out, slide, fade back in */
                             contBtn.style.opacity = '0';
                             goTo(2);
-                            setTimeout(() => { contBtn.style.opacity = '1'; }, 520);
+                            setTimeout(() => { contBtn.style.opacity = '1'; }, 250);
 
                             /* Screen 2 → tap Continue, then stop */
                             setTimeout(() => {
