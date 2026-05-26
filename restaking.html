@@ -477,12 +477,74 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       display: block;
     }
 
+    /* Nav map */
+    .rs-nav-map {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      margin-top: 1rem;
+    }
+    .rs-nav-map__item {
+      font-size: .75rem;
+      letter-spacing: .04em;
+      color: rgba(255,255,255,.4);
+      background: rgba(255,255,255,.04);
+      border: 1px solid var(--border);
+      padding: .35rem .75rem;
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+    }
+    .rs-nav-map__item--active {
+      color: rgba(255,255,255,.75);
+      background: rgba(255,255,255,.07);
+      border-color: rgba(255,255,255,.14);
+    }
+    .rs-nav-map__badge {
+      font-size: .5rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: #4BA8D4;
+      background: rgba(75,168,212,.12);
+      padding: .1rem .3rem;
+      border-radius: 2px;
+    }
+
+    /* Lo-fi grid */
+    .rs-lofi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: .75rem;
+      margin-top: 2.5rem;
+    }
+    .rs-lofi-grid__item {
+      border-radius: 4px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.07);
+      background: rgba(255,255,255,.02);
+    }
+    .rs-lofi-grid__item img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .rs-lofi-grid__label {
+      display: block;
+      font-size: .6rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.22);
+      padding: .375rem .5rem;
+    }
+
     /* ─── Responsive ─── */
     @media (max-width: 900px) {
       .rs-2col,
       .rs-2col--60-40 { grid-template-columns: 1fr; gap: 3rem; }
       .rs-pillars { grid-template-columns: 1fr 1fr; }
       .rs-bench { grid-template-columns: repeat(2, 1fr); }
+      .rs-lofi-grid { grid-template-columns: repeat(2, 1fr); }
       .rs-iter { grid-template-columns: 1fr; gap: .5rem; }
       .rs-ds { grid-template-columns: 1fr; }
       .rs-metrics { grid-template-columns: 1fr 1fr; }
@@ -563,12 +625,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <h2 class="rs-sec__title">Making restaking legible for everyone</h2>
 
       <div class="rs-2col">
-        <p class="rs-body-text">Restaking.Info is a DeFi analytics and portfolio management dashboard built for users participating in EigenLayer and other restaking protocols. It consolidates fragmented on-chain data — positions, rewards, operator risk, and APY — into a single, readable interface.</p>
-        <p class="rs-body-text">The product targets a technically sophisticated but time-poor audience: crypto-native users who need confidence in their positions without having to parse raw contract data or cross-reference three different tools.</p>
+        <p class="rs-body-text">Restaking.Info is a comprehensive EigenLayer analytics platform covering the full restaking stack — TVL overview, AVS status and metrics, operator tracking, LST and LRT distribution, permissionless tokens, rewards, and on-chain events — all in a single, readable interface with nine distinct views and per-entity detail pages.</p>
+        <p class="rs-body-text">The product targets a technically sophisticated but time-poor audience: crypto-native users who need confidence in their positions without having to parse raw contract data or cross-reference three different tools. Each section has its own depth — from a global EigenLayer overview down to individual AVS bios like EigenDA, a data availability solution with 10 MiB/s of write throughput.</p>
       </div>
 
       <div class="rs-img-block">
         <img src="restaking-dashboard.png" alt="Restaking.Info — main dashboard view showing Total ETH, Operators, and Restakers">
+      </div>
+
+      <div style="margin-top:3rem">
+        <p class="section__label">Platform structure</p>
+        <div class="rs-nav-map">
+          <div class="rs-nav-map__item rs-nav-map__item--active">Overview</div>
+          <div class="rs-nav-map__item">AVS</div>
+          <div class="rs-nav-map__item">Operators</div>
+          <div class="rs-nav-map__item">LST</div>
+          <div class="rs-nav-map__item">LRT</div>
+          <div class="rs-nav-map__item">Permissionless</div>
+          <div class="rs-nav-map__item">Rewards <span class="rs-nav-map__badge">New</span></div>
+          <div class="rs-nav-map__item">Events</div>
+          <div class="rs-nav-map__item">API</div>
+        </div>
       </div>
 
       <div class="rs-2col" style="margin-top:4.5rem">
@@ -744,10 +821,41 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <span class="rs-iter__tag">Alpha</span>
           <div>
             <h4 class="rs-iter__title">Low fidelity</h4>
-            <p class="rs-iter__body">Early wireframes modelled on existing DeFi dashboards — dense data tables, multiple nav levels, protocol-first structure.</p>
+            <p class="rs-iter__body">Early wireframes mapped out all nine sections of the platform — global overview, AVS and operator detail pages, LST/LRT distribution, permissionless tokens, and the support plan. The lo-fi prioritised information architecture and data hierarchy over visual treatment.</p>
           </div>
         </div>
-        <div class="rs-iter">
+      </div>
+
+      <!-- Lo-fi grid -->
+      <div class="rs-lofi-grid">
+        <div class="rs-lofi-grid__item">
+          <img src="lofi-rs-overview.png" alt="Lo-fi — Overview">
+          <span class="rs-lofi-grid__label">Overview</span>
+        </div>
+        <div class="rs-lofi-grid__item">
+          <img src="lofi-rs-overview2.png" alt="Lo-fi — Overview v2">
+          <span class="rs-lofi-grid__label">Overview v2</span>
+        </div>
+        <div class="rs-lofi-grid__item">
+          <img src="lofi-rs-avs.png" alt="Lo-fi — AVS detail">
+          <span class="rs-lofi-grid__label">AVS detail</span>
+        </div>
+        <div class="rs-lofi-grid__item">
+          <img src="lofi-rs-avs-early.png" alt="Lo-fi — AVS early">
+          <span class="rs-lofi-grid__label">AVS early</span>
+        </div>
+        <div class="rs-lofi-grid__item">
+          <img src="lofi-rs-operator.png" alt="Lo-fi — Operator detail">
+          <span class="rs-lofi-grid__label">Operator detail</span>
+        </div>
+        <div class="rs-lofi-grid__item">
+          <img src="lofi-rs-permissionless.png" alt="Lo-fi — Permissionless">
+          <span class="rs-lofi-grid__label">Permissionless</span>
+        </div>
+      </div>
+
+      <div class="rs-iters" style="margin-top:3rem">
+        <div class="rs-iter" style="border-top:1px solid var(--border);padding-top:2rem">
           <span class="rs-iter__tag">Feedback</span>
           <div>
             <h4 class="rs-iter__title">What failed</h4>
@@ -758,7 +866,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <span class="rs-iter__tag">Hi-fi</span>
           <div>
             <h4 class="rs-iter__title">The refined dashboard</h4>
-            <p class="rs-iter__body">Restructured around the user journey: portfolio overview → active positions → operator details → rewards history. Protocol differences surface only when relevant.</p>
+            <p class="rs-iter__body">Restructured around the user journey: portfolio overview → active positions → operator details → rewards history. Protocol differences surface only when relevant. Each entity — AVS, operator, token — gets a consistent detail page pattern.</p>
           </div>
         </div>
       </div>
@@ -819,8 +927,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <div class="rs-metrics">
         <div class="rs-metric">
-          <span class="rs-metric__val">[X]s</span>
-          <span class="rs-metric__label">Time to full portfolio view</span>
+          <span class="rs-metric__val">500+</span>
+          <span class="rs-metric__label">Users onboarded — month one</span>
         </div>
         <div class="rs-metric">
           <span class="rs-metric__val">[X]/5</span>
