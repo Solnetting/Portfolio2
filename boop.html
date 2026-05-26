@@ -614,18 +614,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                   <!-- Screen 4: date of birth — fully HTML, picker animates 1/1/2000 → Nov 12 1995 -->
                   <div class="bd-screen" style="background:#ecf0f6;display:flex;flex-direction:column;justify-content:space-between;">
                     <div style="padding:37px 12px 0;display:flex;flex-direction:column;gap:20px;">
-                      <!-- Nav -->
-                      <div style="display:flex;flex-direction:column;gap:8px;">
-                        <div style="display:flex;align-items:center;gap:4px;">
-                          <svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path d="M20 12H4M4 12l6-6M4 12l6 6" stroke="#070707" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                          <span style="font:700 9px/1 'Inter',sans-serif;color:#070707;">Back</span>
-                        </div>
-                        <div style="display:flex;gap:4px;">
-                          <div style="flex:1;height:2px;background:#070707;border-radius:2px;"></div>
-                          <div style="flex:1;height:2px;background:#070707;border-radius:2px;"></div>
-                          <div style="flex:1;height:2px;background:#e5e5e5;border-radius:2px;"></div>
-                        </div>
-                      </div>
                       <!-- Title + picker -->
                       <div style="display:flex;flex-direction:column;gap:14px;align-items:center;">
                         <div style="text-align:center;">
@@ -659,6 +647,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         transition:background .5s;
                       ">Confirm</button>
                     </div>
+                  </div>
+
+                  <!-- Screen 5: account created -->
+                  <div class="bd-screen">
+                    <img src="boop-account-created.png" alt="Account Created">
                   </div>
 
                 </div>
@@ -823,15 +816,53 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                               setTimeout(() => {
                                                 setCursorX('50%');
                                                 goTo(4);
-                                                /* after slide settles, spin pickers then activate Confirm */
+                                                /* after slide settles — spin month, then day, then year, then tap Confirm */
                                                 setTimeout(() => {
-                                                  const RH = 22;
-                                                  document.getElementById('bdPMonth').style.transform = `translateY(${44-13*RH}px)`;
-                                                  document.getElementById('bdPDay').style.transform   = `translateY(${44-14*RH}px)`;
-                                                  document.getElementById('bdPYear').style.transform  = `translateY(${44-8*RH}px)`;
+                                                  const RH   = 22;
+                                                  const pM   = document.getElementById('bdPMonth');
+                                                  const pD   = document.getElementById('bdPDay');
+                                                  const pY   = document.getElementById('bdPYear');
+                                                  const conf = document.getElementById('bdConfirmBtn');
+
+                                                  cursor.style.animation  = 'none';
+                                                  cursor.style.opacity    = '0';
+                                                  cursor.style.transform  = 'translate(-50%,-50%) scale(1)';
+                                                  cursor.style.transition = 'opacity .2s';
+
+                                                  function showAt(x) { setCursorX(x); setCursorY('32%'); cursor.style.opacity = '1'; }
+                                                  function hide()     { cursor.style.opacity = '0'; }
+
+                                                  /* ── month ── */
+                                                  showAt('27%');
+                                                  setTimeout(() => { pM.style.transform = `translateY(${44-13*RH}px)`; }, 200);
                                                   setTimeout(() => {
-                                                    document.getElementById('bdConfirmBtn').style.background = '#070707';
-                                                  }, 1500);
+                                                    hide();
+                                                    /* ── day ── */
+                                                    setTimeout(() => {
+                                                      showAt('62%');
+                                                      setTimeout(() => { pD.style.transform = `translateY(${44-14*RH}px)`; }, 200);
+                                                      setTimeout(() => {
+                                                        hide();
+                                                        /* ── year ── */
+                                                        setTimeout(() => {
+                                                          showAt('85%');
+                                                          setTimeout(() => { pY.style.transform = `translateY(${44-8*RH}px)`; }, 200);
+                                                          setTimeout(() => {
+                                                            hide();
+                                                            conf.style.background = '#070707';
+                                                            /* ── tap Confirm → Screen 5 ── */
+                                                            setTimeout(() => {
+                                                              setCursorX('50%');
+                                                              animateTap('88%',
+                                                                p => { conf.style.background = p ? '#2d2d2d' : '#070707'; conf.style.transform = p ? 'scale(.97)' : ''; },
+                                                                () => setTimeout(() => goTo(5), 400)
+                                                              );
+                                                            }, 900);
+                                                          }, 1600);
+                                                        }, 150);
+                                                      }, 1600);
+                                                    }, 150);
+                                                  }, 1600);
                                                 }, 600);
                                               }, 600);
                                             }
