@@ -579,6 +579,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <img src="boop-onboarding-2.png" alt="">
                   </div>
 
+                  <!-- Screen 3: terms & conditions — button baked into image -->
+                  <div class="bd-screen">
+                    <img src="boop-terms.png" alt="">
+                  </div>
+
                 </div>
 
                 <!-- Fixed Continue button — lives outside the slide track, never moves -->
@@ -677,11 +682,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             goTo(2);
                             setTimeout(() => { contBtn.style.opacity = '1'; }, 250);
 
-                            /* Screen 2 → tap Continue, then stop */
+                            /* Screen 2 → tap Continue → slide to Screen 3 (button baked in) */
                             setTimeout(() => {
                               animateTap('88%',
                                 pressed => pressBtn(contBtn, pressed),
-                                () => { /* stay on screen 3 */ }
+                                () => {
+                                  contBtn.style.opacity = '0';
+                                  goTo(3);
+                                  /* stop — terms screen has its own Accept button */
+                                }
                               );
                             }, 1500);
                           }
