@@ -727,6 +727,49 @@
   .boop-phone-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
+/* ── iPhone demo + flow screens row ── */
+.bd-demo-wrap {
+  display: flex;
+  align-items: flex-start;
+  gap: 2.5rem;
+  margin: 4rem 0;
+}
+
+.bd-flow-col {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  align-content: start;
+  min-width: 0;
+}
+
+.bd-flow-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.bd-flow-item__label {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+}
+
+.bd-flow-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 1.25rem;
+  border: 1px solid var(--border);
+  background: #f5f5f5;
+}
+
+@media (max-width: 720px) {
+  .bd-demo-wrap { flex-direction: column; align-items: center; }
+  .bd-flow-col  { width: 100%; max-width: 480px; grid-template-columns: repeat(3, 1fr); }
+}
+
 /* ── Phone + Cards composition (boop.it) ── */
 .boop-s3-wrap {
   overflow: visible;
