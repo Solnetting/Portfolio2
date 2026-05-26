@@ -496,6 +496,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             }
             #bdBtn.pressed { background:#2d2d2d; transform:scale(.97); }
 
+            /* Onboarding Continue — Figma: h-55, #070707, Inter Bold 16px — scaled ×0.59 */
+            .bd-continue {
+              display:flex;align-items:center;justify-content:center;
+              width:100%;height:33px;border-radius:100px;
+              background:#070707;color:#fefefe;
+              font-family:'Inter',sans-serif;font-size:10px;font-weight:700;
+              border:none;cursor:default;
+              transition:background .15s, transform .12s;
+            }
+
             /* Secondary CTA — Figma: h-55, glass bg, border #525252, Inter Medium 16px */
             .bd-btn2 {
               display:flex;align-items:center;justify-content:center;gap:5px;
@@ -563,15 +573,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                   <div class="bd-screen">
                     <img src="boop-onboarding-1.png" alt="">
                     <div style="position:absolute;bottom:0;left:0;width:100%;box-sizing:border-box;
-                                background:rgba(235,237,242,0.97);padding:14px 12px 28px;">
-                      <button id="bdBtn2" style="
-                        display:flex;align-items:center;justify-content:center;
-                        width:100%;height:33px;border-radius:100px;
-                        background:#070707;color:#fefefe;
-                        font-family:'Inter',sans-serif;font-size:12px;font-weight:500;
-                        border:none;cursor:default;
-                        transition:background .15s, transform .12s;
-                      ">Continue</button>
+                                background:rgba(235,237,242,0.97);padding:14px 12px 14px;">
+                      <button id="bdBtn2" class="bd-continue">Continue</button>
+                    </div>
+                  </div>
+
+                  <!-- Screen 2: onboarding slide 2 — Your hand is your key -->
+                  <div class="bd-screen">
+                    <img src="boop-onboarding-2.png" alt="">
+                    <div style="position:absolute;bottom:0;left:0;width:100%;box-sizing:border-box;
+                                background:rgba(235,237,242,0.97);padding:14px 12px 14px;">
+                      <button id="bdBtn3" class="bd-continue">Continue</button>
                     </div>
                   </div>
 
@@ -596,6 +608,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               const slide  = document.getElementById('bdSlide');
               const btn    = document.getElementById('bdBtn');
               const btn2   = document.getElementById('bdBtn2');
+              const btn3   = document.getElementById('bdBtn3');
               const cursor = document.getElementById('bdCursor');
               const ripple = document.getElementById('bdRipple');
 
@@ -638,19 +651,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 setTimeout(cb, 820);
               }
 
+              function pressBtn(el, pressed) {
+                el.style.background = pressed ? '#2d2d2d' : '#070707';
+                el.style.transform  = pressed ? 'scale(.97)' : '';
+              }
+
               function loop() {
                 setTimeout(() => {
-                  /* tap "Create a new account" on Screen 0 */
+                  /* Screen 0 → tap Create a new account */
                   animateTap('74%',
                     pressed => btn.classList.toggle('pressed', pressed),
                     () => {
                       goTo(1);
-                      /* tap "Continue" on Screen 1 */
+                      /* Screen 1 → tap Continue */
                       setTimeout(() => {
                         animateTap('88%',
-                          pressed => { btn2.style.background = pressed ? '#2d2d2d' : '#070707'; btn2.style.transform = pressed ? 'scale(.97)' : ''; },
+                          pressed => pressBtn(btn2, pressed),
                           () => {
-                            setTimeout(() => { goTo(0); setTimeout(loop, 1400); }, 400);
+                            goTo(2);
+                            /* Screen 2 → tap Continue */
+                            setTimeout(() => {
+                              animateTap('88%',
+                                pressed => pressBtn(btn3, pressed),
+                                () => { setTimeout(() => { goTo(0); setTimeout(loop, 1400); }, 400); }
+                              );
+                            }, 1500);
                           }
                         );
                       }, 1500);
