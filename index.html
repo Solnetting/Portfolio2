@@ -776,7 +776,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       .voices__arrow:hover { border-color: rgba(255,255,255,.4); color: #fff; }
       .voices__arrow:disabled { opacity: .25; cursor: default; }
 
-      .voices__viewport { overflow: hidden; }
+      .voices__viewport { overflow: hidden; cursor: grab; }
+      .voices__viewport:active { cursor: grabbing; }
       .voices__track { display: flex; gap: 1.25rem; transition: transform .45s cubic-bezier(.4,0,.2,1); will-change: transform; }
       .vcard { flex: 0 0 43%; background: #0d0d10; border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 2rem; display: flex; flex-direction: column; gap: 1.25rem; box-sizing: border-box; }
       .vcard__author { display: flex; align-items: center; gap: 0.85rem; padding-bottom: 1.25rem; border-bottom: 1px solid rgba(255,255,255,0.07); }
@@ -863,19 +864,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </section>
     <script>
       (function () {
-        const track = document.getElementById('vTrack');
-        const cards = Array.from(track.children);
-        const dots  = Array.from(document.querySelectorAll('.voices__dot'));
-        const prev  = document.getElementById('vPrev');
-        const next  = document.getElementById('vNext');
-        const total = cards.length;
+        const track    = document.getElementById('vTrack');
+        const viewport = track.parentElement;
+        const cards    = Array.from(track.children);
+        const dots     = Array.from(document.querySelectorAll('.voices__dot'));
+        const prev     = document.getElementById('vPrev');
+        const next     = document.getElementById('vNext');
+        const total    = cards.length;
         let cur = 0;
+
+        function cardStep() {
+          return cards[0].offsetWidth + 20;
+        }
 
         function go(n) {
           cur = Math.max(0, Math.min(n, total - 1));
-          const cardW = cards[0].offsetWidth;
-          const gap = 20;
-          track.style.transform = `translateX(-${cur * (cardW + gap)}px)`;
+          track.style.transition = 'transform .45s cubic-bezier(.4,0,.2,1)';
+          track.style.transform  = `translateX(-${cur * cardStep()}px)`;
           dots.forEach((d, i) => d.classList.toggle('active', i === cur));
           prev.disabled = cur === 0;
           next.disabled = cur >= total - 1;
@@ -884,6 +889,45 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         prev.addEventListener('click', () => go(cur - 1));
         next.addEventListener('click', () => go(cur + 1));
         dots.forEach((d, i) => d.addEventListener('click', () => go(i)));
+
+        /* ── Drag / swipe ── */
+        let startX = 0, startOff = 0, dragging = false, didDrag = false;
+
+        function dragStart(x) {
+          dragging = true;
+          didDrag  = false;
+          startX   = x;
+          startOff = cur * cardStep();
+          track.style.transition = 'none';
+          viewport.style.cursor  = 'grabbing';
+        }
+        function dragMove(x) {
+          if (!dragging) return;
+          const delta = startX - x;
+          if (Math.abs(delta) > 4) didDrag = true;
+          track.style.transform = `translateX(-${startOff + delta}px)`;
+        }
+        function dragEnd(x) {
+          if (!dragging) return;
+          dragging = false;
+          viewport.style.cursor = '';
+          const delta = startX - x;
+          if (Math.abs(delta) > cardStep() * 0.2) {
+            go(delta > 0 ? cur + 1 : cur - 1);
+          } else {
+            go(cur);
+          }
+        }
+
+        viewport.addEventListener('mousedown',  e => dragStart(e.clientX));
+        window.addEventListener ('mousemove',   e => dragMove(e.clientX));
+        window.addEventListener ('mouseup',     e => dragEnd(e.clientX));
+        viewport.addEventListener('touchstart', e => dragStart(e.touches[0].clientX), { passive: true });
+        viewport.addEventListener('touchmove',  e => dragMove(e.touches[0].clientX),  { passive: true });
+        viewport.addEventListener('touchend',   e => dragEnd(e.changedTouches[0].clientX));
+
+        /* prevent click firing after a drag */
+        viewport.addEventListener('click', e => { if (didDrag) e.stopPropagation(); }, true);
 
         document.querySelectorAll('.vcard__read-more').forEach(btn => {
           btn.addEventListener('click', () => {
