@@ -588,7 +588,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                   background:#070707;color:#fefefe;
                   font-family:'Inter',sans-serif;font-size:10px;font-weight:700;
                   border:none;cursor:default;z-index:5;
-                  opacity:0;transition:background .15s,transform .12s;
+                  opacity:0;transition:background .15s,transform .12s,opacity .3s ease;
                 ">Continue</button>
 
                 <!-- Tap cursor -->
@@ -664,13 +664,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     pressed => btn.classList.toggle('pressed', pressed),
                     () => {
                       goTo(1);
-                      contBtn.style.opacity = '1';
-                      /* Screen 1 → tap Continue (fixed button, doesn't move) */
+                      /* fade in after slide settles (450ms transition + buffer) */
+                      setTimeout(() => { contBtn.style.opacity = '1'; }, 520);
+
+                      /* Screen 1 → tap Continue */
                       setTimeout(() => {
                         animateTap('88%',
                           pressed => pressBtn(contBtn, pressed),
                           () => {
+                            /* fade out, slide, fade back in */
+                            contBtn.style.opacity = '0';
                             goTo(2);
+                            setTimeout(() => { contBtn.style.opacity = '1'; }, 520);
+
                             /* Screen 2 → tap Continue, then stop */
                             setTimeout(() => {
                               animateTap('88%',
@@ -680,7 +686,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             }, 1500);
                           }
                         );
-                      }, 1500);
+                      }, 1800);
                     }
                   );
                 }, 2000);
