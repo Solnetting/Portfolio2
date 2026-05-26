@@ -649,9 +649,35 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     </div>
                   </div>
 
-                  <!-- Screen 5: account created -->
-                  <div class="bd-screen">
-                    <img src="boop-account-created.png" alt="Account Created">
+                  <!-- Screen 5: account created — animated ring + checkmark reveal -->
+                  <div class="bd-screen" style="background:#ecf0f6;display:flex;flex-direction:column;justify-content:space-between;padding-top:37px;">
+                    <!-- Title -->
+                    <div style="display:flex;flex-direction:column;gap:5px;align-items:center;text-align:center;padding:0 12px;">
+                      <p style="margin:0;font:700 18px/1.2 'Inter',sans-serif;color:#070707;">Account Created!</p>
+                      <p style="margin:0;font:400 7px/1.4 'Inter',sans-serif;color:#525252;">Welcome to Boop. Your account is ready to use.</p>
+                    </div>
+                    <!-- Illustration -->
+                    <div style="flex:1;display:flex;align-items:center;justify-content:center;position:relative;">
+                      <!-- Frosted glass circle — hidden until ring completes -->
+                      <div id="bdCircleBg" style="width:155px;height:155px;border-radius:50%;background:linear-gradient(-52deg,rgba(255,255,255,0.5) 14%,rgba(242,242,242,0.5) 49%,rgba(227,227,227,0.5) 85%);box-shadow:2px 2px 6px rgba(183,183,183,0.1);opacity:0;transition:opacity .35s ease;"></div>
+                      <!-- Clockwise ring — stroke-dashoffset animated to 0 by JS -->
+                      <svg style="position:absolute;width:155px;height:155px;" viewBox="0 0 155 155" overflow="visible">
+                        <circle id="bdRingPath"
+                          cx="77.5" cy="77.5" r="73"
+                          fill="none" stroke="#8892C6" stroke-width="3" stroke-linecap="round"
+                          stroke-dasharray="459" stroke-dashoffset="459"
+                          transform="rotate(-90 77.5 77.5)"
+                          style="transition:stroke-dashoffset 1.2s cubic-bezier(.4,0,.2,1);"/>
+                      </svg>
+                      <!-- Blurred checkmark — fades in after ring completes -->
+                      <svg id="bdCheckSvg" style="position:absolute;opacity:0;transition:opacity .4s ease;filter:blur(1.8px);" width="78" height="60" viewBox="0 0 78 60">
+                        <path d="M4 36 L27 54 L74 6" stroke="#8892C6" stroke-width="9" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </div>
+                    <!-- Done button -->
+                    <div style="padding:22px 12px 28px;box-sizing:border-box;">
+                      <button style="display:flex;align-items:center;justify-content:center;width:100%;height:33px;border-radius:100px;background:#070707;color:#fefefe;font:700 10px 'Inter',sans-serif;border:none;cursor:default;">Done</button>
+                    </div>
                   </div>
 
                 </div>
@@ -855,7 +881,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                                               setCursorX('50%');
                                                               animateTap('88%',
                                                                 p => { conf.style.background = p ? '#2d2d2d' : '#070707'; conf.style.transform = p ? 'scale(.97)' : ''; },
-                                                                () => setTimeout(() => goTo(5), 400)
+                                                                () => setTimeout(() => {
+                                                                  goTo(5);
+                                                                  /* ring draws clockwise (1.2s), then circle bg + checkmark fade in */
+                                                                  setTimeout(() => {
+                                                                    document.getElementById('bdRingPath').style.strokeDashoffset = '0';
+                                                                    setTimeout(() => {
+                                                                      document.getElementById('bdCircleBg').style.opacity = '1';
+                                                                      document.getElementById('bdCheckSvg').style.opacity  = '1';
+                                                                    }, 1250);
+                                                                  }, 500);
+                                                                }, 400)
                                                               );
                                                             }, 900);
                                                           }, 1600);
