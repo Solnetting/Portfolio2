@@ -28,69 +28,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <style>
     /* ─── Restaking page ─── */
 
-    .rs-hero {
-      position: relative;
-      height: 90vh;
-      min-height: 520px;
-      overflow: hidden;
-      display: flex;
-      align-items: flex-end;
-    }
-    .rs-hero::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(13,13,13,.85) 0%, rgba(13,13,13,.2) 55%, transparent 100%);
-      pointer-events: none;
-    }
-    .rs-hero__img {
-      position: absolute; inset: 0;
-      width: 100%; height: 100%;
-      object-fit: cover; object-position: center;
-      display: block;
-    }
-    .rs-hero__content {
-      position: relative; z-index: 2;
-      width: 100%; max-width: var(--max-w);
-      margin: 0 auto;
-      padding: 0 var(--pad) 4.5rem;
-    }
-    .rs-hero__back {
-      display: inline-block;
-      font-size: .8125rem;
-      color: rgba(255,255,255,.4);
-      text-decoration: none;
-      margin-bottom: 1.75rem;
-      transition: color .15s;
-    }
-    .rs-hero__back:hover { color: rgba(255,255,255,.8); }
-    .rs-hero__title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(2.75rem, 6vw, 5.5rem);
-      font-weight: 700;
-      letter-spacing: -.02em;
-      color: #fff;
-      line-height: 1;
-      margin: 0 0 .6rem;
-    }
-    .rs-hero__sub {
-      font-size: clamp(.9rem, 1.4vw, 1.0625rem);
-      color: rgba(255,255,255,.5);
-      margin: 0 0 1.5rem;
-      max-width: 560px;
-    }
-    .rs-hero__pills {
-      display: flex; gap: .375rem; flex-wrap: wrap;
-    }
-    .rs-hero__pills span {
-      font-size: .625rem;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,.3);
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.09);
-      padding: .25rem .6rem;
-      border-radius: 2px;
+    .rs-hero-cover img {
+      object-position: top center;
     }
 
     /* Stats strip */
@@ -717,20 +656,38 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </header>
 
   <!-- ─── HERO ─── -->
-  <section class="rs-hero">
-    <img class="rs-hero__img" src="restaking-hero.png" alt="Restaking.Info — dashboard overview">
-    <div class="rs-hero__content">
-      <a href="index.html#work" class="rs-hero__back">← Back to work</a>
-      <h1 class="rs-hero__title">Restaking.Info</h1>
-      <p class="rs-hero__sub">Ethereum restaking analytics platform — designed end-to-end in Figma, from information architecture to component flows</p>
-      <div class="rs-hero__pills">
-        <span>Web App</span>
-        <span>DeFi</span>
-        <span>Dashboard</span>
-        <span>Data Visualisation</span>
-        <span>Lead Product Designer</span>
-        <span>2024</span>
+  <section class="proj-hero">
+    <div class="proj-hero__inner">
+      <a href="index.html#work" class="proj-back">← Back to work</a>
+      <h1 class="proj-hero__title">Restaking.Info</h1>
+      <div class="proj-hero__meta">
+        <span class="tag">Web App</span>
+        <span class="tag">DeFi</span>
+        <span class="tag">Dashboard</span>
+        <span class="tag">Data Visualisation</span>
       </div>
+      <p class="proj-hero__tagline">Ethereum restaking analytics platform — designed end-to-end, from information architecture to component flows</p>
+      <div class="proj-hero__details">
+        <div class="proj-detail">
+          <span class="proj-detail__label">Role</span>
+          <span class="proj-detail__value">Lead Product Designer</span>
+        </div>
+        <div class="proj-detail">
+          <span class="proj-detail__label">Timeline</span>
+          <span class="proj-detail__value">2024</span>
+        </div>
+        <div class="proj-detail">
+          <span class="proj-detail__label">Platform</span>
+          <span class="proj-detail__value">Web</span>
+        </div>
+        <div class="proj-detail">
+          <span class="proj-detail__label">Tools</span>
+          <span class="proj-detail__value">Figma</span>
+        </div>
+      </div>
+    </div>
+    <div class="proj-hero__cover rs-hero-cover">
+      <img src="restaking-hero.png" alt="Restaking.Info — analytics dashboard" loading="eager">
     </div>
   </section>
 
@@ -738,16 +695,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="rs-strip">
     <div class="rs-strip__inner">
       <div class="rs-stat">
-        <div class="rs-stat__val">120,070,554</div>
-        <div class="rs-stat__label">Total ETH Value</div>
+        <div class="rs-stat__val">500+</div>
+        <div class="rs-stat__label">Users onboarded — first month</div>
       </div>
       <div class="rs-stat">
-        <div class="rs-stat__val">364</div>
-        <div class="rs-stat__label">Operators Tracked</div>
+        <div class="rs-stat__val">9 views</div>
+        <div class="rs-stat__label">Designed end-to-end</div>
       </div>
       <div class="rs-stat">
-        <div class="rs-stat__val">21,345</div>
-        <div class="rs-stat__label">Restakers</div>
+        <div class="rs-stat__val">3</div>
+        <div class="rs-stat__label">Revenue streams designed</div>
       </div>
     </div>
   </div>
