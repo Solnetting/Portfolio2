@@ -579,9 +579,36 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <img src="boop-onboarding-2.png" alt="">
                   </div>
 
-                  <!-- Screen 3: terms & conditions — button baked into image -->
+                  <!-- Screen 3: terms & conditions — interactive panel overlay -->
                   <div class="bd-screen">
                     <img src="boop-terms.png" alt="">
+                    <!-- Overlay covers the static panel in the image; exact scale ×0.577 -->
+                    <div style="position:absolute;bottom:0;left:0;width:100%;height:145px;box-sizing:border-box;
+                                background:#f4f6fa;padding:22px 12px 22px;
+                                display:flex;flex-direction:column;gap:14px;">
+                      <!-- Checkbox row -->
+                      <div style="display:flex;gap:5px;align-items:flex-start;">
+                        <div id="bdCheckbox" style="
+                          width:8px;height:8px;flex-shrink:0;margin-top:1px;
+                          border-radius:1px;border:1px solid #d9d9d9;background:#fff;
+                          display:flex;align-items:center;justify-content:center;
+                          transition:background .25s,border-color .25s;
+                        "></div>
+                        <p style="margin:0;font-family:'Inter',sans-serif;font-size:8px;font-weight:500;
+                                  color:#070707;line-height:1.45;">
+                          Accept the terms and conditions and consent to processing of my biometric data at the event
+                        </p>
+                      </div>
+                      <!-- Accept button — starts disabled (gray) -->
+                      <button id="bdAcceptBtn" style="
+                        display:flex;align-items:center;justify-content:center;
+                        width:100%;height:33px;border-radius:100px;
+                        background:#a3a3a3;color:#fff;
+                        font-family:'Inter',sans-serif;font-size:10px;font-weight:700;
+                        border:none;cursor:default;
+                        transition:background .35s,transform .12s;
+                      ">Accept</button>
+                    </div>
                   </div>
 
                 </div>
@@ -626,6 +653,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               function setCursorY(pct) {
                 cursor.style.top = pct;
                 ripple.style.top = pct;
+              }
+
+              function setCursorX(pct) {
+                cursor.style.left = pct;
+                ripple.style.left = pct;
               }
 
               function animateTap(yPct, onPress, cb) {
@@ -682,14 +714,39 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             goTo(2);
                             setTimeout(() => { contBtn.style.opacity = '1'; }, 250);
 
-                            /* Screen 2 → tap Continue → slide to Screen 3 (button baked in) */
+                            /* Screen 2 → tap Continue → slide to Screen 3 */
                             setTimeout(() => {
                               animateTap('88%',
                                 pressed => pressBtn(contBtn, pressed),
                                 () => {
                                   contBtn.style.opacity = '0';
                                   goTo(3);
-                                  /* stop — terms screen has its own Accept button */
+
+                                  /* Screen 3 → tap checkbox (~81% from top, left ~10%) */
+                                  setTimeout(() => {
+                                    setCursorX('10%');
+                                    animateTap('81%',
+                                      () => {},
+                                      () => {
+                                        /* check the box + enable Accept */
+                                        const cb  = document.getElementById('bdCheckbox');
+                                        const abt = document.getElementById('bdAcceptBtn');
+                                        cb.style.background   = '#070707';
+                                        cb.style.borderColor  = '#070707';
+                                        cb.innerHTML = '<svg width="100%" height="100%" viewBox="0 0 8 8"><path d="M1.5 4.5L3.5 6.5L6.5 2" stroke="#fff" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>';
+                                        abt.style.background  = '#070707';
+
+                                        /* tap Accept (~89% from top, centered) */
+                                        setTimeout(() => {
+                                          setCursorX('50%');
+                                          animateTap('89%',
+                                            pressed => pressBtn(abt, pressed),
+                                            () => { /* end */ }
+                                          );
+                                        }, 900);
+                                      }
+                                    );
+                                  }, 1200);
                                 }
                               );
                             }, 1500);
