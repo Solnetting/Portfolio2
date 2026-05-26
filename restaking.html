@@ -41,14 +41,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       margin: 0 auto;
       padding: 0 var(--pad);
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
     }
     .rs-stat {
       padding: 2rem 0;
       border-right: 1px solid var(--border);
     }
     .rs-stat:last-child { border-right: none; padding-left: 2rem; }
-    .rs-stat:nth-child(2) { padding-left: 2rem; }
+    .rs-stat:nth-child(2),
+    .rs-stat:nth-child(3) { padding-left: 2rem; }
     .rs-stat__val {
       font-family: 'JetBrains Mono', monospace;
       font-size: clamp(1.375rem, 2.5vw, 2rem);
@@ -623,11 +624,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       .rs-iter { grid-template-columns: 1fr; gap: .5rem; }
       .rs-ds { grid-template-columns: 1fr; }
       .rs-metrics { grid-template-columns: 1fr 1fr; }
-      .rs-strip__inner { grid-template-columns: 1fr; }
+      .rs-strip__inner { grid-template-columns: 1fr 1fr; }
       .rs-stat { border-right: none; border-bottom: 1px solid var(--border); padding: 1.5rem 0; }
       .rs-stat:nth-child(2),
+      .rs-stat:nth-child(3),
       .rs-stat:last-child { padding-left: 0; }
-      .rs-stat:last-child { border-bottom: none; }
+      .rs-stat:nth-child(even) { border-left: 1px solid var(--border); padding-left: 1.25rem; }
+      .rs-stat:last-child,
+      .rs-stat:nth-last-child(2) { border-bottom: none; }
     }
     @media (max-width: 600px) {
       .rs-pillars { grid-template-columns: 1fr; }
@@ -698,12 +702,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="rs-stat__label">Users onboarded — first month</div>
       </div>
       <div class="rs-stat">
-        <div class="rs-stat__val">9 views</div>
-        <div class="rs-stat__label">Designed end-to-end</div>
+        <div class="rs-stat__val">120M+ ETH</div>
+        <div class="rs-stat__label">TVL tracked across EigenLayer</div>
       </div>
       <div class="rs-stat">
-        <div class="rs-stat__val">3</div>
-        <div class="rs-stat__label">Revenue streams designed</div>
+        <div class="rs-stat__val">364</div>
+        <div class="rs-stat__label">Operators tracked</div>
+      </div>
+      <div class="rs-stat">
+        <div class="rs-stat__val">21,345</div>
+        <div class="rs-stat__label">Restakers on platform</div>
       </div>
     </div>
   </div>
