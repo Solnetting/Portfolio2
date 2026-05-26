@@ -477,6 +477,39 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       display: block;
     }
 
+    /* Hi-fi showcase */
+    .rs-hifi-showcase {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 2rem;
+      align-items: center;
+      margin-top: 3rem;
+    }
+    .rs-hifi-showcase__mockup img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .rs-hifi-showcase__screen {
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.1);
+      box-shadow:
+        0 0 0 1px rgba(75,168,212,.08),
+        0 24px 80px rgba(0,0,0,.6),
+        0 4px 16px rgba(0,0,0,.4);
+      background: #0d0f1a;
+    }
+    .rs-hifi-showcase__screen img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 14px;
+    }
+    @media (max-width: 900px) {
+      .rs-hifi-showcase { grid-template-columns: 1fr; }
+    }
+
     /* Figma flows grid */
     .rs-figma-flows {
       display: grid;
@@ -958,6 +991,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="rs-figma-flow">
           <p class="rs-figma-flow__label">Operator flow</p>
           <img src="figma-rs-operators.png" alt="Restaking.Info — Figma user flow: Operators list, search states, operator detail, AVS-Operators sub-view">
+        </div>
+      </div>
+
+      <!-- Hi-fi showcase -->
+      <div class="rs-hifi-showcase">
+        <div class="rs-hifi-showcase__mockup">
+          <img src="hifi-rs-permissionless-mockup.png" alt="Restaking.Info — Permissionless tokens, laptop mockup">
+        </div>
+        <div class="rs-hifi-showcase__screen">
+          <img src="hifi-rs-permissionless.png" alt="Restaking.Info — Permissionless tokens, full screen">
         </div>
       </div>
 
