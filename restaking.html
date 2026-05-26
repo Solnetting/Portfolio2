@@ -1209,6 +1209,62 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       sections.forEach(s => spy.observe(s));
     })();
   </script>
+  <!-- Restaking scroll reveals -->
+  <script>
+    (function () {
+      const SELECTORS = [
+        /* Strip stats */
+        '.rs-stat',
+        /* Section labels + headings */
+        '.rs-sec .section__label',
+        '.rs-sec__title',
+        /* Body text / intro paragraphs */
+        '.rs-sec > .rs-body-text',
+        '.rs-sec > p',
+        /* Two-col layouts — each child reveals separately */
+        '.rs-2col > *',
+        '.rs-2col--60-40 > *',
+        /* Image blocks */
+        '.rs-img-block',
+        /* How-it-works steps */
+        '.rs-step',
+        /* Pillars / principle cards */
+        '.rs-pillar',
+        /* Benchmark grid items */
+        '.rs-bench-item',
+        /* Process nav map */
+        '.rs-nav-map',
+        /* Business model / how it works blocks */
+        '.rs-biz-model',
+        '.rs-how-it-works',
+        /* Lo-fi grid */
+        '.rs-lofi-grid',
+        /* Iteration entries */
+        '.rs-iter',
+        /* Figma flow cards */
+        '.rs-figma-flow',
+        /* Hi-fi mockup cards */
+        '.rs-hifi-card',
+        /* Design system cards */
+        '.rs-ds__card',
+        /* Results metric tiles */
+        '.rs-metric',
+        /* Generic rs-img used inline */
+        '.rs-img',
+        /* Platform nav map image */
+        '.rs-sec .rs-img-block img',
+      ];
+
+      SELECTORS.forEach(sel => {
+        document.querySelectorAll(sel).forEach((el, i) => {
+          if (el.classList.contains('fade-in')) return;
+          el.style.setProperty('--stagger', (i % 4) * 80 + 'ms');
+          el.classList.add('fade-in');
+          observer.observe(el);
+        });
+      });
+    })();
+  </script>
   <script src="analytics.js"></script>
 </body>
 </html>
