@@ -477,6 +477,31 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       display: block;
     }
 
+    /* Figma flows grid */
+    .rs-figma-flows {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .rs-figma-flow img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 6px;
+      border: 1px solid rgba(255,255,255,.07);
+    }
+    .rs-figma-flow__label {
+      font-size: .6875rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.25);
+      margin-bottom: .625rem;
+    }
+    @media (max-width: 900px) {
+      .rs-figma-flows { grid-template-columns: 1fr; }
+    }
+
     /* Business model pillars */
     .rs-biz-pillars {
       display: flex;
@@ -920,13 +945,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <span class="rs-iter__tag">Hi-fi</span>
           <div>
             <h4 class="rs-iter__title">End-to-end in Figma</h4>
-            <p class="rs-iter__body">Designed and owned entirely in Figma — from component architecture to interactive flows. Each section follows a consistent pattern: key metrics → TVL chart → distribution breakdown. The AVS detail page alone has three distinct sub-views (Total Value, Operators, Re-stakers), each mapped as a named flow with multiple states.</p>
+            <p class="rs-iter__body">Designed and owned entirely in Figma — from component architecture to interactive flows. Every major section is a named flow covering the full state space: the AVS detail maps three sub-views (Total Value, Operators, Re-stakers); the Operator flow covers the list, search match, empty state, 404 error, operator detail, and the AVS-Operators tab. Nothing left to chance.</p>
           </div>
         </div>
       </div>
 
-      <div class="rs-img-block">
-        <img src="figma-rs-flow.png" alt="Restaking.Info — Figma user flow: AVS list to AVS detail (Total Value, Operators, Re-stakers)">
+      <div class="rs-figma-flows">
+        <div class="rs-figma-flow">
+          <p class="rs-figma-flow__label">AVS flow</p>
+          <img src="figma-rs-flow.png" alt="Restaking.Info — Figma user flow: AVS list to AVS detail (Total Value, Operators, Re-stakers)">
+        </div>
+        <div class="rs-figma-flow">
+          <p class="rs-figma-flow__label">Operator flow</p>
+          <img src="figma-rs-operators.png" alt="Restaking.Info — Figma user flow: Operators list, search states, operator detail, AVS-Operators sub-view">
+        </div>
       </div>
 
     </div>
