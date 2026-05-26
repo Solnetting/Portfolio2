@@ -477,12 +477,53 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       display: block;
     }
 
+    /* Case layout */
+    .rs-case {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 4rem;
+      align-items: start;
+      padding: 5rem 0 6rem;
+    }
+    .rs-case__content { min-width: 0; }
+
+    /* Sticky sidenav */
+    .rs-sidenav {
+      position: sticky;
+      top: 80px;
+      display: flex;
+      flex-direction: column;
+      gap: .125rem;
+    }
+    .rs-sidenav__title {
+      font-size: .5rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: rgba(255,255,255,.22);
+      padding: 0 .75rem;
+      margin-bottom: 1rem;
+    }
+    .rs-sidenav__item {
+      font-size: .75rem;
+      line-height: 1.4;
+      color: rgba(255,255,255,.28);
+      padding: .5rem .75rem;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: color .15s, background .15s;
+    }
+    .rs-sidenav__item:hover  { background: rgba(255,255,255,.05); color: rgba(255,255,255,.6); }
+    .rs-sidenav__item.active { background: rgba(255,255,255,.06); color: rgba(255,255,255,.85); font-weight: 500; }
+
+    .rs-sec { scroll-margin-top: 90px; }
+
     /* Hi-fi showcase */
     .rs-hifi-showcase {
       display: grid;
       grid-template-columns: 1.1fr 1fr;
       gap: 2rem;
-      align-items: center;
+      align-items: start;
       margin-top: 3rem;
     }
     .rs-hifi-showcase__mockup img {
@@ -632,6 +673,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     /* ─── Responsive ─── */
     @media (max-width: 900px) {
+      .rs-case { grid-template-columns: 1fr; gap: 0; padding-top: 3rem; }
+      .rs-sidenav { position: static; flex-direction: row; flex-wrap: wrap; gap: .25rem; margin-bottom: 3rem; padding: 1rem; background: rgba(255,255,255,.03); border-radius: 10px; }
+      .rs-sidenav__title { display: none; }
+      .rs-sidenav__item { font-size: .75rem; padding: .4rem .6rem; }
       .rs-2col,
       .rs-2col--60-40 { grid-template-columns: 1fr; gap: 3rem; }
       .rs-pillars { grid-template-columns: 1fr 1fr; }
@@ -708,11 +753,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 
   <div class="rs-wrap">
+  <div class="rs-case">
+
+    <!-- Sticky left nav -->
+    <nav class="rs-sidenav" id="rsSideNav">
+      <p class="rs-sidenav__title">Case study</p>
+      <a href="#rs-summary"    class="rs-sidenav__item active" data-s="rs-summary">Executive<br>Summary</a>
+      <a href="#rs-problem"    class="rs-sidenav__item" data-s="rs-problem">Problem &amp;<br>Success</a>
+      <a href="#rs-strategy"   class="rs-sidenav__item" data-s="rs-strategy">Strategy &amp;<br>Insights</a>
+      <a href="#rs-iterations" class="rs-sidenav__item" data-s="rs-iterations">Iterations</a>
+      <a href="#rs-system"     class="rs-sidenav__item" data-s="rs-system">Design System</a>
+      <a href="#rs-results"    class="rs-sidenav__item" data-s="rs-results">Results &amp;<br>Retrospective</a>
+    </nav>
+
+    <!-- Scrolling content -->
+    <div class="rs-case__content">
 
     <!-- ═══════════════════════════════
          1. EXECUTIVE SUMMARY
     ═══════════════════════════════ -->
-    <div class="rs-sec">
+    <div id="rs-summary" class="rs-sec">
       <p class="section__label">Executive Summary</p>
       <h2 class="rs-sec__title">Making restaking legible for everyone</h2>
 
@@ -831,7 +891,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- ═══════════════════════════════
          2. PROBLEM & SUCCESS
     ═══════════════════════════════ -->
-    <div class="rs-sec">
+    <div id="rs-problem" class="rs-sec">
       <p class="section__label">Problem & Success</p>
       <h2 class="rs-sec__title">Defining what winning looks like</h2>
 
@@ -878,7 +938,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- ═══════════════════════════════
          3. STRATEGY & INSIGHTS
     ═══════════════════════════════ -->
-    <div class="rs-sec">
+    <div id="rs-strategy" class="rs-sec">
       <p class="section__label">Strategy & Insights</p>
       <h2 class="rs-sec__title">What research changed</h2>
 
@@ -927,7 +987,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- ═══════════════════════════════
          4. ITERATIONS / THE PIVOT
     ═══════════════════════════════ -->
-    <div class="rs-sec">
+    <div id="rs-iterations" class="rs-sec">
       <p class="section__label">Iterations</p>
       <h2 class="rs-sec__title">The pivot that shaped the product</h2>
       <p class="rs-body-text" style="max-width:560px">The first version looked like every other crypto dashboard. The pivot was about restraint — removing data until only decisions remained.</p>
@@ -1010,7 +1070,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- ═══════════════════════════════
          5. DESIGN SYSTEM & SCALE
     ═══════════════════════════════ -->
-    <div class="rs-sec">
+    <div id="rs-system" class="rs-sec">
       <p class="section__label">Design System</p>
       <h2 class="rs-sec__title">The engine behind the product</h2>
       <p class="rs-body-text" style="max-width:600px">A DeFi dashboard is only as trustworthy as it looks. Every component was built to communicate precision — tight spacing, monospaced numbers, semantic colour for risk states.</p>
@@ -1039,7 +1099,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- ═══════════════════════════════
          6. RESULTS & RETROSPECTIVE
     ═══════════════════════════════ -->
-    <div class="rs-sec">
+    <div id="rs-results" class="rs-sec">
       <p class="section__label">Results & Retrospective</p>
       <h2 class="rs-sec__title">Closing the loop</h2>
       <p class="rs-body-text" style="max-width:560px">Did we hit the goals set in section 2? Here's where the numbers and the human feedback meet.</p>
@@ -1090,6 +1150,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </div>
 
+    </div><!-- /rs-case__content -->
+  </div><!-- /rs-case -->
+
     <!-- Project nav -->
     <nav class="proj-nav">
       <a href="index.html#work" class="proj-nav__back">← All projects</a>
@@ -1110,6 +1173,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </footer>
 
   <script src="script.js"></script>
+  <script>
+    (function () {
+      const navItems = document.querySelectorAll('#rsSideNav .rs-sidenav__item');
+      const sections = document.querySelectorAll('.rs-sec[id]');
+      if (!navItems.length || !sections.length) return;
+      const spy = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          const id = entry.target.id;
+          navItems.forEach(item => item.classList.toggle('active', item.dataset.s === id));
+        });
+      }, { rootMargin: '-20% 0px -70% 0px' });
+      sections.forEach(s => spy.observe(s));
+    })();
+  </script>
   <script src="analytics.js"></script>
 </body>
 </html>
