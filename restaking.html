@@ -821,7 +821,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <span class="rs-iter__tag">Alpha</span>
           <div>
             <h4 class="rs-iter__title">Low fidelity</h4>
-            <p class="rs-iter__body">Early wireframes mapped out all nine sections of the platform — global overview, AVS and operator detail pages, LST/LRT distribution, permissionless tokens, and the support plan. The lo-fi prioritised information architecture and data hierarchy over visual treatment.</p>
+            <p class="rs-iter__body">Early wireframes mapped out all sections of the platform — global overview, AVS detail pages, LST/LRT distribution, permissionless tokens, and the support plan. The lo-fi prioritised information architecture and data hierarchy over visual treatment.</p>
           </div>
         </div>
       </div>
@@ -845,10 +845,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <span class="rs-lofi-grid__label">AVS early</span>
         </div>
         <div class="rs-lofi-grid__item">
-          <img src="lofi-rs-operator.png" alt="Lo-fi — Operator detail">
-          <span class="rs-lofi-grid__label">Operator detail</span>
-        </div>
-        <div class="rs-lofi-grid__item">
           <img src="lofi-rs-permissionless.png" alt="Lo-fi — Permissionless">
           <span class="rs-lofi-grid__label">Permissionless</span>
         </div>
@@ -866,18 +862,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <span class="rs-iter__tag">Hi-fi</span>
           <div>
             <h4 class="rs-iter__title">The refined dashboard</h4>
-            <p class="rs-iter__body">Restructured around the user journey: portfolio overview → active positions → operator details → rewards history. Protocol differences surface only when relevant. Each entity — AVS, operator, token — gets a consistent detail page pattern.</p>
+            <p class="rs-iter__body">Restructured around the user journey: global overview → AVS status → LST/LRT distribution → permissionless tokens. Protocol differences surface only when relevant. Each section follows a consistent pattern: key metrics → TVL chart → distribution breakdown.</p>
           </div>
         </div>
       </div>
 
-      <div class="rs-img-block">
-        <img src="restaking-laptop.png" alt="Restaking.Info — operator detail view on laptop">
-      </div>
-
-      <div class="rs-img-block" style="margin-top:1.5rem">
-        <img src="restaking-operator.png" alt="Restaking.Info — P2P.org operator detail, TVL chart and LST distribution">
-      </div>
     </div>
 
 
@@ -889,29 +878,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <h2 class="rs-sec__title">The engine behind the product</h2>
       <p class="rs-body-text" style="max-width:600px">A DeFi dashboard is only as trustworthy as it looks. Every component was built to communicate precision — tight spacing, monospaced numbers, semantic colour for risk states.</p>
 
-      <div class="rs-2col--60-40 rs-2col" style="margin-top:3.5rem;align-items:center">
-        <div class="rs-ds">
-          <div class="rs-ds__card">
-            <h4 class="rs-ds__title">Typography</h4>
-            <p class="rs-ds__body">Inter for UI labels and body. Monospaced numerals throughout — every number right-aligns and scales identically regardless of digit count.</p>
-          </div>
-          <div class="rs-ds__card">
-            <h4 class="rs-ds__title">Colour & Risk</h4>
-            <p class="rs-ds__body">A strict semantic palette: green for healthy, amber for caution, red for risk. No decorative use of colour — every hue carries meaning the user can rely on.</p>
-          </div>
-          <div class="rs-ds__card">
-            <h4 class="rs-ds__title">Components</h4>
-            <p class="rs-ds__body"><em>Position card, operator health badge, reward ticker, risk meter, wallet connect flow</em> — a component set covering every interaction pattern in the dashboard.</p>
-          </div>
-          <div class="rs-ds__card">
-            <h4 class="rs-ds__title">Scalability</h4>
-            <p class="rs-ds__body">Each component is protocol-agnostic by design. Adding Symbiotic or Karak support requires no new UI patterns — just new data piped into existing components.</p>
-          </div>
+      <div class="rs-ds" style="margin-top:3.5rem">
+        <div class="rs-ds__card">
+          <h4 class="rs-ds__title">Typography</h4>
+          <p class="rs-ds__body">Inter for UI labels and body. Monospaced numerals throughout — every number right-aligns and scales identically regardless of digit count.</p>
         </div>
-        <div style="display:flex;justify-content:center">
-          <div class="rs-img-block rs-img-block--phone" style="margin-top:0">
-            <img src="restaking-mobile.png" alt="Restaking.Info — mobile operator view">
-          </div>
+        <div class="rs-ds__card">
+          <h4 class="rs-ds__title">Colour & Risk</h4>
+          <p class="rs-ds__body">A strict semantic palette: green for healthy, amber for caution, red for risk. No decorative use of colour — every hue carries meaning the user can rely on.</p>
+        </div>
+        <div class="rs-ds__card">
+          <h4 class="rs-ds__title">Components</h4>
+          <p class="rs-ds__body"><em>Position card, operator health badge, reward ticker, risk meter, wallet connect flow</em> — a component set covering every interaction pattern in the dashboard.</p>
+        </div>
+        <div class="rs-ds__card">
+          <h4 class="rs-ds__title">Scalability</h4>
+          <p class="rs-ds__body">Each component is protocol-agnostic by design. Adding Symbiotic or Karak support requires no new UI patterns — just new data piped into existing components.</p>
         </div>
       </div>
     </div>
@@ -982,10 +964,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   </div><!-- /rs-wrap -->
 
-  <!-- ─── RISESHOT BAND ─── -->
-  <div class="rs-riseshot">
-    <img src="restaking-riseshot.png" alt="Restaking.Info — product overview">
-  </div>
 
   <footer class="footer">
     <div class="footer__inner">
