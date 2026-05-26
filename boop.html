@@ -562,6 +562,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                   <!-- Screen 1: onboarding slide 1 — Your identity is safe -->
                   <div class="bd-screen">
                     <img src="boop-onboarding-1.png" alt="">
+                    <div style="position:absolute;bottom:0;left:0;width:100%;box-sizing:border-box;
+                                background:rgba(235,237,242,0.97);padding:14px 12px 28px;">
+                      <button id="bdBtn2" style="
+                        display:flex;align-items:center;justify-content:center;
+                        width:100%;height:33px;border-radius:100px;
+                        background:#070707;color:#fefefe;
+                        font-family:'Inter',sans-serif;font-size:12px;font-weight:500;
+                        border:none;cursor:default;
+                        transition:background .15s, transform .12s;
+                      ">Continue</button>
+                    </div>
                   </div>
 
                 </div>
@@ -584,6 +595,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               const port   = document.getElementById('bdPort');
               const slide  = document.getElementById('bdSlide');
               const btn    = document.getElementById('bdBtn');
+              const btn2   = document.getElementById('bdBtn2');
               const cursor = document.getElementById('bdCursor');
               const ripple = document.getElementById('bdRipple');
 
@@ -628,16 +640,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
               function loop() {
                 setTimeout(() => {
-                  /* tap "Create a new account" */
+                  /* tap "Create a new account" on Screen 0 */
                   animateTap('74%',
                     pressed => btn.classList.toggle('pressed', pressed),
                     () => {
                       goTo(1);
-                      /* pause on scanner screen, then slide back */
+                      /* tap "Continue" on Screen 1 */
                       setTimeout(() => {
-                        goTo(0);
-                        setTimeout(loop, 1400);
-                      }, 3000);
+                        animateTap('88%',
+                          pressed => { btn2.style.background = pressed ? '#2d2d2d' : '#070707'; btn2.style.transform = pressed ? 'scale(.97)' : ''; },
+                          () => {
+                            setTimeout(() => { goTo(0); setTimeout(loop, 1400); }, 400);
+                          }
+                        );
+                      }, 1500);
                     }
                   );
                 }, 2000);
