@@ -684,7 +684,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
                 <!-- Recovery track — hidden until "Register with Boop account" is clicked -->
                 <div id="brSlide" style="position:absolute;top:0;left:0;display:none;flex-direction:row;width:100%;height:100%;transition:transform .45s cubic-bezier(.4,0,.2,1);">
-                  <div class="bd-screen"><img src="hifi-recover-01-check.png" alt="Account access check"></div>
+                  <div class="bd-screen"><img src="boop-recover-splash.png" alt="Recovery account — World ID"></div>
                   <div class="bd-screen"><img src="hifi-recover-02-old-device.png" alt="On your old device"></div>
                   <div class="bd-screen"><img src="hifi-recover-03-qr.png" alt="Scan QR code"></div>
                 </div><!-- /#brSlide -->
@@ -986,11 +986,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             function runRecovery(){
               recoveryRunning = true;
               setCursorX('50%');
-              /* S0: tap radio (Yes option ~42%) */
-              animateTap('42%', function(){
-                /* S0: tap Continue (~90%) */
+              /* S0: tap "I do have access" radio (~50%) */
+              animateTap('50%', function(){
+                /* S0: tap Continue (~88%) */
                 setTimeout(function(){
-                  animateTap('90%', function(){
+                  animateTap('88%', function(){
                     setTimeout(function(){
                       goTo(1);
                       /* S1: tap Show QR Code (~91%) */
