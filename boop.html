@@ -893,13 +893,46 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                                                   setTimeout(() => {
                                                                     document.getElementById('bdRingPath').style.strokeDashoffset = '0';
                                                                     setTimeout(() => {
-                                                                      /* instant ring removal */
                                                                       const ring = document.getElementById('bdRingPath');
                                                                       ring.style.transition = 'none';
                                                                       ring.style.opacity = '0';
-                                                                      /* circle + checkmark appear */
                                                                       document.getElementById('bdCircleBg').style.opacity = '1';
                                                                       document.getElementById('bdCheckSvg').style.opacity  = '1';
+                                                                      /* ── loop: pause then reset all state and restart ── */
+                                                                      setTimeout(() => {
+                                                                        const RH = 22;
+                                                                        /* snap slide to S0 */
+                                                                        slide.style.transition = 'none'; goTo(0);
+                                                                        /* reset date picker columns */
+                                                                        ['bdPMonth','bdPDay','bdPYear'].forEach(id => document.getElementById(id).style.transition = 'none');
+                                                                        document.getElementById('bdPMonth').style.transform = `translateY(${44-3*RH}px)`;
+                                                                        document.getElementById('bdPDay').style.transform   = `translateY(${44-3*RH}px)`;
+                                                                        document.getElementById('bdPYear').style.transform  = `translateY(${44-13*RH}px)`;
+                                                                        /* reset checkbox + accept */
+                                                                        const cb = document.getElementById('bdCheckbox');
+                                                                        cb.style.background = '#fff'; cb.style.borderColor = '#d9d9d9'; cb.innerHTML = '';
+                                                                        document.getElementById('bdAcceptBtn').style.background = '#a3a3a3';
+                                                                        /* reset confirm */
+                                                                        const conf2 = document.getElementById('bdConfirmBtn');
+                                                                        conf2.style.background = '#a3a3a3'; conf2.style.transform = '';
+                                                                        /* reset ring */
+                                                                        ring.style.opacity = '1'; ring.style.strokeDashoffset = '459';
+                                                                        /* reset success overlays */
+                                                                        document.getElementById('bdCircleBg').style.opacity = '0';
+                                                                        document.getElementById('bdCheckSvg').style.opacity  = '0';
+                                                                        /* reset cursor */
+                                                                        cursor.style.animation = 'none'; cursor.style.opacity = '0';
+                                                                        cursor.style.transform = 'translate(-50%,-50%) scale(1)';
+                                                                        cursor.style.transition = '';
+                                                                        contBtn.style.opacity = '0';
+                                                                        /* re-enable transitions then restart */
+                                                                        requestAnimationFrame(() => requestAnimationFrame(() => {
+                                                                          slide.style.transition = 'transform .45s cubic-bezier(.4,0,.2,1)';
+                                                                          ['bdPMonth','bdPDay','bdPYear'].forEach(id => document.getElementById(id).style.transition = '');
+                                                                          ring.style.transition = 'stroke-dashoffset 1.2s cubic-bezier(.4,0,.2,1)';
+                                                                          setTimeout(run, 600);
+                                                                        }));
+                                                                      }, 2500);
                                                                     }, 1250);
                                                                   }, 500);
                                                                 }, 400)
@@ -1003,7 +1036,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                       goTo(1);
                       setTimeout(function(){
                         animateTap('91%', function(){
-                          setTimeout(function(){ goTo(2); recoveryRunning = false; }, 200);
+                          setTimeout(function(){
+                            goTo(2);
+                            /* loop: pause then snap back to S0 and restart */
+                            setTimeout(function(){
+                              brSlide.style.transition = 'none';
+                              brSlide.style.transform  = 'translateX(0)';
+                              requestAnimationFrame(function(){ requestAnimationFrame(function(){
+                                brSlide.style.transition = 'transform .45s cubic-bezier(.4,0,.2,1)';
+                                recoveryRunning = false;
+                                setTimeout(runRecovery, 600);
+                              }); });
+                            }, 2500);
+                          }, 200);
                         });
                       }, 1400);
                     }, 300);
