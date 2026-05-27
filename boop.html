@@ -682,11 +682,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
                 </div><!-- /#bdSlide -->
 
-                <!-- Recovery track — hidden until "Register with Boop account" is clicked -->
+                <!-- Sign-in with Boop account track -->
                 <div id="brSlide" style="position:absolute;top:0;left:0;display:none;flex-direction:row;width:100%;height:100%;transition:transform .45s cubic-bezier(.4,0,.2,1);">
-                  <div class="bd-screen"><img src="boop-recover-splash.png" alt="Recovery account — World ID"></div>
-                  <div class="bd-screen"><img src="hifi-recover-02-old-device.png" alt="On your old device"></div>
-                  <div class="bd-screen"><img src="hifi-recover-03-qr.png" alt="Scan QR code"></div>
+                  <!-- S0: Account access (radio 1 pre-selected in image; Continue overlay appears after tap) -->
+                  <div class="bd-screen">
+                    <img src="boop-signin-s0.png" alt="Account access">
+                    <div id="brContOverlay" style="position:absolute;bottom:0;left:0;width:100%;
+                         box-sizing:border-box;padding:14px 12px 22px;
+                         background:linear-gradient(to bottom,rgba(236,240,246,0) 0%,rgba(236,240,246,1) 22%);
+                         opacity:0;transition:opacity .3s ease;">
+                      <button id="brContBtn" style="
+                        display:flex;align-items:center;justify-content:center;
+                        width:100%;height:33px;border-radius:100px;
+                        background:#070707;color:#fff;
+                        font-family:'Inter',sans-serif;font-size:10px;font-weight:700;
+                        border:none;cursor:default;
+                        transition:background .15s,transform .1s;">Continue</button>
+                    </div>
+                  </div>
+                  <!-- S1: On your old device -->
+                  <div class="bd-screen"><img src="boop-signin-s1.png" alt="On your old device"></div>
+                  <!-- S2: Scan QR from old device -->
+                  <div class="bd-screen"><img src="boop-signin-s2.png" alt="Scan from your old device"></div>
                 </div><!-- /#brSlide -->
 
                 <!-- Fixed Continue button — lives outside the slide track, never moves -->
@@ -969,7 +986,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <!-- ── Flow nav ── -->
             <div class="bd-flow-nav">
               <div class="bd-flow-nav__item is-active"><span>01</span><span>Splash</span></div>
-              <div id="bdBoopNavItem" class="bd-flow-nav__item"><span>02</span><span>Register with Boop account</span></div>
+              <div id="bdBoopNavItem" class="bd-flow-nav__item"><span>02</span><span>Sign in with Boop account</span></div>
               <div class="bd-flow-nav__item"><span>03</span><span>Identity</span></div>
               <div class="bd-flow-nav__item"><span>04</span><span>Palm</span></div>
               <div class="bd-flow-nav__item"><span>05</span><span>Terms</span></div>
@@ -988,9 +1005,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             var bdCont      = document.getElementById('bdContBtn');
             var cursor      = document.getElementById('bdCursor');
             var ripple      = document.getElementById('bdRipple');
-            var boopNavItem = document.getElementById('bdBoopNavItem');
-            var allNavItems = document.querySelectorAll('.bd-demo-wrap .bd-flow-nav__item');
-            var regItems    = Array.from(allNavItems).filter(function(el){ return el !== boopNavItem; });
+            var boopNavItem  = document.getElementById('bdBoopNavItem');
+            var allNavItems  = document.querySelectorAll('.bd-demo-wrap .bd-flow-nav__item');
+            var regItems     = Array.from(allNavItems).filter(function(el){ return el !== boopNavItem; });
+            var contOverlay  = document.getElementById('brContOverlay');
+            var contBtn      = document.getElementById('brContBtn');
 
             var recoveryRunning = false;
 
@@ -1021,6 +1040,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             function resetSlide(){
               brSlide.style.transition = 'none';
               brSlide.style.transform  = 'translateX(0)';
+              contOverlay.style.opacity = '0';
+              contBtn.style.background  = '#070707';
+              contBtn.style.transform   = '';
               requestAnimationFrame(function(){ requestAnimationFrame(function(){
                 brSlide.style.transition = 'transform .45s cubic-bezier(.4,0,.2,1)';
               }); });
@@ -1029,31 +1051,41 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             function runRecovery(){
               recoveryRunning = true;
               setCursorX('50%');
-              animateTap('50%', function(){
+              /* S0: tap radio 1 "I have access" (~42%) */
+              animateTap('42%', function(){
+                /* Continue button fades in */
+                contOverlay.style.opacity = '1';
+                /* S0: tap Continue (~92%) */
                 setTimeout(function(){
-                  animateTap('88%', function(){
-                    setTimeout(function(){
-                      goTo(1);
+                  contBtn.style.background = '#2d2d2d'; contBtn.style.transform = 'scale(.97)';
+                  setTimeout(function(){ contBtn.style.background = '#070707'; contBtn.style.transform = ''; }, 200);
+                  animateTap('92%', function(){
+                      contOverlay.style.opacity = '0';
                       setTimeout(function(){
-                        animateTap('91%', function(){
-                          setTimeout(function(){
-                            goTo(2);
-                            /* loop: pause then snap back to S0 and restart */
+                        goTo(1);
+                        /* S1: tap Show QR Code (~91%) */
+                        setTimeout(function(){
+                          animateTap('91%', function(){
                             setTimeout(function(){
-                              brSlide.style.transition = 'none';
-                              brSlide.style.transform  = 'translateX(0)';
-                              requestAnimationFrame(function(){ requestAnimationFrame(function(){
-                                brSlide.style.transition = 'transform .45s cubic-bezier(.4,0,.2,1)';
-                                recoveryRunning = false;
-                                setTimeout(runRecovery, 600);
-                              }); });
-                            }, 2500);
-                          }, 200);
-                        });
-                      }, 1400);
-                    }, 300);
-                  });
-                }, 800);
+                              goTo(2);
+                              /* loop: pause then snap back and restart */
+                              setTimeout(function(){
+                                brSlide.style.transition = 'none';
+                                brSlide.style.transform  = 'translateX(0)';
+                                contOverlay.style.opacity = '0';
+                                requestAnimationFrame(function(){ requestAnimationFrame(function(){
+                                  brSlide.style.transition = 'transform .45s cubic-bezier(.4,0,.2,1)';
+                                  recoveryRunning = false;
+                                  setTimeout(runRecovery, 600);
+                                }); });
+                              }, 2500);
+                            }, 200);
+                          });
+                        }, 1400);
+                      }, 300);
+                    }
+                  );
+                }, 900);
               });
             }
 
