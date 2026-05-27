@@ -523,8 +523,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <!-- Screen viewport -->
               <div id="bdPort" style="position:absolute;top:2.5%;left:5.5%;width:89%;height:95.5%;overflow:hidden;z-index:1;">
 
-                <!-- Sliding track — height:100% lets bd-screen flex:0 0 100% fill correctly -->
-                <div id="bdSlide" style="display:flex;flex-direction:row;width:100%;height:100%;transition:transform .45s cubic-bezier(.4,0,.2,1);">
+                <!-- Registration track -->
+                <div id="bdSlide" style="position:absolute;top:0;left:0;display:flex;flex-direction:row;width:100%;height:100%;transition:transform .45s cubic-bezier(.4,0,.2,1);">
 
                   <!-- Screen 0: splash bg + button panel overlay (exact Figma layout, scaled ×0.59) -->
                   <div class="bd-screen">
@@ -680,7 +680,101 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     </div>
                   </div>
 
-                </div>
+                </div><!-- /#bdSlide -->
+
+                <!-- Recovery track — hidden until "Register with Boop account" is clicked -->
+                <div id="brSlide" style="position:absolute;top:0;left:0;display:none;flex-direction:row;width:100%;height:100%;transition:transform .45s cubic-bezier(.4,0,.2,1);">
+
+                  <!-- S0: splash + button panel (cursor will tap Boop account) -->
+                  <div class="bd-screen">
+                    <img src="boop-splash-nobtn.png" alt="">
+                    <div style="position:absolute;bottom:0;left:0;width:100%;box-sizing:border-box;
+                                background:rgba(255,255,255,0.97);padding:19px 12px 28px;">
+                      <div style="display:flex;flex-direction:column;gap:9px;width:100%;">
+                        <button style="display:flex;align-items:center;justify-content:center;
+                                       width:100%;height:33px;border-radius:100px;
+                                       background:#070707;color:#fff;
+                                       font-family:'Inter',sans-serif;font-size:10px;font-weight:700;
+                                       border:none;cursor:default;">Create a new account</button>
+                        <div style="display:flex;flex-direction:column;gap:9px;">
+                          <div style="display:flex;gap:6px;align-items:center;overflow:hidden;">
+                            <div style="background:#e6e6e6;height:1px;flex:1;"></div>
+                            <span style="font-family:'Inter',sans-serif;font-size:7px;font-weight:400;color:#525252;white-space:nowrap;">or sign in with</span>
+                            <div style="background:#e6e6e6;height:1px;flex:1;"></div>
+                          </div>
+                          <div style="display:flex;flex-direction:column;gap:5px;align-items:center;">
+                            <div id="brBoopBtn" style="
+                              display:flex;align-items:center;justify-content:center;gap:5px;
+                              width:100%;height:20px;border-radius:100px;
+                              background:rgba(255,255,255,0.3);border:0.5px solid #525252;
+                              font-family:'Inter',sans-serif;font-size:10px;font-weight:500;color:#1a1a1a;
+                              box-sizing:border-box;cursor:default;
+                              transition:background .15s,transform .1s;">
+                              <img src="boop-btn-icon.png" alt="" style="height:6px;width:auto;">
+                              Boop account
+                            </div>
+                            <div style="display:flex;gap:5px;align-items:center;justify-content:center;
+                                        height:20px;font-family:'Inter',sans-serif;font-size:10px;font-weight:500;color:#717680;">
+                              <img src="world-btn-icon.png" alt="" style="width:8px;height:8px;">
+                              World account
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- S1: Account access check (pure HTML) -->
+                  <div class="bd-screen" style="background:#ecf0f6;display:flex;flex-direction:column;padding:28px 12px 22px;box-sizing:border-box;gap:0;">
+                    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;">
+                      <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M6.5 2L3.5 5L6.5 8" stroke="#070707" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      <div style="display:flex;gap:3px;align-items:center;">
+                        <div style="width:18px;height:3px;border-radius:2px;background:#070707;"></div>
+                        <div style="width:18px;height:3px;border-radius:2px;background:#d9d9d9;"></div>
+                      </div>
+                      <div style="width:10px;"></div>
+                    </div>
+                    <p style="margin:0 0 4px;font:700 14px/1.2 'Inter',sans-serif;color:#070707;">Account access</p>
+                    <p style="margin:0 0 18px;font:400 7px/1.45 'Inter',sans-serif;color:#525252;">Do you have access to your Boop account?</p>
+                    <div style="display:flex;flex-direction:column;gap:6px;flex:1;">
+                      <div id="brRadio1" style="
+                        display:flex;align-items:center;gap:8px;
+                        height:36px;border-radius:8px;padding:0 10px;box-sizing:border-box;
+                        background:rgba(255,255,255,0.55);border:1px solid rgba(255,255,255,0.6);
+                        backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+                        cursor:default;transition:border-color .2s,background .2s;">
+                        <div id="brRadio1Dot" style="
+                          width:10px;height:10px;border-radius:50%;flex-shrink:0;
+                          border:1.5px solid #a3a3a3;background:#fff;
+                          display:flex;align-items:center;justify-content:center;
+                          transition:border-color .2s,background .2s;box-sizing:border-box;"></div>
+                        <span style="font:500 8px/1 'Inter',sans-serif;color:#070707;">Yes, I have access to my Boop account</span>
+                      </div>
+                      <div style="
+                        display:flex;align-items:center;gap:8px;
+                        height:36px;border-radius:8px;padding:0 10px;box-sizing:border-box;
+                        background:rgba(255,255,255,0.55);border:1px solid rgba(255,255,255,0.6);
+                        backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);">
+                        <div style="width:10px;height:10px;border-radius:50%;flex-shrink:0;border:1.5px solid #a3a3a3;background:#fff;box-sizing:border-box;"></div>
+                        <span style="font:500 8px/1 'Inter',sans-serif;color:#070707;">No, I need to recover my account</span>
+                      </div>
+                    </div>
+                    <button id="brContBtn" style="
+                      display:flex;align-items:center;justify-content:center;
+                      width:100%;height:33px;border-radius:100px;
+                      background:#a3a3a3;color:#fff;
+                      font-family:'Inter',sans-serif;font-size:10px;font-weight:700;
+                      border:none;cursor:default;margin-top:18px;
+                      transition:background .2s,transform .1s;">Continue</button>
+                  </div>
+
+                  <!-- S2: On your old device -->
+                  <div class="bd-screen"><img src="hifi-recover-02-old-device.png" alt=""></div>
+
+                  <!-- S3: Scan QR from old device -->
+                  <div class="bd-screen"><img src="hifi-recover-03-qr.png" alt=""></div>
+
+                </div><!-- /#brSlide -->
 
                 <!-- Fixed Continue button — lives outside the slide track, never moves -->
                 <button id="bdContBtn" style="
@@ -926,188 +1020,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             })();
           </script>
 
-            <!-- ── Flow nav ── -->
-            <div class="bd-flow-nav">
-              <div class="bd-flow-nav__item is-active"><span>01</span><span>Splash</span></div>
-              <div class="bd-flow-nav__item"><span>02</span><span>Identity</span></div>
-              <div class="bd-flow-nav__item"><span>03</span><span>Palm</span></div>
-              <div class="bd-flow-nav__item"><span>04</span><span>Terms</span></div>
-              <div class="bd-flow-nav__item"><span>05</span><span>Date of birth</span></div>
-              <div class="bd-flow-nav__item"><span>06</span><span>Account</span></div>
-            </div>
-
-          </div><!-- /.bd-demo-wrap -->
-
-          <!-- ── Recovery account demo ── -->
-          <div id="brDemoWrap" class="bd-demo-wrap" style="margin-top:3rem;">
-            <!-- iPhone 16 frame -->
-            <div style="position:relative;width:260px;flex-shrink:0;aspect-ratio:433/879;">
-
-              <!-- Screen viewport -->
-              <div id="brPort" style="position:absolute;top:2.5%;left:5.5%;width:89%;height:95.5%;overflow:hidden;z-index:1;">
-
-                <!-- Sliding track (horizontal) -->
-                <div id="brSlide" style="display:flex;flex-direction:row;width:100%;height:100%;transition:transform .45s cubic-bezier(.4,0,.2,1);">
-
-                  <!-- S0: splash (same as registration demo) -->
-                  <div class="bd-screen">
-                    <img src="boop-splash-nobtn.png" alt="">
-                    <div style="position:absolute;bottom:0;left:0;width:100%;box-sizing:border-box;
-                                background:rgba(255,255,255,0.97);padding:19px 12px 28px;">
-                      <div style="display:flex;flex-direction:column;gap:9px;width:100%;">
-                        <button style="display:flex;align-items:center;justify-content:center;
-                                       width:100%;height:33px;border-radius:100px;
-                                       background:#070707;color:#fff;
-                                       font-family:'Inter',sans-serif;font-size:10px;font-weight:700;
-                                       border:none;cursor:default;">Create a new account</button>
-                        <div style="display:flex;flex-direction:column;gap:9px;">
-                          <div style="display:flex;gap:6px;align-items:center;overflow:hidden;">
-                            <div style="background:#e6e6e6;height:1px;flex:1;"></div>
-                            <span style="font-family:'Inter',sans-serif;font-size:7px;font-weight:400;color:#525252;white-space:nowrap;">or sign in with</span>
-                            <div style="background:#e6e6e6;height:1px;flex:1;"></div>
-                          </div>
-                          <div style="display:flex;flex-direction:column;gap:5px;align-items:center;">
-                            <!-- Boop account — tappable -->
-                            <div id="brBoopBtn" style="
-                              display:flex;align-items:center;justify-content:center;gap:5px;
-                              width:100%;height:20px;border-radius:100px;
-                              background:rgba(255,255,255,0.3);border:0.5px solid #525252;
-                              font-family:'Inter',sans-serif;font-size:10px;font-weight:500;color:#1a1a1a;
-                              box-sizing:border-box;cursor:default;
-                              transition:background .15s,transform .1s;">
-                              <img src="boop-btn-icon.png" alt="" style="height:6px;width:auto;">
-                              Boop account
-                            </div>
-                            <div style="display:flex;gap:5px;align-items:center;justify-content:center;
-                                        height:20px;font-family:'Inter',sans-serif;font-size:10px;font-weight:500;color:#717680;">
-                              <img src="world-btn-icon.png" alt="" style="width:8px;height:8px;">
-                              World account
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- S1: Account access check (pure HTML) -->
-                  <div class="bd-screen" style="background:#ecf0f6;display:flex;flex-direction:column;padding:28px 12px 22px;box-sizing:border-box;gap:0;">
-                    <!-- Back + stepper -->
-                    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;">
-                      <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M6.5 2L3.5 5L6.5 8" stroke="#070707" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                      <div style="display:flex;gap:3px;align-items:center;">
-                        <div style="width:18px;height:3px;border-radius:2px;background:#070707;"></div>
-                        <div style="width:18px;height:3px;border-radius:2px;background:#d9d9d9;"></div>
-                      </div>
-                      <div style="width:10px;"></div>
-                    </div>
-                    <!-- Heading -->
-                    <p style="margin:0 0 4px;font:700 14px/1.2 'Inter',sans-serif;color:#070707;">Account access</p>
-                    <p style="margin:0 0 18px;font:400 7px/1.45 'Inter',sans-serif;color:#525252;">Do you have access to your Boop account?</p>
-                    <!-- Radio options -->
-                    <div style="display:flex;flex-direction:column;gap:6px;flex:1;">
-                      <!-- Option 1 — Yes -->
-                      <div id="brRadio1" style="
-                        display:flex;align-items:center;gap:8px;
-                        height:36px;border-radius:8px;padding:0 10px;box-sizing:border-box;
-                        background:rgba(255,255,255,0.55);border:1px solid rgba(255,255,255,0.6);
-                        backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
-                        cursor:default;transition:border-color .2s,background .2s;">
-                        <div id="brRadio1Dot" style="
-                          width:10px;height:10px;border-radius:50%;flex-shrink:0;
-                          border:1.5px solid #a3a3a3;background:#fff;
-                          display:flex;align-items:center;justify-content:center;
-                          transition:border-color .2s,background .2s;box-sizing:border-box;">
-                        </div>
-                        <span style="font:500 8px/1 'Inter',sans-serif;color:#070707;">Yes, I have access to my Boop account</span>
-                      </div>
-                      <!-- Option 2 — No -->
-                      <div style="
-                        display:flex;align-items:center;gap:8px;
-                        height:36px;border-radius:8px;padding:0 10px;box-sizing:border-box;
-                        background:rgba(255,255,255,0.55);border:1px solid rgba(255,255,255,0.6);
-                        backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);">
-                        <div style="width:10px;height:10px;border-radius:50%;flex-shrink:0;border:1.5px solid #a3a3a3;background:#fff;box-sizing:border-box;"></div>
-                        <span style="font:500 8px/1 'Inter',sans-serif;color:#070707;">No, I need to recover my account</span>
-                      </div>
-                    </div>
-                    <!-- Continue button -->
-                    <button id="brContBtn" style="
-                      display:flex;align-items:center;justify-content:center;
-                      width:100%;height:33px;border-radius:100px;
-                      background:#a3a3a3;color:#fff;
-                      font-family:'Inter',sans-serif;font-size:10px;font-weight:700;
-                      border:none;cursor:default;margin-top:18px;
-                      transition:background .2s,transform .1s;">Continue</button>
-                  </div>
-
-                  <!-- S2: On your old device -->
-                  <div class="bd-screen">
-                    <img src="hifi-recover-02-old-device.png" alt="">
-                  </div>
-
-                  <!-- S3: Scan QR from old device -->
-                  <div class="bd-screen">
-                    <img src="hifi-recover-03-qr.png" alt="">
-                  </div>
-
-                </div><!-- /#brSlide -->
-
-              </div><!-- /#brPort -->
-
-              <!-- Cursor -->
-              <div id="brCursor" style="
-                position:absolute;z-index:10;pointer-events:none;
-                width:18px;height:18px;border-radius:50%;
-                background:rgba(255,255,255,0.85);
-                box-shadow:0 1px 6px rgba(0,0,0,.35);
-                transform:translate(-50%,-50%) scale(1);
-                opacity:0;transition:opacity .2s;
-              "></div>
-              <!-- Ripple -->
-              <div id="brRipple" style="
-                position:absolute;z-index:9;pointer-events:none;
-                width:28px;height:28px;border-radius:50%;
-                background:rgba(255,255,255,0.45);
-                transform:translate(-50%,-50%) scale(0);
-                opacity:0;
-              "></div>
-
-              <!-- iPhone frame (on top) -->
-              <img src="iphone16-ultramarine.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none;">
-
-            </div><!-- /iPhone wrapper -->
-
-            <!-- Flow nav -->
-            <div class="bd-flow-nav">
-              <div class="bd-flow-nav__item is-active"><span>01</span><span>Access check</span></div>
-              <div class="bd-flow-nav__item"><span>02</span><span>Old device</span></div>
-              <div class="bd-flow-nav__item"><span>03</span><span>Scan QR</span></div>
-            </div>
-
-          </div><!-- /.bd-demo-wrap recovery -->
-
           <script>
+          /* ── Recovery flow: triggered by clicking "Register with Boop account" nav label ── */
           (function(){
-            var slide  = document.getElementById('brSlide');
-            var cursor = document.getElementById('brCursor');
-            var ripple = document.getElementById('brRipple');
-            var boopBtn  = document.getElementById('brBoopBtn');
-            var radio1   = document.getElementById('brRadio1');
-            var radio1Dot= document.getElementById('brRadio1Dot');
-            var contBtn  = document.getElementById('brContBtn');
-            var navItems = document.querySelectorAll('#brDemoWrap .bd-flow-nav__item');
+            var port     = document.getElementById('bdPort');
+            var bdSlide  = document.getElementById('bdSlide');
+            var brSlide  = document.getElementById('brSlide');
+            var bdCont   = document.getElementById('bdContBtn');
+            var cursor   = document.getElementById('bdCursor');
+            var ripple   = document.getElementById('bdRipple');
 
-            var current = 0;
-            /* screen → nav index: S0→0, S1→0, S2→1, S3→2 */
-            var navMap = [0, 0, 1, 2];
+            var boopBtn   = document.getElementById('brBoopBtn');
+            var radio1    = document.getElementById('brRadio1');
+            var radio1Dot = document.getElementById('brRadio1Dot');
+            var contBtn   = document.getElementById('brContBtn');
+
+            var navLabel  = document.getElementById('bdBoopNavLabel');
+            var regItems  = document.querySelectorAll('.bd-demo-wrap .bd-flow-nav__item');
+
+            var recoveryRunning = false;
+
             function goTo(n){
-              current = n;
-              slide.style.transform = 'translateX(-'+(n*100)+'%)';
-              var ni = navMap[n] !== undefined ? navMap[n] : 0;
-              navItems.forEach(function(el,i){ el.classList.toggle('is-active', i === ni); });
+              var w = port.offsetWidth;
+              brSlide.style.transform = 'translateX(-'+(n*w)+'px)';
             }
 
-            /* Cursor helpers */
             function setCursorX(x){ cursor.style.left = x; ripple.style.left = x; }
             function setCursorY(y){ cursor.style.top  = y; ripple.style.top  = y; }
 
@@ -1115,66 +1052,71 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               setCursorY(yPct);
               cursor.style.opacity = '1';
               setTimeout(function(){
-                /* press */
                 cursor.style.transform = 'translate(-50%,-50%) scale(.85)';
-                ripple.style.transition = 'transform .35s ease-out, opacity .35s ease-out';
-                ripple.style.transform = 'translate(-50%,-50%) scale(1)';
-                ripple.style.opacity = '0.6';
+                ripple.style.animation = 'none'; ripple.offsetHeight;
+                ripple.style.opacity = '1';
+                ripple.style.animation = 'bd-ripple .55s forwards';
                 if(pressCallback) pressCallback(true);
                 setTimeout(function(){
-                  /* release */
                   cursor.style.transform = 'translate(-50%,-50%) scale(1)';
-                  ripple.style.transition = 'transform .2s, opacity .2s';
-                  ripple.style.transform = 'translate(-50%,-50%) scale(0)';
-                  ripple.style.opacity = '0';
                   if(pressCallback) pressCallback(false);
                   setTimeout(function(){
                     cursor.style.opacity = '0';
                     if(doneCallback) doneCallback();
                   }, 200);
-                }, 300);
+                }, 350);
               }, 400);
             }
 
-            function run(){
-              /* Step 1: tap Boop account (S0 → S1) */
+            function resetRecovery(){
+              brSlide.style.transition = 'none';
+              brSlide.style.transform  = 'translateX(0)';
+              boopBtn.style.background  = 'rgba(255,255,255,0.3)';
+              boopBtn.style.transform   = '';
+              radio1Dot.style.borderColor = '#a3a3a3';
+              radio1Dot.style.background  = '#fff';
+              radio1.style.borderColor = 'rgba(255,255,255,0.6)';
+              radio1.style.background  = 'rgba(255,255,255,0.55)';
+              contBtn.style.background = '#a3a3a3';
+              contBtn.style.transform  = '';
+              /* re-enable transition after one frame */
+              requestAnimationFrame(function(){ requestAnimationFrame(function(){
+                brSlide.style.transition = 'transform .45s cubic-bezier(.4,0,.2,1)';
+              }); });
+            }
+
+            function runRecovery(){
+              recoveryRunning = true;
+              /* S0: tap Boop account */
               setCursorX('31%');
-              setCursorY('86%');
               animateTap('86%',
                 function(p){ boopBtn.style.background = p ? 'rgba(200,200,200,0.5)' : 'rgba(255,255,255,0.3)'; boopBtn.style.transform = p ? 'scale(.97)' : ''; },
                 function(){
                   setTimeout(function(){
                     goTo(1);
-
-                    /* Step 2: tap radio 1 — "Yes" (S1) */
+                    /* S1: tap radio 1 */
                     setTimeout(function(){
                       setCursorX('50%');
                       animateTap('41%',
                         function(p){ radio1.style.background = p ? 'rgba(255,255,255,0.8)' : 'rgba(255,255,255,0.55)'; },
                         function(){
-                          /* activate radio + continue */
                           radio1Dot.style.borderColor = '#070707';
                           radio1Dot.style.background  = '#070707';
-                          radio1.style.borderColor = '#070707';
-                          contBtn.style.background = '#070707';
-
-                          /* Step 3: tap Continue (S1 → S2) */
+                          radio1.style.borderColor    = '#070707';
+                          contBtn.style.background    = '#070707';
+                          /* S1: tap Continue */
                           setTimeout(function(){
                             animateTap('90%',
                               function(p){ contBtn.style.background = p ? '#2d2d2d' : '#070707'; contBtn.style.transform = p ? 'scale(.97)' : ''; },
                               function(){
                                 setTimeout(function(){
                                   goTo(2);
-
-                                  /* Step 4: tap Show QR Code (S2 → S3) */
+                                  /* S2: tap Show QR Code */
                                   setTimeout(function(){
                                     setCursorX('50%');
-                                    animateTap('91%',
-                                      null,
-                                      function(){
-                                        setTimeout(function(){ goTo(3); }, 200);
-                                      }
-                                    );
+                                    animateTap('91%', null, function(){
+                                      setTimeout(function(){ goTo(3); recoveryRunning = false; }, 200);
+                                    });
                                   }, 1400);
                                 }, 300);
                               }
@@ -1188,18 +1130,55 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               );
             }
 
-            /* Run once when demo scrolls into view */
-            var wrap = document.getElementById('brDemoWrap');
-            var started = false;
-            var obs = new IntersectionObserver(function(entries){
-              if(entries[0].isIntersecting && !started){
-                started = true;
-                setTimeout(run, 800);
-              }
-            }, { threshold: 0.4 });
-            obs.observe(wrap);
+            function showRecovery(){
+              if(recoveryRunning) return;
+              /* hide reg track + fixed continue btn */
+              bdSlide.style.display  = 'none';
+              bdCont.style.opacity   = '0';
+              cursor.style.opacity   = '0';
+              /* reset + show recovery track */
+              resetRecovery();
+              brSlide.style.display  = 'flex';
+              /* nav: mute reg items, activate label */
+              regItems.forEach(function(el){ el.classList.remove('is-active'); });
+              navLabel.classList.add('is-active');
+              setTimeout(runRecovery, 500);
+            }
+
+            function showRegistration(){
+              brSlide.style.display = 'none';
+              bdSlide.style.display = 'flex';
+              navLabel.classList.remove('is-active');
+              /* restore the active item closest to current bd screen */
+              var active = parseInt(bdSlide.dataset.current || '0', 10);
+              regItems.forEach(function(el,i){ el.classList.toggle('is-active', i === active); });
+            }
+
+            navLabel.addEventListener('click', showRecovery);
+            regItems.forEach(function(el, i){
+              el.addEventListener('click', function(){
+                if(brSlide.style.display === 'flex') showRegistration();
+                /* update active on reg-track clicks even if already on reg */
+                regItems.forEach(function(e){ e.classList.remove('is-active'); });
+                el.classList.add('is-active');
+                bdSlide.dataset.current = i;
+              });
+            });
           })();
           </script>
+
+            <!-- ── Flow nav ── -->
+            <div class="bd-flow-nav">
+              <div class="bd-flow-nav__item is-active"><span>01</span><span>Splash</span></div>
+              <div id="bdBoopNavLabel" class="bd-flow-nav__sub">Register with Boop account</div>
+              <div class="bd-flow-nav__item"><span>02</span><span>Identity</span></div>
+              <div class="bd-flow-nav__item"><span>03</span><span>Palm</span></div>
+              <div class="bd-flow-nav__item"><span>04</span><span>Terms</span></div>
+              <div class="bd-flow-nav__item"><span>05</span><span>Date of birth</span></div>
+              <div class="bd-flow-nav__item"><span>06</span><span>Account</span></div>
+            </div>
+
+          </div><!-- /.bd-demo-wrap -->
 
           <!-- ── Screen sections ── -->
           <div class="boop-hifi-screens-wrap">
