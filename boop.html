@@ -933,16 +933,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             })();
           </script>
 
-          <script>
-          /* ── Recovery flow: triggered by clicking "Register with Boop account" nav label ── */
-          (function(){
-            var port     = document.getElementById('bdPort');
-            var bdSlide  = document.getElementById('bdSlide');
-            var brSlide  = document.getElementById('brSlide');
-            var bdCont   = document.getElementById('bdContBtn');
-            var cursor   = document.getElementById('bdCursor');
-            var ripple   = document.getElementById('bdRipple');
+            <!-- ── Flow nav ── -->
+            <div class="bd-flow-nav">
+              <div class="bd-flow-nav__item is-active"><span>01</span><span>Splash</span></div>
+              <div id="bdBoopNavItem" class="bd-flow-nav__item"><span>02</span><span>Register with Boop account</span></div>
+              <div class="bd-flow-nav__item"><span>03</span><span>Identity</span></div>
+              <div class="bd-flow-nav__item"><span>04</span><span>Palm</span></div>
+              <div class="bd-flow-nav__item"><span>05</span><span>Terms</span></div>
+              <div class="bd-flow-nav__item"><span>06</span><span>Date of birth</span></div>
+              <div class="bd-flow-nav__item"><span>07</span><span>Account</span></div>
+            </div>
 
+          </div><!-- /.bd-demo-wrap -->
+
+          <script>
+          /* ── Recovery flow — runs AFTER nav HTML is in the DOM ── */
+          (function(){
+            var port        = document.getElementById('bdPort');
+            var bdSlide     = document.getElementById('bdSlide');
+            var brSlide     = document.getElementById('brSlide');
+            var bdCont      = document.getElementById('bdContBtn');
+            var cursor      = document.getElementById('bdCursor');
+            var ripple      = document.getElementById('bdRipple');
             var boopNavItem = document.getElementById('bdBoopNavItem');
             var allNavItems = document.querySelectorAll('.bd-demo-wrap .bd-flow-nav__item');
             var regItems    = Array.from(allNavItems).filter(function(el){ return el !== boopNavItem; });
@@ -950,10 +962,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             var recoveryRunning = false;
 
             function goTo(n){
-              var w = port.offsetWidth;
-              brSlide.style.transform = 'translateX(-'+(n*w)+'px)';
+              brSlide.style.transform = 'translateX(-'+(n * port.offsetWidth)+'px)';
             }
-
             function setCursorX(x){ cursor.style.left = x; ripple.style.left = x; }
             function setCursorY(y){ cursor.style.top  = y; ripple.style.top  = y; }
 
@@ -963,7 +973,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               setTimeout(function(){
                 cursor.style.transform = 'translate(-50%,-50%) scale(.85)';
                 ripple.style.animation = 'none'; ripple.offsetHeight;
-                ripple.style.opacity = '1';
+                ripple.style.opacity   = '1';
                 ripple.style.animation = 'bd-ripple .55s forwards';
                 setTimeout(function(){
                   cursor.style.transform = 'translate(-50%,-50%) scale(1)';
@@ -986,20 +996,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             function runRecovery(){
               recoveryRunning = true;
               setCursorX('50%');
-              /* S0: tap "I do have access" radio (~50%) */
               animateTap('50%', function(){
-                /* S0: tap Continue (~88%) */
                 setTimeout(function(){
                   animateTap('88%', function(){
                     setTimeout(function(){
                       goTo(1);
-                      /* S1: tap Show QR Code (~91%) */
                       setTimeout(function(){
                         animateTap('91%', function(){
-                          setTimeout(function(){
-                            goTo(2);
-                            recoveryRunning = false;
-                          }, 200);
+                          setTimeout(function(){ goTo(2); recoveryRunning = false; }, 200);
                         });
                       }, 1400);
                     }, 300);
@@ -1020,12 +1024,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               setTimeout(runRecovery, 500);
             }
 
-            function showRegistration(activeIdx){
+            function showRegistration(idx){
               if(recoveryRunning) return;
               brSlide.style.display = 'none';
               bdSlide.style.display = 'flex';
               allNavItems.forEach(function(el){ el.classList.remove('is-active'); });
-              regItems[activeIdx || 0].classList.add('is-active');
+              regItems[idx || 0].classList.add('is-active');
             }
 
             boopNavItem.addEventListener('click', showRecovery);
@@ -1034,19 +1038,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             });
           })();
           </script>
-
-            <!-- ── Flow nav ── -->
-            <div class="bd-flow-nav">
-              <div class="bd-flow-nav__item is-active"><span>01</span><span>Splash</span></div>
-              <div id="bdBoopNavItem" class="bd-flow-nav__item"><span>02</span><span>Register with Boop account</span></div>
-              <div class="bd-flow-nav__item"><span>03</span><span>Identity</span></div>
-              <div class="bd-flow-nav__item"><span>04</span><span>Palm</span></div>
-              <div class="bd-flow-nav__item"><span>05</span><span>Terms</span></div>
-              <div class="bd-flow-nav__item"><span>06</span><span>Date of birth</span></div>
-              <div class="bd-flow-nav__item"><span>07</span><span>Account</span></div>
-            </div>
-
-          </div><!-- /.bd-demo-wrap -->
 
           <!-- ── Screen sections ── -->
           <div class="boop-hifi-screens-wrap">
