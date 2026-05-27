@@ -758,29 +758,6 @@
 .bd-flow-nav__item:hover       { opacity: .5; }
 .bd-flow-nav__item.is-active   { opacity: 1; }
 
-.bd-flow-nav__sub {
-  display: flex;
-  align-items: center;
-  padding-left: 1.1rem;
-  font-size: .68rem;
-  font-weight: 600;
-  letter-spacing: .1em;
-  color: var(--accent);
-  opacity: .25;
-  cursor: pointer;
-  transition: opacity .15s;
-  position: relative;
-}
-.bd-flow-nav__sub::before {
-  content: '↳';
-  position: absolute;
-  left: 0;
-  font-size: .6rem;
-  opacity: .7;
-}
-.bd-flow-nav__sub:hover    { opacity: .55; }
-.bd-flow-nav__sub.is-active { opacity: 1; }
-
 @media (max-width: 720px) {
   .bd-demo-wrap { flex-direction: column; align-items: center; }
 }
