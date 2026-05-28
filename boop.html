@@ -816,28 +816,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <p style="margin:0;font:400 7px/1.4 'Inter',sans-serif;color:#525252;">Do you have access to your Boop account?</p>
                       </div>
                       <div style="display:flex;flex-direction:column;gap:5px;">
-                        <div style="display:flex;align-items:center;gap:8px;background:#fff;border-radius:7px;padding:12px 10px;box-sizing:border-box;">
-                          <div id="brRadio1Dot" style="width:11px;height:11px;border-radius:50%;border:1.5px solid #d9d9d9;flex-shrink:0;box-sizing:border-box;transition:border-color .2s,background .2s;"></div>
-                          <span style="font:400 7px/1.35 'Inter',sans-serif;color:#070707;">I have access to my Boop account</span>
+                        <div id="brCard1" style="display:flex;align-items:center;gap:8px;background:#fff;border-radius:8px;padding:12px 10px;box-sizing:border-box;transition:background .15s ease,transform .12s ease;">
+                          <span style="font:500 7px/1.35 'Inter',sans-serif;color:#070707;flex:1;">I have access to my Boop account</span>
+                          <svg width="5" height="9" viewBox="0 0 5 9" fill="none"><path d="M1 1L4 4.5L1 8" stroke="#a0a0a0" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                         </div>
-                        <div style="display:flex;align-items:center;gap:8px;background:#fff;border-radius:7px;padding:12px 10px;box-sizing:border-box;">
-                          <div id="brRadio2Dot" style="width:11px;height:11px;border-radius:50%;border:1.5px solid #d9d9d9;flex-shrink:0;box-sizing:border-box;"></div>
-                          <span style="font:400 7px/1.35 'Inter',sans-serif;color:#070707;">I do not have access to my Boop account</span>
+                        <div id="brCard2" style="display:flex;align-items:center;gap:8px;background:#fff;border-radius:8px;padding:12px 10px;box-sizing:border-box;transition:background .15s ease,transform .12s ease;">
+                          <span style="font:400 7px/1.35 'Inter',sans-serif;color:#070707;flex:1;">I do not have access to my Boop account</span>
+                          <svg width="5" height="9" viewBox="0 0 5 9" fill="none"><path d="M1 1L4 4.5L1 8" stroke="#a0a0a0" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                         </div>
                       </div>
-                    </div>
-                    <!-- Continue overlay -->
-                    <div id="brContOverlay" style="position:absolute;bottom:0;left:0;width:100%;
-                         box-sizing:border-box;padding:14px 12px 22px;
-                         background:linear-gradient(to bottom,rgba(236,240,246,0) 0%,rgba(236,240,246,1) 22%);
-                         opacity:0;transition:opacity .3s ease;">
-                      <button id="brContBtn" style="
-                        display:flex;align-items:center;justify-content:center;
-                        width:100%;height:33px;border-radius:100px;
-                        background:#070707;color:#fff;
-                        font-family:'Inter',sans-serif;font-size:10px;font-weight:700;
-                        border:none;cursor:default;
-                        transition:background .15s,transform .1s;">Continue</button>
                     </div>
                   </div>
                   <!-- S2: On your old device -->
@@ -1237,8 +1224,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             var cardNavItem  = document.getElementById('bcCardNavItem');
             var allNavItems  = document.querySelectorAll('#bdRegDemoWrap .bd-flow-nav__item');
             var regItems     = Array.from(allNavItems).filter(function(el){ return el !== boopNavItem && el !== cardNavItem; });
-            var contOverlay  = document.getElementById('brContOverlay');
-            var contBtn      = document.getElementById('brContBtn');
             var brBoopBtn    = document.getElementById('brBoopBtn');
 
             var _brGen = 0;
@@ -1270,13 +1255,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             function resetSlide(){
               brSlide.style.transition = 'none';
               brSlide.style.transform  = 'translateX(0)';
-              contOverlay.style.opacity = '0';
-              contBtn.style.background  = '#070707'; contBtn.style.transform = '';
               brBoopBtn.style.background = ''; brBoopBtn.style.transform = '';
-              var r1 = document.getElementById('brRadio1Dot');
-              var r2 = document.getElementById('brRadio2Dot');
-              if(r1){ r1.style.border = '1.5px solid #d9d9d9'; r1.style.background = ''; }
-              if(r2){ r2.style.border = '1.5px solid #d9d9d9'; r2.style.background = ''; }
+              var c1 = document.getElementById('brCard1');
+              if(c1){ c1.style.background = '#fff'; c1.style.transform = ''; }
               var s1 = document.getElementById('brStp1');
               var s2 = document.getElementById('brStp2');
               if(s1) s1.style.background = '#d9d9d9';
@@ -1301,48 +1282,39 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     goTo(1);
                     var stp1 = document.getElementById('brStp1');
                     if(stp1) setTimeout(function(){ if(ok()) stp1.style.background='#070707'; }, 300);
-                    /* S1: tap radio 1 (~30%) */
+                    /* S1: tap card 1 directly (~32%) — card selector, no CTA needed */
                     setTimeout(function(){
                       if(!ok()) return;
-                      animateTap('30%', null, function(){
-                        if(!ok()) return;
-                        var r1 = document.getElementById('brRadio1Dot');
-                        if(r1){ r1.style.border='1.5px solid #070707'; r1.style.background='radial-gradient(circle at center, #070707 38%, transparent 38%)'; }
-                        contOverlay.style.opacity = '1';
-                        /* S1: tap Continue (~92%) */
-                        setTimeout(function(){
+                      var c1 = document.getElementById('brCard1');
+                      animateTap('32%',
+                        function(pressed){ if(c1){ c1.style.background = pressed ? 'rgba(0,0,0,0.04)' : '#fff'; c1.style.transform = pressed ? 'scale(0.98)' : ''; } },
+                        function(){
                           if(!ok()) return;
-                          contBtn.style.background = '#2d2d2d'; contBtn.style.transform = 'scale(.97)';
-                          setTimeout(function(){ contBtn.style.background = '#070707'; contBtn.style.transform = ''; }, 200);
-                          animateTap('92%', null, function(){
+                          setTimeout(function(){
                             if(!ok()) return;
-                            contOverlay.style.opacity = '0';
+                            goTo(2);
+                            var stp2 = document.getElementById('brStp2');
+                            if(stp2) setTimeout(function(){ if(ok()) stp2.style.background='#070707'; }, 300);
+                            /* S2: tap Show QR Code (~91%) */
                             setTimeout(function(){
                               if(!ok()) return;
-                              goTo(2);
-                              var stp2 = document.getElementById('brStp2');
-                              if(stp2) setTimeout(function(){ if(ok()) stp2.style.background='#070707'; }, 300);
-                              /* S2: tap Show QR Code (~91%) */
-                              setTimeout(function(){
+                              animateTap('91%', null, function(){
                                 if(!ok()) return;
-                                animateTap('91%', null, function(){
+                                setTimeout(function(){
                                   if(!ok()) return;
+                                  goTo(3);
+                                  /* loop: pause then snap back and restart */
                                   setTimeout(function(){
                                     if(!ok()) return;
-                                    goTo(3);
-                                    /* loop: pause then snap back and restart */
-                                    setTimeout(function(){
-                                      if(!ok()) return;
-                                      resetSlide();
-                                      setTimeout(runRecovery, 600);
-                                    }, 2500);
-                                  }, 200);
-                                });
-                              }, 1400);
-                            }, 300);
-                          });
-                        }, 900);
-                      });
+                                    resetSlide();
+                                    setTimeout(runRecovery, 600);
+                                  }, 2500);
+                                }, 200);
+                              });
+                            }, 1400);
+                          }, 200);
+                        }
+                      );
                     }, 1400);
                   }
                 );
