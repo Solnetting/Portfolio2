@@ -869,9 +869,141 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 document.getElementById('bdRingPath').style.transition = 'stroke-dashoffset 1.2s cubic-bezier(.4,0,.2,1)';
               }
 
-              function run(delay) {
+              function run(delay, startAt) {
                 const g = _gen;
                 const ok = () => _gen === g;
+
+                /* ── continuation from Screen 1 (scanning) onwards ── */
+                const fromScan = () => {
+                  setTimeout(() => { if (ok()) contBtn.style.opacity = '1'; }, 250);
+                  setTimeout(() => {
+                    if (!ok()) return;
+                    animateTap('88%',
+                      pressed => pressBtn(contBtn, pressed),
+                      () => {
+                        if (!ok()) return;
+                        contBtn.style.opacity = '0'; goTo(2);
+                        setTimeout(() => { if (ok()) contBtn.style.opacity = '1'; }, 250);
+                        setTimeout(() => {
+                          if (!ok()) return;
+                          animateTap('88%',
+                            pressed => pressBtn(contBtn, pressed),
+                            () => {
+                              if (!ok()) return;
+                              contBtn.style.opacity = '0'; goTo(3);
+                              setTimeout(() => { if (ok()) contBtn.style.opacity = '1'; }, 250);
+                              setTimeout(() => {
+                                if (!ok()) return;
+                                animateTap('88%',
+                                  pressed => pressBtn(contBtn, pressed),
+                                  () => {
+                                    if (!ok()) return;
+                                    contBtn.style.opacity = '0'; goTo(4);
+                                    setTimeout(() => {
+                                      if (!ok()) return;
+                                      setCursorX('10%');
+                                      animateTap('81%', () => {}, () => {
+                                        if (!ok()) return;
+                                        const cbEl = document.getElementById('bdCheckbox');
+                                        const abt  = document.getElementById('bdAcceptBtn');
+                                        cbEl.style.background = '#070707'; cbEl.style.borderColor = '#070707';
+                                        cbEl.innerHTML = '<svg width="100%" height="100%" viewBox="0 0 8 8"><path d="M1.5 4.5L3.5 6.5L6.5 2" stroke="#fff" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>';
+                                        abt.style.background = '#070707';
+                                        setTimeout(() => {
+                                          if (!ok()) return;
+                                          setCursorX('50%');
+                                          animateTap('89%', pressed => pressBtn(abt, pressed), () => {
+                                            if (!ok()) return;
+                                            setTimeout(() => {
+                                              if (!ok()) return;
+                                              setCursorX('50%'); goTo(5);
+                                              setTimeout(() => {
+                                                if (!ok()) return;
+                                                const RH = 22;
+                                                const pM = document.getElementById('bdPMonth');
+                                                const pD = document.getElementById('bdPDay');
+                                                const pY = document.getElementById('bdPYear');
+                                                const conf = document.getElementById('bdConfirmBtn');
+                                                cursor.style.animation = 'none'; cursor.style.opacity = '0';
+                                                cursor.style.transform = 'translate(-50%,-50%) scale(1)'; cursor.style.transition = 'opacity .2s';
+                                                const showAt = x => { setCursorX(x); setCursorY('32%'); cursor.style.opacity = '1'; };
+                                                const hide   = () => { cursor.style.opacity = '0'; };
+                                                showAt('27%');
+                                                setTimeout(() => { if (ok()) pM.style.transform = `translateY(${44-13*RH}px)`; }, 200);
+                                                setTimeout(() => {
+                                                  if (!ok()) return;
+                                                  hide();
+                                                  setTimeout(() => {
+                                                    if (!ok()) return;
+                                                    showAt('62%');
+                                                    setTimeout(() => { if (ok()) pD.style.transform = `translateY(${44-14*RH}px)`; }, 200);
+                                                    setTimeout(() => {
+                                                      if (!ok()) return;
+                                                      hide();
+                                                      setTimeout(() => {
+                                                        if (!ok()) return;
+                                                        showAt('85%');
+                                                        setTimeout(() => { if (ok()) pY.style.transform = `translateY(${44-8*RH}px)`; }, 200);
+                                                        setTimeout(() => {
+                                                          if (!ok()) return;
+                                                          hide(); conf.style.background = '#070707';
+                                                          setTimeout(() => {
+                                                            if (!ok()) return;
+                                                            setCursorX('50%');
+                                                            animateTap('88%',
+                                                              p => { conf.style.background = p ? '#2d2d2d' : '#070707'; conf.style.transform = p ? 'scale(.97)' : ''; },
+                                                              () => setTimeout(() => {
+                                                                if (!ok()) return;
+                                                                goTo(6);
+                                                                setTimeout(() => {
+                                                                  if (!ok()) return;
+                                                                  document.getElementById('bdRingPath').style.strokeDashoffset = '0';
+                                                                  setTimeout(() => {
+                                                                    if (!ok()) return;
+                                                                    const ring = document.getElementById('bdRingPath');
+                                                                    ring.style.transition = 'none'; ring.style.opacity = '0';
+                                                                    document.getElementById('bdCircleBg').style.opacity = '1';
+                                                                    document.getElementById('bdCheckSvg').style.opacity  = '1';
+                                                                    setTimeout(() => {
+                                                                      if (!ok()) return;
+                                                                      resetState();
+                                                                      requestAnimationFrame(() => requestAnimationFrame(() => {
+                                                                        reenableTransitions();
+                                                                        setTimeout(run, 600);
+                                                                      }));
+                                                                    }, 2500);
+                                                                  }, 1250);
+                                                                }, 500);
+                                                              }, 400)
+                                                            );
+                                                          }, 900);
+                                                        }, 1600);
+                                                      }, 150);
+                                                    }, 1600);
+                                                  }, 150);
+                                                }, 1600);
+                                              }, 600);
+                                            }, 600);
+                                          });
+                                        }, 900);
+                                      });
+                                    }, 1200);
+                                  }
+                                );
+                              }, 1500);
+                            }
+                          );
+                        }, 1800);
+                      }
+                    );
+                  }, 1800);
+                };
+
+                /* ── if startAt=1, skip splash tap and begin at scanning screen ── */
+                if (startAt > 0) {
+                  setTimeout(() => { if (ok()) fromScan(); }, delay !== undefined ? delay : 800);
+                  return;
+                }
 
                 setTimeout(() => {
                   if (!ok()) return;
@@ -880,128 +1012,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     () => {
                       if (!ok()) return;
                       goTo(1);
-                      setTimeout(() => { if (ok()) contBtn.style.opacity = '1'; }, 250);
-                      setTimeout(() => {
-                        if (!ok()) return;
-                        animateTap('88%',
-                          pressed => pressBtn(contBtn, pressed),
-                          () => {
-                            if (!ok()) return;
-                            contBtn.style.opacity = '0'; goTo(2);
-                            setTimeout(() => { if (ok()) contBtn.style.opacity = '1'; }, 250);
-                            setTimeout(() => {
-                              if (!ok()) return;
-                              animateTap('88%',
-                                pressed => pressBtn(contBtn, pressed),
-                                () => {
-                                  if (!ok()) return;
-                                  contBtn.style.opacity = '0'; goTo(3);
-                                  setTimeout(() => { if (ok()) contBtn.style.opacity = '1'; }, 250);
-                                  setTimeout(() => {
-                                    if (!ok()) return;
-                                    animateTap('88%',
-                                      pressed => pressBtn(contBtn, pressed),
-                                      () => {
-                                        if (!ok()) return;
-                                        contBtn.style.opacity = '0'; goTo(4);
-                                        setTimeout(() => {
-                                          if (!ok()) return;
-                                          setCursorX('10%');
-                                          animateTap('81%', () => {}, () => {
-                                            if (!ok()) return;
-                                            const cbEl = document.getElementById('bdCheckbox');
-                                            const abt  = document.getElementById('bdAcceptBtn');
-                                            cbEl.style.background = '#070707'; cbEl.style.borderColor = '#070707';
-                                            cbEl.innerHTML = '<svg width="100%" height="100%" viewBox="0 0 8 8"><path d="M1.5 4.5L3.5 6.5L6.5 2" stroke="#fff" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>';
-                                            abt.style.background = '#070707';
-                                            setTimeout(() => {
-                                              if (!ok()) return;
-                                              setCursorX('50%');
-                                              animateTap('89%', pressed => pressBtn(abt, pressed), () => {
-                                                if (!ok()) return;
-                                                setTimeout(() => {
-                                                  if (!ok()) return;
-                                                  setCursorX('50%'); goTo(5);
-                                                  setTimeout(() => {
-                                                    if (!ok()) return;
-                                                    const RH = 22;
-                                                    const pM = document.getElementById('bdPMonth');
-                                                    const pD = document.getElementById('bdPDay');
-                                                    const pY = document.getElementById('bdPYear');
-                                                    const conf = document.getElementById('bdConfirmBtn');
-                                                    cursor.style.animation = 'none'; cursor.style.opacity = '0';
-                                                    cursor.style.transform = 'translate(-50%,-50%) scale(1)'; cursor.style.transition = 'opacity .2s';
-                                                    const showAt = x => { setCursorX(x); setCursorY('32%'); cursor.style.opacity = '1'; };
-                                                    const hide   = () => { cursor.style.opacity = '0'; };
-                                                    showAt('27%');
-                                                    setTimeout(() => { if (ok()) pM.style.transform = `translateY(${44-13*RH}px)`; }, 200);
-                                                    setTimeout(() => {
-                                                      if (!ok()) return;
-                                                      hide();
-                                                      setTimeout(() => {
-                                                        if (!ok()) return;
-                                                        showAt('62%');
-                                                        setTimeout(() => { if (ok()) pD.style.transform = `translateY(${44-14*RH}px)`; }, 200);
-                                                        setTimeout(() => {
-                                                          if (!ok()) return;
-                                                          hide();
-                                                          setTimeout(() => {
-                                                            if (!ok()) return;
-                                                            showAt('85%');
-                                                            setTimeout(() => { if (ok()) pY.style.transform = `translateY(${44-8*RH}px)`; }, 200);
-                                                            setTimeout(() => {
-                                                              if (!ok()) return;
-                                                              hide(); conf.style.background = '#070707';
-                                                              setTimeout(() => {
-                                                                if (!ok()) return;
-                                                                setCursorX('50%');
-                                                                animateTap('88%',
-                                                                  p => { conf.style.background = p ? '#2d2d2d' : '#070707'; conf.style.transform = p ? 'scale(.97)' : ''; },
-                                                                  () => setTimeout(() => {
-                                                                    if (!ok()) return;
-                                                                    goTo(6);
-                                                                    setTimeout(() => {
-                                                                      if (!ok()) return;
-                                                                      document.getElementById('bdRingPath').style.strokeDashoffset = '0';
-                                                                      setTimeout(() => {
-                                                                        if (!ok()) return;
-                                                                        const ring = document.getElementById('bdRingPath');
-                                                                        ring.style.transition = 'none'; ring.style.opacity = '0';
-                                                                        document.getElementById('bdCircleBg').style.opacity = '1';
-                                                                        document.getElementById('bdCheckSvg').style.opacity  = '1';
-                                                                        setTimeout(() => {
-                                                                          if (!ok()) return;
-                                                                          resetState();
-                                                                          requestAnimationFrame(() => requestAnimationFrame(() => {
-                                                                            reenableTransitions();
-                                                                            setTimeout(run, 600);
-                                                                          }));
-                                                                        }, 2500);
-                                                                      }, 1250);
-                                                                    }, 500);
-                                                                  }, 400)
-                                                                );
-                                                              }, 900);
-                                                            }, 1600);
-                                                          }, 150);
-                                                        }, 1600);
-                                                      }, 150);
-                                                    }, 1600);
-                                                  }, 600);
-                                                }, 600);
-                                              });
-                                            }, 900);
-                                          });
-                                        }, 1200);
-                                      }
-                                    );
-                                  }, 1500);
-                                }
-                              );
-                            }, 1800);
-                          }
-                        );
-                      }, 1800);
+                      fromScan();
                     }
                   );
                 }, delay !== undefined ? delay : 2000);
@@ -1015,6 +1026,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 requestAnimationFrame(() => requestAnimationFrame(() => {
                   reenableTransitions();
                   setTimeout(() => run(500), 600);
+                }));
+              };
+
+              window.bdRunFrom = function(screen) {
+                ++_gen;
+                resetState();
+                goTo(screen);
+                requestAnimationFrame(() => requestAnimationFrame(() => {
+                  reenableTransitions();
+                  run(600, screen);
                 }));
               };
 
@@ -1170,7 +1191,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               bdSlide.style.display = 'flex';
               allNavItems.forEach(function(el){ el.classList.remove('is-active'); });
               regItems[idx || 0].classList.add('is-active');
-              window.bdRegRestart();
+              if (idx >= 1 && window.bdRunFrom) {
+                window.bdRunFrom(1);
+              } else {
+                window.bdRegRestart();
+              }
             }
 
             boopNavItem.addEventListener('click', showRecovery);
