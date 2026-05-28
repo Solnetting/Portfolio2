@@ -572,6 +572,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                   <!-- Screen 1: scanning / account creation — choose method -->
                   <div class="bd-screen">
                     <img src="boop-scanning.png" alt="">
+                    <!-- Micro-interaction overlays — positions derived from Figma node 2877:6626 (402×874px frame) -->
+                    <div id="bdScan1" style="position:absolute;left:5.1%;top:26.1%;width:90.3%;height:9.2%;border-radius:8px;background:transparent;transition:background .15s ease,transform .12s ease;transform-origin:center;pointer-events:none;"></div>
+                    <div id="bdScan2" style="position:absolute;left:5.1%;top:37.1%;width:90.3%;height:9.2%;border-radius:8px;background:transparent;transition:background .15s ease;pointer-events:none;"></div>
                   </div>
 
                   <!-- Screen 2: scanning step 2 — after "Register at a Boop scanner" -->
@@ -1009,17 +1012,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
                 /* ── 03 Scanning: tap upper selector → screen 2 → loop back ── */
                 const fromScan = () => {
+                  setCursorX('50%');
+                  const scan1 = document.getElementById('bdScan1');
                   setTimeout(() => {
                     if (!ok()) return;
-                    animateTap('52%', () => {}, () => {
-                      if (!ok()) return;
-                      goTo(2);
-                      setTimeout(() => {
+                    animateTap('30%',
+                      pressed => {
+                        if (scan1) {
+                          scan1.style.background = pressed ? 'rgba(7,7,7,0.08)' : 'transparent';
+                          scan1.style.transform   = pressed ? 'scale(0.98)' : '';
+                        }
+                      },
+                      () => {
                         if (!ok()) return;
-                        goTo(1);
-                        fromScan();
-                      }, 2500);
-                    });
+                        if (scan1) { scan1.style.background = 'transparent'; scan1.style.transform = ''; }
+                        goTo(2);
+                        setTimeout(() => {
+                          if (!ok()) return;
+                          goTo(1);
+                          fromScan();
+                        }, 2500);
+                      }
+                    );
                   }, 1000);
                 };
 
