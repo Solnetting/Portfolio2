@@ -516,7 +516,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             }
           </style>
 
-          <div class="bd-demo-wrap">
+          <div class="bd-demo-wrap" id="bdRegDemoWrap">
             <!-- aspect-ratio:433/879 establishes parent height from width before images load -->
             <div style="position:relative;width:260px;flex-shrink:0;aspect-ratio:433/879;">
 
@@ -1225,7 +1225,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             var cursor      = document.getElementById('bdCursor');
             var ripple      = document.getElementById('bdRipple');
             var boopNavItem  = document.getElementById('bdBoopNavItem');
-            var allNavItems  = document.querySelectorAll('.bd-demo-wrap .bd-flow-nav__item');
+            var allNavItems  = document.querySelectorAll('#bdRegDemoWrap .bd-flow-nav__item');
             var regItems     = Array.from(allNavItems).filter(function(el){ return el !== boopNavItem; });
             var contOverlay  = document.getElementById('brContOverlay');
             var contBtn      = document.getElementById('brContBtn');
@@ -1373,6 +1373,32 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             });
           })();
           </script>
+
+          <!-- ── 04 Adding card and reward — interactive demo ── -->
+          <div class="bd-demo-wrap" id="bcDemoWrap" style="margin-top:3rem;">
+            <div style="position:relative;width:260px;flex-shrink:0;aspect-ratio:433/879;">
+
+              <!-- Screen viewport -->
+              <div id="bcPort" style="position:absolute;top:2.5%;left:5.5%;width:89%;height:95.5%;overflow:hidden;z-index:1;">
+                <div id="bcSlide" style="position:absolute;top:0;left:0;display:flex;flex-direction:row;width:100%;height:100%;transition:transform .45s cubic-bezier(.4,0,.2,1);">
+
+                  <!-- Screen 0: Cards — empty state, add card (Figma 3625:18006) -->
+                  <div class="bd-screen">
+                    <img src="bc-card-01.png" alt="Cards — empty state">
+                  </div>
+
+                </div>
+              </div>
+
+              <!-- iPhone frame -->
+              <img src="iphone16-ultramarine.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none;">
+            </div>
+
+            <!-- Flow nav -->
+            <div class="bd-flow-nav" id="bcFlowNav">
+              <div class="bd-flow-nav__item is-active"><span>01</span><span>Adding card and reward</span></div>
+            </div>
+          </div>
 
           <!-- ── Screen sections ── -->
           <div class="boop-hifi-screens-wrap">
