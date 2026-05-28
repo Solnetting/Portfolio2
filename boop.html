@@ -569,92 +569,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     </div>
                   </div>
 
-                  <!-- Screen 1: scanning / account creation — choose method -->
-                  <div class="bd-screen">
-                    <img src="boop-scanning.png" alt="">
-                    <!-- Micro-interaction overlays — positions derived from Figma node 2877:6626 (402×874px frame) -->
-                    <div id="bdScan1" style="position:absolute;left:5.1%;top:26.1%;width:90.3%;height:9.2%;border-radius:8px;background:transparent;transition:background .15s ease,transform .12s ease;transform-origin:center;pointer-events:none;"></div>
-                    <div id="bdScan2" style="position:absolute;left:5.1%;top:37.1%;width:90.3%;height:9.2%;border-radius:8px;background:transparent;transition:background .15s ease;pointer-events:none;"></div>
-                  </div>
-
-                  <!-- Screen 2: tap phone on scanner -->
-                  <div class="bd-screen">
-                    <img src="boop-scanning-2.png" alt="">
-                  </div>
-
-                  <!-- Screen 3: hover-hand prompt — "Hover your hand to begin" -->
-                  <div class="bd-screen">
-                    <img src="boop-hover-hand.png" alt="">
-                  </div>
-
-                  <!-- Screen 4: gently move hand up and down (Figma 3691:10113) -->
-                  <div class="bd-screen">
-                    <img src="boop-scan-move.png" alt="">
-                  </div>
-
-                  <!-- Screen 5: scanning step 5 (Figma 3691:10128) -->
-                  <div class="bd-screen">
-                    <img src="boop-scan-5.png" alt="">
-                  </div>
-
-                  <!-- Screen 6: "HANDS SUCCESSFULLY SCANNED" — animated radial progress (Figma 3735:10447) -->
-                  <div class="bd-screen" style="background:#ecf0f6;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding-top:10%;box-sizing:border-box;">
-                    <div style="text-align:center;padding:0 23px;width:100%;">
-                      <div style="font-family:Inter,sans-serif;font-weight:900;font-size:20px;line-height:1.15;color:#070707;text-transform:uppercase;">HANDS<br>SUCCESSFULLY<br>SCANNED</div>
-                      <div style="font-family:Inter,sans-serif;font-weight:500;font-size:11.5px;color:#475569;margin-top:5px;line-height:1.4;">Welcome to Boop. Your account is ready to use</div>
-                    </div>
-                    <div style="position:relative;width:158px;height:158px;flex-shrink:0;">
-                      <!-- blob background -->
-                      <div style="position:absolute;inset:0;border-radius:50%;background:radial-gradient(ellipse at center,#ffffff 0%,rgba(255,255,255,0.85) 42%,rgba(236,240,246,0) 70%);"></div>
-                      <!-- ring: fills clockwise, then hidden -->
-                      <svg id="bdScanRing" viewBox="0 0 158 158" width="158" height="158" style="position:absolute;inset:0;">
-                        <circle cx="79" cy="79" r="70" fill="none" stroke="#070707" stroke-width="3.5" stroke-linecap="round"
-                          transform="rotate(-90 79 79)" stroke-dasharray="439.82" stroke-dashoffset="439.82"/>
-                      </svg>
-                      <!-- frosted glass circle: fades in after ring completes -->
-                      <div id="bdScanGlass" style="position:absolute;inset:0;border-radius:50%;opacity:0;background:linear-gradient(-52.67deg,rgba(255,255,255,0.5) 13.7%,rgba(242,242,242,0.5) 48.9%,rgba(227,227,227,0.5) 85.5%);box-shadow:2px 2px 6px 0px rgba(183,183,183,0.1);"></div>
-                      <!-- checkmark: fades in over glass -->
-                      <div id="bdScanCheckmark" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;">
-                        <svg width="69" height="49" viewBox="0 0 119.719 85.4414" fill="none" xmlns="http://www.w3.org/2000/svg" overflow="visible">
-                          <g>
-                            <mask id="bdChkMask" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="2" y="2" width="116" height="84">
-                              <path d="M115.633 12.5982L42.7899 85.4414L4.25614 46.9077C1.90555 44.5571 1.90554 40.746 4.25614 38.3954C6.60674 36.0448 10.4178 36.0448 12.7684 38.3954L42.7899 68.4168L106.78 4.42638C109.225 1.98176 113.188 1.98176 115.633 4.42639C117.89 6.68296 117.89 10.3416 115.633 12.5982Z" fill="#0A0D12"/>
-                            </mask>
-                            <g mask="url(#bdChkMask)">
-                              <g filter="url(#bdChkBlur)">
-                                <rect width="175.522" height="77.4166" transform="matrix(-0.866025 0.5 0.5 0.866025 107.149 -34.4023)" fill="#0A0D12"/>
-                              </g>
-                            </g>
-                          </g>
-                          <defs>
-                            <filter id="bdChkBlur" x="-129.28" y="-118.825" width="359.56" height="323.651" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                              <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-                              <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
-                              <feGaussianBlur stdDeviation="42" result="effect1_foregroundBlur"/>
-                            </filter>
-                          </defs>
-                        </svg>
-                      </div>
-                    </div>
-                    <div style="padding-bottom:37px;display:flex;align-items:center;justify-content:center;">
-                      <svg width="20" height="11" viewBox="0 0 20 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M3.78126 9.0043C3.0528 9.0043 2.40342 8.83559 1.83312 8.49818C1.26282 8.16076 0.814719 7.71167 0.488831 7.15089C0.162944 6.59012 0 5.97232 0 5.29749C0 4.79849 0.0934529 4.32564 0.280359 3.87892C0.467265 3.4322 0.730852 3.03776 1.07112 2.69559C1.41138 2.34867 1.81155 2.07779 2.27163 1.88294C2.73171 1.6881 3.23492 1.59068 3.78126 1.59068C4.5145 1.59068 5.16628 1.75938 5.73658 2.0968C6.30689 2.43421 6.75498 2.88331 7.08087 3.44408C7.40676 4.00486 7.5697 4.62266 7.5697 5.29749C7.5697 5.79648 7.47625 6.26934 7.28934 6.71606C7.10244 7.16277 6.83885 7.55722 6.49858 7.89938C6.15832 8.24155 5.75815 8.51243 5.29807 8.71203C4.838 8.90688 4.33239 9.0043 3.78126 9.0043Z" fill="#070707"/>
-                        <path d="M14.6069 10.643C13.5699 10.643 12.6454 10.4008 11.8336 9.91639C11.0217 9.432 10.3838 8.78728 9.91987 7.98224C9.45594 7.17719 9.22398 6.29027 9.22398 5.32149C9.22398 4.60514 9.35702 3.9263 9.62309 3.285C9.88917 2.64369 10.2644 2.07743 10.7488 1.58621C11.2332 1.08818 11.8029 0.699298 12.4578 0.419579C13.1128 0.139859 13.8291 0 14.6069 0C15.6507 0 16.5786 0.242196 17.3904 0.726587C18.2023 1.21098 18.8402 1.8557 19.3041 2.66074C19.768 3.46579 20 4.35271 20 5.32149C20 6.03785 19.867 6.71668 19.6009 7.35798C19.3348 7.99929 18.9596 8.56555 18.4752 9.05677C17.9908 9.54798 17.4211 9.93686 16.7662 10.2234C16.1112 10.5031 15.3915 10.643 14.6069 10.643ZM14.6069 8.9442C15.2823 8.9442 15.8793 8.79752 16.3978 8.50415C16.9231 8.20397 17.3358 7.78439 17.636 7.24541C17.9362 6.69962 18.0863 6.05831 18.0863 5.32149C18.0863 4.57785 17.9362 3.93654 17.636 3.39757C17.3427 2.85177 16.9333 2.43219 16.408 2.13883C15.8827 1.84547 15.2823 1.69878 14.6069 1.69878C13.9315 1.69878 13.3311 1.84547 12.8058 2.13883C12.2872 2.43219 11.8779 2.85177 11.5777 3.39757C11.2844 3.93654 11.1377 4.57785 11.1377 5.32149C11.1377 6.05831 11.2844 6.69962 11.5777 7.24541C11.8779 7.78439 12.2907 8.20397 12.816 8.50415C13.3413 8.79752 13.9383 8.9442 14.6069 8.9442Z" fill="#070707"/>
-                      </svg>
-                    </div>
-                  </div>
-
-                  <!-- Screen 7: onboarding slide 1 — Your identity is safe -->
+                  <!-- Screen 1: onboarding slide 1 — Your identity is safe -->
                   <div class="bd-screen">
                     <img src="boop-onboarding-1.png" alt="">
                   </div>
 
-                  <!-- Screen 8: onboarding slide 2 — Your hand is your key -->
+                  <!-- Screen 2: onboarding slide 2 — Your hand is your key -->
                   <div class="bd-screen">
                     <img src="boop-onboarding-2.png" alt="">
                   </div>
 
-                  <!-- Screen 5: terms & conditions — interactive panel overlay -->
+                  <!-- Screen 3: terms & conditions — interactive panel overlay -->
                   <div class="bd-screen">
                     <img src="boop-terms.png" alt="">
                     <!-- Overlay covers the static panel in the image; exact scale ×0.577 -->
@@ -752,6 +677,81 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <!-- Done button -->
                     <div style="padding:22px 12px 28px;box-sizing:border-box;">
                       <button style="display:flex;align-items:center;justify-content:center;width:100%;height:33px;border-radius:100px;background:#070707;color:#fefefe;font:700 10px 'Inter',sans-serif;border:none;cursor:default;">Done</button>
+                    </div>
+                  </div>
+
+                  <!-- Screen 6: scanning / account creation — choose method -->
+                  <div class="bd-screen">
+                    <img src="boop-scanning.png" alt="">
+                    <!-- Micro-interaction overlays — positions derived from Figma node 2877:6626 (402×874px frame) -->
+                    <div id="bdScan1" style="position:absolute;left:5.1%;top:26.1%;width:90.3%;height:9.2%;border-radius:8px;background:transparent;transition:background .15s ease,transform .12s ease;transform-origin:center;pointer-events:none;"></div>
+                    <div id="bdScan2" style="position:absolute;left:5.1%;top:37.1%;width:90.3%;height:9.2%;border-radius:8px;background:transparent;transition:background .15s ease;pointer-events:none;"></div>
+                  </div>
+
+                  <!-- Screen 7: tap phone on scanner -->
+                  <div class="bd-screen">
+                    <img src="boop-scanning-2.png" alt="">
+                  </div>
+
+                  <!-- Screen 8: hover-hand prompt — "Hover your hand to begin" -->
+                  <div class="bd-screen">
+                    <img src="boop-hover-hand.png" alt="">
+                  </div>
+
+                  <!-- Screen 9: gently move hand up and down (Figma 3691:10113) -->
+                  <div class="bd-screen">
+                    <img src="boop-scan-move.png" alt="">
+                  </div>
+
+                  <!-- Screen 10: scanning step 5 (Figma 3691:10128) -->
+                  <div class="bd-screen">
+                    <img src="boop-scan-5.png" alt="">
+                  </div>
+
+                  <!-- Screen 11: "HANDS SUCCESSFULLY SCANNED" — animated radial progress (Figma 3735:10447) -->
+                  <div class="bd-screen" style="background:#ecf0f6;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding-top:10%;box-sizing:border-box;">
+                    <div style="text-align:center;padding:0 23px;width:100%;">
+                      <div style="font-family:Inter,sans-serif;font-weight:900;font-size:20px;line-height:1.15;color:#070707;text-transform:uppercase;">HANDS<br>SUCCESSFULLY<br>SCANNED</div>
+                      <div style="font-family:Inter,sans-serif;font-weight:500;font-size:11.5px;color:#475569;margin-top:5px;line-height:1.4;">Welcome to Boop. Your account is ready to use</div>
+                    </div>
+                    <div style="position:relative;width:158px;height:158px;flex-shrink:0;">
+                      <!-- blob background -->
+                      <div style="position:absolute;inset:0;border-radius:50%;background:radial-gradient(ellipse at center,#ffffff 0%,rgba(255,255,255,0.85) 42%,rgba(236,240,246,0) 70%);"></div>
+                      <!-- ring: fills clockwise, then hidden -->
+                      <svg id="bdScanRing" viewBox="0 0 158 158" width="158" height="158" style="position:absolute;inset:0;">
+                        <circle cx="79" cy="79" r="70" fill="none" stroke="#070707" stroke-width="3.5" stroke-linecap="round"
+                          transform="rotate(-90 79 79)" stroke-dasharray="439.82" stroke-dashoffset="439.82"/>
+                      </svg>
+                      <!-- frosted glass circle: fades in after ring completes -->
+                      <div id="bdScanGlass" style="position:absolute;inset:0;border-radius:50%;opacity:0;background:linear-gradient(-52.67deg,rgba(255,255,255,0.5) 13.7%,rgba(242,242,242,0.5) 48.9%,rgba(227,227,227,0.5) 85.5%);box-shadow:2px 2px 6px 0px rgba(183,183,183,0.1);"></div>
+                      <!-- checkmark: fades in over glass -->
+                      <div id="bdScanCheckmark" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;">
+                        <svg width="69" height="49" viewBox="0 0 119.719 85.4414" fill="none" xmlns="http://www.w3.org/2000/svg" overflow="visible">
+                          <g>
+                            <mask id="bdChkMask" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="2" y="2" width="116" height="84">
+                              <path d="M115.633 12.5982L42.7899 85.4414L4.25614 46.9077C1.90555 44.5571 1.90554 40.746 4.25614 38.3954C6.60674 36.0448 10.4178 36.0448 12.7684 38.3954L42.7899 68.4168L106.78 4.42638C109.225 1.98176 113.188 1.98176 115.633 4.42639C117.89 6.68296 117.89 10.3416 115.633 12.5982Z" fill="#0A0D12"/>
+                            </mask>
+                            <g mask="url(#bdChkMask)">
+                              <g filter="url(#bdChkBlur)">
+                                <rect width="175.522" height="77.4166" transform="matrix(-0.866025 0.5 0.5 0.866025 107.149 -34.4023)" fill="#0A0D12"/>
+                              </g>
+                            </g>
+                          </g>
+                          <defs>
+                            <filter id="bdChkBlur" x="-129.28" y="-118.825" width="359.56" height="323.651" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                              <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                              <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+                              <feGaussianBlur stdDeviation="42" result="effect1_foregroundBlur"/>
+                            </filter>
+                          </defs>
+                        </svg>
+                      </div>
+                    </div>
+                    <div style="padding-bottom:37px;display:flex;align-items:center;justify-content:center;">
+                      <svg width="20" height="11" viewBox="0 0 20 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3.78126 9.0043C3.0528 9.0043 2.40342 8.83559 1.83312 8.49818C1.26282 8.16076 0.814719 7.71167 0.488831 7.15089C0.162944 6.59012 0 5.97232 0 5.29749C0 4.79849 0.0934529 4.32564 0.280359 3.87892C0.467265 3.4322 0.730852 3.03776 1.07112 2.69559C1.41138 2.34867 1.81155 2.07779 2.27163 1.88294C2.73171 1.6881 3.23492 1.59068 3.78126 1.59068C4.5145 1.59068 5.16628 1.75938 5.73658 2.0968C6.30689 2.43421 6.75498 2.88331 7.08087 3.44408C7.40676 4.00486 7.5697 4.62266 7.5697 5.29749C7.5697 5.79648 7.47625 6.26934 7.28934 6.71606C7.10244 7.16277 6.83885 7.55722 6.49858 7.89938C6.15832 8.24155 5.75815 8.51243 5.29807 8.71203C4.838 8.90688 4.33239 9.0043 3.78126 9.0043Z" fill="#070707"/>
+                        <path d="M14.6069 10.643C13.5699 10.643 12.6454 10.4008 11.8336 9.91639C11.0217 9.432 10.3838 8.78728 9.91987 7.98224C9.45594 7.17719 9.22398 6.29027 9.22398 5.32149C9.22398 4.60514 9.35702 3.9263 9.62309 3.285C9.88917 2.64369 10.2644 2.07743 10.7488 1.58621C11.2332 1.08818 11.8029 0.699298 12.4578 0.419579C13.1128 0.139859 13.8291 0 14.6069 0C15.6507 0 16.5786 0.242196 17.3904 0.726587C18.2023 1.21098 18.8402 1.8557 19.3041 2.66074C19.768 3.46579 20 4.35271 20 5.32149C20 6.03785 19.867 6.71668 19.6009 7.35798C19.3348 7.99929 18.9596 8.56555 18.4752 9.05677C17.9908 9.54798 17.4211 9.93686 16.7662 10.2234C16.1112 10.5031 15.3915 10.643 14.6069 10.643ZM14.6069 8.9442C15.2823 8.9442 15.8793 8.79752 16.3978 8.50415C16.9231 8.20397 17.3358 7.78439 17.636 7.24541C17.9362 6.69962 18.0863 6.05831 18.0863 5.32149C18.0863 4.57785 17.9362 3.93654 17.636 3.39757C17.3427 2.85177 16.9333 2.43219 16.408 2.13883C15.8827 1.84547 15.2823 1.69878 14.6069 1.69878C13.9315 1.69878 13.3311 1.84547 12.8058 2.13883C12.2872 2.43219 11.8779 2.85177 11.5777 3.39757C11.2844 3.93654 11.1377 4.57785 11.1377 5.32149C11.1377 6.05831 11.2844 6.69962 11.5777 7.24541C11.8779 7.78439 12.2907 8.20397 12.816 8.50415C13.3413 8.79752 13.9383 8.9442 14.6069 8.9442Z" fill="#070707"/>
+                      </svg>
                     </div>
                   </div>
 
@@ -1013,7 +1013,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                   p => { conf.style.background = p ? '#2d2d2d' : '#070707'; conf.style.transform = p ? 'scale(.97)' : ''; },
                                   () => setTimeout(() => {
                                     if (!ok()) return;
-                                    goTo(11);
+                                    goTo(5);
                                     playAccount();
                                   }, 400)
                                 );
@@ -1045,7 +1045,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                           if (!ok()) return;
                           setTimeout(() => {
                             if (!ok()) return;
-                            setCursorX('50%'); goTo(10);
+                            setCursorX('50%'); goTo(4);
                             runFromDOB();
                           }, 600);
                         });
@@ -1054,27 +1054,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                   }, 1200);
                 };
 
-                /* ── Onboarding-2: Continue → Terms(7) ── */
+                /* ── Onboarding-2: Continue → Terms(3) ── */
                 const runFromOnboarding2 = () => {
                   setTimeout(() => { if (ok()) contBtn.style.opacity = '1'; }, 250);
                   setTimeout(() => {
                     if (!ok()) return;
                     animateTap('88%', pressed => pressBtn(contBtn, pressed), () => {
                       if (!ok()) return;
-                      contBtn.style.opacity = '0'; goTo(9);
+                      contBtn.style.opacity = '0'; goTo(3);
                       runFromTerms();
                     });
                   }, 1800);
                 };
 
-                /* ── Onboarding-1: Continue → Onboarding-2(6) ── */
+                /* ── Onboarding-1: Continue → Onboarding-2(2) ── */
                 const runFromOnboarding1 = () => {
                   setTimeout(() => { if (ok()) contBtn.style.opacity = '1'; }, 250);
                   setTimeout(() => {
                     if (!ok()) return;
                     animateTap('88%', pressed => pressBtn(contBtn, pressed), () => {
                       if (!ok()) return;
-                      contBtn.style.opacity = '0'; goTo(8);
+                      contBtn.style.opacity = '0'; goTo(2);
                       runFromOnboarding2();
                     });
                   }, 1800);
@@ -1096,19 +1096,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                       () => {
                         if (!ok()) return;
                         if (scan1) { scan1.style.background = 'transparent'; scan1.style.transform = ''; }
-                        goTo(2);
+                        goTo(7);
                         setTimeout(() => {
                           if (!ok()) return;
-                          goTo(3);
+                          goTo(8);
                           setTimeout(() => {
                             if (!ok()) return;
-                            goTo(4);
+                            goTo(9);
                             setTimeout(() => {
                               if (!ok()) return;
-                              goTo(5);
+                              goTo(10);
                               setTimeout(() => {
                                 if (!ok()) return;
-                                goTo(6);
+                                goTo(11);
                                 (function(){
                                   var ring  = document.querySelector('#bdScanRing circle');
                                   var glass = document.getElementById('bdScanGlass');
@@ -1132,7 +1132,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                   if (chk)   { chk.style.transition  = 'opacity .4s ease .15s'; chk.style.opacity  = '1'; }
                                   setTimeout(() => {
                                     if (!ok()) return;
-                                    goTo(1);
+                                    goTo(6);
                                     fromScan();
                                   }, 1200);
                                 }, 2100);
@@ -1146,39 +1146,39 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 };
 
                 /* ── Route to start point ── */
-                if (startAt >= 1 && startAt <= 6) {
-                  setTimeout(() => { if (ok()) fromScan(); }, delay !== undefined ? delay : 800);
-                  return;
-                }
-                if (startAt === 7) {
+                if (startAt === 1) {
                   setTimeout(() => { if (ok()) runFromOnboarding1(); }, delay !== undefined ? delay : 600);
                   return;
                 }
-                if (startAt === 8) {
+                if (startAt === 2) {
                   setTimeout(() => { if (ok()) runFromOnboarding2(); }, delay !== undefined ? delay : 600);
                   return;
                 }
-                if (startAt === 9) {
+                if (startAt === 3) {
                   setTimeout(() => { if (ok()) runFromTerms(); }, delay !== undefined ? delay : 600);
                   return;
                 }
-                if (startAt === 10) {
+                if (startAt === 4) {
                   setTimeout(() => { if (ok()) runFromDOB(); }, delay !== undefined ? delay : 600);
                   return;
                 }
-                if (startAt >= 11) {
+                if (startAt === 5) {
                   setTimeout(() => { if (ok()) playAccount(); }, delay !== undefined ? delay : 600);
                   return;
                 }
+                if (startAt >= 6) {
+                  setTimeout(() => { if (ok()) fromScan(); }, delay !== undefined ? delay : 800);
+                  return;
+                }
 
-                /* ── Main splash flow: tap Create → onboarding-1(5) → 2(6) → Terms(7) → DOB(8) → Account(9) ── */
+                /* ── Main splash flow: tap Create → onboarding-1(1) → 2(2) → Terms(3) → DOB(4) → Account(5) ── */
                 setTimeout(() => {
                   if (!ok()) return;
                   animateTap('74%',
                     pressed => btn.classList.toggle('pressed', pressed),
                     () => {
                       if (!ok()) return;
-                      goTo(7);
+                      goTo(1);
                       runFromOnboarding1();
                     }
                   );
@@ -1373,15 +1373,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               if (idx === 0) {
                 window.bdRegRestart();
               } else {
-                /* regItems: [0:Splash, 1:03Scan, 2:04Palm, 3:05Terms, 4:06DOB, 5:07Account] */
-                var screenMap = [0, 1, 9, 10, 11];
+                /* regItems: [0:Splash, 1:03Scan, 2:05Terms, 3:06DOB, 4:07Account] */
+                var screenMap = [0, 6, 3, 4, 5];
                 window.bdRunFrom(screenMap[idx]);
               }
             }
 
             function showCardDemo() {
               ++_brGen;
-              window.bdRegRestart && window.bdRegRestart();
+              window.bdCancelReg && window.bdCancelReg();
               brSlide.style.display = 'none';
               bdSlide.style.display = 'none';
               bcSlide.style.display = 'flex';
