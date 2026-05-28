@@ -1215,11 +1215,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <div class="bd-flow-nav__item is-active"><span>01</span><span>Splash</span></div>
               <div id="bdBoopNavItem" class="bd-flow-nav__item"><span>02</span><span>Sign in with Boop account</span></div>
               <div class="bd-flow-nav__item"><span>03</span><span>Scanning</span></div>
-              <div class="bd-flow-nav__item"><span>04</span><span>Palm</span></div>
+              <div id="bcCardNavItem" class="bd-flow-nav__item"><span>04</span><span>Adding card</span></div>
               <div class="bd-flow-nav__item"><span>05</span><span>Terms</span></div>
               <div class="bd-flow-nav__item"><span>06</span><span>Date of birth</span></div>
               <div class="bd-flow-nav__item"><span>07</span><span>Account</span></div>
-              <div id="bcCardNavItem" class="bd-flow-nav__item"><span>08</span><span>Adding card</span></div>
             </div>
 
           </div><!-- /.bd-demo-wrap -->
@@ -1375,7 +1374,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 window.bdRegRestart();
               } else {
                 /* regItems: [0:Splash, 1:03Scan, 2:04Palm, 3:05Terms, 4:06DOB, 5:07Account] */
-                var screenMap = [0, 1, 7, 9, 10, 11];
+                var screenMap = [0, 1, 9, 10, 11];
                 window.bdRunFrom(screenMap[idx]);
               }
             }
