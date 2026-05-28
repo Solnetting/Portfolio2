@@ -1007,29 +1007,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                   }, 1800);
                 };
 
-                /* ── 03 Scanning: tap first selector, show CTA, loop 1↔2 ── */
+                /* ── 03 Scanning: tap upper selector → screen 2 → loop back ── */
                 const fromScan = () => {
                   setTimeout(() => {
                     if (!ok()) return;
                     animateTap('52%', () => {}, () => {
                       if (!ok()) return;
-                      setTimeout(() => { if (ok()) contBtn.style.opacity = '1'; }, 300);
+                      goTo(2);
                       setTimeout(() => {
                         if (!ok()) return;
-                        animateTap('88%', pressed => pressBtn(contBtn, pressed), () => {
-                          if (!ok()) return;
-                          contBtn.style.opacity = '0'; goTo(2);
-                          setTimeout(() => { if (ok()) contBtn.style.opacity = '1'; }, 250);
-                          setTimeout(() => {
-                            if (!ok()) return;
-                            animateTap('88%', pressed => pressBtn(contBtn, pressed), () => {
-                              if (!ok()) return;
-                              contBtn.style.opacity = '0'; goTo(1);
-                              fromScan();
-                            });
-                          }, 2000);
-                        });
-                      }, 1200);
+                        goTo(1);
+                        fromScan();
+                      }, 2500);
                     });
                   }, 1000);
                 };
