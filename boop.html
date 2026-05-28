@@ -846,6 +846,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                   <div class="bd-screen"><img src="boop-signin-s2.png" alt="Scan from your old device"></div>
                 </div><!-- /#brSlide -->
 
+                <!-- Adding card track -->
+                <div id="bcSlide" style="position:absolute;top:0;left:0;display:none;flex-direction:row;width:100%;height:100%;transition:transform .45s cubic-bezier(.4,0,.2,1);">
+                  <!-- Screen 0: Cards — empty state (Figma 3625:18006) -->
+                  <div class="bd-screen">
+                    <img src="bc-card-01.png" alt="Cards — empty state">
+                  </div>
+                </div><!-- /#bcSlide -->
+
                 <!-- Fixed Continue button — lives outside the slide track, never moves -->
                 <button id="bdContBtn" style="
                   position:absolute;bottom:28px;left:12px;right:12px;
@@ -1211,6 +1219,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <div class="bd-flow-nav__item"><span>05</span><span>Terms</span></div>
               <div class="bd-flow-nav__item"><span>06</span><span>Date of birth</span></div>
               <div class="bd-flow-nav__item"><span>07</span><span>Account</span></div>
+              <div id="bcCardNavItem" class="bd-flow-nav__item"><span>08</span><span>Adding card</span></div>
             </div>
 
           </div><!-- /.bd-demo-wrap -->
@@ -1224,9 +1233,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             var bdCont      = document.getElementById('bdContBtn');
             var cursor      = document.getElementById('bdCursor');
             var ripple      = document.getElementById('bdRipple');
+            var bcSlide      = document.getElementById('bcSlide');
             var boopNavItem  = document.getElementById('bdBoopNavItem');
+            var cardNavItem  = document.getElementById('bcCardNavItem');
             var allNavItems  = document.querySelectorAll('#bdRegDemoWrap .bd-flow-nav__item');
-            var regItems     = Array.from(allNavItems).filter(function(el){ return el !== boopNavItem; });
+            var regItems     = Array.from(allNavItems).filter(function(el){ return el !== boopNavItem && el !== cardNavItem; });
             var contOverlay  = document.getElementById('brContOverlay');
             var contBtn      = document.getElementById('brContBtn');
             var brBoopBtn    = document.getElementById('brBoopBtn');
@@ -1342,6 +1353,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             function showRecovery(){
               window.bdCancelReg && window.bdCancelReg();
               ++_brGen;
+              bcSlide.style.display = 'none';
               bdSlide.style.display = 'none';
               bdCont.style.opacity  = '0';
               cursor.style.opacity  = '0';
@@ -1355,6 +1367,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             function showRegistration(idx){
               ++_brGen;
               brSlide.style.display = 'none';
+              bcSlide.style.display = 'none';
               bdSlide.style.display = 'flex';
               allNavItems.forEach(function(el){ el.classList.remove('is-active'); });
               regItems[idx || 0].classList.add('is-active');
@@ -1367,38 +1380,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               }
             }
 
+            function showCardDemo() {
+              ++_brGen;
+              window.bdRegRestart && window.bdRegRestart();
+              brSlide.style.display = 'none';
+              bdSlide.style.display = 'none';
+              bcSlide.style.display = 'flex';
+              allNavItems.forEach(function(el){ el.classList.remove('is-active'); });
+              cardNavItem.classList.add('is-active');
+            }
+
             boopNavItem.addEventListener('click', showRecovery);
+            cardNavItem.addEventListener('click', showCardDemo);
             regItems.forEach(function(el, i){
               el.addEventListener('click', function(){ showRegistration(i); });
             });
           })();
           </script>
-
-          <!-- ── 04 Adding card and reward — interactive demo ── -->
-          <div class="bd-demo-wrap" id="bcDemoWrap" style="margin-top:3rem;">
-            <div style="position:relative;width:260px;flex-shrink:0;aspect-ratio:433/879;">
-
-              <!-- Screen viewport -->
-              <div id="bcPort" style="position:absolute;top:2.5%;left:5.5%;width:89%;height:95.5%;overflow:hidden;z-index:1;">
-                <div id="bcSlide" style="position:absolute;top:0;left:0;display:flex;flex-direction:row;width:100%;height:100%;transition:transform .45s cubic-bezier(.4,0,.2,1);">
-
-                  <!-- Screen 0: Cards — empty state, add card (Figma 3625:18006) -->
-                  <div class="bd-screen">
-                    <img src="bc-card-01.png" alt="Cards — empty state">
-                  </div>
-
-                </div>
-              </div>
-
-              <!-- iPhone frame -->
-              <img src="iphone16-ultramarine.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none;">
-            </div>
-
-            <!-- Flow nav -->
-            <div class="bd-flow-nav" id="bcFlowNav">
-              <div class="bd-flow-nav__item is-active"><span>01</span><span>Adding card</span></div>
-            </div>
-          </div>
 
           <!-- ── Screen sections ── -->
           <div class="boop-hifi-screens-wrap">
