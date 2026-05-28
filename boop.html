@@ -839,6 +839,32 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                   <div class="bd-screen">
                     <img src="bc-card-01.png" alt="Cards — empty state">
                   </div>
+                  <!-- Screen 1: Scan Card — camera viewfinder (Figma 2877:7258) -->
+                  <div class="bd-screen" style="background:#ecf0f6;display:flex;flex-direction:column;">
+                    <!-- Camera viewfinder — black, ~62% of screen height -->
+                    <div style="background:#000;flex:0 0 62%;display:flex;flex-direction:column;align-items:center;padding-top:14%;gap:6%;box-sizing:border-box;">
+                      <span style="font:400 7px/1.4 'Inter',sans-serif;color:rgba(255,255,255,0.8);text-align:center;flex-shrink:0;">Align card within the frame</span>
+                      <!-- Credit card aspect ratio frame with corner brackets -->
+                      <div style="position:relative;width:82%;aspect-ratio:1.586;flex-shrink:0;">
+                        <div style="position:absolute;top:0;left:0;width:15%;height:2px;background:#fff;border-radius:1px;"></div>
+                        <div style="position:absolute;top:0;left:0;width:2px;height:15%;background:#fff;border-radius:1px;"></div>
+                        <div style="position:absolute;top:0;right:0;width:15%;height:2px;background:#fff;border-radius:1px;"></div>
+                        <div style="position:absolute;top:0;right:0;width:2px;height:15%;background:#fff;border-radius:1px;"></div>
+                        <div style="position:absolute;bottom:0;left:0;width:15%;height:2px;background:#fff;border-radius:1px;"></div>
+                        <div style="position:absolute;bottom:0;left:0;width:2px;height:15%;background:#fff;border-radius:1px;"></div>
+                        <div style="position:absolute;bottom:0;right:0;width:15%;height:2px;background:#fff;border-radius:1px;"></div>
+                        <div style="position:absolute;bottom:0;right:0;width:2px;height:15%;background:#fff;border-radius:1px;"></div>
+                      </div>
+                    </div>
+                    <!-- Bottom content -->
+                    <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:18px 12px 22px;text-align:center;box-sizing:border-box;">
+                      <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+                        <p style="margin:0;font:700 14px/1.3 'Inter',sans-serif;color:#070707;">Scan Card</p>
+                        <p style="margin:0;font:400 7.5px/1.5 'Inter',sans-serif;color:#525252;">Position your card within the frame.<br>Make sure the number and name<br>are clearly visible.</p>
+                      </div>
+                      <button style="display:flex;align-items:center;justify-content:center;width:100%;height:31px;border-radius:100px;background:transparent;border:1px solid #475569;color:#475569;font:500 8px/1 'Inter',sans-serif;cursor:default;">Enter card details manually</button>
+                    </div>
+                  </div>
                 </div><!-- /#bcSlide -->
 
                 <!-- Fixed Continue button — lives outside the slide track, never moves -->
@@ -1227,8 +1253,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             var brBoopBtn    = document.getElementById('brBoopBtn');
 
             var _brGen = 0;
+            var _bcGen = 0;
 
             function goTo(n){ brSlide.style.transform = 'translateX(-'+(n * port.offsetWidth)+'px)'; }
+            function bcGoTo(n){ bcSlide.style.transform = 'translateX(-'+(n * port.offsetWidth)+'px)'; }
             function setCursorX(x){ cursor.style.left = x; ripple.style.left = x; }
             function setCursorY(y){ cursor.style.top  = y; ripple.style.top  = y; }
 
@@ -1321,9 +1349,35 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               }, 500);
             }
 
+            function runCard(){
+              var g = _bcGen;
+              var ok = function(){ return _bcGen === g; };
+              bcSlide.style.transition = 'none'; bcGoTo(0);
+              requestAnimationFrame(function(){ requestAnimationFrame(function(){
+                bcSlide.style.transition = 'transform .45s cubic-bezier(.4,0,.2,1)';
+                setCursorX('50%');
+                setTimeout(function(){
+                  if(!ok()) return;
+                  animateTap('75%', function(){}, function(){
+                    if(!ok()) return;
+                    bcGoTo(1);
+                    setTimeout(function(){
+                      if(!ok()) return;
+                      bcSlide.style.transition = 'none'; bcGoTo(0);
+                      requestAnimationFrame(function(){ requestAnimationFrame(function(){
+                        bcSlide.style.transition = 'transform .45s cubic-bezier(.4,0,.2,1)';
+                        setTimeout(runCard, 500);
+                      }); });
+                    }, 3000);
+                  });
+                }, 1800);
+              }); });
+            }
+
             function showRecovery(){
               window.bdCancelReg && window.bdCancelReg();
               ++_brGen;
+              ++_bcGen;
               bcSlide.style.display = 'none';
               bdSlide.style.display = 'none';
               bdCont.style.opacity  = '0';
@@ -1337,6 +1391,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             function showRegistration(idx){
               ++_brGen;
+              ++_bcGen;
               brSlide.style.display = 'none';
               bcSlide.style.display = 'none';
               bdSlide.style.display = 'flex';
@@ -1353,12 +1408,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             function showCardDemo() {
               ++_brGen;
+              ++_bcGen;
               window.bdCancelReg && window.bdCancelReg();
               brSlide.style.display = 'none';
               bdSlide.style.display = 'none';
               bcSlide.style.display = 'flex';
+              cursor.style.opacity = '0';
               allNavItems.forEach(function(el){ el.classList.remove('is-active'); });
               cardNavItem.classList.add('is-active');
+              ++_bcGen;
+              setTimeout(runCard, 400);
             }
 
             boopNavItem.addEventListener('click', showRecovery);
