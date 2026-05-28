@@ -529,6 +529,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                   <!-- Screen 0: splash bg + button panel overlay (exact Figma layout, scaled ×0.59) -->
                   <div class="bd-screen">
                     <img src="boop-splash-nobtn.png" alt="">
+                    <!-- Boop logo centered above button panel -->
+                    <div style="position:absolute;top:0;left:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;pointer-events:none;">
+                      <img src="boop-vector-logo.svg" alt="Boop" style="width:72px;height:auto;display:block;">
+                    </div>
                     <!-- Button panel: pt-19 pb-28 px-12 col gap-9 — from Figma pt-32 pb-48 px-20 gap-16 -->
                     <div style="position:absolute;bottom:0;left:0;width:100%;box-sizing:border-box;
                                 background:rgba(255,255,255,0.97);padding:19px 12px 28px;">
@@ -552,14 +556,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
                             <!-- Boop account -->
                             <div class="bd-btn2">
-                              <img src="boop-btn-icon.png" alt="" style="height:6px;width:auto;">
+                              <svg width="16" height="9" viewBox="0 0 41 22" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;display:block;"><circle cx="11" cy="11" r="10" fill="#070707"/><circle cx="30" cy="11" r="10" fill="#070707"/></svg>
                               Boop account
                             </div>
 
                             <!-- World account -->
                             <div style="display:flex;gap:5px;align-items:center;justify-content:center;
                                         height:20px;font-family:'Inter',sans-serif;font-size:10px;font-weight:500;color:#717680;">
-                              <img src="world-btn-icon.png" alt="" style="width:8px;height:8px;">
+                              <svg width="12" height="12" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;display:block;"><circle cx="14" cy="14" r="12" stroke="#525252" stroke-width="2.5" fill="none"/><ellipse cx="14" cy="14" rx="6.5" ry="12" stroke="#525252" stroke-width="2" fill="none"/><line x1="2" y1="14" x2="26" y2="14" stroke="#525252" stroke-width="2"/><path d="M3 9.5 Q14 11.5 25 9.5" stroke="#525252" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M3 18.5 Q14 20.5 25 18.5" stroke="#525252" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
                               World account
                             </div>
 
@@ -684,9 +688,78 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
                 <!-- Sign-in with Boop account track -->
                 <div id="brSlide" style="position:absolute;top:0;left:0;display:none;flex-direction:row;width:100%;height:100%;transition:transform .45s cubic-bezier(.4,0,.2,1);">
-                  <!-- S0: Account access (radio 1 pre-selected in image; Continue overlay appears after tap) -->
+                  <!-- S0: Splash — cursor taps Boop account glass button -->
                   <div class="bd-screen">
-                    <img src="boop-signin-s0.png" alt="Account access">
+                    <img src="boop-splash-nobtn.png" alt="">
+                    <!-- Boop logo centered above button panel -->
+                    <div style="position:absolute;top:0;left:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;pointer-events:none;">
+                      <img src="boop-vector-logo.svg" alt="Boop" style="width:72px;height:auto;display:block;">
+                    </div>
+                    <div style="position:absolute;bottom:0;left:0;width:100%;box-sizing:border-box;
+                                background:rgba(255,255,255,0.97);padding:19px 12px 28px;">
+                      <div style="display:flex;flex-direction:column;gap:9px;width:100%;">
+                        <button style="display:flex;align-items:center;justify-content:center;
+                          width:100%;height:33px;border-radius:9999px;
+                          background:#070707;color:#fff;
+                          font-family:'Inter',sans-serif;font-size:10px;font-weight:700;
+                          border:none;cursor:default;">Create a new account</button>
+                        <div style="display:flex;flex-direction:column;gap:9px;">
+                          <div style="display:flex;gap:6px;align-items:center;overflow:hidden;">
+                            <div style="background:#e6e6e6;height:1px;flex:1;flex-shrink:1;"></div>
+                            <span style="font-family:'Inter',sans-serif;font-size:7px;font-weight:400;color:#525252;white-space:nowrap;">or sign in with</span>
+                            <div style="background:#e6e6e6;height:1px;flex:1;flex-shrink:1;"></div>
+                          </div>
+                          <div style="display:flex;flex-direction:column;gap:5px;align-items:center;">
+                            <div id="brBoopBtn" class="bd-btn2" style="transition:background .12s,transform .1s;">
+                              <svg width="16" height="9" viewBox="0 0 41 22" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;display:block;"><circle cx="11" cy="11" r="10" fill="#070707"/><circle cx="30" cy="11" r="10" fill="#070707"/></svg>
+                              Boop account
+                            </div>
+                            <div style="display:flex;gap:5px;align-items:center;justify-content:center;
+                                        height:20px;font-family:'Inter',sans-serif;font-size:10px;font-weight:500;color:#717680;">
+                              <svg width="12" height="12" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;display:block;"><circle cx="14" cy="14" r="12" stroke="#525252" stroke-width="2.5" fill="none"/><ellipse cx="14" cy="14" rx="6.5" ry="12" stroke="#525252" stroke-width="2" fill="none"/><line x1="2" y1="14" x2="26" y2="14" stroke="#525252" stroke-width="2"/><path d="M3 9.5 Q14 11.5 25 9.5" stroke="#525252" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M3 18.5 Q14 20.5 25 18.5" stroke="#525252" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+                              World account
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- S1: Account access — HTML, radios start deselected -->
+                  <div class="bd-screen" style="background:#ecf0f6;display:flex;flex-direction:column;">
+                    <!-- Header -->
+                    <div style="text-align:center;padding:10px 12px 5px;">
+                      <span style="font:400 6px/1 'Inter',sans-serif;color:#717680;letter-spacing:0.3px;">Recovery account</span>
+                    </div>
+                    <!-- Progress bar -->
+                    <div style="display:flex;gap:3px;padding:0 12px 8px;">
+                      <div style="flex:1;height:2px;background:#070707;border-radius:1px;"></div>
+                      <div style="flex:1;height:2px;background:#d9d9d9;border-radius:1px;"></div>
+                    </div>
+                    <!-- Back -->
+                    <div style="padding:0 12px 8px;display:flex;align-items:center;gap:4px;">
+                      <svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 1L1 5L5 9" stroke="#070707" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      <span style="font:600 8px/1 'Inter',sans-serif;color:#070707;">Back</span>
+                    </div>
+                    <!-- Divider -->
+                    <div style="height:1px;background:#d9d9d9;margin:0 12px 14px;"></div>
+                    <!-- Content -->
+                    <div style="padding:0 12px;display:flex;flex-direction:column;gap:11px;">
+                      <div style="display:flex;flex-direction:column;gap:4px;">
+                        <p style="margin:0;font:700 17px/1.2 'Inter',sans-serif;color:#070707;">Account access</p>
+                        <p style="margin:0;font:400 7px/1.4 'Inter',sans-serif;color:#525252;">Do you have access to your Boop account?</p>
+                      </div>
+                      <div style="display:flex;flex-direction:column;gap:5px;">
+                        <div style="display:flex;align-items:center;gap:8px;background:#fff;border-radius:7px;padding:12px 10px;box-sizing:border-box;">
+                          <div id="brRadio1Dot" style="width:11px;height:11px;border-radius:50%;border:1.5px solid #d9d9d9;flex-shrink:0;box-sizing:border-box;transition:border-color .2s,background .2s;"></div>
+                          <span style="font:400 7px/1.35 'Inter',sans-serif;color:#070707;">I have access to my Boop account</span>
+                        </div>
+                        <div style="display:flex;align-items:center;gap:8px;background:#fff;border-radius:7px;padding:12px 10px;box-sizing:border-box;">
+                          <div id="brRadio2Dot" style="width:11px;height:11px;border-radius:50%;border:1.5px solid #d9d9d9;flex-shrink:0;box-sizing:border-box;"></div>
+                          <span style="font:400 7px/1.35 'Inter',sans-serif;color:#070707;">I do not have access to my Boop account</span>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Continue overlay -->
                     <div id="brContOverlay" style="position:absolute;bottom:0;left:0;width:100%;
                          box-sizing:border-box;padding:14px 12px 22px;
                          background:linear-gradient(to bottom,rgba(236,240,246,0) 0%,rgba(236,240,246,1) 22%);
@@ -700,9 +773,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         transition:background .15s,transform .1s;">Continue</button>
                     </div>
                   </div>
-                  <!-- S1: On your old device -->
+                  <!-- S2: On your old device -->
                   <div class="bd-screen"><img src="boop-signin-s1.png" alt="On your old device"></div>
-                  <!-- S2: Scan QR from old device -->
+                  <!-- S3: Scan QR from old device -->
                   <div class="bd-screen"><img src="boop-signin-s2.png" alt="Scan from your old device"></div>
                 </div><!-- /#brSlide -->
 
@@ -730,243 +803,190 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
           <script>
             (function () {
-              const port   = document.getElementById('bdPort');
-              const slide  = document.getElementById('bdSlide');
-              const btn    = document.getElementById('bdBtn');
+              const port    = document.getElementById('bdPort');
+              const slide   = document.getElementById('bdSlide');
+              const btn     = document.getElementById('bdBtn');
               const contBtn = document.getElementById('bdContBtn');
-              const cursor = document.getElementById('bdCursor');
-              const ripple = document.getElementById('bdRipple');
+              const cursor  = document.getElementById('bdCursor');
+              const ripple  = document.getElementById('bdRipple');
 
-              function goTo(n) {
-                const w = port.offsetWidth;
-                slide.style.transform = `translateX(-${n * w}px)`;
-              }
+              let _gen = 0;
 
-              function setCursorY(pct) {
-                cursor.style.top = pct;
-                ripple.style.top = pct;
-              }
-
-              function setCursorX(pct) {
-                cursor.style.left = pct;
-                ripple.style.left = pct;
-              }
+              function goTo(n) { slide.style.transform = `translateX(-${n * port.offsetWidth}px)`; }
+              function setCursorY(pct) { cursor.style.top  = pct; ripple.style.top  = pct; }
+              function setCursorX(pct) { cursor.style.left = pct; ripple.style.left = pct; }
 
               function animateTap(yPct, onPress, cb) {
                 setCursorY(yPct);
-                /* 1 — cursor appears */
                 cursor.style.animation = 'none'; cursor.offsetHeight;
                 cursor.style.animation = 'bd-cursor-in .22s forwards';
-
-                /* 2 — press */
-                setTimeout(() => {
-                  onPress(true);
-                  cursor.style.animation = 'none';
-                  cursor.style.opacity   = '1';
-                  cursor.style.transform = 'translate(-50%,-50%) scale(.65)';
-                }, 380);
-
-                /* 3 — release + ripple */
-                setTimeout(() => {
-                  onPress(false);
-                  cursor.style.transform = 'translate(-50%,-50%) scale(1)';
-                  ripple.style.animation = 'none'; ripple.offsetHeight;
-                  ripple.style.opacity = '1';
-                  ripple.style.animation = 'bd-ripple .55s forwards';
-                }, 560);
-
-                /* 4 — cursor out */
+                setTimeout(() => { onPress(true);  cursor.style.animation = 'none'; cursor.style.opacity = '1'; cursor.style.transform = 'translate(-50%,-50%) scale(.65)'; }, 380);
+                setTimeout(() => { onPress(false); cursor.style.transform = 'translate(-50%,-50%) scale(1)'; ripple.style.animation = 'none'; ripple.offsetHeight; ripple.style.opacity = '1'; ripple.style.animation = 'bd-ripple .55s forwards'; }, 560);
                 setTimeout(() => { cursor.style.animation = 'bd-cursor-out .2s forwards'; }, 660);
-
                 setTimeout(cb, 820);
               }
-
-              function pressBtn(el, pressed) {
-                el.style.background = pressed ? '#2d2d2d' : '#070707';
-                el.style.transform  = pressed ? 'scale(.97)' : '';
-              }
+              function pressBtn(el, pressed) { el.style.background = pressed ? '#2d2d2d' : '#070707'; el.style.transform = pressed ? 'scale(.97)' : ''; }
 
               /* ── Date picker initialisation ── */
               (function() {
-                const RH = 22; // row height px — picker is 110px tall, 5 visible rows
-                const P = ['','','']; // 3 phantom rows above/below for centering
-                // translateY to place item at index i in the center: 44 - i*RH
-                // (44 = 55px centre − 11px half-row)
+                const RH = 22;
+                const P = ['','',''];
                 function mkCol(el, items, selIdx, initIdx) {
                   el.innerHTML = [...P, ...items, ...P].map((t, i) =>
-                    `<div style="height:${RH}px;display:flex;align-items:center;
-                      font-family:'Inter',sans-serif;
-                      font-size:${i===selIdx?14:10}px;
-                      font-weight:${i===selIdx?700:400};
-                      color:${i===selIdx?'#0d0d0d':'#8a8a8a'};
-                      white-space:nowrap;padding-left:2px;">${t}</div>`
+                    `<div style="height:${RH}px;display:flex;align-items:center;font-family:'Inter',sans-serif;font-size:${i===selIdx?14:10}px;font-weight:${i===selIdx?700:400};color:${i===selIdx?'#0d0d0d':'#8a8a8a'};white-space:nowrap;padding-left:2px;">${t}</div>`
                   ).join('');
                   el.style.transform = `translateY(${44 - initIdx * RH}px)`;
                 }
                 const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
                 const days   = Array.from({length:31}, (_,i) => String(i+1));
                 const years  = Array.from({length:21}, (_,i) => String(1990+i));
-                // selIdx = final selected index (with 3 phantoms prepended)
-                // initIdx = starting index (Jan=3, Day1=3, Year2000=13)
-                mkCol(document.getElementById('bdPMonth'), months, 13, 3); // Jan→Nov (idx3→13)
-                mkCol(document.getElementById('bdPDay'),   days,   14, 3); // 1→12   (idx3→14)
-                mkCol(document.getElementById('bdPYear'),  years,   8, 13);// 2000→1995 (idx13→8)
+                mkCol(document.getElementById('bdPMonth'), months, 13, 3);
+                mkCol(document.getElementById('bdPDay'),   days,   14, 3);
+                mkCol(document.getElementById('bdPYear'),  years,   8, 13);
               })();
 
-              function run() {
+              function resetState() {
+                const RH = 22;
+                slide.style.transition = 'none'; goTo(0);
+                ['bdPMonth','bdPDay','bdPYear'].forEach(id => document.getElementById(id).style.transition = 'none');
+                document.getElementById('bdPMonth').style.transform = `translateY(${44-3*RH}px)`;
+                document.getElementById('bdPDay').style.transform   = `translateY(${44-3*RH}px)`;
+                document.getElementById('bdPYear').style.transform  = `translateY(${44-13*RH}px)`;
+                const cbEl = document.getElementById('bdCheckbox');
+                cbEl.style.background = '#fff'; cbEl.style.borderColor = '#d9d9d9'; cbEl.innerHTML = '';
+                document.getElementById('bdAcceptBtn').style.background = '#a3a3a3';
+                const conf2 = document.getElementById('bdConfirmBtn');
+                conf2.style.background = '#a3a3a3'; conf2.style.transform = '';
+                const ring = document.getElementById('bdRingPath');
+                ring.style.transition = 'none'; ring.style.opacity = '1'; ring.style.strokeDashoffset = '459';
+                document.getElementById('bdCircleBg').style.opacity = '0';
+                document.getElementById('bdCheckSvg').style.opacity  = '0';
+                cursor.style.animation = 'none'; cursor.style.opacity = '0';
+                cursor.style.transform = 'translate(-50%,-50%) scale(1)'; cursor.style.transition = '';
+                contBtn.style.opacity = '0';
+              }
+
+              function reenableTransitions() {
+                slide.style.transition = 'transform .45s cubic-bezier(.4,0,.2,1)';
+                ['bdPMonth','bdPDay','bdPYear'].forEach(id => document.getElementById(id).style.transition = '');
+                document.getElementById('bdRingPath').style.transition = 'stroke-dashoffset 1.2s cubic-bezier(.4,0,.2,1)';
+              }
+
+              function run(delay) {
+                const g = _gen;
+                const ok = () => _gen === g;
+
                 setTimeout(() => {
-                  /* Screen 0 → tap Create a new account */
+                  if (!ok()) return;
                   animateTap('74%',
                     pressed => btn.classList.toggle('pressed', pressed),
                     () => {
+                      if (!ok()) return;
                       goTo(1);
-                      /* fade in after slide settles (450ms transition + buffer) */
-                      setTimeout(() => { contBtn.style.opacity = '1'; }, 250);
-
-                      /* Screen 1 → tap Continue */
+                      setTimeout(() => { if (ok()) contBtn.style.opacity = '1'; }, 250);
                       setTimeout(() => {
+                        if (!ok()) return;
                         animateTap('88%',
                           pressed => pressBtn(contBtn, pressed),
                           () => {
-                            /* fade out, slide, fade back in */
-                            contBtn.style.opacity = '0';
-                            goTo(2);
-                            setTimeout(() => { contBtn.style.opacity = '1'; }, 250);
-
-                            /* Screen 2 → tap Continue → slide to Screen 3 */
+                            if (!ok()) return;
+                            contBtn.style.opacity = '0'; goTo(2);
+                            setTimeout(() => { if (ok()) contBtn.style.opacity = '1'; }, 250);
                             setTimeout(() => {
+                              if (!ok()) return;
                               animateTap('88%',
                                 pressed => pressBtn(contBtn, pressed),
                                 () => {
-                                  contBtn.style.opacity = '0';
-                                  goTo(3);
-
-                                  /* Screen 3 → tap checkbox (~81% from top, left ~10%) */
+                                  if (!ok()) return;
+                                  contBtn.style.opacity = '0'; goTo(3);
                                   setTimeout(() => {
+                                    if (!ok()) return;
                                     setCursorX('10%');
-                                    animateTap('81%',
-                                      () => {},
-                                      () => {
-                                        /* check the box + enable Accept */
-                                        const cb  = document.getElementById('bdCheckbox');
-                                        const abt = document.getElementById('bdAcceptBtn');
-                                        cb.style.background   = '#070707';
-                                        cb.style.borderColor  = '#070707';
-                                        cb.innerHTML = '<svg width="100%" height="100%" viewBox="0 0 8 8"><path d="M1.5 4.5L3.5 6.5L6.5 2" stroke="#fff" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>';
-                                        abt.style.background  = '#070707';
-
-                                        /* tap Accept (~89% from top, centered) */
-                                        setTimeout(() => {
-                                          setCursorX('50%');
-                                          animateTap('89%',
-                                            pressed => pressBtn(abt, pressed),
-                                            () => {
-                                              /* slide to Screen 4 (date of birth) */
+                                    animateTap('81%', () => {}, () => {
+                                      if (!ok()) return;
+                                      const cbEl = document.getElementById('bdCheckbox');
+                                      const abt  = document.getElementById('bdAcceptBtn');
+                                      cbEl.style.background = '#070707'; cbEl.style.borderColor = '#070707';
+                                      cbEl.innerHTML = '<svg width="100%" height="100%" viewBox="0 0 8 8"><path d="M1.5 4.5L3.5 6.5L6.5 2" stroke="#fff" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>';
+                                      abt.style.background = '#070707';
+                                      setTimeout(() => {
+                                        if (!ok()) return;
+                                        setCursorX('50%');
+                                        animateTap('89%', pressed => pressBtn(abt, pressed), () => {
+                                          if (!ok()) return;
+                                          setTimeout(() => {
+                                            if (!ok()) return;
+                                            setCursorX('50%'); goTo(4);
+                                            setTimeout(() => {
+                                              if (!ok()) return;
+                                              const RH = 22;
+                                              const pM = document.getElementById('bdPMonth');
+                                              const pD = document.getElementById('bdPDay');
+                                              const pY = document.getElementById('bdPYear');
+                                              const conf = document.getElementById('bdConfirmBtn');
+                                              cursor.style.animation = 'none'; cursor.style.opacity = '0';
+                                              cursor.style.transform = 'translate(-50%,-50%) scale(1)'; cursor.style.transition = 'opacity .2s';
+                                              const showAt = x => { setCursorX(x); setCursorY('32%'); cursor.style.opacity = '1'; };
+                                              const hide   = () => { cursor.style.opacity = '0'; };
+                                              showAt('27%');
+                                              setTimeout(() => { if (ok()) pM.style.transform = `translateY(${44-13*RH}px)`; }, 200);
                                               setTimeout(() => {
-                                                setCursorX('50%');
-                                                goTo(4);
-                                                /* after slide settles — spin month, then day, then year, then tap Confirm */
+                                                if (!ok()) return;
+                                                hide();
                                                 setTimeout(() => {
-                                                  const RH   = 22;
-                                                  const pM   = document.getElementById('bdPMonth');
-                                                  const pD   = document.getElementById('bdPDay');
-                                                  const pY   = document.getElementById('bdPYear');
-                                                  const conf = document.getElementById('bdConfirmBtn');
-
-                                                  cursor.style.animation  = 'none';
-                                                  cursor.style.opacity    = '0';
-                                                  cursor.style.transform  = 'translate(-50%,-50%) scale(1)';
-                                                  cursor.style.transition = 'opacity .2s';
-
-                                                  function showAt(x) { setCursorX(x); setCursorY('32%'); cursor.style.opacity = '1'; }
-                                                  function hide()     { cursor.style.opacity = '0'; }
-
-                                                  /* ── month ── */
-                                                  showAt('27%');
-                                                  setTimeout(() => { pM.style.transform = `translateY(${44-13*RH}px)`; }, 200);
+                                                  if (!ok()) return;
+                                                  showAt('62%');
+                                                  setTimeout(() => { if (ok()) pD.style.transform = `translateY(${44-14*RH}px)`; }, 200);
                                                   setTimeout(() => {
+                                                    if (!ok()) return;
                                                     hide();
-                                                    /* ── day ── */
                                                     setTimeout(() => {
-                                                      showAt('62%');
-                                                      setTimeout(() => { pD.style.transform = `translateY(${44-14*RH}px)`; }, 200);
+                                                      if (!ok()) return;
+                                                      showAt('85%');
+                                                      setTimeout(() => { if (ok()) pY.style.transform = `translateY(${44-8*RH}px)`; }, 200);
                                                       setTimeout(() => {
-                                                        hide();
-                                                        /* ── year ── */
+                                                        if (!ok()) return;
+                                                        hide(); conf.style.background = '#070707';
                                                         setTimeout(() => {
-                                                          showAt('85%');
-                                                          setTimeout(() => { pY.style.transform = `translateY(${44-8*RH}px)`; }, 200);
-                                                          setTimeout(() => {
-                                                            hide();
-                                                            conf.style.background = '#070707';
-                                                            /* ── tap Confirm → Screen 5 ── */
-                                                            setTimeout(() => {
-                                                              setCursorX('50%');
-                                                              animateTap('88%',
-                                                                p => { conf.style.background = p ? '#2d2d2d' : '#070707'; conf.style.transform = p ? 'scale(.97)' : ''; },
-                                                                () => setTimeout(() => {
-                                                                  goTo(5);
-                                                                  /* ring draws clockwise (1.2s), then pops off and circle + checkmark fade in */
+                                                          if (!ok()) return;
+                                                          setCursorX('50%');
+                                                          animateTap('88%',
+                                                            p => { conf.style.background = p ? '#2d2d2d' : '#070707'; conf.style.transform = p ? 'scale(.97)' : ''; },
+                                                            () => setTimeout(() => {
+                                                              if (!ok()) return;
+                                                              goTo(5);
+                                                              setTimeout(() => {
+                                                                if (!ok()) return;
+                                                                document.getElementById('bdRingPath').style.strokeDashoffset = '0';
+                                                                setTimeout(() => {
+                                                                  if (!ok()) return;
+                                                                  const ring = document.getElementById('bdRingPath');
+                                                                  ring.style.transition = 'none'; ring.style.opacity = '0';
+                                                                  document.getElementById('bdCircleBg').style.opacity = '1';
+                                                                  document.getElementById('bdCheckSvg').style.opacity  = '1';
                                                                   setTimeout(() => {
-                                                                    document.getElementById('bdRingPath').style.strokeDashoffset = '0';
-                                                                    setTimeout(() => {
-                                                                      const ring = document.getElementById('bdRingPath');
-                                                                      ring.style.transition = 'none';
-                                                                      ring.style.opacity = '0';
-                                                                      document.getElementById('bdCircleBg').style.opacity = '1';
-                                                                      document.getElementById('bdCheckSvg').style.opacity  = '1';
-                                                                      /* ── loop: pause then reset all state and restart ── */
-                                                                      setTimeout(() => {
-                                                                        const RH = 22;
-                                                                        /* snap slide to S0 */
-                                                                        slide.style.transition = 'none'; goTo(0);
-                                                                        /* reset date picker columns */
-                                                                        ['bdPMonth','bdPDay','bdPYear'].forEach(id => document.getElementById(id).style.transition = 'none');
-                                                                        document.getElementById('bdPMonth').style.transform = `translateY(${44-3*RH}px)`;
-                                                                        document.getElementById('bdPDay').style.transform   = `translateY(${44-3*RH}px)`;
-                                                                        document.getElementById('bdPYear').style.transform  = `translateY(${44-13*RH}px)`;
-                                                                        /* reset checkbox + accept */
-                                                                        const cb = document.getElementById('bdCheckbox');
-                                                                        cb.style.background = '#fff'; cb.style.borderColor = '#d9d9d9'; cb.innerHTML = '';
-                                                                        document.getElementById('bdAcceptBtn').style.background = '#a3a3a3';
-                                                                        /* reset confirm */
-                                                                        const conf2 = document.getElementById('bdConfirmBtn');
-                                                                        conf2.style.background = '#a3a3a3'; conf2.style.transform = '';
-                                                                        /* reset ring */
-                                                                        ring.style.opacity = '1'; ring.style.strokeDashoffset = '459';
-                                                                        /* reset success overlays */
-                                                                        document.getElementById('bdCircleBg').style.opacity = '0';
-                                                                        document.getElementById('bdCheckSvg').style.opacity  = '0';
-                                                                        /* reset cursor */
-                                                                        cursor.style.animation = 'none'; cursor.style.opacity = '0';
-                                                                        cursor.style.transform = 'translate(-50%,-50%) scale(1)';
-                                                                        cursor.style.transition = '';
-                                                                        contBtn.style.opacity = '0';
-                                                                        /* re-enable transitions then restart */
-                                                                        requestAnimationFrame(() => requestAnimationFrame(() => {
-                                                                          slide.style.transition = 'transform .45s cubic-bezier(.4,0,.2,1)';
-                                                                          ['bdPMonth','bdPDay','bdPYear'].forEach(id => document.getElementById(id).style.transition = '');
-                                                                          ring.style.transition = 'stroke-dashoffset 1.2s cubic-bezier(.4,0,.2,1)';
-                                                                          setTimeout(run, 600);
-                                                                        }));
-                                                                      }, 2500);
-                                                                    }, 1250);
-                                                                  }, 500);
-                                                                }, 400)
-                                                              );
-                                                            }, 900);
-                                                          }, 1600);
-                                                        }, 150);
+                                                                    if (!ok()) return;
+                                                                    resetState();
+                                                                    requestAnimationFrame(() => requestAnimationFrame(() => {
+                                                                      reenableTransitions();
+                                                                      setTimeout(run, 600);
+                                                                    }));
+                                                                  }, 2500);
+                                                                }, 1250);
+                                                              }, 500);
+                                                            }, 400)
+                                                          );
+                                                        }, 900);
                                                       }, 1600);
                                                     }, 150);
                                                   }, 1600);
-                                                }, 600);
-                                              }, 600);
-                                            }
-                                          );
-                                        }, 900);
-                                      }
-                                    );
+                                                }, 150);
+                                              }, 1600);
+                                            }, 600);
+                                          }, 600);
+                                        });
+                                      }, 900);
+                                    });
                                   }, 1200);
                                 }
                               );
@@ -976,8 +996,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                       }, 1800);
                     }
                   );
-                }, 2000);
+                }, delay !== undefined ? delay : 2000);
               }
+
+              window.bdCancelReg = function() { ++_gen; };
+
+              window.bdRegRestart = function() {
+                ++_gen;
+                resetState();
+                requestAnimationFrame(() => requestAnimationFrame(() => {
+                  reenableTransitions();
+                  setTimeout(() => run(500), 600);
+                }));
+              };
 
               run();
             })();
@@ -997,7 +1028,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div><!-- /.bd-demo-wrap -->
 
           <script>
-          /* ── Recovery flow — runs AFTER nav HTML is in the DOM ── */
+          /* ── Signin flow — runs AFTER nav HTML is in the DOM ── */
           (function(){
             var port        = document.getElementById('bdPort');
             var bdSlide     = document.getElementById('bdSlide');
@@ -1010,24 +1041,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             var regItems     = Array.from(allNavItems).filter(function(el){ return el !== boopNavItem; });
             var contOverlay  = document.getElementById('brContOverlay');
             var contBtn      = document.getElementById('brContBtn');
+            var brBoopBtn    = document.getElementById('brBoopBtn');
 
-            var recoveryRunning = false;
+            var _brGen = 0;
 
-            function goTo(n){
-              brSlide.style.transform = 'translateX(-'+(n * port.offsetWidth)+'px)';
-            }
+            function goTo(n){ brSlide.style.transform = 'translateX(-'+(n * port.offsetWidth)+'px)'; }
             function setCursorX(x){ cursor.style.left = x; ripple.style.left = x; }
             function setCursorY(y){ cursor.style.top  = y; ripple.style.top  = y; }
 
-            function animateTap(yPct, doneCallback){
+            function animateTap(yPct, onPress, doneCallback){
               setCursorY(yPct);
               cursor.style.opacity = '1';
               setTimeout(function(){
+                if(onPress) onPress(true);
                 cursor.style.transform = 'translate(-50%,-50%) scale(.85)';
                 ripple.style.animation = 'none'; ripple.offsetHeight;
                 ripple.style.opacity   = '1';
                 ripple.style.animation = 'bd-ripple .55s forwards';
                 setTimeout(function(){
+                  if(onPress) onPress(false);
                   cursor.style.transform = 'translate(-50%,-50%) scale(1)';
                   setTimeout(function(){
                     cursor.style.opacity = '0';
@@ -1041,56 +1073,79 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               brSlide.style.transition = 'none';
               brSlide.style.transform  = 'translateX(0)';
               contOverlay.style.opacity = '0';
-              contBtn.style.background  = '#070707';
-              contBtn.style.transform   = '';
+              contBtn.style.background  = '#070707'; contBtn.style.transform = '';
+              brBoopBtn.style.background = ''; brBoopBtn.style.transform = '';
+              var r1 = document.getElementById('brRadio1Dot');
+              var r2 = document.getElementById('brRadio2Dot');
+              if(r1){ r1.style.border = '1.5px solid #d9d9d9'; r1.style.background = ''; }
+              if(r2){ r2.style.border = '1.5px solid #d9d9d9'; r2.style.background = ''; }
               requestAnimationFrame(function(){ requestAnimationFrame(function(){
                 brSlide.style.transition = 'transform .45s cubic-bezier(.4,0,.2,1)';
               }); });
             }
 
             function runRecovery(){
-              recoveryRunning = true;
+              var g = _brGen;
+              var ok = function(){ return _brGen === g; };
+
               setCursorX('50%');
-              /* S0: tap radio 1 "I have access" (~42%) */
-              animateTap('42%', function(){
-                /* Continue button fades in */
-                contOverlay.style.opacity = '1';
-                /* S0: tap Continue (~92%) */
-                setTimeout(function(){
-                  contBtn.style.background = '#2d2d2d'; contBtn.style.transform = 'scale(.97)';
-                  setTimeout(function(){ contBtn.style.background = '#070707'; contBtn.style.transform = ''; }, 200);
-                  animateTap('92%', function(){
-                      contOverlay.style.opacity = '0';
-                      setTimeout(function(){
-                        goTo(1);
-                        /* S1: tap Show QR Code (~91%) */
+              /* S0: cursor taps Boop account glass button (~86%) */
+              setTimeout(function(){
+                if(!ok()) return;
+                animateTap('86%',
+                  function(pressed){ brBoopBtn.style.background = pressed ? 'rgba(255,255,255,0.2)' : ''; brBoopBtn.style.transform = pressed ? 'scale(.97)' : ''; },
+                  function(){
+                    if(!ok()) return;
+                    goTo(1);
+                    /* S1: tap radio 1 (~42%) */
+                    setTimeout(function(){
+                      if(!ok()) return;
+                      animateTap('42%', null, function(){
+                        if(!ok()) return;
+                        var r1 = document.getElementById('brRadio1Dot');
+                        if(r1){ r1.style.border='1.5px solid #070707'; r1.style.background='radial-gradient(circle at center, #070707 38%, transparent 38%)'; }
+                        contOverlay.style.opacity = '1';
+                        /* S1: tap Continue (~92%) */
                         setTimeout(function(){
-                          animateTap('91%', function(){
+                          if(!ok()) return;
+                          contBtn.style.background = '#2d2d2d'; contBtn.style.transform = 'scale(.97)';
+                          setTimeout(function(){ contBtn.style.background = '#070707'; contBtn.style.transform = ''; }, 200);
+                          animateTap('92%', null, function(){
+                            if(!ok()) return;
+                            contOverlay.style.opacity = '0';
                             setTimeout(function(){
+                              if(!ok()) return;
                               goTo(2);
-                              /* loop: pause then snap back and restart */
+                              /* S2: tap Show QR Code (~91%) */
                               setTimeout(function(){
-                                brSlide.style.transition = 'none';
-                                brSlide.style.transform  = 'translateX(0)';
-                                contOverlay.style.opacity = '0';
-                                requestAnimationFrame(function(){ requestAnimationFrame(function(){
-                                  brSlide.style.transition = 'transform .45s cubic-bezier(.4,0,.2,1)';
-                                  recoveryRunning = false;
-                                  setTimeout(runRecovery, 600);
-                                }); });
-                              }, 2500);
-                            }, 200);
+                                if(!ok()) return;
+                                animateTap('91%', null, function(){
+                                  if(!ok()) return;
+                                  setTimeout(function(){
+                                    if(!ok()) return;
+                                    goTo(3);
+                                    /* loop: pause then snap back and restart */
+                                    setTimeout(function(){
+                                      if(!ok()) return;
+                                      resetSlide();
+                                      setTimeout(runRecovery, 600);
+                                    }, 2500);
+                                  }, 200);
+                                });
+                              }, 1400);
+                            }, 300);
                           });
-                        }, 1400);
-                      }, 300);
-                    }
-                  );
-                }, 900);
-              });
+                        }, 900);
+                      });
+                    }, 1400);
+                  }
+                );
+              }, 500);
             }
 
             function showRecovery(){
-              if(recoveryRunning) return;
+              window.bdCancelReg && window.bdCancelReg();
+              ++_brGen;
               bdSlide.style.display = 'none';
               bdCont.style.opacity  = '0';
               cursor.style.opacity  = '0';
@@ -1102,11 +1157,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             }
 
             function showRegistration(idx){
-              if(recoveryRunning) return;
+              ++_brGen;
               brSlide.style.display = 'none';
               bdSlide.style.display = 'flex';
               allNavItems.forEach(function(el){ el.classList.remove('is-active'); });
               regItems[idx || 0].classList.add('is-active');
+              window.bdRegRestart();
             }
 
             boopNavItem.addEventListener('click', showRecovery);
