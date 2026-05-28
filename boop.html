@@ -577,7 +577,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <div id="bdScan2" style="position:absolute;left:5.1%;top:37.1%;width:90.3%;height:9.2%;border-radius:8px;background:transparent;transition:background .15s ease;pointer-events:none;"></div>
                   </div>
 
-                  <!-- Screen 2: scanner hover-hand prompt — "Hover your hand to begin" -->
+                  <!-- Screen 2: tap phone on scanner -->
+                  <div class="bd-screen">
+                    <img src="boop-scanning-2.png" alt="">
+                  </div>
+
+                  <!-- Screen 3: hover-hand prompt — "Hover your hand to begin" -->
                   <div class="bd-screen">
                     <img src="boop-hover-hand.png" alt="">
                   </div>
@@ -943,7 +948,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                   p => { conf.style.background = p ? '#2d2d2d' : '#070707'; conf.style.transform = p ? 'scale(.97)' : ''; },
                                   () => setTimeout(() => {
                                     if (!ok()) return;
-                                    goTo(7);
+                                    goTo(8);
                                     playAccount();
                                   }, 400)
                                 );
@@ -975,7 +980,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                           if (!ok()) return;
                           setTimeout(() => {
                             if (!ok()) return;
-                            setCursorX('50%'); goTo(6);
+                            setCursorX('50%'); goTo(7);
                             runFromDOB();
                           }, 600);
                         });
@@ -984,33 +989,33 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                   }, 1200);
                 };
 
-                /* ── Onboarding-2: Continue → Terms ── */
+                /* ── Onboarding-2: Continue → Terms(6) ── */
                 const runFromOnboarding2 = () => {
                   setTimeout(() => { if (ok()) contBtn.style.opacity = '1'; }, 250);
                   setTimeout(() => {
                     if (!ok()) return;
                     animateTap('88%', pressed => pressBtn(contBtn, pressed), () => {
                       if (!ok()) return;
-                      contBtn.style.opacity = '0'; goTo(5);
+                      contBtn.style.opacity = '0'; goTo(6);
                       runFromTerms();
                     });
                   }, 1800);
                 };
 
-                /* ── Onboarding-1: Continue → Onboarding-2 ── */
+                /* ── Onboarding-1: Continue → Onboarding-2(5) ── */
                 const runFromOnboarding1 = () => {
                   setTimeout(() => { if (ok()) contBtn.style.opacity = '1'; }, 250);
                   setTimeout(() => {
                     if (!ok()) return;
                     animateTap('88%', pressed => pressBtn(contBtn, pressed), () => {
                       if (!ok()) return;
-                      contBtn.style.opacity = '0'; goTo(4);
+                      contBtn.style.opacity = '0'; goTo(5);
                       runFromOnboarding2();
                     });
                   }, 1800);
                 };
 
-                /* ── 03 Scanning: tap upper selector → screen 2 → loop back ── */
+                /* ── 03 Scanning: tap selector(1) → scan-2(2) → hover-hand(3) → loop ── */
                 const fromScan = () => {
                   setCursorX('50%');
                   const scan1 = document.getElementById('bdScan1');
@@ -1029,48 +1034,52 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         goTo(2);
                         setTimeout(() => {
                           if (!ok()) return;
-                          goTo(1);
-                          fromScan();
-                        }, 2500);
+                          goTo(3);
+                          setTimeout(() => {
+                            if (!ok()) return;
+                            goTo(1);
+                            fromScan();
+                          }, 2500);
+                        }, 2000);
                       }
                     );
                   }, 1000);
                 };
 
                 /* ── Route to start point ── */
-                if (startAt === 1 || startAt === 2) {
+                if (startAt === 1 || startAt === 2 || startAt === 3) {
                   setTimeout(() => { if (ok()) fromScan(); }, delay !== undefined ? delay : 800);
                   return;
                 }
-                if (startAt === 3) {
+                if (startAt === 4) {
                   setTimeout(() => { if (ok()) runFromOnboarding1(); }, delay !== undefined ? delay : 600);
                   return;
                 }
-                if (startAt === 4) {
+                if (startAt === 5) {
                   setTimeout(() => { if (ok()) runFromOnboarding2(); }, delay !== undefined ? delay : 600);
                   return;
                 }
-                if (startAt === 5) {
+                if (startAt === 6) {
                   setTimeout(() => { if (ok()) runFromTerms(); }, delay !== undefined ? delay : 600);
                   return;
                 }
-                if (startAt === 6) {
+                if (startAt === 7) {
                   setTimeout(() => { if (ok()) runFromDOB(); }, delay !== undefined ? delay : 600);
                   return;
                 }
-                if (startAt >= 7) {
+                if (startAt >= 8) {
                   setTimeout(() => { if (ok()) playAccount(); }, delay !== undefined ? delay : 600);
                   return;
                 }
 
-                /* ── Main splash flow: tap Create → onboarding-1 → 2 → Terms → DOB → Account ── */
+                /* ── Main splash flow: tap Create → onboarding-1(4) → 2(5) → Terms(6) → DOB(7) → Account(8) ── */
                 setTimeout(() => {
                   if (!ok()) return;
                   animateTap('74%',
                     pressed => btn.classList.toggle('pressed', pressed),
                     () => {
                       if (!ok()) return;
-                      goTo(3);
+                      goTo(4);
                       runFromOnboarding1();
                     }
                   );
@@ -1262,7 +1271,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 window.bdRegRestart();
               } else {
                 /* regItems: [0:Splash, 1:03Scan, 2:04Palm, 3:05Terms, 4:06DOB, 5:07Account] */
-                var screenMap = [0, 1, 3, 5, 6, 7];
+                var screenMap = [0, 1, 4, 6, 7, 8];
                 window.bdRunFrom(screenMap[idx]);
               }
             }
