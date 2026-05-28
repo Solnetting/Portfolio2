@@ -496,6 +496,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             }
             #bdBtn.pressed { background:#2d2d2d; transform:scale(.97); }
 
+            /* 04 Add new card — same pill as #bdBtn, absolutely positioned over bc-card-01.png */
+            #bcAddBtn {
+              position:absolute; left:12px; right:12px; top:calc(75% - 16px);
+              display:flex; align-items:center; justify-content:center;
+              height:33px; border-radius:100px;
+              background:#070707; color:#fefefe;
+              font-family:'Inter',sans-serif; font-size:10px; font-weight:500;
+              border:none; cursor:default; pointer-events:none;
+              transition:background .15s, transform .12s;
+            }
+            #bcAddBtn.pressed { background:#2d2d2d; transform:scale(.97); }
+
             /* Onboarding Continue — Figma: h-55, #070707, Inter Bold 16px — scaled ×0.59 */
             .bd-continue {
               display:flex;align-items:center;justify-content:center;
@@ -838,7 +850,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                   <!-- Screen 0: Cards — empty state (Figma 3625:18006) -->
                   <div class="bd-screen">
                     <img src="bc-card-01.png" alt="Cards — empty state">
-                    <div id="bcAddBtn" style="position:absolute;left:12px;right:12px;top:calc(75% - 16px);height:33px;border-radius:100px;background:transparent;pointer-events:none;"></div>
+                    <button id="bcAddBtn">Add new card</button>
                   </div>
                   <!-- Screen 1: Scan Card — camera viewfinder (Figma 2877:7258) -->
                   <div class="bd-screen" style="background:#ecf0f6;display:flex;flex-direction:column;">
@@ -1360,7 +1372,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 setCursorX('50%');
                 setTimeout(function(){
                   if(!ok()) return;
-                  animateTap('75%', function(pressed){ if(bcAddBtn){ bcAddBtn.style.background = pressed ? 'rgba(255,255,255,0.15)' : 'transparent'; bcAddBtn.style.transform = pressed ? 'scale(.97)' : ''; } }, function(){
+                  animateTap('75%', function(pressed){ if(bcAddBtn){ bcAddBtn.classList.toggle('pressed', pressed); } }, function(){
                     if(!ok()) return;
                     bcGoTo(1);
                     setTimeout(function(){
