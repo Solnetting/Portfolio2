@@ -22,7 +22,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <meta name="description" content="Restaking.Info — Ethereum restaking analytics dashboard with operator tracking, TVL charts, and LST distribution views. Designed by Carlos Mera.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@300;400;500&family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="project.css">
   <style>
@@ -610,6 +610,221 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       padding: .375rem .5rem;
     }
 
+    /* ─── Component kit ─── */
+    .rs-ck { margin-top: 4rem; }
+    .rs-ck-group { margin-bottom: 3rem; }
+    .rs-ck-group__hd { display:flex; align-items:baseline; gap:.75rem; margin-bottom:1.25rem; padding-bottom:.5rem; border-bottom:1px solid rgba(255,255,255,.06); }
+    .rs-ck-group__num { font-family:'JetBrains Mono',monospace; font-size:.6rem; color:rgba(255,255,255,.2); letter-spacing:.1em; }
+    .rs-ck-group__name { font-size:.875rem; font-weight:600; color:rgba(255,255,255,.5); font-family:'Space Grotesk',sans-serif; }
+    .rs-ck-shelf { display:flex; flex-wrap:wrap; gap:1.5rem; align-items:flex-start; }
+    .rs-ck-row  { display:flex; flex-wrap:wrap; gap:1rem; align-items:flex-end; }
+    .rs-ck-cell { display:flex; flex-direction:column; gap:.45rem; }
+    .rs-ck-state { font-size:.55rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.16); }
+    .rs-ck-sep { width:1px; background:rgba(255,255,255,.07); align-self:stretch; flex-shrink:0; margin:0 .25rem; }
+    .rs-ck-col { display:flex; flex-direction:column; gap:.875rem; }
+
+    /* EL Button */
+    .el-btn { display:inline-flex; align-items:center; justify-content:center; padding:4px 12px; border-radius:4px; font-family:'DM Sans',sans-serif; font-size:16px; font-weight:400; cursor:pointer; border:none; white-space:nowrap; line-height:24px; }
+    .el-btn--sm { height:32px; }
+    .el-btn--md { height:40px; }
+    .el-btn--lg { height:48px; }
+    .el-btn--p-def  { background:#FFA726; color:#000; }
+    .el-btn--p-hov  { background:#FFCC80; color:#000; }
+    .el-btn--s-def  { background:transparent; border:1px solid #FFCC80; color:#FFCC80; }
+    .el-btn--s-hov  { background:transparent; border:1px solid #FFA726; color:#FFA726; }
+
+    /* EL Tab Menu */
+    .el-tabmenu { display:flex; align-items:center; gap:8px; height:65px; padding:0 24px; width:259px; font-family:'DM Sans',sans-serif; font-size:16px; cursor:pointer; position:relative; box-shadow:0 1px 1.5px rgba(0,0,0,.1),0 1px 1px rgba(0,0,0,.06); }
+    .el-tabmenu::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; }
+    .el-tabmenu--default { background:#0F111A; color:#7A86A5; }
+    .el-tabmenu--default::before { display:none; }
+    .el-tabmenu--active  { background:#191C2C; color:#CAD7F9; }
+    .el-tabmenu--active::before  { background:#CAD7F9; }
+    .el-tabmenu--hover   { background:rgba(25,28,44,.5); color:#CAD7F9; }
+    .el-tabmenu--hover::before   { background:#7A86A5; }
+    .el-tabmenu--ghost   { background:transparent; color:#7A86A5; }
+    .el-tabmenu--ghost::before   { display:none; }
+    .el-tabmenu__icon { width:20px; height:20px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .el-tabmenu__lbl  { flex:1; line-height:24px; }
+    .el-tabmenu__tag  { background:#7A86A5; color:#0F111A; font-size:12px; padding:2px 4px; border-radius:4px; line-height:1; font-family:'DM Sans',sans-serif; }
+
+    /* EL Stat Tab */
+    .el-stattab { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; padding:8px 16px; border-radius:8px; font-family:'DM Sans',sans-serif; min-width:148px; }
+    .el-stattab--default  { background:transparent; }
+    .el-stattab--selected { background:#191C2C; border:1px solid #293041; }
+    .el-stattab--hover    { background:rgba(25,28,44,.5); border:1px solid transparent; }
+    .el-stattab__lbl  { font-size:12px; color:#7A86A5; }
+    .el-stattab--selected .el-stattab__lbl,
+    .el-stattab--hover    .el-stattab__lbl { color:#CAD7F9; }
+    .el-stattab__val  { font-size:16px; line-height:24px; }
+    .el-stattab--default  .el-stattab__val { color:#CAD7F9; }
+    .el-stattab--selected .el-stattab__val,
+    .el-stattab--hover    .el-stattab__val { color:#fff; }
+    .el-stattab__sub { font-size:12px; color:#CAD7F9; }
+
+    /* EL Table Row */
+    .el-table-wrap { border:1px solid #293041; border-radius:4px; overflow:hidden; margin-top:1.25rem; }
+    .el-tablerow { display:flex; align-items:center; justify-content:space-between; padding:4px 24px; border-top:1px solid #293041; font-family:'DM Sans',sans-serif; font-size:14px; min-height:56px; }
+    .el-tablerow:first-child { border-top:none; }
+    .el-tablerow--def { background:#0F111A; }
+    .el-tablerow--hov { background:#191C2C; }
+    .el-tablerow__l { display:flex; align-items:center; gap:8px; flex:1; }
+    .el-tablerow__rank { width:20px; text-align:center; color:#7A86A5; flex-shrink:0; }
+    .el-tablerow__av { width:32px; height:32px; border-radius:50%; background:#F31260; display:flex; align-items:center; justify-content:center; font-size:11px; color:#fff; font-weight:700; flex-shrink:0; }
+    .el-tablerow__av--nm { background:#7A86A5; }
+    .el-tablerow__av--eth { background:#627EEA; }
+    .el-tablerow__av--op  { background:#FF0420; }
+    .el-tablerow__name  { color:#fff; }
+    .el-tablerow__addr  { color:#fff; font-family:'JetBrains Mono',monospace; font-size:13px; }
+    .el-tablerow__badge { background:transparent; border:1px solid #7A86A5; color:#7A86A5; font-size:10px; font-weight:700; padding:2px 4px; border-radius:3px; letter-spacing:.05em; }
+    .el-tablerow__m { color:#fff; text-align:center; min-width:120px; }
+    .el-tablerow__avs { display:flex; align-items:center; gap:4px; color:#fff; min-width:120px; justify-content:center; }
+    .el-tablerow__avs-stack { display:flex; }
+    .el-tablerow__avs-dot { width:12px; height:12px; border-radius:50%; border:1px solid #0F111A; margin-right:-4px; }
+    .el-tablerow__r { display:flex; flex-direction:column; align-items:flex-end; gap:2px; min-width:140px; }
+    .el-tablerow__val { color:#fff; }
+    .el-tablerow__eth { color:#7A86A5; font-size:12px; }
+    .el-tablerow__pct { color:#fff; min-width:80px; text-align:right; }
+    .el-tablerow__warn { width:32px; height:32px; border-radius:50%; background:rgba(255,204,0,.12); display:flex; align-items:center; justify-content:center; font-size:15px; }
+
+    /* EL Search */
+    .el-search { display:flex; align-items:center; justify-content:space-between; height:32px; padding:4px 16px; border-radius:4px; border:1px solid; width:238px; font-family:'DM Sans',sans-serif; font-size:14px; }
+    .el-search--def { border-color:#293041; color:#7A86A5; }
+    .el-search--hov { border-color:#CAD7F9; color:#CAD7F9; }
+    .el-search svg { flex-shrink:0; opacity:.55; }
+    .el-search--hov svg { opacity:.85; }
+
+    /* EL Filter */
+    .el-filter { display:inline-flex; align-items:center; height:28px; border-radius:4px; border:1px solid; font-family:'DM Sans',sans-serif; font-size:14px; cursor:pointer; }
+    .el-filter--def    { border-color:#293041; color:#7A86A5; background:transparent; padding:4px 16px; }
+    .el-filter--hov    { border-color:#293041; color:#CAD7F9; background:rgba(25,28,44,.5); padding:4px 16px; }
+    .el-filter--filled { border-color:#293041; color:#CAD7F9; background:rgba(25,28,44,.5); padding:4px 8px 4px 16px; gap:0; }
+    .el-filter__sep { width:1px; height:14px; background:#293041; margin:0 6px; flex-shrink:0; }
+    .el-filter__sub { font-size:12px; color:#7A86A5; }
+    .el-filter__x { width:14px; height:14px; display:flex; align-items:center; justify-content:center; color:#7A86A5; font-size:9px; margin-left:4px; }
+
+    /* EL Tag */
+    .el-tag { display:inline-flex; align-items:center; justify-content:center; border-radius:4px; font-family:'DM Sans',sans-serif; }
+    .el-tag--rank { background:#7A86A5; color:#0F111A; font-size:12px; padding:3px 4px; line-height:1; }
+    .el-tag--ad   { border:1px solid #7A86A5; color:#7A86A5; font-size:10px; font-weight:700; width:20px; height:20px; letter-spacing:.04em; }
+
+    /* EL Pagination */
+    .el-page { display:inline-flex; align-items:center; justify-content:center; padding:4px; font-family:'DM Sans',sans-serif; font-size:14px; line-height:20px; min-width:28px; cursor:pointer; }
+    .el-page--active   { color:#CAD7F9; }
+    .el-page--inactive { color:#7A86A5; }
+    .el-page--hover    { color:#FFCC80; }
+
+    /* EL Banner */
+    .el-banner { display:flex; align-items:center; justify-content:space-between; height:54px; padding:4px 16px; border-radius:8px; border:1px solid #293041; font-family:'DM Sans',sans-serif; width:254px; }
+    .el-banner--def { background:#2D344D; }
+    .el-banner--hov { background:#37446C; }
+    .el-banner__l   { display:flex; align-items:center; gap:8px; }
+    .el-banner__icon { width:30px; height:14px; position:relative; }
+    .el-banner__icon span { position:absolute; width:14px; height:14px; border-radius:50%; }
+    .el-banner__icon span:nth-child(1) { background:#3B82F6; left:0; }
+    .el-banner__icon span:nth-child(2) { background:#F97316; left:8px; }
+    .el-banner__txts { display:flex; flex-direction:column; gap:2px; }
+    .el-banner__title { font-size:16px; font-weight:700; line-height:1; }
+    .el-banner--def .el-banner__title { color:#D0D5E7; }
+    .el-banner--hov .el-banner__title { color:#FFCC80; }
+    .el-banner__sub { font-size:12px; line-height:1; }
+    .el-banner--def .el-banner__sub { color:#A7B2D2; }
+    .el-banner--hov .el-banner__sub { color:#FFCC80; }
+    .el-banner__arr { font-size:16px; }
+    .el-banner--def .el-banner__arr { color:#7A86A5; }
+    .el-banner--hov .el-banner__arr { color:#FFCC80; }
+
+    /* EL Checkbox */
+    .el-checkbox { display:inline-flex; align-items:center; gap:8px; padding:8px 0; font-family:'DM Sans',sans-serif; font-size:14px; color:#7A86A5; line-height:20px; }
+    .el-checkbox--hov { background:rgba(25,28,44,.5); padding:8px 10px; border-radius:4px; }
+    .el-checkbox--dis { opacity:.5; }
+    .el-checkbox__box { width:16px; height:16px; border:2px solid #293041; flex-shrink:0; display:flex; align-items:center; justify-content:center; }
+    .el-checkbox--chk     .el-checkbox__box { background:#FFA726; border-color:#FFA726; }
+    .el-checkbox--dis-chk .el-checkbox__box { background:#7A86A5; border-color:#7A86A5; }
+    .el-checkbox__tick { display:none; }
+    .el-checkbox--chk     .el-checkbox__tick,
+    .el-checkbox--dis-chk .el-checkbox__tick { display:block; }
+
+    /* ─── Token table ─── */
+    .rs-tokens {
+      margin-top: 3rem;
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .rs-tokens__header {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      padding: .5rem 1.25rem;
+      background: rgba(255,255,255,.04);
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+    .rs-tokens__col-label {
+      font-size: .6rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.28);
+    }
+    .rs-tokens__group {
+      padding: .45rem 1.25rem;
+      font-size: .6rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.38);
+      background: rgba(255,255,255,.025);
+      border-top: 1px solid rgba(255,255,255,.05);
+      border-bottom: 1px solid rgba(255,255,255,.05);
+    }
+    .rs-tokens__row {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      padding: .45rem 1.25rem;
+      border-bottom: 1px solid rgba(255,255,255,.04);
+      align-items: center;
+    }
+    .rs-tokens__row:last-child { border-bottom: none; }
+    .rs-tokens__row:hover { background: rgba(255,255,255,.015); }
+    .rs-tokens__name {
+      font-size: .75rem;
+      color: rgba(255,255,255,.52);
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      font-family: 'Inter', sans-serif;
+    }
+    .rs-tokens__ico {
+      width: 13px;
+      height: 13px;
+      color: rgba(255,255,255,.18);
+      flex-shrink: 0;
+    }
+    .rs-tokens__val {
+      font-size: .6875rem;
+      font-family: 'JetBrains Mono', monospace;
+      color: rgba(255,255,255,.32);
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      letter-spacing: .01em;
+    }
+    .rs-tokens__sw {
+      width: 15px;
+      height: 15px;
+      border-radius: 3px;
+      flex-shrink: 0;
+      border: 1px solid rgba(255,255,255,.1);
+    }
+    .rs-tokens__sw--checker {
+      background-image: linear-gradient(45deg,rgba(255,255,255,.08) 25%,transparent 25%),
+                        linear-gradient(-45deg,rgba(255,255,255,.08) 25%,transparent 25%),
+                        linear-gradient(45deg,transparent 75%,rgba(255,255,255,.08) 75%),
+                        linear-gradient(-45deg,transparent 75%,rgba(255,255,255,.08) 75%);
+      background-size: 6px 6px;
+      background-position: 0 0, 0 3px, 3px -3px, -3px 0;
+    }
+
     /* ─── Responsive ─── */
     @media (max-width: 900px) {
       .rs-case { grid-template-columns: 1fr; gap: 0; padding-top: 3rem; }
@@ -669,7 +884,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="tag">Dashboard</span>
         <span class="tag">Data Visualisation</span>
       </div>
-      <p class="proj-hero__tagline">Ethereum restaking analytics platform — designed end-to-end, from information architecture to component flows</p>
+      <p class="proj-hero__tagline">EigenLayer created a new financial primitive. Within 18 months it had hundreds of operators, dozens of AVSs, and $100M+ in staked ETH — and no legible tool to manage it. Restaking.Info was built to fix that: a decision-making platform that translates on-chain complexity into a clear picture of where your capital is, how it's performing, and what to do next.</p>
       <div class="proj-hero__details">
         <div class="proj-detail">
           <span class="proj-detail__label">Role</span>
@@ -685,7 +900,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <div class="proj-detail">
           <span class="proj-detail__label">Tools</span>
-          <span class="proj-detail__value">Figma</span>
+          <span class="proj-detail__value">Figma · Claude Code</span>
         </div>
       </div>
     </div>
@@ -727,6 +942,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a href="#rs-strategy"   class="rs-sidenav__item" data-s="rs-strategy">Strategy &amp;<br>Insights</a>
       <a href="#rs-iterations" class="rs-sidenav__item" data-s="rs-iterations">Iterations</a>
       <a href="#rs-system"     class="rs-sidenav__item" data-s="rs-system">Design System</a>
+      <a href="#rs-ai"         class="rs-sidenav__item" data-s="rs-ai">AI Workflow</a>
       <a href="#rs-results"    class="rs-sidenav__item" data-s="rs-results">Results &amp;<br>Retrospective</a>
     </nav>
 
@@ -738,11 +954,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     ═══════════════════════════════ -->
     <div id="rs-summary" class="rs-sec">
       <p class="section__label">Executive Summary</p>
-      <h2 class="rs-sec__title">Making restaking legible for everyone</h2>
+      <h2 class="rs-sec__title">From on-chain complexity to confident action</h2>
 
       <div class="rs-2col">
-        <p class="rs-body-text">Restaking.Info is a comprehensive EigenLayer analytics platform covering the full restaking stack — TVL overview, AVS status and metrics, operator tracking, LST and LRT distribution, permissionless tokens, rewards, and on-chain events — all in a single, readable interface with nine distinct views and per-entity detail pages.</p>
-        <p class="rs-body-text">The product targets a technically sophisticated but time-poor audience: crypto-native users who need confidence in their positions without having to parse raw contract data or cross-reference three different tools. Each section has its own depth — from a global EigenLayer overview down to individual AVS bios like EigenDA, a data availability solution with 10 MiB/s of write throughput.</p>
+        <p class="rs-body-text">The challenge wasn't aesthetic — it was structural. EigenLayer introduced restaking to Ethereum's financial stack, and the ecosystem grew faster than tooling could follow. Users managing positions across operators, AVSs, LSTs, and LRTs were piecing together a picture from raw contract data, Discord threads, and spreadsheets. No single interface unified the system.</p>
+        <p class="rs-body-text">Restaking.Info addresses that directly. It aggregates the full restaking stack — TVL overview, AVS status, 364 operators, LST and LRT distribution, permissionless tokens, rewards, and on-chain events — into nine linked views built around one principle: every screen should move the user one step closer to a decision, not deeper into data.</p>
       </div>
 
       <div class="rs-img-block">
@@ -762,6 +978,36 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="rs-nav-map__item">Events</div>
           <div class="rs-nav-map__item">API</div>
         </div>
+      </div>
+
+      <div style="margin-top:4.5rem">
+        <p class="section__label">The simplification problem</p>
+        <h3 style="font-size:1rem;font-weight:600;color:rgba(255,255,255,.8);margin:.4rem 0 1rem">EigenLayer's architecture is complex. The product design had to be simple.</h3>
+        <p class="rs-body-text" style="max-width:640px">AVSs, operators, LSTs, LRTs, slashing conditions, reward mechanisms, permissionless tokens — surfacing all of it is the wrong answer. The right answer was to identify the three questions every user is actually trying to answer:</p>
+        <div class="rs-steps" style="margin-top:1.5rem;max-width:580px">
+          <div class="rs-step">
+            <span class="rs-step__num">01</span>
+            <div>
+              <h4 class="rs-step__title">Is my capital safe?</h4>
+              <p class="rs-step__body">Operator health, slashing risk, AVS exposure — risk state surfaces first, everywhere.</p>
+            </div>
+          </div>
+          <div class="rs-step">
+            <span class="rs-step__num">02</span>
+            <div>
+              <h4 class="rs-step__title">Am I earning what I should?</h4>
+              <p class="rs-step__body">Rewards accrued, APR trends, TVL trajectory — yield clarity without contract parsing.</p>
+            </div>
+          </div>
+          <div class="rs-step">
+            <span class="rs-step__num">03</span>
+            <div>
+              <h4 class="rs-step__title">Should I change anything?</h4>
+              <p class="rs-step__body">Comparative operator data, upgrade readiness, client diversity — everything needed to act with confidence.</p>
+            </div>
+          </div>
+        </div>
+        <p class="rs-body-text" style="margin-top:1.5rem;max-width:640px">The nine platform views map to these three questions — not to EigenLayer's technical architecture.</p>
       </div>
 
       <div style="margin-top:4.5rem">
@@ -992,17 +1238,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <div class="rs-iters" style="margin-top:3rem">
         <div class="rs-iter" style="border-top:1px solid var(--border);padding-top:2rem">
-          <span class="rs-iter__tag">Feedback</span>
-          <div>
-            <h4 class="rs-iter__title">What failed</h4>
-            <p class="rs-iter__body">[Placeholder — specific failure from usability testing. E.g. "100% of testers opened the wrong section first. Organising by protocol instead of by user goal forced users to mentally translate before they could act."]</p>
-          </div>
-        </div>
-        <div class="rs-iter">
           <span class="rs-iter__tag">Hi-fi</span>
           <div>
-            <h4 class="rs-iter__title">Desktop and Mobile</h4>
-            <p class="rs-iter__body">Designed and owned entirely in Figma — from component architecture to interactive flows. Every major section is a named flow covering the full state space: the AVS detail maps three sub-views (Total Value, Operators, Re-stakers); the Operator flow covers the list, search match, empty state, 404 error, operator detail, and the AVS-Operators tab. Nothing left to chance.</p>
+            <h4 class="rs-iter__title">Designing for decisions, not just data</h4>
+            <p class="rs-iter__body">The hardest UX problem in restaking is operator selection — users are committing staked ETH to an operator they can't easily evaluate, a decision with real slashing risk and real yield implications. The operator flow was designed as a decision funnel, not a data dump: <strong style="color:rgba(255,255,255,.65)">List → Filter → Profile → AVS Exposure</strong>. Each step reduces uncertainty before commitment. The list surfaces the metrics that matter (TVL, number of AVSs, ETH managed). The filter narrows by what the user cares about. The profile gives the full picture. The AVS sub-tab shows exactly what the operator is opted into — the last question before a user acts.</p>
+            <p class="rs-iter__body" style="margin-top:.75rem">Owned entirely in Figma — from component architecture to interactive flows. Every section covers the full state space: AVS detail maps three sub-views (Total Value, Operators, Re-stakers); the Operator flow covers list, search match, empty state, 404, operator detail, and the AVS-Operators tab.</p>
           </div>
         </div>
       </div>
@@ -1114,11 +1354,678 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <p class="rs-ds__body">Each component is protocol-agnostic by design. Adding Symbiotic or Karak support requires no new UI patterns — just new data piped into existing components.</p>
         </div>
       </div>
+
+      <p class="section__label" style="margin-top:4rem">Token library</p>
+      <p class="rs-body-text" style="margin-top:.25rem;max-width:560px;margin-bottom:0">All design decisions encoded as named tokens — dark and light mode values for every colour, state, and spacing unit.</p>
+
+      <div class="rs-tokens">
+
+        <!-- Header -->
+        <div class="rs-tokens__header">
+          <span class="rs-tokens__col-label">Name</span>
+          <span class="rs-tokens__col-label">Dark</span>
+          <span class="rs-tokens__col-label">Light</span>
+        </div>
+
+        <!-- ── Colours ── -->
+        <div class="rs-tokens__group">Colours</div>
+
+        <div class="rs-tokens__row">
+          <span class="rs-tokens__name"><svg class="rs-tokens__ico" viewBox="0 0 13 13" fill="none"><circle cx="4.5" cy="6.5" r="3.5" stroke="currentColor" stroke-width="1"/><circle cx="8.5" cy="6.5" r="3.5" stroke="currentColor" stroke-width="1"/></svg>Primary</span>
+          <span class="rs-tokens__val"><span class="rs-tokens__sw" style="background:#F97316"></span>Primary/Orange</span>
+          <span class="rs-tokens__val"><span class="rs-tokens__sw" style="background:#F97316"></span>#F97316</span>
+        </div>
+
+        <div class="rs-tokens__row">
+          <span class="rs-tokens__name"><svg class="rs-tokens__ico" viewBox="0 0 13 13" fill="none"><circle cx="4.5" cy="6.5" r="3.5" stroke="currentColor" stroke-width="1"/><circle cx="8.5" cy="6.5" r="3.5" stroke="currentColor" stroke-width="1"/></svg>Secondary</span>
+          <span class="rs-tokens__val"><span class="rs-tokens__sw" style="background:#1E3A5F"></span>Primary/Dark Blue</span>
+          <span class="rs-tokens__val"><span class="rs-tokens__sw" style="background:#1E3A5F"></span>#1E3A5F</span>
+        </div>
+
+        <div class="rs-tokens__row">
+          <span class="rs-tokens__name"><svg class="rs-tokens__ico" viewBox="0 0 13 13" fill="none"><circle cx="4.5" cy="6.5" r="3.5" stroke="currentColor" stroke-width="1"/><circle cx="8.5" cy="6.5" r="3.5" stroke="currentColor" stroke-width="1"/></svg>Accent</span>
+          <span class="rs-tokens__val"><span class="rs-tokens__sw" style="background:#F97316"></span>Orange</span>
+          <span class="rs-tokens__val"><span class="rs-tokens__sw" style="background:#F97316"></span>#F97316</span>
+        </div>
+
+        <div class="rs-tokens__row">
+          <span class="rs-tokens__name"><svg class="rs-tokens__ico" viewBox="0 0 13 13" fill="none"><circle cx="4.5" cy="6.5" r="3.5" stroke="currentColor" stroke-width="1"/><circle cx="8.5" cy="6.5" r="3.5" stroke="currentColor" stroke-width="1"/></svg>Active</span>
+          <span class="rs-tokens__val"><span class="rs-tokens__sw" style="background:#8FAFC4"></span>Blue_zinc/50</span>
+          <span class="rs-tokens__val"><span class="rs-tokens__sw" style="background:#E1EFFE"></span>#E1EFFE</span>
+        </div>
+
+        <div class="rs-tokens__row">
+          <span class="rs-tokens__name"><svg class="rs-tokens__ico" viewBox="0 0 13 13" fill="none"><circle cx="4.5" cy="6.5" r="3.5" stroke="currentColor" stroke-width="1"/><circle cx="8.5" cy="6.5" r="3.5" stroke="currentColor" stroke-width="1"/></svg>Default</span>
+          <span class="rs-tokens__val"><span class="rs-tokens__sw" style="background:#6A90A8"></span>Blue_zinc/100</span>
+          <span class="rs-tokens__val"><span class="rs-tokens__sw" style="background:#F8FAFC"></span>#F8FAFC</span>
+        </div>
+
+        <!-- ── Panel ── -->
+        <div class="rs-tokens__group">Panel</div>
+
+        <div class="rs-tokens__row">
+          <span class="rs-tokens__name"><svg class="rs-tokens__ico" viewBox="0 0 13 13" fill="none"><circle cx="4.5" cy="6.5" r="3.5" stroke="currentColor" stroke-width="1"/><circle cx="8.5" cy="6.5" r="3.5" stroke="currentColor" stroke-width="1"/></svg>Panel</span>
+          <span class="rs-tokens__val"><span class="rs-tokens__sw" style="background:#142E45"></span>Blue_zinc/400</span>
+          <span class="rs-tokens__val"><span class="rs-tokens__sw" style="background:#F1F5F9"></span>#F1F5F9</span>
+        </div>
+
+        <div class="rs-tokens__row">
+          <span class="rs-tokens__name"><svg class="rs-tokens__ico" viewBox="0 0 13 13" fill="none"><circle cx="4.5" cy="6.5" r="3.5" stroke="currentColor" stroke-width="1"/><circle cx="8.5" cy="6.5" r="3.5" stroke="currentColor" stroke-width="1"/></svg>Panel - Active</span>
+          <span class="rs-tokens__val"><span class="rs-tokens__sw" style="background:#235070"></span>Blue_zinc/300</span>
+          <span class="rs-tokens__val"><span class="rs-tokens__sw" style="background:#CE1515"></span>#CE1515</span>
+        </div>
+
+        <div class="rs-tokens__row">
+          <span class="rs-tokens__name"><svg class="rs-tokens__ico" viewBox="0 0 13 13" fill="none"><circle cx="4.5" cy="6.5" r="3.5" stroke="currentColor" stroke-width="1"/><circle cx="8.5" cy="6.5" r="3.5" stroke="currentColor" stroke-width="1"/></svg>Panel - Hover</span>
+          <span class="rs-tokens__val"><span class="rs-tokens__sw rs-tokens__sw--checker" style="background-color:#235070"></span>Blue_zinc/300 · 50%</span>
+          <span class="rs-tokens__val"><span class="rs-tokens__sw" style="background:#CE1515"></span>#CE1515</span>
+        </div>
+
+        <div class="rs-tokens__row">
+          <span class="rs-tokens__name"><svg class="rs-tokens__ico" viewBox="0 0 13 13" fill="none"><circle cx="4.5" cy="6.5" r="3.5" stroke="currentColor" stroke-width="1"/><circle cx="8.5" cy="6.5" r="3.5" stroke="currentColor" stroke-width="1"/></svg>Outline</span>
+          <span class="rs-tokens__val"><span class="rs-tokens__sw" style="background:#3D6E8C"></span>Blue_zinc/200</span>
+          <span class="rs-tokens__val"><span class="rs-tokens__sw" style="background:#44E0E0"></span>#44E0E0</span>
+        </div>
+
+        <div class="rs-tokens__row">
+          <span class="rs-tokens__name"><svg class="rs-tokens__ico" viewBox="0 0 13 13" fill="none"><circle cx="4.5" cy="6.5" r="3.5" stroke="currentColor" stroke-width="1"/><circle cx="8.5" cy="6.5" r="3.5" stroke="currentColor" stroke-width="1"/></svg>Background</span>
+          <span class="rs-tokens__val"><span class="rs-tokens__sw" style="background:#091A28"></span>Blue_zinc/500</span>
+          <span class="rs-tokens__val"><span class="rs-tokens__sw" style="background:#FFFFFF;border-color:rgba(0,0,0,.12)"></span>#FFFFFF</span>
+        </div>
+
+        <!-- ── States ── -->
+        <div class="rs-tokens__group">States</div>
+
+        <div class="rs-tokens__row">
+          <span class="rs-tokens__name"><svg class="rs-tokens__ico" viewBox="0 0 13 13" fill="none"><circle cx="4.5" cy="6.5" r="3.5" stroke="currentColor" stroke-width="1"/><circle cx="8.5" cy="6.5" r="3.5" stroke="currentColor" stroke-width="1"/></svg>Disable</span>
+          <span class="rs-tokens__val"><span class="rs-tokens__sw" style="background:#4B5563"></span>layout/foreground-600</span>
+          <span class="rs-tokens__val"><span class="rs-tokens__sw" style="background:#A16F6F"></span>#A16F6F</span>
+        </div>
+
+        <div class="rs-tokens__row">
+          <span class="rs-tokens__name"><svg class="rs-tokens__ico" viewBox="0 0 13 13" fill="none"><circle cx="4.5" cy="6.5" r="3.5" stroke="currentColor" stroke-width="1"/><circle cx="8.5" cy="6.5" r="3.5" stroke="currentColor" stroke-width="1"/></svg>Success</span>
+          <span class="rs-tokens__val"><span class="rs-tokens__sw" style="background:#4ADE80"></span>Green/50</span>
+          <span class="rs-tokens__val"><span class="rs-tokens__sw" style="background:#16A34A"></span>#16A34A</span>
+        </div>
+
+        <div class="rs-tokens__row">
+          <span class="rs-tokens__name"><svg class="rs-tokens__ico" viewBox="0 0 13 13" fill="none"><circle cx="4.5" cy="6.5" r="3.5" stroke="currentColor" stroke-width="1"/><circle cx="8.5" cy="6.5" r="3.5" stroke="currentColor" stroke-width="1"/></svg>Fail</span>
+          <span class="rs-tokens__val"><span class="rs-tokens__sw" style="background:#F87171"></span>Red/50</span>
+          <span class="rs-tokens__val"><span class="rs-tokens__sw" style="background:#DC2626"></span>#DC2626</span>
+        </div>
+
+        <!-- ── Border Radius ── -->
+        <div class="rs-tokens__group">Border Radius</div>
+
+        <div class="rs-tokens__row">
+          <span class="rs-tokens__name"><svg class="rs-tokens__ico" viewBox="0 0 13 13" fill="none"><rect x="1.5" y="1.5" width="10" height="10" rx="1" stroke="currentColor" stroke-width="1"/></svg>0</span>
+          <span class="rs-tokens__val">Spacing/0</span>
+          <span class="rs-tokens__val">0</span>
+        </div>
+
+        <div class="rs-tokens__row">
+          <span class="rs-tokens__name"><svg class="rs-tokens__ico" viewBox="0 0 13 13" fill="none"><rect x="1.5" y="1.5" width="10" height="10" rx="2" stroke="currentColor" stroke-width="1"/></svg>1</span>
+          <span class="rs-tokens__val">units/unit</span>
+          <span class="rs-tokens__val">units/unit</span>
+        </div>
+
+        <div class="rs-tokens__row">
+          <span class="rs-tokens__name"><svg class="rs-tokens__ico" viewBox="0 0 13 13" fill="none"><rect x="1.5" y="1.5" width="10" height="10" rx="3" stroke="currentColor" stroke-width="1"/></svg>2</span>
+          <span class="rs-tokens__val">units/unit-2</span>
+          <span class="rs-tokens__val">units/unit-2</span>
+        </div>
+
+        <div class="rs-tokens__row">
+          <span class="rs-tokens__name"><svg class="rs-tokens__ico" viewBox="0 0 13 13" fill="none"><rect x="1.5" y="1.5" width="10" height="10" rx="4" stroke="currentColor" stroke-width="1"/></svg>3</span>
+          <span class="rs-tokens__val">units/unit-3 · 5</span>
+          <span class="rs-tokens__val">units/unit-3 · 5</span>
+        </div>
+
+      </div><!-- /rs-tokens -->
+
+      <!-- ══════════════════════════════════
+           COMPONENT LIBRARY
+      ══════════════════════════════════ -->
+      <p class="section__label" style="margin-top:4.5rem">Component library</p>
+      <p class="rs-body-text" style="margin-top:.25rem;max-width:540px;margin-bottom:0">Every interactive element in the dashboard — faithfully documented with all states.</p>
+
+      <div class="rs-ck">
+
+        <!-- 01 BUTTON -->
+        <div class="rs-ck-group">
+          <div class="rs-ck-group__hd">
+            <span class="rs-ck-group__num">01</span>
+            <span class="rs-ck-group__name">Button</span>
+          </div>
+          <div class="rs-ck-shelf">
+
+            <!-- Primary -->
+            <div class="rs-ck-col">
+              <span class="rs-ck-state">Primary</span>
+              <div class="rs-ck-row">
+                <div class="rs-ck-cell">
+                  <span class="rs-ck-state">sm · default</span>
+                  <button class="el-btn el-btn--sm el-btn--p-def">Back</button>
+                </div>
+                <div class="rs-ck-cell">
+                  <span class="rs-ck-state">md · default</span>
+                  <button class="el-btn el-btn--md el-btn--p-def">Back</button>
+                </div>
+                <div class="rs-ck-cell">
+                  <span class="rs-ck-state">lg · default</span>
+                  <button class="el-btn el-btn--lg el-btn--p-def">Back</button>
+                </div>
+                <div class="rs-ck-sep"></div>
+                <div class="rs-ck-cell">
+                  <span class="rs-ck-state">sm · hover</span>
+                  <button class="el-btn el-btn--sm el-btn--p-hov">Back</button>
+                </div>
+                <div class="rs-ck-cell">
+                  <span class="rs-ck-state">md · hover</span>
+                  <button class="el-btn el-btn--md el-btn--p-hov">Back</button>
+                </div>
+                <div class="rs-ck-cell">
+                  <span class="rs-ck-state">lg · hover</span>
+                  <button class="el-btn el-btn--lg el-btn--p-hov">Back</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Secondary -->
+            <div class="rs-ck-col" style="margin-top:1.5rem">
+              <span class="rs-ck-state">Secondary</span>
+              <div class="rs-ck-row">
+                <div class="rs-ck-cell">
+                  <span class="rs-ck-state">sm · default</span>
+                  <button class="el-btn el-btn--sm el-btn--s-def">Back</button>
+                </div>
+                <div class="rs-ck-cell">
+                  <span class="rs-ck-state">md · default</span>
+                  <button class="el-btn el-btn--md el-btn--s-def">Back</button>
+                </div>
+                <div class="rs-ck-cell">
+                  <span class="rs-ck-state">lg · default</span>
+                  <button class="el-btn el-btn--lg el-btn--s-def">Back</button>
+                </div>
+                <div class="rs-ck-sep"></div>
+                <div class="rs-ck-cell">
+                  <span class="rs-ck-state">sm · hover</span>
+                  <button class="el-btn el-btn--sm el-btn--s-hov">Back</button>
+                </div>
+                <div class="rs-ck-cell">
+                  <span class="rs-ck-state">md · hover</span>
+                  <button class="el-btn el-btn--md el-btn--s-hov">Back</button>
+                </div>
+                <div class="rs-ck-cell">
+                  <span class="rs-ck-state">lg · hover</span>
+                  <button class="el-btn el-btn--lg el-btn--s-hov">Back</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- 02 TAB MENU -->
+        <div class="rs-ck-group">
+          <div class="rs-ck-group__hd">
+            <span class="rs-ck-group__num">02</span>
+            <span class="rs-ck-group__name">Tab Menu</span>
+          </div>
+          <div class="rs-ck-row" style="align-items:flex-start">
+
+            <div class="rs-ck-cell">
+              <span class="rs-ck-state">Active</span>
+              <div class="el-tabmenu el-tabmenu--active">
+                <span class="el-tabmenu__icon">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 3.5L16.5 7.25V14.75L10 18.5L3.5 14.75V7.25L10 3.5Z" stroke="currentColor" stroke-width="1.2"/><path d="M10 3.5V10M16.5 7.25L10 10M3.5 7.25L10 10M10 10V18.5" stroke="currentColor" stroke-width="1"/></svg>
+                </span>
+                <span class="el-tabmenu__lbl">AVS</span>
+                <span class="el-tabmenu__tag">NEW</span>
+              </div>
+            </div>
+
+            <div class="rs-ck-cell">
+              <span class="rs-ck-state">Hover</span>
+              <div class="el-tabmenu el-tabmenu--hover">
+                <span class="el-tabmenu__icon">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 3.5L16.5 7.25V14.75L10 18.5L3.5 14.75V7.25L10 3.5Z" stroke="currentColor" stroke-width="1.2"/><path d="M10 3.5V10M16.5 7.25L10 10M3.5 7.25L10 10M10 10V18.5" stroke="currentColor" stroke-width="1"/></svg>
+                </span>
+                <span class="el-tabmenu__lbl">AVS</span>
+                <span class="el-tabmenu__tag">NEW</span>
+              </div>
+            </div>
+
+            <div class="rs-ck-cell">
+              <span class="rs-ck-state">Default</span>
+              <div class="el-tabmenu el-tabmenu--default">
+                <span class="el-tabmenu__icon">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 3.5L16.5 7.25V14.75L10 18.5L3.5 14.75V7.25L10 3.5Z" stroke="currentColor" stroke-width="1.2"/><path d="M10 3.5V10M16.5 7.25L10 10M3.5 7.25L10 10M10 10V18.5" stroke="currentColor" stroke-width="1"/></svg>
+                </span>
+                <span class="el-tabmenu__lbl">AVS</span>
+                <span class="el-tabmenu__tag">NEW</span>
+              </div>
+            </div>
+
+            <div class="rs-ck-cell">
+              <span class="rs-ck-state">Ghost</span>
+              <div class="el-tabmenu el-tabmenu--ghost">
+                <span class="el-tabmenu__icon">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="1.2"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.22 4.22l1.41 1.41M14.36 14.36l1.41 1.41M4.22 15.78l1.41-1.41M14.36 5.64l1.41-1.41" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+                </span>
+                <span class="el-tabmenu__lbl">Setting</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- 03 STAT TAB -->
+        <div class="rs-ck-group">
+          <div class="rs-ck-group__hd">
+            <span class="rs-ck-group__num">03</span>
+            <span class="rs-ck-group__name">Stat Tab</span>
+          </div>
+          <div class="rs-ck-shelf" style="gap:2.5rem">
+
+            <div class="rs-ck-col">
+              <span class="rs-ck-state">Single value</span>
+              <div class="rs-ck-row">
+                <div class="rs-ck-cell">
+                  <span class="rs-ck-state">Selected</span>
+                  <div class="el-stattab el-stattab--selected">
+                    <span class="el-stattab__lbl">Total ETH value</span>
+                    <span class="el-stattab__val">120,070,554 ETH</span>
+                  </div>
+                </div>
+                <div class="rs-ck-cell">
+                  <span class="rs-ck-state">Hover</span>
+                  <div class="el-stattab el-stattab--hover">
+                    <span class="el-stattab__lbl">Total ETH value</span>
+                    <span class="el-stattab__val">$120,070,554</span>
+                  </div>
+                </div>
+                <div class="rs-ck-cell">
+                  <span class="rs-ck-state">Default</span>
+                  <div class="el-stattab el-stattab--default">
+                    <span class="el-stattab__lbl">Total ETH value</span>
+                    <span class="el-stattab__val">120,070,554 ETH</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="rs-ck-col">
+              <span class="rs-ck-state">Double price</span>
+              <div class="rs-ck-row">
+                <div class="rs-ck-cell">
+                  <span class="rs-ck-state">Selected</span>
+                  <div class="el-stattab el-stattab--selected">
+                    <span class="el-stattab__lbl">Total ETH value</span>
+                    <span class="el-stattab__val">$120,070,554</span>
+                    <span class="el-stattab__sub">15,609.86 ETH</span>
+                  </div>
+                </div>
+                <div class="rs-ck-cell">
+                  <span class="rs-ck-state">Hover</span>
+                  <div class="el-stattab el-stattab--hover">
+                    <span class="el-stattab__lbl">Total ETH value</span>
+                    <span class="el-stattab__val">$120,070,554</span>
+                    <span class="el-stattab__sub">15,609.86 ETH</span>
+                  </div>
+                </div>
+                <div class="rs-ck-cell">
+                  <span class="rs-ck-state">Default</span>
+                  <div class="el-stattab el-stattab--default">
+                    <span class="el-stattab__lbl">Total ETH value</span>
+                    <span class="el-stattab__val">120,070,554 ETH</span>
+                    <span class="el-stattab__sub">15,609.86 ETH</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- 04 TABLE ROW -->
+        <div class="rs-ck-group">
+          <div class="rs-ck-group__hd">
+            <span class="rs-ck-group__num">04</span>
+            <span class="rs-ck-group__name">Table Row</span>
+          </div>
+
+          <div class="el-table-wrap">
+
+            <!-- AVS — default -->
+            <div class="el-tablerow el-tablerow--def">
+              <div class="el-tablerow__l">
+                <span class="el-tablerow__rank">1</span>
+                <div class="el-tablerow__av">E</div>
+                <span class="el-tablerow__name">EigenDA</span>
+              </div>
+              <span class="el-tablerow__m">21,345</span>
+              <span class="el-tablerow__m">344</span>
+              <div class="el-tablerow__r">
+                <span class="el-tablerow__val">$ 34,554,567</span>
+                <span class="el-tablerow__eth">34,554,567 ETH</span>
+              </div>
+            </div>
+
+            <!-- AVS — hover -->
+            <div class="el-tablerow el-tablerow--hov">
+              <div class="el-tablerow__l">
+                <span class="el-tablerow__rank">2</span>
+                <div class="el-tablerow__av el-tablerow__av--eth">E</div>
+                <span class="el-tablerow__name">Ethereum Attestion</span>
+              </div>
+              <span class="el-tablerow__m">18,902</span>
+              <span class="el-tablerow__m">287</span>
+              <div class="el-tablerow__r">
+                <span class="el-tablerow__val">$ 28,120,000</span>
+                <span class="el-tablerow__eth">28,120,000 ETH</span>
+              </div>
+            </div>
+
+            <!-- Operators — default -->
+            <div class="el-tablerow el-tablerow--def">
+              <div class="el-tablerow__l">
+                <span class="el-tablerow__rank">1</span>
+                <div class="el-tablerow__av el-tablerow__av--nm">N</div>
+                <span class="el-tablerow__name">Nethermind</span>
+              </div>
+              <div class="el-tablerow__avs">
+                7 AVS
+                <div class="el-tablerow__avs-stack">
+                  <div class="el-tablerow__avs-dot" style="background:#F31260"></div>
+                  <div class="el-tablerow__avs-dot" style="background:#627EEA"></div>
+                  <div class="el-tablerow__avs-dot" style="background:#FF0420"></div>
+                  <div class="el-tablerow__avs-dot" style="background:#7A86A5"></div>
+                </div>
+              </div>
+              <span class="el-tablerow__m">344</span>
+              <div class="el-tablerow__r">
+                <span class="el-tablerow__val">$ 34,554,567</span>
+                <span class="el-tablerow__eth">34,554,567 ETH</span>
+              </div>
+            </div>
+
+            <!-- Restakers — default -->
+            <div class="el-tablerow el-tablerow--def">
+              <div class="el-tablerow__l">
+                <span class="el-tablerow__addr">0xD4A7...286942e84b</span>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="color:#7A86A5;flex-shrink:0"><rect x="2" y="4" width="10" height="10" rx="1" stroke="currentColor" stroke-width="1.2"/><path d="M5 4V3a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1h-1" stroke="currentColor" stroke-width="1.2"/></svg>
+              </div>
+              <span class="el-tablerow__pct">12%</span>
+              <div class="el-tablerow__r">
+                <span class="el-tablerow__val">$ 34,554,567</span>
+                <span class="el-tablerow__eth">34,554,567 ETH</span>
+              </div>
+            </div>
+
+            <!-- Missing Data -->
+            <div class="el-tablerow el-tablerow--def">
+              <div class="el-tablerow__l">
+                <span class="el-tablerow__rank">1</span>
+                <div class="el-tablerow__warn">⚠</div>
+                <span class="el-tablerow__name" style="color:#7A86A5">Unknown</span>
+              </div>
+              <span class="el-tablerow__m">21,345</span>
+              <span class="el-tablerow__m">344</span>
+              <div class="el-tablerow__r">
+                <span class="el-tablerow__val">$ 34,554,567</span>
+                <span class="el-tablerow__eth">34,554,567 ETH</span>
+              </div>
+            </div>
+
+            <!-- Promoted -->
+            <div class="el-tablerow el-tablerow--def">
+              <div class="el-tablerow__l">
+                <span class="el-tag el-tag--ad">AD</span>
+                <div class="el-tablerow__av el-tablerow__av--nm">N</div>
+                <span class="el-tablerow__name">Nethermind</span>
+              </div>
+              <span class="el-tablerow__m">21,345</span>
+              <div class="el-tablerow__r">
+                <span class="el-tablerow__val">$ 34,554,567</span>
+                <span class="el-tablerow__eth">34,554,567 ETH</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- 05 FORM CONTROLS -->
+        <div class="rs-ck-group">
+          <div class="rs-ck-group__hd">
+            <span class="rs-ck-group__num">05</span>
+            <span class="rs-ck-group__name">Search &amp; Filter</span>
+          </div>
+          <div class="rs-ck-shelf" style="gap:3rem">
+
+            <div class="rs-ck-col">
+              <span class="rs-ck-state">Search bar</span>
+              <div class="rs-ck-cell">
+                <span class="rs-ck-state">Default</span>
+                <div class="el-search el-search--def">
+                  <span>Search by AVS</span>
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="9" cy="9" r="5.5" stroke="currentColor" stroke-width="1.4"/><path d="M13.5 13.5L17 17" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+                </div>
+              </div>
+              <div class="rs-ck-cell">
+                <span class="rs-ck-state">Hover</span>
+                <div class="el-search el-search--hov">
+                  <span>Search by AVS</span>
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="9" cy="9" r="5.5" stroke="currentColor" stroke-width="1.4"/><path d="M13.5 13.5L17 17" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+                </div>
+              </div>
+            </div>
+
+            <div class="rs-ck-col">
+              <span class="rs-ck-state">Filter</span>
+              <div class="rs-ck-cell">
+                <span class="rs-ck-state">Default</span>
+                <div class="el-filter el-filter--def">Operator</div>
+              </div>
+              <div class="rs-ck-cell">
+                <span class="rs-ck-state">Hover</span>
+                <div class="el-filter el-filter--hov">Operator</div>
+              </div>
+              <div class="rs-ck-cell">
+                <span class="rs-ck-state">Filled</span>
+                <div class="el-filter el-filter--filled">
+                  <span>Operator</span>
+                  <span class="el-filter__sep"></span>
+                  <span class="el-filter__sub">Operator with long text</span>
+                  <span class="el-filter__x">✕</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- 06 TAG + PAGINATION -->
+        <div class="rs-ck-group">
+          <div class="rs-ck-group__hd">
+            <span class="rs-ck-group__num">06</span>
+            <span class="rs-ck-group__name">Tag &amp; Pagination</span>
+          </div>
+          <div class="rs-ck-shelf" style="gap:3rem">
+
+            <div class="rs-ck-col">
+              <span class="rs-ck-state">Tag</span>
+              <div class="rs-ck-row">
+                <div class="rs-ck-cell">
+                  <span class="rs-ck-state">Rank</span>
+                  <span class="el-tag el-tag--rank"># 23</span>
+                </div>
+                <div class="rs-ck-cell">
+                  <span class="rs-ck-state">Ad</span>
+                  <span class="el-tag el-tag--ad">AD</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="rs-ck-col">
+              <span class="rs-ck-state">Pagination</span>
+              <div class="rs-ck-row">
+                <div class="rs-ck-cell">
+                  <span class="rs-ck-state">Active</span>
+                  <div class="el-page el-page--active">1</div>
+                </div>
+                <div class="rs-ck-cell">
+                  <span class="rs-ck-state">Inactive</span>
+                  <div class="el-page el-page--inactive">2</div>
+                </div>
+                <div class="rs-ck-cell">
+                  <span class="rs-ck-state">Hover</span>
+                  <div class="el-page el-page--hover">3</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- 07 BANNER -->
+        <div class="rs-ck-group">
+          <div class="rs-ck-group__hd">
+            <span class="rs-ck-group__num">07</span>
+            <span class="rs-ck-group__name">Banner</span>
+          </div>
+          <div class="rs-ck-row">
+            <div class="rs-ck-cell">
+              <span class="rs-ck-state">Default</span>
+              <div class="el-banner el-banner--def">
+                <div class="el-banner__l">
+                  <div class="el-banner__icon"><span></span><span></span></div>
+                  <div class="el-banner__txts">
+                    <span class="el-banner__title">Start Restaking</span>
+                    <span class="el-banner__sub">Nethermind operator</span>
+                  </div>
+                </div>
+                <span class="el-banner__arr">›</span>
+              </div>
+            </div>
+            <div class="rs-ck-cell">
+              <span class="rs-ck-state">Hover</span>
+              <div class="el-banner el-banner--hov">
+                <div class="el-banner__l">
+                  <div class="el-banner__icon"><span></span><span></span></div>
+                  <div class="el-banner__txts">
+                    <span class="el-banner__title">Start Restaking</span>
+                    <span class="el-banner__sub">Nethermind operator</span>
+                  </div>
+                </div>
+                <span class="el-banner__arr">›</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 08 CHECKBOX -->
+        <div class="rs-ck-group">
+          <div class="rs-ck-group__hd">
+            <span class="rs-ck-group__num">08</span>
+            <span class="rs-ck-group__name">Checkbox</span>
+          </div>
+          <div class="rs-ck-row">
+            <div class="rs-ck-cell">
+              <span class="rs-ck-state">Default</span>
+              <label class="el-checkbox">
+                <span class="el-checkbox__box"><span class="el-checkbox__tick"></span></span>
+                Option
+              </label>
+            </div>
+            <div class="rs-ck-cell">
+              <span class="rs-ck-state">Hover</span>
+              <label class="el-checkbox el-checkbox--hov">
+                <span class="el-checkbox__box"><span class="el-checkbox__tick"></span></span>
+                Option
+              </label>
+            </div>
+            <div class="rs-ck-cell">
+              <span class="rs-ck-state">Checked</span>
+              <label class="el-checkbox el-checkbox--chk">
+                <span class="el-checkbox__box">
+                  <span class="el-checkbox__tick">
+                    <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L4 7L9 1" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </span>
+                </span>
+                Option
+              </label>
+            </div>
+            <div class="rs-ck-cell">
+              <span class="rs-ck-state">Disabled</span>
+              <label class="el-checkbox el-checkbox--dis">
+                <span class="el-checkbox__box"><span class="el-checkbox__tick"></span></span>
+                Option
+              </label>
+            </div>
+            <div class="rs-ck-cell">
+              <span class="rs-ck-state">Disabled checked</span>
+              <label class="el-checkbox el-checkbox--dis-chk el-checkbox--dis">
+                <span class="el-checkbox__box">
+                  <span class="el-checkbox__tick">
+                    <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L4 7L9 1" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </span>
+                </span>
+                Option
+              </label>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /rs-ck -->
+
     </div>
 
 
     <!-- ═══════════════════════════════
-         6. RESULTS & RETROSPECTIVE
+         6. AI WORKFLOW
+    ═══════════════════════════════ -->
+    <div id="rs-ai" class="rs-sec">
+      <p class="section__label">AI Workflow</p>
+      <h2 class="rs-sec__title">Prototyping and shipping with Claude Code</h2>
+
+      <div class="rs-2col">
+        <div>
+          <p class="rs-body-text">This case study — and every page of this portfolio — was prototyped and built using Claude Code. Rather than handing off design decisions to a separate engineering workflow, I used AI-assisted development to build and iterate on layouts, data-dense components, and interactions directly in the browser.</p>
+          <p class="rs-body-text" style="margin-top:1rem">The feedback loop changed fundamentally. Design decisions that would take days to validate in production became testable in hours. Seeing real data inside real components — rather than placeholder content in a Figma frame — surfaced layout issues that would never have appeared in static mockups.</p>
+        </div>
+        <div>
+          <p class="rs-col-eyebrow">How it informed the product</p>
+          <div class="rs-biz-pillars">
+            <div class="rs-biz-pillar">
+              <span class="rs-biz-pillar__num">01</span>
+              <div>
+                <h4 class="rs-biz-pillar__title">Real-data prototyping</h4>
+                <p class="rs-biz-pillar__body">Components were tested with live on-chain values — long wallet addresses, large ETH amounts, edge-case operator names — before any engineering sprint began.</p>
+              </div>
+            </div>
+            <div class="rs-biz-pillar">
+              <span class="rs-biz-pillar__num">02</span>
+              <div>
+                <h4 class="rs-biz-pillar__title">Faster iteration cycles</h4>
+                <p class="rs-biz-pillar__body">Layout hypotheses, component variants, and information hierarchy decisions were validated in the browser — compressing what would be a week-long design-dev loop into an afternoon.</p>
+              </div>
+            </div>
+            <div class="rs-biz-pillar">
+              <span class="rs-biz-pillar__num">03</span>
+              <div>
+                <h4 class="rs-biz-pillar__title">The next step in the product</h4>
+                <p class="rs-biz-pillar__body">The same principle applies to what I'd build next: an LLM-generated plain-English risk summary per position, updated daily. If AI can compress the gap between complex data and user action, it belongs in the product.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ═══════════════════════════════
+         7. RESULTS & RETROSPECTIVE
     ═══════════════════════════════ -->
     <div id="rs-results" class="rs-sec">
       <p class="section__label">Results & Retrospective</p>
@@ -1156,13 +2063,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <div class="rs-next__item">
           <span class="rs-next__num">02</span>
-          <div>
-            <h4 class="rs-next__title">AI-powered risk summaries</h4>
-            <p class="rs-next__body">Operator health data is rich but hard to parse at a glance. An LLM-generated plain-English risk summary per position — updated daily — would dramatically lower the cognitive load for non-expert users.</p>
-          </div>
-        </div>
-        <div class="rs-next__item">
-          <span class="rs-next__num">03</span>
           <div>
             <h4 class="rs-next__title">Multi-wallet aggregation</h4>
             <p class="rs-next__body">Power users often manage restaking across 3–5 wallets. A portfolio aggregation view — treating multiple wallets as one entity — is a high-value feature with clear technical complexity worth solving.</p>
