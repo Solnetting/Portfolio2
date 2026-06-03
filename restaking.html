@@ -2925,12 +2925,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <div>
                       <div style="font-size:16px;color:#CAD7F9;line-height:24px;margin-bottom:8px">TVL overtime</div>
                       <div style="display:flex;align-items:baseline;gap:8px">
-                        <span style="font-size:14px;color:#fff;line-height:20px">4,554,567 ETH</span>
-                        <span style="font-size:14px;color:#7CCB69;line-height:20px">+1.5%</span>
+                        <span id="avsdTvlEth" style="font-size:14px;color:#fff;line-height:20px">4,554,567 ETH</span>
+                        <span id="avsdTvlPct" style="font-size:14px;color:#7CCB69;line-height:20px">+1.5%</span>
                       </div>
-                      <div style="font-size:12px;color:#7A86A5">$ 34,554,567</div>
+                      <div id="avsdTvlUsd" style="font-size:12px;color:#7A86A5">$ 34,554,567</div>
                     </div>
-                    <div class="db-timefilters">
+                    <div class="db-timefilters" id="avsdTfBtns">
                       <button class="db-tf">1D</button>
                       <button class="db-tf is-active">7D</button>
                       <button class="db-tf">1m</button>
@@ -2938,36 +2938,33 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                       <button class="db-tf">All</button>
                     </div>
                   </div>
-                  <!-- Chart: SVG with y-axis + x-axis labels -->
                   <div style="position:relative">
                     <svg width="100%" height="200" viewBox="0 0 720 200" preserveAspectRatio="none" style="display:block">
-                      <!-- y-axis labels: y = 200 - (val/300*160) offset 20px from top -->
-                      <!-- 300→20, 200→73, 100→127, 50→153, 0→180 -->
-                      <text x="30" y="24"  text-anchor="end" font-size="11" fill="#7A86A5" font-family="DM Sans,sans-serif">300</text>
-                      <text x="30" y="77"  text-anchor="end" font-size="11" fill="#7A86A5" font-family="DM Sans,sans-serif">200</text>
-                      <text x="30" y="131" text-anchor="end" font-size="11" fill="#7A86A5" font-family="DM Sans,sans-serif">100</text>
-                      <text x="30" y="157" text-anchor="end" font-size="11" fill="#7A86A5" font-family="DM Sans,sans-serif">50</text>
-                      <text x="30" y="184" text-anchor="end" font-size="11" fill="#7A86A5" font-family="DM Sans,sans-serif">0</text>
-                      <!-- grid lines from x=35 to x=720 -->
-                      <line x1="35" y1="20"  x2="720" y2="20"  stroke="rgba(255,255,255,.06)" stroke-width="1"/>
-                      <line x1="35" y1="73"  x2="720" y2="73"  stroke="rgba(255,255,255,.06)" stroke-width="1"/>
-                      <line x1="35" y1="127" x2="720" y2="127" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
-                      <line x1="35" y1="153" x2="720" y2="153" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
-                      <line x1="35" y1="180" x2="720" y2="180" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
-                      <!-- chart line; x range 35-720=685px, 9 segments = 76px each -->
-                      <polyline points="35,140 111,73 187,160 263,120 339,133 415,120 491,140 567,133 643,107 720,27"
-                                fill="none" stroke="#4E9FD1" stroke-width="1.5" stroke-linejoin="round"/>
-                      <!-- x-axis labels at bottom -->
-                      <text x="35"  y="198" text-anchor="middle" font-size="11" fill="#7A86A5" font-family="DM Sans,sans-serif">0</text>
-                      <text x="111" y="198" text-anchor="middle" font-size="11" fill="#7A86A5" font-family="DM Sans,sans-serif">1</text>
-                      <text x="187" y="198" text-anchor="middle" font-size="11" fill="#7A86A5" font-family="DM Sans,sans-serif">2</text>
-                      <text x="263" y="198" text-anchor="middle" font-size="11" fill="#7A86A5" font-family="DM Sans,sans-serif">3</text>
-                      <text x="339" y="198" text-anchor="middle" font-size="11" fill="#7A86A5" font-family="DM Sans,sans-serif">4</text>
-                      <text x="415" y="198" text-anchor="middle" font-size="11" fill="#7A86A5" font-family="DM Sans,sans-serif">5</text>
-                      <text x="491" y="198" text-anchor="middle" font-size="11" fill="#7A86A5" font-family="DM Sans,sans-serif">6</text>
-                      <text x="567" y="198" text-anchor="middle" font-size="11" fill="#7A86A5" font-family="DM Sans,sans-serif">7</text>
-                      <text x="643" y="198" text-anchor="middle" font-size="11" fill="#7A86A5" font-family="DM Sans,sans-serif">8</text>
-                      <text x="720" y="198" text-anchor="middle" font-size="11" fill="#7A86A5" font-family="DM Sans,sans-serif">9</text>
+                      <!-- y-axis labels: fixed 0–5M ETH scale -->
+                      <text x="32" y="24"  text-anchor="end" font-size="11" fill="#7A86A5" font-family="DM Sans,sans-serif">5M</text>
+                      <text x="32" y="57"  text-anchor="end" font-size="11" fill="#7A86A5" font-family="DM Sans,sans-serif">4M</text>
+                      <text x="32" y="89"  text-anchor="end" font-size="11" fill="#7A86A5" font-family="DM Sans,sans-serif">3M</text>
+                      <text x="32" y="121" text-anchor="end" font-size="11" fill="#7A86A5" font-family="DM Sans,sans-serif">2M</text>
+                      <text x="32" y="153" text-anchor="end" font-size="11" fill="#7A86A5" font-family="DM Sans,sans-serif">1M</text>
+                      <!-- grid lines -->
+                      <line x1="37" y1="20"  x2="716" y2="20"  stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+                      <line x1="37" y1="52"  x2="716" y2="52"  stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+                      <line x1="37" y1="84"  x2="716" y2="84"  stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+                      <line x1="37" y1="116" x2="716" y2="116" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+                      <line x1="37" y1="148" x2="716" y2="148" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+                      <line x1="37" y1="180" x2="716" y2="180" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+                      <!-- chart line — updated by JS -->
+                      <polyline id="avsdChartLine"
+                                points="42,58 152,55 262,49 372,62 482,46 592,39 706,34"
+                                fill="none" stroke="#4E9FD1" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+                      <!-- x-axis labels — updated by JS -->
+                      <text id="avsdX0" x="42"  y="196" text-anchor="middle" font-size="11" fill="#7A86A5" font-family="DM Sans,sans-serif">Mon</text>
+                      <text id="avsdX1" x="152" y="196" text-anchor="middle" font-size="11" fill="#7A86A5" font-family="DM Sans,sans-serif">Tue</text>
+                      <text id="avsdX2" x="262" y="196" text-anchor="middle" font-size="11" fill="#7A86A5" font-family="DM Sans,sans-serif">Wed</text>
+                      <text id="avsdX3" x="372" y="196" text-anchor="middle" font-size="11" fill="#7A86A5" font-family="DM Sans,sans-serif">Thu</text>
+                      <text id="avsdX4" x="482" y="196" text-anchor="middle" font-size="11" fill="#7A86A5" font-family="DM Sans,sans-serif">Fri</text>
+                      <text id="avsdX5" x="592" y="196" text-anchor="middle" font-size="11" fill="#7A86A5" font-family="DM Sans,sans-serif">Sat</text>
+                      <text id="avsdX6" x="706" y="196" text-anchor="middle" font-size="11" fill="#7A86A5" font-family="DM Sans,sans-serif">Sun</text>
                     </svg>
                   </div>
                 </div>
@@ -3469,6 +3466,61 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           }
           browser.removeEventListener('click', firstClick);
         });
+
+        /* ── AVS Detail TVL chart ── */
+        (function(){
+          var avsdTf = {
+            '1D': {
+              eth: '4,554,567 ETH', pct: '+0.3%', usd: '$ 34,554,567',
+              labels: ['00:00','04:00','08:00','12:00','16:00','20:00','24:00'],
+              pts: '42,40 152,38 262,43 372,37 482,35 592,36 706,34'
+            },
+            '7D': {
+              eth: '4,554,567 ETH', pct: '+1.5%', usd: '$ 34,554,567',
+              labels: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
+              pts: '42,58 152,55 262,49 372,62 482,46 592,39 706,34'
+            },
+            '1m': {
+              eth: '4,554,567 ETH', pct: '+8.2%', usd: '$ 34,554,567',
+              labels: ['W1','W2','W3','W4','W5','W6','W7'],
+              pts: '42,82 152,74 262,68 372,74 482,57 592,45 706,34'
+            },
+            '3m': {
+              eth: '4,554,567 ETH', pct: '+19.7%', usd: '$ 34,554,567',
+              labels: ['Oct','Nov','Dec','Jan','Feb','Mar','Apr'],
+              pts: '42,116 152,98 262,90 372,78 482,62 592,49 706,34'
+            },
+            'All': {
+              eth: '4,554,567 ETH', pct: '+279%', usd: '$ 34,554,567',
+              labels: ["Q2'23","Q3'23","Q4'23","Q1'24","Q2'24","Q3'24","Q4'24"],
+              pts: '42,170 152,154 262,138 372,118 482,86 592,58 706,34'
+            }
+          };
+          var chartLine = document.getElementById('avsdChartLine');
+          var tvlEth    = document.getElementById('avsdTvlEth');
+          var tvlPct    = document.getElementById('avsdTvlPct');
+          var tvlUsd    = document.getElementById('avsdTvlUsd');
+          var xLabels   = [0,1,2,3,4,5,6].map(function(i){ return document.getElementById('avsdX'+i); });
+          var tfBtns    = document.querySelectorAll('#avsdTfBtns .db-tf');
+
+          function applyAvsdTf(tf) {
+            var d = avsdTf[tf]; if (!d) return;
+            if (chartLine) chartLine.setAttribute('points', d.pts);
+            if (tvlEth)    tvlEth.textContent = d.eth;
+            if (tvlPct)    tvlPct.textContent = d.pct;
+            if (tvlUsd)    tvlUsd.textContent = d.usd;
+            xLabels.forEach(function(el, i){ if (el) el.textContent = d.labels[i] || ''; });
+          }
+
+          tfBtns.forEach(function(btn){
+            btn.addEventListener('click', function(e){
+              e.stopPropagation();
+              tfBtns.forEach(function(b){ b.classList.remove('is-active'); });
+              btn.classList.add('is-active');
+              applyAvsdTf(btn.textContent.trim());
+            });
+          });
+        })();
 
       })();
       </script>
