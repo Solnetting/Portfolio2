@@ -1300,12 +1300,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .avsd-addr-group { display: flex; align-items: center; gap: 4px; }
     .avsd-addr { font-size: 12px; color: #FFCC80; }
     .avsd-icon-btn { width: 24px; height: 24px; border-radius: 4px; background: rgba(255,255,255,.04); border: 1px solid #293041; display: flex; align-items: center; justify-content: center; cursor: pointer; }
-    .avsd-statbar { display: grid; grid-template-columns: 1fr 1fr 1fr; }
-    .avsd-stat-btn { background: none; border: none; border-right: 1px solid #293041; padding: 8px 16px; display: flex; flex-direction: column; gap: 4px; align-items: center; text-align: center; cursor: pointer; font-family: 'DM Sans', sans-serif; }
-    .avsd-stat-btn:last-child { border-right: none; }
+    .avsd-statbar { display: flex; gap: 24px; padding: 8px; align-items: stretch; }
+    .avsd-stat-btn { flex: 1; background: none; border: 1px solid transparent; border-radius: 4px; padding: 8px 16px; display: flex; flex-direction: column; gap: 4px; align-items: center; justify-content: center; text-align: center; cursor: pointer; font-family: 'DM Sans', sans-serif; }
     .avsd-stat-label { font-size: 14px; color: #7A86A5; line-height: 20px; }
-    .avsd-stat-val { font-size: 16px; font-weight: 400; color: #fff; line-height: 24px; }
-    .avsd-stat-val-active { color: #CAD7F9; }
+    .avsd-stat-val { font-size: 16px; font-weight: 400; color: #CAD7F9; line-height: 24px; }
     /* Body layout */
     .avsd-body { display: grid; grid-template-columns: 1fr 420px; gap: 16px; padding: 16px; }
     .avsd-left { display: flex; flex-direction: column; gap: 16px; }
@@ -1370,7 +1368,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       height: calc(90vh - 44px);
       overflow-y: auto;
     }
-    .avsd-stat-btn.is-active { background: #191C2C; }
+    .avsd-stat-btn.is-active { background: #191C2C; border-color: #293041; }
+    .avsd-stat-btn.is-active .avsd-stat-label { color: #CAD7F9; }
+    .avsd-stat-btn.is-active .avsd-stat-val { color: #fff; }
     .avsd-view { display: none; }
     .avsd-view.is-active { display: block; }
     .avsd-ops-body { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: 16px; }
