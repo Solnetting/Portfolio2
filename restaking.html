@@ -1370,6 +1370,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       height: calc(90vh - 44px);
       overflow-y: auto;
     }
+    .avsd-stat-btn.is-active { background: #191C2C; }
+    .avsd-view { display: none; }
+    .avsd-view.is-active { display: block; }
+    .avsd-ops-body { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: 16px; }
+    .avsd-ldb-addr { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #7A86A5; word-break: break-all; }
   </style>
 </head>
 <body>
@@ -2898,21 +2903,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </div>
               </div>
 
-              <!-- Stats bar -->
+              <!-- Stats bar — tabs that switch the view below -->
               <div style="padding:16px 16px 0">
                 <div class="db-panel">
-                  <div class="avsd-statbar">
-                    <div class="avsd-stat-btn">
+                  <div class="avsd-statbar" id="avsdStatBar">
+                    <div class="avsd-stat-btn is-active" data-avsd-view="tvl">
                       <span class="avsd-stat-label">Total ETH value</span>
-                      <span class="avsd-stat-val">$120,070,554</span>
+                      <span class="avsd-stat-val">120,070,554 ETH</span>
                     </div>
-                    <div class="avsd-stat-btn">
+                    <div class="avsd-stat-btn" data-avsd-view="operators">
                       <span class="avsd-stat-label">Operators</span>
-                      <span class="avsd-stat-val avsd-stat-val-active">364</span>
+                      <span class="avsd-stat-val">364</span>
                     </div>
-                    <div class="avsd-stat-btn">
+                    <div class="avsd-stat-btn" data-avsd-view="restakers">
                       <span class="avsd-stat-label">Restakers</span>
-                      <span class="avsd-stat-val avsd-stat-val-active">21,345</span>
+                      <span class="avsd-stat-val">21,345</span>
                     </div>
                   </div>
                 </div>
@@ -2923,7 +2928,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <div class="db-panel" style="padding:16px">
                   <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px">
                     <div>
-                      <div style="font-size:16px;color:#CAD7F9;line-height:24px;margin-bottom:8px">TVL overtime</div>
+                      <div id="avsdChartTitle" style="font-size:16px;color:#CAD7F9;line-height:24px;margin-bottom:8px">TVL overtime</div>
                       <div style="display:flex;align-items:baseline;gap:8px">
                         <span id="avsdTvlEth" style="font-size:14px;color:#fff;line-height:20px">4,554,567 ETH</span>
                         <span id="avsdTvlPct" style="font-size:14px;color:#7CCB69;line-height:20px">+1.5%</span>
@@ -2940,22 +2945,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                   </div>
                   <div style="position:relative">
                     <svg width="100%" height="200" viewBox="0 0 720 200" preserveAspectRatio="none" style="display:block">
-                      <!-- y-axis labels: fixed 0–5M ETH scale -->
-                      <text x="32" y="24"  text-anchor="end" font-size="11" fill="#7A86A5" font-family="DM Sans,sans-serif">5M</text>
-                      <text x="32" y="57"  text-anchor="end" font-size="11" fill="#7A86A5" font-family="DM Sans,sans-serif">4M</text>
-                      <text x="32" y="89"  text-anchor="end" font-size="11" fill="#7A86A5" font-family="DM Sans,sans-serif">3M</text>
-                      <text x="32" y="121" text-anchor="end" font-size="11" fill="#7A86A5" font-family="DM Sans,sans-serif">2M</text>
-                      <text x="32" y="153" text-anchor="end" font-size="11" fill="#7A86A5" font-family="DM Sans,sans-serif">1M</text>
+                      <!-- y-axis labels: 300/200/100/50/0 -->
+                      <text x="32" y="24"  text-anchor="end" font-size="11" fill="#7A86A5" font-family="DM Sans,sans-serif">300</text>
+                      <text x="32" y="77"  text-anchor="end" font-size="11" fill="#7A86A5" font-family="DM Sans,sans-serif">200</text>
+                      <text x="32" y="131" text-anchor="end" font-size="11" fill="#7A86A5" font-family="DM Sans,sans-serif">100</text>
+                      <text x="32" y="157" text-anchor="end" font-size="11" fill="#7A86A5" font-family="DM Sans,sans-serif">50</text>
+                      <text x="32" y="184" text-anchor="end" font-size="11" fill="#7A86A5" font-family="DM Sans,sans-serif">0</text>
                       <!-- grid lines -->
                       <line x1="37" y1="20"  x2="716" y2="20"  stroke="rgba(255,255,255,.06)" stroke-width="1"/>
-                      <line x1="37" y1="52"  x2="716" y2="52"  stroke="rgba(255,255,255,.06)" stroke-width="1"/>
-                      <line x1="37" y1="84"  x2="716" y2="84"  stroke="rgba(255,255,255,.06)" stroke-width="1"/>
-                      <line x1="37" y1="116" x2="716" y2="116" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
-                      <line x1="37" y1="148" x2="716" y2="148" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+                      <line x1="37" y1="73"  x2="716" y2="73"  stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+                      <line x1="37" y1="127" x2="716" y2="127" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+                      <line x1="37" y1="153" x2="716" y2="153" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
                       <line x1="37" y1="180" x2="716" y2="180" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
                       <!-- chart line — updated by JS -->
                       <polyline id="avsdChartLine"
-                                points="42,58 152,55 262,49 372,62 482,46 592,39 706,34"
+                                points="42,76 152,73 262,140 372,127 482,132 592,130 706,49"
                                 fill="none" stroke="#4E9FD1" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
                       <!-- x-axis labels — updated by JS -->
                       <text id="avsdX0" x="42"  y="196" text-anchor="middle" font-size="11" fill="#7A86A5" font-family="DM Sans,sans-serif">Mon</text>
@@ -2970,6 +2974,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </div>
               </div>
 
+              <!-- ═══ VIEW: TVL (default) ═══ -->
+              <div id="avsd-view-tvl" class="avsd-view is-active">
               <!-- Body: two columns -->
               <div class="avsd-body">
 
@@ -3112,6 +3118,108 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </div>
 
               </div><!-- /avsd-body -->
+              </div><!-- /avsd-view-tvl -->
+
+              <!-- ═══ VIEW: OPERATORS ═══ -->
+              <div id="avsd-view-operators" class="avsd-view">
+                <div class="avsd-ops-body">
+
+                  <!-- Left: All Operators table -->
+                  <div class="db-panel">
+                    <div class="avsd-panel-hd-row" style="flex-wrap:wrap;gap:8px">
+                      <span class="avsd-panel-title">All Operators</span>
+                      <div class="db-search-input" style="flex:1;min-width:140px;max-width:220px">
+                        <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="4.5" stroke="#7A86A5" stroke-width="1.4"/><path d="M11 11l3 3" stroke="#7A86A5" stroke-width="1.4" stroke-linecap="round"/></svg>
+                        Search by operator
+                      </div>
+                    </div>
+                    <table class="db-full-table">
+                      <thead><tr>
+                        <th style="width:28px">#</th>
+                        <th>Operators <span style="opacity:.45">↓</span></th>
+                        <th>Share <span style="opacity:.45">↓</span></th>
+                        <th>TVL <span style="opacity:.45">↓</span></th>
+                      </tr></thead>
+                      <tbody>
+                        <tr><td class="db-rank-cell">1</td><td><div class="db-td-name"><div class="db-avatar" style="background:#627EEA">I</div>InfStones</div></td><td>46%</td><td><div class="db-td-tvl"><span>$ 34,554,567</span><span>34,554,567 ETH</span></div></td></tr>
+                        <tr><td class="db-rank-cell">2</td><td><div class="db-td-name"><div class="db-avatar" style="background:#5B8DEF">A</div>AltLayer</div></td><td>44%</td><td><div class="db-td-tvl"><span>$ 34,554,567</span><span>34,554,567 ETH</span></div></td></tr>
+                        <tr><td class="db-rank-cell">3</td><td><div class="db-td-name"><div class="db-avatar" style="background:#7C3AED">E</div>EigenYields</div></td><td>36%</td><td><div class="db-td-tvl"><span>$ 34,554,567</span><span>34,554,567 ETH</span></div></td></tr>
+                        <tr><td class="db-rank-cell">4</td><td><div class="db-td-name"><div class="db-avatar" style="background:#22C55E">P</div>Puffer</div></td><td>12%</td><td><div class="db-td-tvl"><span>$ 34,554,567</span><span>34,554,567 ETH</span></div></td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <!-- Right: Latest aggregated operators -->
+                  <div class="db-panel" style="display:flex;flex-direction:column">
+                    <div class="avsd-panel-hd-row">
+                      <span class="avsd-panel-title">Latest aggregated operators</span>
+                    </div>
+                    <table class="db-full-table" style="flex:1">
+                      <thead><tr>
+                        <th>Operators <span style="opacity:.45">↓</span></th>
+                        <th>Joined time <span style="opacity:.45">↓</span></th>
+                        <th>TVL <span style="opacity:.45">↓</span></th>
+                      </tr></thead>
+                      <tbody>
+                        <tr><td><div class="db-td-name"><div class="db-avatar" style="background:#627EEA">I</div>InfStones</div></td><td style="color:#7A86A5;font-size:13px">15 Days</td><td><div class="db-td-tvl"><span>$ 34,554,567</span><span>34,554,567 ETH</span></div></td></tr>
+                        <tr><td><div class="db-td-name"><div class="db-avatar" style="background:#5B8DEF">A</div>AltLayer</div></td><td style="color:#7A86A5;font-size:13px">15 Days</td><td><div class="db-td-tvl"><span>$ 34,554,567</span><span>34,554,567 ETH</span></div></td></tr>
+                        <tr><td><div class="db-td-name"><div class="db-avatar" style="background:#7C3AED">E</div>EigenYields</div></td><td style="color:#7A86A5;font-size:13px">15 Days</td><td><div class="db-td-tvl"><span>$ 34,554,567</span><span>34,554,567 ETH</span></div></td></tr>
+                      </tbody>
+                    </table>
+                    <div class="avsd-pagination">
+                      <div class="avsd-page-arrow">‹</div>
+                      <div class="avsd-page-dots">
+                        <div class="avsd-page-dot is-active">1</div>
+                        <div class="avsd-page-dot">2</div>
+                        <div class="avsd-page-dot">3</div>
+                      </div>
+                      <div class="avsd-page-arrow">›</div>
+                    </div>
+                  </div>
+
+                </div>
+              </div><!-- /avsd-view-operators -->
+
+              <!-- ═══ VIEW: RESTAKERS ═══ -->
+              <div id="avsd-view-restakers" class="avsd-view">
+                <div style="padding:16px">
+                  <div class="db-panel">
+                    <div class="avsd-panel-hd-row">
+                      <span class="avsd-panel-title">Restaking leaderboard</span>
+                    </div>
+                    <table class="db-full-table">
+                      <thead><tr>
+                        <th style="width:28px">#</th>
+                        <th>Re-stakers <span style="opacity:.45">↓</span></th>
+                        <th>Share <span style="opacity:.45">↓</span></th>
+                        <th>TVL <span style="opacity:.45">↓</span></th>
+                      </tr></thead>
+                      <tbody>
+                        <tr><td class="db-rank-cell">1</td><td class="avsd-ldb-addr">3J98t1WpEZ73CNmQviecrnyiWrnqRhWNLy</td><td>46%</td><td><div class="db-td-tvl"><span>$ 34,554,567</span><span>34,554,567 ETH</span></div></td></tr>
+                        <tr><td class="db-rank-cell">2</td><td class="avsd-ldb-addr">1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa</td><td>44%</td><td><div class="db-td-tvl"><span>$ 34,554,567</span><span>34,554,567 ETH</span></div></td></tr>
+                        <tr><td class="db-rank-cell">3</td><td class="avsd-ldb-addr">bc1qw508d6qejxtdg4y5r3zarvaryOc5xw7kygt08O</td><td>36%</td><td><div class="db-td-tvl"><span>$ 34,554,567</span><span>34,554,567 ETH</span></div></td></tr>
+                        <tr><td class="db-rank-cell">4</td><td class="avsd-ldb-addr">0x742d35Cc6634C0532925a3b844Bc454e4438f44e</td><td>12%</td><td><div class="db-td-tvl"><span>$ 34,554,567</span><span>34,554,567 ETH</span></div></td></tr>
+                        <tr><td class="db-rank-cell">5</td><td class="avsd-ldb-addr">0x53d284357ec7Oce289d6d64134dfac8e511c8a3d</td><td>5.6%</td><td><div class="db-td-tvl"><span>$ 34,554,567</span><span>34,554,567 ETH</span></div></td></tr>
+                        <tr><td class="db-rank-cell">6</td><td class="avsd-ldb-addr">D5ocSs1RE4YxMGJQ3Ge9tUtbSjLPxFEz5H</td><td>2.6%</td><td><div class="db-td-tvl"><span>$ 34,554,567</span><span>34,554,567 ETH</span></div></td></tr>
+                        <tr><td class="db-rank-cell">7</td><td class="avsd-ldb-addr">t1ZcErWwD1YrP2yL6bNKeT6eXs7z5jCMVVF</td><td>0.6%</td><td><div class="db-td-tvl"><span>$ 34,554,567</span><span>34,554,567 ETH</span></div></td></tr>
+                        <tr><td class="db-rank-cell">8</td><td class="avsd-ldb-addr">t1ZcErWwD1YrP2yL6bNKeT6eXs7z5jCMVVF</td><td>0.6%</td><td><div class="db-td-tvl"><span>$ 34,554,567</span><span>34,554,567 ETH</span></div></td></tr>
+                      </tbody>
+                    </table>
+                    <div class="avsd-pagination">
+                      <div class="avsd-page-arrow">‹</div>
+                      <div class="avsd-page-dots">
+                        <div class="avsd-page-dot is-active">1</div>
+                        <div class="avsd-page-dot">2</div>
+                        <div class="avsd-page-dot">3</div>
+                        <div class="avsd-page-dot">4</div>
+                        <div style="color:#7A86A5;font-size:10px;padding:2px 2px;line-height:1">…</div>
+                        <div class="avsd-page-dot">15</div>
+                      </div>
+                      <div class="avsd-page-arrow">›</div>
+                    </div>
+                  </div>
+                </div>
+              </div><!-- /avsd-view-restakers -->
 
               <!-- Footer -->
               <div style="padding:12px 16px;border-top:1px solid #293041;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:10px;color:#7A86A5">
@@ -3467,57 +3575,88 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           browser.removeEventListener('click', firstClick);
         });
 
-        /* ── AVS Detail TVL chart ── */
+        /* ── AVS Detail: 3-view tab system + interactive chart ── */
         (function(){
-          var avsdTf = {
-            '1D': {
-              eth: '4,554,567 ETH', pct: '+0.3%', usd: '$ 34,554,567',
-              labels: ['00:00','04:00','08:00','12:00','16:00','20:00','24:00'],
-              pts: '42,40 152,38 262,43 372,37 482,35 592,36 706,34'
+          var vd = {
+            'tvl': {
+              title: 'TVL overtime',
+              tfs: {
+                '1D': { val: '4,554,567 ETH', pct: '+0.3%', usd: '$ 34,554,567', labels: ['00:00','04:00','08:00','12:00','16:00','20:00','24:00'], pts: '42,78 152,74 262,80 372,70 482,68 592,72 706,49' },
+                '7D': { val: '4,554,567 ETH', pct: '+1.5%', usd: '$ 34,554,567', labels: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],             pts: '42,76 152,73 262,140 372,127 482,132 592,130 706,49' },
+                '1m': { val: '4,554,567 ETH', pct: '+8.2%', usd: '$ 34,554,567', labels: ['W1','W2','W3','W4','W5','W6','W7'],                   pts: '42,110 152,96 262,138 372,114 482,106 592,84 706,49' },
+                '3m': { val: '4,554,567 ETH', pct: '+19.7%', usd: '$ 34,554,567', labels: ['Oct','Nov','Dec','Jan','Feb','Mar','Apr'],            pts: '42,138 152,118 262,104 372,92 482,80 592,64 706,49' },
+                'All': { val: '4,554,567 ETH', pct: '+279%', usd: '$ 34,554,567', labels: ["Q2'23","Q3'23","Q4'23","Q1'24","Q2'24","Q3'24","Q4'24"], pts: '42,172 152,156 262,140 372,120 482,90 592,66 706,49' }
+              }
             },
-            '7D': {
-              eth: '4,554,567 ETH', pct: '+1.5%', usd: '$ 34,554,567',
-              labels: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
-              pts: '42,58 152,55 262,49 372,62 482,46 592,39 706,34'
+            'operators': {
+              title: 'Operators over time',
+              tfs: {
+                '1D': { val: '364', pct: '+0.1%', usd: '', labels: ['00:00','04:00','08:00','12:00','16:00','20:00','24:00'], pts: '42,76 152,74 262,78 372,72 482,70 592,73 706,68' },
+                '7D': { val: '364', pct: '+2.3%', usd: '', labels: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],             pts: '42,76 152,73 262,143 372,111 482,140 592,135 706,97' },
+                '1m': { val: '350', pct: '+6.1%', usd: '', labels: ['W1','W2','W3','W4','W5','W6','W7'],                   pts: '42,116 152,104 262,140 372,118 482,112 592,98 706,82' },
+                '3m': { val: '320', pct: '+13.8%', usd: '', labels: ['Oct','Nov','Dec','Jan','Feb','Mar','Apr'],            pts: '42,144 152,128 262,114 372,102 482,92 592,80 706,66' },
+                'All': { val: '180', pct: '+102%', usd: '', labels: ["Q2'23","Q3'23","Q4'23","Q1'24","Q2'24","Q3'24","Q4'24"], pts: '42,170 152,156 262,142 372,122 482,102 592,82 706,62' }
+              }
             },
-            '1m': {
-              eth: '4,554,567 ETH', pct: '+8.2%', usd: '$ 34,554,567',
-              labels: ['W1','W2','W3','W4','W5','W6','W7'],
-              pts: '42,82 152,74 262,68 372,74 482,57 592,45 706,34'
-            },
-            '3m': {
-              eth: '4,554,567 ETH', pct: '+19.7%', usd: '$ 34,554,567',
-              labels: ['Oct','Nov','Dec','Jan','Feb','Mar','Apr'],
-              pts: '42,116 152,98 262,90 372,78 482,62 592,49 706,34'
-            },
-            'All': {
-              eth: '4,554,567 ETH', pct: '+279%', usd: '$ 34,554,567',
-              labels: ["Q2'23","Q3'23","Q4'23","Q1'24","Q2'24","Q3'24","Q4'24"],
-              pts: '42,170 152,154 262,138 372,118 482,86 592,58 706,34'
+            'restakers': {
+              title: 'Restakers overtime',
+              tfs: {
+                '1D': { val: '12,234', pct: '+0.2%', usd: '', labels: ['00:00','04:00','08:00','12:00','16:00','20:00','24:00'], pts: '42,80 152,76 262,82 372,74 482,70 592,75 706,66' },
+                '7D': { val: '12,234', pct: '+1.5%', usd: '', labels: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],             pts: '42,76 152,73 262,149 372,131 482,138 592,137 706,100' },
+                '1m': { val: '11,876', pct: '+5.8%', usd: '', labels: ['W1','W2','W3','W4','W5','W6','W7'],                   pts: '42,112 152,100 262,148 372,124 482,116 592,104 706,84' },
+                '3m': { val: '10,500', pct: '+16.5%', usd: '', labels: ['Oct','Nov','Dec','Jan','Feb','Mar','Apr'],            pts: '42,142 152,124 262,112 372,100 482,90 592,78 706,68' },
+                'All': { val: '4,200', pct: '+191%', usd: '', labels: ["Q2'23","Q3'23","Q4'23","Q1'24","Q2'24","Q3'24","Q4'24"], pts: '42,168 152,154 262,140 372,120 482,98 592,80 706,64' }
+              }
             }
           };
-          var chartLine = document.getElementById('avsdChartLine');
-          var tvlEth    = document.getElementById('avsdTvlEth');
-          var tvlPct    = document.getElementById('avsdTvlPct');
-          var tvlUsd    = document.getElementById('avsdTvlUsd');
-          var xLabels   = [0,1,2,3,4,5,6].map(function(i){ return document.getElementById('avsdX'+i); });
-          var tfBtns    = document.querySelectorAll('#avsdTfBtns .db-tf');
 
-          function applyAvsdTf(tf) {
-            var d = avsdTf[tf]; if (!d) return;
-            if (chartLine) chartLine.setAttribute('points', d.pts);
-            if (tvlEth)    tvlEth.textContent = d.eth;
-            if (tvlPct)    tvlPct.textContent = d.pct;
-            if (tvlUsd)    tvlUsd.textContent = d.usd;
+          var chartLine  = document.getElementById('avsdChartLine');
+          var chartTitle = document.getElementById('avsdChartTitle');
+          var tvlEth     = document.getElementById('avsdTvlEth');
+          var tvlPct     = document.getElementById('avsdTvlPct');
+          var tvlUsd     = document.getElementById('avsdTvlUsd');
+          var xLabels    = [0,1,2,3,4,5,6].map(function(i){ return document.getElementById('avsdX'+i); });
+          var tfBtns     = document.querySelectorAll('#avsdTfBtns .db-tf');
+          var statBtns   = document.querySelectorAll('#avsdStatBar .avsd-stat-btn');
+
+          var currentView = 'tvl';
+          var currentTf   = '7D';
+
+          function applyChart(viewKey, tfKey) {
+            var v = vd[viewKey]; if (!v) return;
+            var d = v.tfs[tfKey] || v.tfs['7D'];
+            if (chartTitle) chartTitle.textContent = v.title;
+            if (chartLine)  chartLine.setAttribute('points', d.pts);
+            if (tvlEth)     tvlEth.textContent = d.val;
+            if (tvlPct)     tvlPct.textContent  = d.pct;
+            if (tvlUsd)     { tvlUsd.textContent = d.usd; tvlUsd.style.display = d.usd ? '' : 'none'; }
             xLabels.forEach(function(el, i){ if (el) el.textContent = d.labels[i] || ''; });
           }
 
+          function switchView(viewKey) {
+            currentView = viewKey; currentTf = '7D';
+            statBtns.forEach(function(b){ b.classList.toggle('is-active', b.dataset.avsdView === viewKey); });
+            ['tvl','operators','restakers'].forEach(function(v){
+              var el = document.getElementById('avsd-view-' + v);
+              if (el) el.classList.toggle('is-active', v === viewKey);
+            });
+            tfBtns.forEach(function(b){ b.classList.toggle('is-active', b.textContent.trim() === '7D'); });
+            applyChart(viewKey, '7D');
+          }
+
+          statBtns.forEach(function(btn){
+            btn.addEventListener('click', function(e){
+              e.stopPropagation();
+              switchView(btn.dataset.avsdView);
+            });
+          });
           tfBtns.forEach(function(btn){
             btn.addEventListener('click', function(e){
               e.stopPropagation();
               tfBtns.forEach(function(b){ b.classList.remove('is-active'); });
               btn.classList.add('is-active');
-              applyAvsdTf(btn.textContent.trim());
+              currentTf = btn.textContent.trim();
+              applyChart(currentView, currentTf);
             });
           });
         })();
