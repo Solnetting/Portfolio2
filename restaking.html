@@ -1037,7 +1037,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .db-stat:last-child { border-right: none; }
     .db-stat__label { font-size: 11px; color: #7A86A5; }
     .db-stat__val { font-size: 20px; font-weight: 400; color: #fff; line-height: 1.1; }
-    .db-stat__sub { font-size: 11px; color: #FFA726; }
+    .db-stat__sub { font-size: 11px; color: #22C55E; }
+
+    /* Bottom two-panel grid */
+    .db-bottom-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 14px; }
+    .db-dist-total { padding: 12px 16px 8px; }
+    .db-dist-total__usd { font-size: 17px; color: #fff; font-weight: 400; line-height: 1.2; }
+    .db-dist-total__eth { font-size: 11px; color: #7A86A5; margin-top: 2px; }
+    .db-lrt-desc { font-size: 10px; color: #7A86A5; line-height: 1.55; padding: 8px 16px 0; }
+    .db-lrt-inner { display: grid; grid-template-columns: 1fr auto; gap: 14px; align-items: center; padding: 12px 16px 16px; }
+    .db-disclaimer { font-size: 9px; color: rgba(122,134,165,.6); line-height: 1.6; margin-top: 8px; }
+
+    /* Chart with Y-axis */
+    .db-chart-outer { display: grid; grid-template-columns: 28px 1fr; gap: 0; align-items: stretch; }
+    .db-chart-yaxis { display: flex; flex-direction: column; justify-content: space-between; padding-bottom: 18px; }
+    .db-chart-yaxis span { font-size: 9px; color: #7A86A5; text-align: right; line-height: 1; }
 
     /* Panels */
     .db-panel {
@@ -2481,11 +2495,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                   <span class="db-stat__val">$ 1,479,349</span>
                   <span class="db-stat__sub">ETH 3,120,070,554</span>
                 </div>
-                <div class="db-stat">
+                <div class="db-stat" style="align-items:center">
                   <span class="db-stat__label">Active AVS</span>
                   <span class="db-stat__val">17</span>
                 </div>
-                <div class="db-stat">
+                <div class="db-stat" style="align-items:center">
                   <span class="db-stat__label">Active Operators</span>
                   <span class="db-stat__val">240</span>
                 </div>
@@ -2496,21 +2510,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <div class="db-panel">
                   <div class="db-panel__hd">Top AVS <span class="db-panel__hd-info">ⓘ</span></div>
                   <table class="db-table">
-                    <thead><tr><th>AVS</th><th style="text-align:right">Operators</th><th style="text-align:right">TVL</th></tr></thead>
+                    <thead><tr>
+                      <th>AVS</th>
+                      <th style="text-align:center">Operators</th>
+                      <th style="text-align:right">TVL</th>
+                    </tr></thead>
                     <tbody>
                       <tr class="db-clickrow" data-goto="avs-detail" data-id="eigenda">
-                        <td><div class="db-td-name"><div class="db-avatar" style="background:#F31260">E</div>EigenDA</div></td>
-                        <td style="text-align:right" class="db-td-num">123</td>
+                        <td><div class="db-td-name"><div class="db-avatar" style="background:linear-gradient(135deg,#22C55E,#84CC16)">E</div>EigenDa</div></td>
+                        <td style="text-align:center">123</td>
                         <td><div class="db-td-tvl"><span>4,554,567 ETH</span><span>$ 34,554,567</span></div></td>
                       </tr>
                       <tr class="db-clickrow" data-goto="avs-detail" data-id="altlayer">
-                        <td><div class="db-td-name"><div class="db-avatar" style="background:#627EEA">A</div>AltLayer</div></td>
-                        <td style="text-align:right" class="db-td-num">88</td>
+                        <td><div class="db-td-name"><div class="db-avatar" style="background:linear-gradient(135deg,#22C55E,#84CC16)">E</div>EigenDa</div></td>
+                        <td style="text-align:center">88</td>
                         <td><div class="db-td-tvl"><span>1,554,567 ETH</span><span>$ 34,554,567</span></div></td>
                       </tr>
                       <tr class="db-clickrow" data-goto="avs-detail" data-id="eigenyields">
-                        <td><div class="db-td-name"><div class="db-avatar" style="background:#7C3AED">Y</div>EigenYields</div></td>
-                        <td style="text-align:right" class="db-td-num">228</td>
+                        <td><div class="db-td-name"><div class="db-avatar" style="background:linear-gradient(135deg,#22C55E,#84CC16)">E</div>EigenDa</div></td>
+                        <td style="text-align:center">228</td>
                         <td><div class="db-td-tvl"><span>54,567 ETH</span><span>$ 34,554,567</span></div></td>
                       </tr>
                     </tbody>
@@ -2520,21 +2538,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <div class="db-panel">
                   <div class="db-panel__hd">Top Operators <span class="db-panel__hd-info">ⓘ</span></div>
                   <table class="db-table">
-                    <thead><tr><th>Operators</th><th style="text-align:right">Restakers</th><th style="text-align:right">TVL</th></tr></thead>
+                    <thead><tr>
+                      <th>Operators</th>
+                      <th style="text-align:center">Restakers</th>
+                      <th style="text-align:right">TVL</th>
+                    </tr></thead>
                     <tbody>
                       <tr class="db-clickrow" data-goto="op-detail" data-id="infstones">
-                        <td><div class="db-td-name"><div class="db-avatar" style="background:#F97316">I</div>InfStones</div></td>
-                        <td style="text-align:right" class="db-td-num">344</td>
+                        <td><div class="db-td-name"><div class="db-avatar" style="background:linear-gradient(135deg,#22C55E,#84CC16)">I</div>InfStones</div></td>
+                        <td style="text-align:center">344</td>
                         <td><div class="db-td-tvl"><span>4,554,567 ETH</span><span>$ 34,554,567</span></div></td>
                       </tr>
                       <tr class="db-clickrow" data-goto="op-detail" data-id="altlayer-op">
-                        <td><div class="db-td-name"><div class="db-avatar" style="background:#627EEA">A</div>AltLayer</div></td>
-                        <td style="text-align:right" class="db-td-num">127</td>
+                        <td><div class="db-td-name"><div class="db-avatar" style="background:linear-gradient(135deg,#627EEA,#8B5CF6)">A</div>AltLayer</div></td>
+                        <td style="text-align:center">127</td>
                         <td><div class="db-td-tvl"><span>1,554,567 ETH</span><span>$ 34,554,567</span></div></td>
                       </tr>
                       <tr class="db-clickrow" data-goto="op-detail" data-id="eigenyields-op">
-                        <td><div class="db-td-name"><div class="db-avatar" style="background:#22C55E">Y</div>EigenYields</div></td>
-                        <td style="text-align:right" class="db-td-num">88</td>
+                        <td><div class="db-td-name"><div class="db-avatar" style="background:linear-gradient(135deg,#22C55E,#84CC16)">Y</div>EigenYields</div></td>
+                        <td style="text-align:center">88</td>
                         <td><div class="db-td-tvl"><span>54,567 ETH</span><span>$ 34,554,567</span></div></td>
                       </tr>
                     </tbody>
@@ -2542,12 +2564,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </div>
               </div>
 
-              <!-- TVL chart -->
-              <div class="db-chart-wrap" style="padding:14px 14px 0">
+              <!-- TVL over time chart -->
+              <div style="padding:0 14px">
                 <div class="db-panel">
-                  <div style="padding:12px 16px">
+                  <div style="padding:12px 16px 0">
                     <div class="db-chart-hd">
-                      <span style="font-size:12px;color:#fff">TVL over time <span style="color:#7A86A5;font-size:11px">ⓘ</span></span>
+                      <span>TVL over time <span class="db-panel__hd-info">ⓘ</span></span>
                       <div class="db-timefilters" id="dbTimeFilters">
                         <button class="db-tf">1D</button>
                         <button class="db-tf is-active">7D</button>
@@ -2557,125 +2579,148 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                       </div>
                     </div>
                     <div class="db-chart-val">1,479,349 ETH</div>
-                    <svg class="db-chart-svg" viewBox="0 0 620 80" preserveAspectRatio="none">
-                      <!-- bars: roughly 38 bars, heights 0-75, purple -->
-                      <rect x="0"   y="70" width="11" height="8"  fill="#6B21A8" rx="1"/>
-                      <rect x="14"  y="67" width="11" height="11" fill="#6B21A8" rx="1"/>
-                      <rect x="28"  y="65" width="11" height="13" fill="#6B21A8" rx="1"/>
-                      <rect x="42"  y="63" width="11" height="15" fill="#6B21A8" rx="1"/>
-                      <rect x="56"  y="62" width="11" height="16" fill="#6B21A8" rx="1"/>
-                      <rect x="70"  y="60" width="11" height="18" fill="#7C3AED" rx="1"/>
-                      <rect x="84"  y="62" width="11" height="16" fill="#6B21A8" rx="1"/>
-                      <rect x="98"  y="58" width="11" height="20" fill="#7C3AED" rx="1"/>
-                      <rect x="112" y="56" width="11" height="22" fill="#6B21A8" rx="1"/>
-                      <rect x="126" y="55" width="11" height="23" fill="#7C3AED" rx="1"/>
-                      <rect x="140" y="53" width="11" height="25" fill="#6B21A8" rx="1"/>
-                      <rect x="154" y="52" width="11" height="26" fill="#7C3AED" rx="1"/>
-                      <rect x="168" y="50" width="11" height="28" fill="#6B21A8" rx="1"/>
-                      <rect x="182" y="49" width="11" height="29" fill="#7C3AED" rx="1"/>
-                      <rect x="196" y="47" width="11" height="31" fill="#6B21A8" rx="1"/>
-                      <rect x="210" y="46" width="11" height="32" fill="#7C3AED" rx="1"/>
-                      <rect x="224" y="44" width="11" height="34" fill="#6B21A8" rx="1"/>
-                      <rect x="238" y="42" width="11" height="36" fill="#8B5CF6" rx="1"/>
-                      <rect x="252" y="41" width="11" height="37" fill="#7C3AED" rx="1"/>
-                      <rect x="266" y="39" width="11" height="39" fill="#8B5CF6" rx="1"/>
-                      <rect x="280" y="37" width="11" height="41" fill="#7C3AED" rx="1"/>
-                      <rect x="294" y="36" width="11" height="42" fill="#8B5CF6" rx="1"/>
-                      <rect x="308" y="34" width="11" height="44" fill="#7C3AED" rx="1"/>
-                      <rect x="322" y="33" width="11" height="45" fill="#8B5CF6" rx="1"/>
-                      <rect x="336" y="30" width="11" height="48" fill="#7C3AED" rx="1"/>
-                      <rect x="350" y="28" width="11" height="50" fill="#8B5CF6" rx="1"/>
-                      <rect x="364" y="25" width="11" height="53" fill="#7C3AED" rx="1"/>
-                      <rect x="378" y="22" width="11" height="56" fill="#8B5CF6" rx="1"/>
-                      <rect x="392" y="18" width="11" height="60" fill="#7C3AED" rx="1"/>
-                      <rect x="406" y="15" width="11" height="63" fill="#8B5CF6" rx="1"/>
-                      <rect x="420" y="12" width="11" height="66" fill="#7C3AED" rx="1"/>
-                      <rect x="434" y="10" width="11" height="68" fill="#8B5CF6" rx="1"/>
-                      <rect x="448" y="8"  width="11" height="70" fill="#7C3AED" rx="1"/>
-                      <rect x="462" y="5"  width="11" height="73" fill="#8B5CF6" rx="1"/>
-                      <rect x="476" y="4"  width="11" height="74" fill="#9D74F0" rx="1"/>
-                      <rect x="490" y="3"  width="11" height="75" fill="#9D74F0" rx="1"/>
-                      <rect x="504" y="2"  width="11" height="76" fill="#A78BFA" rx="1"/>
-                      <rect x="518" y="1"  width="11" height="77" fill="#A78BFA" rx="1"/>
-                      <rect x="532" y="0"  width="11" height="78" fill="#C4B5FD" rx="1"/>
-                      <!-- x-axis labels -->
-                      <text x="0"   y="80" fill="#7A86A5" font-size="7" font-family="DM Sans">Jul 23</text>
-                      <text x="182" y="80" fill="#7A86A5" font-size="7" font-family="DM Sans">Oct 23</text>
-                      <text x="364" y="80" fill="#7A86A5" font-size="7" font-family="DM Sans">Jan 24</text>
-                      <text x="518" y="80" fill="#7A86A5" font-size="7" font-family="DM Sans">Apr 24</text>
-                    </svg>
+                  </div>
+                  <!-- Chart with Y-axis -->
+                  <div style="padding:8px 16px 0" class="db-chart-outer">
+                    <div class="db-chart-yaxis">
+                      <span>220</span><span>165</span><span>110</span><span>55</span><span>0</span>
+                    </div>
+                    <div>
+                      <svg width="100%" height="90" viewBox="0 0 620 90" preserveAspectRatio="none">
+                        <!-- horizontal grid lines -->
+                        <line x1="0" y1="0"  x2="620" y2="0"  stroke="rgba(255,255,255,.05)" stroke-width="1"/>
+                        <line x1="0" y1="20" x2="620" y2="20" stroke="rgba(255,255,255,.05)" stroke-width="1"/>
+                        <line x1="0" y1="40" x2="620" y2="40" stroke="rgba(255,255,255,.05)" stroke-width="1"/>
+                        <line x1="0" y1="60" x2="620" y2="60" stroke="rgba(255,255,255,.05)" stroke-width="1"/>
+                        <line x1="0" y1="80" x2="620" y2="80" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+                        <!-- stacked bars: dark bottom = native token, light top = LST/EIGEN -->
+                        <!-- format: x, totalH, darkH (dark=70% of total approx) -->
+                        <rect x="0"   y="60" width="13" height="20" fill="#5B21B6" rx="1"/><rect x="0"   y="54" width="13" height="6"  fill="#A78BFA" rx="1"/>
+                        <rect x="17"  y="62" width="13" height="18" fill="#5B21B6" rx="1"/><rect x="17"  y="57" width="13" height="5"  fill="#A78BFA" rx="1"/>
+                        <rect x="34"  y="58" width="13" height="22" fill="#5B21B6" rx="1"/><rect x="34"  y="52" width="13" height="6"  fill="#A78BFA" rx="1"/>
+                        <rect x="51"  y="57" width="13" height="23" fill="#5B21B6" rx="1"/><rect x="51"  y="50" width="13" height="7"  fill="#A78BFA" rx="1"/>
+                        <rect x="68"  y="59" width="13" height="21" fill="#5B21B6" rx="1"/><rect x="68"  y="53" width="13" height="6"  fill="#A78BFA" rx="1"/>
+                        <rect x="85"  y="55" width="13" height="25" fill="#5B21B6" rx="1"/><rect x="85"  y="48" width="13" height="7"  fill="#A78BFA" rx="1"/>
+                        <rect x="102" y="57" width="13" height="23" fill="#5B21B6" rx="1"/><rect x="102" y="51" width="13" height="6"  fill="#A78BFA" rx="1"/>
+                        <rect x="119" y="53" width="13" height="27" fill="#5B21B6" rx="1"/><rect x="119" y="46" width="13" height="7"  fill="#A78BFA" rx="1"/>
+                        <rect x="136" y="51" width="13" height="29" fill="#5B21B6" rx="1"/><rect x="136" y="44" width="13" height="7"  fill="#A78BFA" rx="1"/>
+                        <rect x="153" y="52" width="13" height="28" fill="#5B21B6" rx="1"/><rect x="153" y="45" width="13" height="7"  fill="#A78BFA" rx="1"/>
+                        <rect x="170" y="48" width="13" height="32" fill="#6D28D9" rx="1"/><rect x="170" y="40" width="13" height="8"  fill="#A78BFA" rx="1"/>
+                        <rect x="187" y="49" width="13" height="31" fill="#6D28D9" rx="1"/><rect x="187" y="42" width="13" height="7"  fill="#A78BFA" rx="1"/>
+                        <rect x="204" y="46" width="13" height="34" fill="#6D28D9" rx="1"/><rect x="204" y="38" width="13" height="8"  fill="#A78BFA" rx="1"/>
+                        <rect x="221" y="44" width="13" height="36" fill="#6D28D9" rx="1"/><rect x="221" y="36" width="13" height="8"  fill="#A78BFA" rx="1"/>
+                        <rect x="238" y="46" width="13" height="34" fill="#6D28D9" rx="1"/><rect x="238" y="38" width="13" height="8"  fill="#A78BFA" rx="1"/>
+                        <rect x="255" y="43" width="13" height="37" fill="#6D28D9" rx="1"/><rect x="255" y="35" width="13" height="8"  fill="#A78BFA" rx="1"/>
+                        <rect x="272" y="41" width="13" height="39" fill="#6D28D9" rx="1"/><rect x="272" y="33" width="13" height="8"  fill="#C4B5FD" rx="1"/>
+                        <rect x="289" y="40" width="13" height="40" fill="#6D28D9" rx="1"/><rect x="289" y="32" width="13" height="8"  fill="#C4B5FD" rx="1"/>
+                        <rect x="306" y="38" width="13" height="42" fill="#7C3AED" rx="1"/><rect x="306" y="29" width="13" height="9"  fill="#C4B5FD" rx="1"/>
+                        <rect x="323" y="37" width="13" height="43" fill="#7C3AED" rx="1"/><rect x="323" y="28" width="13" height="9"  fill="#C4B5FD" rx="1"/>
+                        <rect x="340" y="35" width="13" height="45" fill="#7C3AED" rx="1"/><rect x="340" y="26" width="13" height="9"  fill="#C4B5FD" rx="1"/>
+                        <rect x="357" y="33" width="13" height="47" fill="#7C3AED" rx="1"/><rect x="357" y="24" width="13" height="9"  fill="#C4B5FD" rx="1"/>
+                        <rect x="374" y="35" width="13" height="45" fill="#7C3AED" rx="1"/><rect x="374" y="26" width="13" height="9"  fill="#C4B5FD" rx="1"/>
+                        <rect x="391" y="30" width="13" height="50" fill="#7C3AED" rx="1"/><rect x="391" y="20" width="13" height="10" fill="#C4B5FD" rx="1"/>
+                        <rect x="408" y="31" width="13" height="49" fill="#7C3AED" rx="1"/><rect x="408" y="21" width="13" height="10" fill="#C4B5FD" rx="1"/>
+                        <rect x="425" y="28" width="13" height="52" fill="#7C3AED" rx="1"/><rect x="425" y="18" width="13" height="10" fill="#C4B5FD" rx="1"/>
+                        <rect x="442" y="27" width="13" height="53" fill="#7C3AED" rx="1"/><rect x="442" y="17" width="13" height="10" fill="#C4B5FD" rx="1"/>
+                        <rect x="459" y="25" width="13" height="55" fill="#8B5CF6" rx="1"/><rect x="459" y="15" width="13" height="10" fill="#C4B5FD" rx="1"/>
+                        <rect x="476" y="26" width="13" height="54" fill="#8B5CF6" rx="1"/><rect x="476" y="16" width="13" height="10" fill="#C4B5FD" rx="1"/>
+                        <rect x="493" y="24" width="13" height="56" fill="#8B5CF6" rx="1"/><rect x="493" y="14" width="13" height="10" fill="#C4B5FD" rx="1"/>
+                        <rect x="510" y="22" width="13" height="58" fill="#8B5CF6" rx="1"/><rect x="510" y="12" width="13" height="10" fill="#DDD6FE" rx="1"/>
+                        <rect x="527" y="20" width="13" height="60" fill="#8B5CF6" rx="1"/><rect x="527" y="10" width="13" height="10" fill="#DDD6FE" rx="1"/>
+                        <rect x="544" y="18" width="13" height="62" fill="#8B5CF6" rx="1"/><rect x="544" y="8"  width="13" height="10" fill="#DDD6FE" rx="1"/>
+                        <rect x="561" y="17" width="13" height="63" fill="#8B5CF6" rx="1"/><rect x="561" y="7"  width="13" height="10" fill="#DDD6FE" rx="1"/>
+                        <rect x="578" y="15" width="13" height="65" fill="#8B5CF6" rx="1"/><rect x="578" y="5"  width="13" height="10" fill="#DDD6FE" rx="1"/>
+                        <rect x="595" y="13" width="13" height="67" fill="#8B5CF6" rx="1"/><rect x="595" y="3"  width="13" height="10" fill="#DDD6FE" rx="1"/>
+                        <!-- x-axis -->
+                        <line x1="0" y1="80" x2="620" y2="80" stroke="rgba(255,255,255,.12)" stroke-width="1"/>
+                        <!-- x-axis labels -->
+                        <text x="0"   y="90" fill="#7A86A5" font-size="8" font-family="DM Sans, sans-serif">Jul 23</text>
+                        <text x="200" y="90" fill="#7A86A5" font-size="8" font-family="DM Sans, sans-serif">Oct 23</text>
+                        <text x="391" y="90" fill="#7A86A5" font-size="8" font-family="DM Sans, sans-serif">Jan 24</text>
+                        <text x="560" y="90" fill="#7A86A5" font-size="8" font-family="DM Sans, sans-serif">Apr 24</text>
+                      </svg>
+                    </div>
+                  </div>
+                  <div style="padding:6px 16px 12px">
                     <div class="db-chart-legend">
                       <span class="l-native">Native Token 24,881,994 ETH</span>
                       <span class="l-lst">LST 10,334,122 ETH</span>
                       <span class="l-eigen">EIGEN Token 10,334,122 ETH</span>
+                      <span style="display:flex;align-items:center;gap:5px"><span style="width:8px;height:8px;border-radius:50%;background:#DDD6FE;flex-shrink:0;display:inline-block"></span>Other (permissionless)</span>
                     </div>
+                    <p class="db-disclaimer">Due to the expanding pool of Liquid Staking Tokens (LST) and Liquid Restaking Tokens (LRT), the TVL value on this dashboard may not always match the actual TVL of the entire token pool. Refer to the dashboard token list for the current LST and LRT data included in the TVL calculation.</p>
                   </div>
                 </div>
               </div>
 
-              <!-- LRT Distribution -->
-              <div style="padding:14px">
+              <!-- Bottom: two distribution panels -->
+              <div class="db-bottom-grid">
+
+                <!-- Left: Permisionless tokens distribution -->
                 <div class="db-panel">
-                  <div class="db-panel__hd">LRT Distribution <span class="db-panel__hd-info">ⓘ</span></div>
-                  <div class="db-lrt-wrap">
-                    <div class="db-lrt-grid">
-                      <div class="db-lrt-bars">
-                        <div class="db-lrt-row">
-                          <div class="db-lrt-name"><span class="db-lrt-dot" style="background:#F59E0B"></span>WBETH</div>
-                          <div class="db-lrt-bar-track"><div class="db-lrt-bar-fill" style="width:38%;background:#F59E0B"></div></div>
-                          <div class="db-lrt-pct">38%</div>
-                          <div class="db-lrt-eth">4,554,567 ETH</div>
-                        </div>
-                        <div class="db-lrt-row">
-                          <div class="db-lrt-name"><span class="db-lrt-dot" style="background:#7C3AED"></span>osETH</div>
-                          <div class="db-lrt-bar-track"><div class="db-lrt-bar-fill" style="width:28%;background:#7C3AED"></div></div>
-                          <div class="db-lrt-pct">28%</div>
-                          <div class="db-lrt-eth">4,554,567 ETH</div>
-                        </div>
-                        <div class="db-lrt-row">
-                          <div class="db-lrt-name"><span class="db-lrt-dot" style="background:#22C55E"></span>lsETH</div>
-                          <div class="db-lrt-bar-track"><div class="db-lrt-bar-fill" style="width:6.5%;background:#22C55E"></div></div>
-                          <div class="db-lrt-pct">6.5%</div>
-                          <div class="db-lrt-eth">4,554,567 ETH</div>
-                        </div>
-                        <div class="db-lrt-row">
-                          <div class="db-lrt-name"><span class="db-lrt-dot" style="background:#F97316"></span>ankrETH</div>
-                          <div class="db-lrt-bar-track"><div class="db-lrt-bar-fill" style="width:4%;background:#F97316"></div></div>
-                          <div class="db-lrt-pct">4%</div>
-                          <div class="db-lrt-eth">4,554,567 ETH</div>
-                        </div>
-                        <div class="db-lrt-row">
-                          <div class="db-lrt-name"><span class="db-lrt-dot" style="background:#3B82F6"></span>rETH</div>
-                          <div class="db-lrt-bar-track"><div class="db-lrt-bar-fill" style="width:2.51%;background:#3B82F6"></div></div>
-                          <div class="db-lrt-pct">2.51%</div>
-                          <div class="db-lrt-eth">4,554,567 ETH</div>
-                        </div>
-                        <div class="db-lrt-row">
-                          <div class="db-lrt-name"><span class="db-lrt-dot" style="background:#A78BFA"></span>ETHx</div>
-                          <div class="db-lrt-bar-track"><div class="db-lrt-bar-fill" style="width:2%;background:#A78BFA"></div></div>
-                          <div class="db-lrt-pct">2%</div>
-                          <div class="db-lrt-eth">4,554,567 ETH</div>
-                        </div>
-                        <div class="db-lrt-row">
-                          <div class="db-lrt-name"><span class="db-lrt-dot" style="background:#6B7280"></span>Others</div>
-                          <div class="db-lrt-bar-track"><div class="db-lrt-bar-fill" style="width:12%;background:#6B7280"></div></div>
-                          <div class="db-lrt-pct">12%</div>
-                          <div class="db-lrt-eth">4,554,567 ETH</div>
-                        </div>
-                      </div>
+                  <div class="db-panel__hd">Permisionless tokens distribution</div>
+                  <div class="db-dist-total">
+                    <div class="db-dist-total__usd">$9,130,243,626</div>
+                    <div class="db-dist-total__eth">3,599,711 ETH</div>
+                  </div>
+                  <div style="padding:0 16px 16px;display:flex;flex-direction:column;gap:7px">
+                    <div class="db-lrt-row"><div class="db-lrt-name"><span class="db-lrt-dot" style="background:#F59E0B"></span>WBETH</div><div class="db-lrt-bar-track"><div class="db-lrt-bar-fill" style="width:38%;background:#F59E0B"></div></div><div class="db-lrt-pct">38%</div><div class="db-lrt-eth">4,554,567 ETH</div></div>
+                    <div class="db-lrt-row"><div class="db-lrt-name"><span class="db-lrt-dot" style="background:#8B5CF6"></span>osETH</div><div class="db-lrt-bar-track"><div class="db-lrt-bar-fill" style="width:28%;background:#8B5CF6"></div></div><div class="db-lrt-pct">28%</div><div class="db-lrt-eth">4,554,567 ETH</div></div>
+                    <div class="db-lrt-row"><div class="db-lrt-name"><span class="db-lrt-dot" style="background:#22C55E"></span>lsETH</div><div class="db-lrt-bar-track"><div class="db-lrt-bar-fill" style="width:24%;background:#22C55E"></div></div><div class="db-lrt-pct">24%</div><div class="db-lrt-eth">4,554,567 ETH</div></div>
+                    <div class="db-lrt-row"><div class="db-lrt-name"><span class="db-lrt-dot" style="background:#F97316"></span>ankrETH</div><div class="db-lrt-bar-track"><div class="db-lrt-bar-fill" style="width:15%;background:#F97316"></div></div><div class="db-lrt-pct">15%</div><div class="db-lrt-eth">4,554,567 ETH</div></div>
+                    <div class="db-lrt-row"><div class="db-lrt-name"><span class="db-lrt-dot" style="background:#3B82F6"></span>rETH</div><div class="db-lrt-bar-track"><div class="db-lrt-bar-fill" style="width:6%;background:#3B82F6"></div></div><div class="db-lrt-pct">6%</div><div class="db-lrt-eth">4,554,567 ETH</div></div>
+                    <div class="db-lrt-row"><div class="db-lrt-name"><span class="db-lrt-dot" style="background:#A78BFA"></span>ETHx</div><div class="db-lrt-bar-track"><div class="db-lrt-bar-fill" style="width:4%;background:#A78BFA"></div></div><div class="db-lrt-pct">4%</div><div class="db-lrt-eth">4,554,567 ETH</div></div>
+                    <div class="db-lrt-row"><div class="db-lrt-name"><span class="db-lrt-dot" style="background:#6B7280"></span>Others</div><div class="db-lrt-bar-track"><div class="db-lrt-bar-fill" style="width:14%;background:#6B7280"></div></div><div class="db-lrt-pct">14%</div><div class="db-lrt-eth">4,554,567 ETH</div></div>
+                  </div>
+                </div>
 
-                      <!-- Donut chart -->
-                      <div class="db-donut-wrap">
-                        <div class="db-donut" style="background: conic-gradient(#F59E0B 0% 38%, #7C3AED 38% 66%, #22C55E 66% 72.5%, #F97316 72.5% 76.5%, #3B82F6 76.5% 79%, #A78BFA 79% 81%, #6B7280 81% 93%, #1e2235 93% 100%); border-radius:50%;"></div>
-                        <div class="db-donut-center">
-                          <div class="db-donut-val">48,070,554<br>ETH</div>
-                          <div class="db-donut-sub">$ 3,120,070,554</div>
-                        </div>
+                <!-- Right: External LRT Distribution -->
+                <div class="db-panel">
+                  <div class="db-panel__hd">External LRT Distribution <span class="db-panel__hd-info">ⓘ</span></div>
+                  <p class="db-lrt-desc">Liquid Restaking Tokens (LRTs) are not used for cryptoeconomic security in EigenLayer but are still relevant to monitor. Many restakers use LRTs to simplify restaking, as Liquid Restaking Providers handle delegations for them. Tracking LRT total value locked (TVL) and distribution offers insights into retail restaking demand and potential concentration risks.</p>
+                  <div class="db-lrt-inner">
+                    <div style="display:flex;flex-direction:column;gap:6px">
+                      <div class="db-lrt-row"><div class="db-lrt-name"><span class="db-lrt-dot" style="background:#F59E0B"></span>WBETH</div><div class="db-lrt-bar-track"><div class="db-lrt-bar-fill" style="width:38%;background:#F59E0B"></div></div><div class="db-lrt-pct">38%</div><div class="db-lrt-eth">4,554,567 ETH</div></div>
+                      <div class="db-lrt-row"><div class="db-lrt-name"><span class="db-lrt-dot" style="background:#8B5CF6"></span>osETH</div><div class="db-lrt-bar-track"><div class="db-lrt-bar-fill" style="width:28%;background:#8B5CF6"></div></div><div class="db-lrt-pct">28%</div><div class="db-lrt-eth">4,554,567 ETH</div></div>
+                      <div class="db-lrt-row"><div class="db-lrt-name"><span class="db-lrt-dot" style="background:#22C55E"></span>lsETH</div><div class="db-lrt-bar-track"><div class="db-lrt-bar-fill" style="width:24%;background:#22C55E"></div></div><div class="db-lrt-pct">24%</div><div class="db-lrt-eth">4,554,567 ETH</div></div>
+                      <div class="db-lrt-row"><div class="db-lrt-name"><span class="db-lrt-dot" style="background:#F97316"></span>ankrETH</div><div class="db-lrt-bar-track"><div class="db-lrt-bar-fill" style="width:15%;background:#F97316"></div></div><div class="db-lrt-pct">15%</div><div class="db-lrt-eth">4,554,567 ETH</div></div>
+                      <div class="db-lrt-row"><div class="db-lrt-name"><span class="db-lrt-dot" style="background:#3B82F6"></span>rETH</div><div class="db-lrt-bar-track"><div class="db-lrt-bar-fill" style="width:6%;background:#3B82F6"></div></div><div class="db-lrt-pct">6%</div><div class="db-lrt-eth">4,554,567 ETH</div></div>
+                      <div class="db-lrt-row"><div class="db-lrt-name"><span class="db-lrt-dot" style="background:#A78BFA"></span>ETHx</div><div class="db-lrt-bar-track"><div class="db-lrt-bar-fill" style="width:4%;background:#A78BFA"></div></div><div class="db-lrt-pct">4%</div><div class="db-lrt-eth">4,554,567 ETH</div></div>
+                      <div class="db-lrt-row"><div class="db-lrt-name"><span class="db-lrt-dot" style="background:#6B7280"></span>Others</div><div class="db-lrt-bar-track"><div class="db-lrt-bar-fill" style="width:14%;background:#6B7280"></div></div><div class="db-lrt-pct">14%</div><div class="db-lrt-eth">4,554,567 ETH</div></div>
+                    </div>
+                    <!-- Donut -->
+                    <div class="db-donut-wrap">
+                      <div class="db-donut" style="background:conic-gradient(#F59E0B 0% 38%,#8B5CF6 38% 66%,#22C55E 66% 90%,#F97316 90% 96%,#A78BFA 96% 100%)"></div>
+                      <div class="db-donut-center">
+                        <div class="db-donut-val">48,070,554<br>ETH</div>
+                        <div class="db-donut-sub">$ 3,120,070,554</div>
                       </div>
                     </div>
                   </div>
                 </div>
+
+              </div><!-- /db-bottom-grid -->
+
+              <!-- Footer -->
+              <div style="padding:16px;border-top:1px solid #1e2235;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:10px;color:#7A86A5">
+                <div>
+                  <div style="color:rgba(255,255,255,.3);margin-bottom:3px">powered by</div>
+                  <div style="font-weight:700;color:rgba(255,255,255,.5);letter-spacing:.04em">NETHERMIND</div>
+                  <div style="margin-top:2px">©2024 Nethermind. All Rights Reserved</div>
+                  <div style="margin-top:1px">powered by Spice AI</div>
+                </div>
+                <div style="display:flex;gap:16px;flex-wrap:wrap">
+                  <span style="cursor:pointer;color:rgba(255,255,255,.4)">Audit smart contract →</span>
+                  <span style="cursor:pointer;color:rgba(255,255,255,.4)">Nethermind operator →</span>
+                  <span style="cursor:pointer;color:rgba(255,255,255,.4)">Resources →</span>
+                  <span style="cursor:pointer;color:rgba(255,255,255,.4)">Legal →</span>
+                </div>
+                <div style="display:flex;gap:12px">
+                  <span style="cursor:pointer;color:rgba(255,255,255,.4)">Follow us 𝕏</span>
+                  <span style="cursor:pointer;color:rgba(255,255,255,.4)">Join us ◉</span>
+                </div>
               </div>
+
             </div><!-- /overview -->
 
 
