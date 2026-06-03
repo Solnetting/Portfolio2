@@ -22,7 +22,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <meta name="description" content="Restaking.Info — Ethereum restaking analytics dashboard with operator tracking, TVL charts, and LST distribution views. Designed by Carlos Mera.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@300;400;500&family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@300;400;500&family=DM+Sans:wght@400;700&family=Exo:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="project.css">
   <style>
@@ -1300,10 +1300,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .avsd-addr-group { display: flex; align-items: center; gap: 4px; }
     .avsd-addr { font-size: 12px; color: #FFCC80; }
     .avsd-icon-btn { width: 24px; height: 24px; border-radius: 4px; background: rgba(255,255,255,.04); border: 1px solid #293041; display: flex; align-items: center; justify-content: center; cursor: pointer; }
-    .avsd-statbar { display: grid; grid-template-columns: 1fr 1fr 1fr; border-bottom: 1px solid #293041; }
-    .avsd-stat-btn { background: none; border: none; border-right: 1px solid #293041; padding: 8px 16px; display: flex; flex-direction: column; gap: 4px; cursor: pointer; font-family: 'DM Sans', sans-serif; }
+    .avsd-statbar { display: grid; grid-template-columns: 1fr 1fr 1fr; }
+    .avsd-stat-btn { background: none; border: none; border-right: 1px solid #293041; padding: 8px 16px; display: flex; flex-direction: column; gap: 4px; align-items: center; text-align: center; cursor: pointer; font-family: 'DM Sans', sans-serif; }
     .avsd-stat-btn:last-child { border-right: none; }
-    .avsd-stat-center { align-items: center; text-align: center; }
     .avsd-stat-label { font-size: 14px; color: #7A86A5; line-height: 20px; }
     .avsd-stat-val { font-size: 16px; font-weight: 400; color: #fff; line-height: 24px; }
     .avsd-stat-val-active { color: #CAD7F9; }
@@ -2900,18 +2899,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               </div>
 
               <!-- Stats bar -->
-              <div class="avsd-statbar">
-                <div class="avsd-stat-btn">
-                  <span class="avsd-stat-label">Total ETH value</span>
-                  <span class="avsd-stat-val">$120,070,554</span>
-                </div>
-                <div class="avsd-stat-btn avsd-stat-center">
-                  <span class="avsd-stat-label">Operators</span>
-                  <span class="avsd-stat-val avsd-stat-val-active">364</span>
-                </div>
-                <div class="avsd-stat-btn avsd-stat-center">
-                  <span class="avsd-stat-label">Restakers</span>
-                  <span class="avsd-stat-val avsd-stat-val-active">21,345</span>
+              <div style="padding:16px 16px 0">
+                <div class="db-panel">
+                  <div class="avsd-statbar">
+                    <div class="avsd-stat-btn">
+                      <span class="avsd-stat-label">Total ETH value</span>
+                      <span class="avsd-stat-val">$120,070,554</span>
+                    </div>
+                    <div class="avsd-stat-btn">
+                      <span class="avsd-stat-label">Operators</span>
+                      <span class="avsd-stat-val avsd-stat-val-active">364</span>
+                    </div>
+                    <div class="avsd-stat-btn">
+                      <span class="avsd-stat-label">Restakers</span>
+                      <span class="avsd-stat-val avsd-stat-val-active">21,345</span>
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -2935,26 +2938,37 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                       <button class="db-tf">All</button>
                     </div>
                   </div>
-                  <!-- Chart with y-axis -->
-                  <div style="display:flex;gap:8px;align-items:stretch">
-                    <div style="display:flex;flex-direction:column;justify-content:space-between;align-items:flex-end;padding-bottom:20px;font-size:11px;color:#7A86A5;min-width:28px;line-height:1">
-                      <span>300</span><span>200</span><span>100</span><span>50</span><span>0</span>
-                    </div>
-                    <div style="flex:1">
-                      <svg width="100%" height="160" viewBox="0 0 620 160" preserveAspectRatio="none" style="display:block">
-                        <line x1="0" y1="0"   x2="620" y2="0"   stroke="rgba(255,255,255,.06)" stroke-width="1"/>
-                        <line x1="0" y1="53"  x2="620" y2="53"  stroke="rgba(255,255,255,.06)" stroke-width="1"/>
-                        <line x1="0" y1="107" x2="620" y2="107" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
-                        <line x1="0" y1="134" x2="620" y2="134" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
-                        <line x1="0" y1="160" x2="620" y2="160" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
-                        <!-- y = 160 - (val/300*160); pts at x=0,69,138,207,276,345,414,483,552,621 -->
-                        <polyline points="0,112 69,53 138,128 207,96 276,107 345,96 414,112 483,107 552,85 621,21"
-                                  fill="none" stroke="#4E9FD1" stroke-width="1.5" stroke-linejoin="round"/>
-                      </svg>
-                      <div style="display:flex;justify-content:space-between;font-size:11px;color:#7A86A5;padding:4px 0 0;line-height:1">
-                        <span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span>
-                      </div>
-                    </div>
+                  <!-- Chart: SVG with y-axis + x-axis labels -->
+                  <div style="position:relative">
+                    <svg width="100%" height="200" viewBox="0 0 720 200" preserveAspectRatio="none" style="display:block">
+                      <!-- y-axis labels: y = 200 - (val/300*160) offset 20px from top -->
+                      <!-- 300→20, 200→73, 100→127, 50→153, 0→180 -->
+                      <text x="30" y="24"  text-anchor="end" font-size="11" fill="#7A86A5" font-family="DM Sans,sans-serif">300</text>
+                      <text x="30" y="77"  text-anchor="end" font-size="11" fill="#7A86A5" font-family="DM Sans,sans-serif">200</text>
+                      <text x="30" y="131" text-anchor="end" font-size="11" fill="#7A86A5" font-family="DM Sans,sans-serif">100</text>
+                      <text x="30" y="157" text-anchor="end" font-size="11" fill="#7A86A5" font-family="DM Sans,sans-serif">50</text>
+                      <text x="30" y="184" text-anchor="end" font-size="11" fill="#7A86A5" font-family="DM Sans,sans-serif">0</text>
+                      <!-- grid lines from x=35 to x=720 -->
+                      <line x1="35" y1="20"  x2="720" y2="20"  stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+                      <line x1="35" y1="73"  x2="720" y2="73"  stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+                      <line x1="35" y1="127" x2="720" y2="127" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+                      <line x1="35" y1="153" x2="720" y2="153" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+                      <line x1="35" y1="180" x2="720" y2="180" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+                      <!-- chart line; x range 35-720=685px, 9 segments = 76px each -->
+                      <polyline points="35,140 111,73 187,160 263,120 339,133 415,120 491,140 567,133 643,107 720,27"
+                                fill="none" stroke="#4E9FD1" stroke-width="1.5" stroke-linejoin="round"/>
+                      <!-- x-axis labels at bottom -->
+                      <text x="35"  y="198" text-anchor="middle" font-size="11" fill="#7A86A5" font-family="DM Sans,sans-serif">0</text>
+                      <text x="111" y="198" text-anchor="middle" font-size="11" fill="#7A86A5" font-family="DM Sans,sans-serif">1</text>
+                      <text x="187" y="198" text-anchor="middle" font-size="11" fill="#7A86A5" font-family="DM Sans,sans-serif">2</text>
+                      <text x="263" y="198" text-anchor="middle" font-size="11" fill="#7A86A5" font-family="DM Sans,sans-serif">3</text>
+                      <text x="339" y="198" text-anchor="middle" font-size="11" fill="#7A86A5" font-family="DM Sans,sans-serif">4</text>
+                      <text x="415" y="198" text-anchor="middle" font-size="11" fill="#7A86A5" font-family="DM Sans,sans-serif">5</text>
+                      <text x="491" y="198" text-anchor="middle" font-size="11" fill="#7A86A5" font-family="DM Sans,sans-serif">6</text>
+                      <text x="567" y="198" text-anchor="middle" font-size="11" fill="#7A86A5" font-family="DM Sans,sans-serif">7</text>
+                      <text x="643" y="198" text-anchor="middle" font-size="11" fill="#7A86A5" font-family="DM Sans,sans-serif">8</text>
+                      <text x="720" y="198" text-anchor="middle" font-size="11" fill="#7A86A5" font-family="DM Sans,sans-serif">9</text>
+                    </svg>
                   </div>
                 </div>
               </div>
