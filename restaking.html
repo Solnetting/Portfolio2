@@ -852,6 +852,419 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       .rs-pillars { grid-template-columns: 1fr; }
       .rs-metrics { grid-template-columns: 1fr; }
     }
+
+    /* ════════════════════════════════════════
+       DASHBOARD PROTOTYPE
+    ════════════════════════════════════════ */
+    .db-browser {
+      margin-top: 2.5rem;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.08);
+      background: #0A0D12;
+      box-shadow: 0 32px 80px rgba(0,0,0,.6);
+    }
+    .db-chrome {
+      background: #141722;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid rgba(255,255,255,.05);
+    }
+    .db-chrome__dots { display:flex; gap:5px; }
+    .db-chrome__dots span { width:10px; height:10px; border-radius:50%; background:rgba(255,255,255,.1); }
+    .db-chrome__bar {
+      flex: 1;
+      height: 24px;
+      background: rgba(255,255,255,.05);
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      padding: 0 10px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      color: rgba(255,255,255,.25);
+      letter-spacing: .02em;
+    }
+    .db-app {
+      display: flex;
+      height: 560px;
+      overflow: hidden;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    /* Sidebar */
+    .db-sidebar {
+      width: 172px;
+      flex-shrink: 0;
+      background: #0F111A;
+      border-right: 1px solid #1e2235;
+      display: flex;
+      flex-direction: column;
+      padding: 18px 0 16px;
+      overflow: hidden;
+    }
+    .db-logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      color: #fff;
+      letter-spacing: .04em;
+      padding: 0 16px;
+      margin-bottom: 12px;
+    }
+    .db-logo span { color: #CAD7F9; }
+    .db-net-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin: 0 12px 16px;
+      padding: 4px 8px;
+      border: 1.5px solid #293041;
+      border-radius: 12px;
+      font-size: 11px;
+      color: #7A86A5;
+      cursor: pointer;
+      width: fit-content;
+    }
+    .db-net-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #22C55E;
+      flex-shrink: 0;
+    }
+    .db-nav { flex: 1; display: flex; flex-direction: column; gap: 1px; padding: 0 8px; overflow-y: auto; }
+    .db-nav__item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 8px;
+      font-size: 13px;
+      color: #7A86A5;
+      cursor: pointer;
+      border-radius: 4px;
+      position: relative;
+      transition: background .15s, color .15s;
+      user-select: none;
+      text-decoration: none;
+    }
+    .db-nav__item:hover { background: rgba(25,28,44,.6); color: #CAD7F9; }
+    .db-nav__item.is-active { background: #191C2C; color: #CAD7F9; }
+    .db-nav__item.is-active::before {
+      content: '';
+      position: absolute;
+      left: -8px;
+      top: 4px; bottom: 4px;
+      width: 3px;
+      background: #CAD7F9;
+      border-radius: 0 2px 2px 0;
+    }
+    .db-nav__icon { width:16px; height:16px; flex-shrink:0; display:flex; align-items:center; justify-content:center; }
+    .db-nav__badge {
+      margin-left: auto;
+      background: #7A86A5;
+      color: #0F111A;
+      font-size: 9px;
+      font-weight: 700;
+      padding: 2px 4px;
+      border-radius: 3px;
+      letter-spacing: .04em;
+    }
+    .db-sidebar-bottom {
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      border-top: 1px solid #1e2235;
+      margin-top: 8px;
+    }
+    .db-ad {
+      background: #0F111A;
+      border: 1px solid #191C2C;
+      border-radius: 4px;
+      padding: 8px;
+      font-size: 11px;
+    }
+    .db-ad__hd { display:flex; justify-content:space-between; color:#CAD7F9; margin-bottom:4px; font-size:11px; }
+    .db-ad__body { color:#7A86A5; font-size:10px; line-height:1.4; margin-bottom:8px; }
+    .db-ad__btn {
+      display: block;
+      width: 100%;
+      border: 1px solid #7A86A5;
+      background: transparent;
+      color: #7A86A5;
+      font-size: 11px;
+      padding: 4px;
+      border-radius: 4px;
+      text-align: center;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .db-login-btn {
+      display: block;
+      width: 100%;
+      background: #fff;
+      color: #0A0D12;
+      border: none;
+      border-radius: 4px;
+      padding: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    /* Main area */
+    .db-main { flex: 1; overflow-y: auto; overflow-x: hidden; background: #0A0D12; }
+    .db-screen { display: none; }
+    .db-screen.is-active { display: block; animation: dbFadeIn .2s ease; }
+    @keyframes dbFadeIn { from { opacity:0; transform:translateY(4px); } to { opacity:1; transform:translateY(0); } }
+
+    /* Stat bar */
+    .db-statbar {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      border-bottom: 1px solid #1e2235;
+    }
+    .db-stat {
+      padding: 14px 20px;
+      border-right: 1px solid #1e2235;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .db-stat:last-child { border-right: none; }
+    .db-stat__label { font-size: 11px; color: #7A86A5; }
+    .db-stat__val { font-size: 20px; font-weight: 400; color: #fff; line-height: 1.1; }
+    .db-stat__sub { font-size: 11px; color: #FFA726; }
+
+    /* Panels */
+    .db-panel {
+      background: #0F111A;
+      border: 1px solid #1e2235;
+      border-radius: 4px;
+    }
+    .db-panel__hd {
+      padding: 12px 16px;
+      font-size: 12px;
+      color: #fff;
+      font-weight: 500;
+      border-bottom: 1px solid #1e2235;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .db-panel__hd-info { color:#7A86A5; font-size:11px; cursor:help; }
+
+    /* Two-table layout */
+    .db-tables { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 14px; }
+    .db-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+    .db-table thead th {
+      padding: 8px 12px;
+      text-align: left;
+      font-size: 11px;
+      font-weight: 400;
+      color: #7A86A5;
+      border-bottom: 1px solid #1e2235;
+    }
+    .db-table thead th:not(:first-child) { text-align: right; }
+    .db-table tbody tr {
+      border-bottom: 1px solid rgba(255,255,255,.04);
+      cursor: pointer;
+      transition: background .12s;
+    }
+    .db-table tbody tr:last-child { border-bottom: none; }
+    .db-table tbody tr:hover { background: rgba(25,28,44,.8); }
+    .db-table td { padding: 10px 12px; color: #fff; vertical-align: middle; }
+    .db-table td:not(:first-child) { text-align: right; }
+    .db-td-name { display:flex; align-items:center; gap:7px; }
+    .db-avatar {
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 9px; font-weight: 700; color: #fff;
+      flex-shrink: 0;
+    }
+    .db-td-tvl { display:flex; flex-direction:column; align-items:flex-end; gap:2px; }
+    .db-td-tvl span:first-child { color: #fff; font-size:12px; }
+    .db-td-tvl span:last-child { color: #7A86A5; font-size: 10px; }
+    .db-td-num { color: #fff; }
+
+    /* Chart */
+    .db-chart-wrap { padding: 14px; }
+    .db-chart-hd {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      font-size: 12px;
+      color: #fff;
+    }
+    .db-timefilters { display: flex; gap: 2px; }
+    .db-tf {
+      padding: 4px 8px;
+      border-radius: 4px;
+      border: 1px solid #293041;
+      background: transparent;
+      color: #7A86A5;
+      font-size: 11px;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      transition: background .12s, color .12s;
+    }
+    .db-tf.is-active { background: #191C2C; color: #CAD7F9; border-color: #CAD7F9; }
+    .db-tf:hover:not(.is-active) { color: #CAD7F9; }
+    .db-chart-val { font-size: 13px; color: #7A86A5; margin-bottom: 8px; }
+    .db-chart-svg { width: 100%; height: 90px; display: block; }
+    .db-chart-legend {
+      display: flex;
+      gap: 16px;
+      margin-top: 8px;
+      font-size: 10px;
+      color: #7A86A5;
+    }
+    .db-chart-legend span { display:flex; align-items:center; gap:5px; }
+    .db-chart-legend span::before { content:''; width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+    .db-chart-legend .l-native::before { background: #6B21A8; }
+    .db-chart-legend .l-lst::before    { background: #FFA726; }
+    .db-chart-legend .l-eigen::before  { background: #9D74F0; }
+
+    /* LRT Distribution */
+    .db-lrt-wrap { padding: 14px; }
+    .db-lrt-grid { display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: center; }
+    .db-lrt-bars { display: flex; flex-direction: column; gap: 7px; }
+    .db-lrt-row { display: grid; grid-template-columns: 80px 1fr 40px 90px; align-items: center; gap: 8px; font-size: 11px; }
+    .db-lrt-name { display:flex; align-items:center; gap:5px; color:#fff; }
+    .db-lrt-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+    .db-lrt-bar-track { height: 6px; background: rgba(255,255,255,.06); border-radius: 3px; overflow: hidden; }
+    .db-lrt-bar-fill { height: 100%; border-radius: 3px; transition: width .4s ease; }
+    .db-lrt-pct { color: #7A86A5; text-align: right; font-size: 11px; }
+    .db-lrt-eth { color: #7A86A5; text-align: right; font-size: 10px; }
+    .db-donut-wrap { position: relative; width: 100px; height: 100px; flex-shrink: 0; }
+    .db-donut { width: 100px; height: 100px; border-radius: 50%; -webkit-mask: radial-gradient(circle, transparent 35%, black 36%); mask: radial-gradient(circle, transparent 35%, black 36%); }
+    .db-donut-center {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .db-donut-val { font-size: 10px; font-weight: 700; color: #fff; }
+    .db-donut-sub { font-size: 8px; color: #FFA726; }
+
+    /* Screen: AVS list */
+    .db-screen-hd { padding: 12px 16px; border-bottom: 1px solid #1e2235; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .db-screen-title { font-size: 14px; color: #fff; font-weight: 500; }
+    .db-screen-controls { display: flex; align-items: center; gap: 8px; }
+    .db-search-input {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #0F111A;
+      border: 1px solid #293041;
+      border-radius: 4px;
+      padding: 5px 10px;
+      font-size: 11px;
+      color: #7A86A5;
+      width: 160px;
+    }
+    .db-filter-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 10px;
+      border: 1px solid #293041;
+      border-radius: 4px;
+      font-size: 11px;
+      color: #7A86A5;
+      cursor: pointer;
+      transition: border-color .12s, color .12s;
+    }
+    .db-filter-chip.is-active { border-color: #CAD7F9; color: #CAD7F9; background: rgba(25,28,44,.5); }
+    .db-full-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+    .db-full-table thead th {
+      padding: 9px 14px;
+      text-align: left;
+      font-size: 10px;
+      font-weight: 400;
+      color: #7A86A5;
+      border-bottom: 1px solid #1e2235;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    .db-full-table thead th:not(:first-child):not(:nth-child(2)) { text-align: right; }
+    .db-full-table tbody tr { border-bottom: 1px solid rgba(255,255,255,.04); cursor: pointer; transition: background .12s; }
+    .db-full-table tbody tr:hover { background: rgba(25,28,44,.8); }
+    .db-full-table td { padding: 11px 14px; color: #fff; vertical-align: middle; }
+    .db-rank-cell { color: #7A86A5; width: 30px; text-align: center; font-size: 11px; }
+    .db-pagination { display: flex; align-items: center; justify-content: center; gap: 4px; padding: 12px; border-top: 1px solid #1e2235; }
+    .db-page-btn {
+      min-width: 28px; height: 28px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 4px;
+      font-size: 12px;
+      cursor: pointer;
+      border: 1px solid transparent;
+      color: #7A86A5;
+      transition: background .12s, color .12s;
+    }
+    .db-page-btn.is-active { color: #CAD7F9; border-color: #CAD7F9; background: #191C2C; }
+    .db-page-btn:hover:not(.is-active) { color: #CAD7F9; }
+
+    /* Screen: Detail */
+    .db-detail-back {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 12px 16px;
+      font-size: 12px;
+      color: #7A86A5;
+      cursor: pointer;
+      border-bottom: 1px solid #1e2235;
+      transition: color .12s;
+    }
+    .db-detail-back:hover { color: #CAD7F9; }
+    .db-detail-hd { padding: 16px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid #1e2235; }
+    .db-detail-av { width: 40px; height: 40px; border-radius: 50%; background: #F31260; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; color: #fff; }
+    .db-detail-name { font-size: 15px; font-weight: 600; color: #fff; }
+    .db-detail-sub { font-size: 11px; color: #7A86A5; margin-top: 2px; }
+    .db-detail-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-bottom: 1px solid #1e2235;
+    }
+    .db-detail-stat {
+      padding: 12px 16px;
+      border-right: 1px solid #1e2235;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .db-detail-stat:last-child { border-right: none; }
+    .db-detail-stat__label { font-size: 10px; color: #7A86A5; text-transform: uppercase; letter-spacing: .04em; }
+    .db-detail-stat__val { font-size: 16px; color: #fff; }
+    .db-detail-stat__sub { font-size: 10px; color: #FFA726; }
+
+    /* AVS chip badges */
+    .db-avs-stack { display: flex; }
+    .db-avs-dot { width: 14px; height: 14px; border-radius: 50%; border: 1.5px solid #0A0D12; margin-right: -4px; }
+    .db-badge-txt { font-size: 11px; color: #7A86A5; margin-left: 8px; }
+
+    /* Placeholder screens */
+    .db-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 400px;
+      color: #7A86A5;
+      gap: 10px;
+      font-size: 13px;
+    }
+    .db-placeholder svg { opacity: .25; }
   </style>
 </head>
 <body>
@@ -1988,39 +2401,530 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div id="rs-ai" class="rs-sec">
       <p class="section__label">AI Workflow</p>
       <h2 class="rs-sec__title">Prototyping and shipping with Claude Code</h2>
+      <p class="rs-body-text" style="max-width:600px">Every screen below was prototyped directly in the browser using Claude Code — not in Figma. Click the nav, rows, and filters to explore the full operator decision flow.</p>
 
-      <div class="rs-2col">
-        <div>
-          <p class="rs-body-text">This case study — and every page of this portfolio — was prototyped and built using Claude Code. Rather than handing off design decisions to a separate engineering workflow, I used AI-assisted development to build and iterate on layouts, data-dense components, and interactions directly in the browser.</p>
-          <p class="rs-body-text" style="margin-top:1rem">The feedback loop changed fundamentally. Design decisions that would take days to validate in production became testable in hours. Seeing real data inside real components — rather than placeholder content in a Figma frame — surfaced layout issues that would never have appeared in static mockups.</p>
+      <!-- ── Browser Frame ── -->
+      <div class="db-browser">
+
+        <!-- Chrome bar -->
+        <div class="db-chrome">
+          <div class="db-chrome__dots"><span></span><span></span><span></span></div>
+          <div class="db-chrome__bar">restaking.info</div>
         </div>
-        <div>
-          <p class="rs-col-eyebrow">How it informed the product</p>
-          <div class="rs-biz-pillars">
-            <div class="rs-biz-pillar">
-              <span class="rs-biz-pillar__num">01</span>
-              <div>
-                <h4 class="rs-biz-pillar__title">Real-data prototyping</h4>
-                <p class="rs-biz-pillar__body">Components were tested with live on-chain values — long wallet addresses, large ETH amounts, edge-case operator names — before any engineering sprint began.</p>
+
+        <!-- App shell -->
+        <div class="db-app">
+
+          <!-- ── Sidebar ── -->
+          <aside class="db-sidebar">
+            <div class="db-logo">RESTAKING<span>.INFO</span></div>
+            <div class="db-net-chip">
+              <span class="db-net-dot"></span>Mainnet <span style="margin-left:2px">▾</span>
+            </div>
+
+            <nav class="db-nav" id="dbNav">
+              <a class="db-nav__item is-active" data-view="overview">
+                <span class="db-nav__icon"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M2 2h5v5H2zM9 2h5v5H9zM2 9h5v5H2zM9 9h5v5H9z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></span>
+                Overview
+              </a>
+              <a class="db-nav__item" data-view="avs">
+                <span class="db-nav__icon"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 2L13 5V11L8 14L3 11V5Z" stroke="currentColor" stroke-width="1.3"/></svg></span>
+                AVS
+              </a>
+              <a class="db-nav__item" data-view="operators">
+                <span class="db-nav__icon"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="5" r="3" stroke="currentColor" stroke-width="1.3"/><path d="M2 14c0-3.314 2.686-5 6-5s6 1.686 6 5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></span>
+                Operators
+              </a>
+              <a class="db-nav__item" data-view="lst">
+                <span class="db-nav__icon"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><rect x="2" y="4" width="12" height="2" rx="1" fill="currentColor"/><rect x="2" y="7.5" width="9" height="2" rx="1" fill="currentColor"/><rect x="2" y="11" width="6" height="2" rx="1" fill="currentColor"/></svg></span>
+                LST
+              </a>
+              <a class="db-nav__item" data-view="lrt">
+                <span class="db-nav__icon"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="5" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="8" r="2" fill="currentColor"/></svg></span>
+                LRT
+              </a>
+              <a class="db-nav__item" data-view="rewards">
+                <span class="db-nav__icon"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 2l1.5 4H14l-3.5 2.5 1.5 4L8 10 4 12.5l1.5-4L2 6h4.5z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></span>
+                Rewards
+                <span class="db-nav__badge">New</span>
+              </a>
+              <a class="db-nav__item" data-view="events">
+                <span class="db-nav__icon"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><rect x="2" y="3" width="12" height="11" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M5 2v2M11 2v2M2 7h12" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></span>
+                Events
+              </a>
+              <a class="db-nav__item" data-view="api">
+                <span class="db-nav__icon"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8l2.5-3L3 2M7 11h6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                API
+              </a>
+            </nav>
+
+            <div class="db-sidebar-bottom">
+              <div class="db-ad">
+                <div class="db-ad__hd"><span>Promote your operator</span><span>×</span></div>
+                <div class="db-ad__body">Take advantage of all the features in one glance.</div>
+                <button class="db-ad__btn">Try promotion</button>
+              </div>
+              <button class="db-login-btn">Log in / Sign up</button>
+            </div>
+          </aside>
+
+          <!-- ── Main content ── -->
+          <main class="db-main" id="dbMain">
+
+            <!-- ══ SCREEN: OVERVIEW ══ -->
+            <div class="db-screen is-active" id="db-screen-overview">
+
+              <!-- Stat bar -->
+              <div class="db-statbar">
+                <div class="db-stat">
+                  <span class="db-stat__label">EigenLayer TVL</span>
+                  <span class="db-stat__val">$ 1,479,349</span>
+                  <span class="db-stat__sub">ETH 3,120,070,554</span>
+                </div>
+                <div class="db-stat">
+                  <span class="db-stat__label">Active AVS</span>
+                  <span class="db-stat__val">17</span>
+                </div>
+                <div class="db-stat">
+                  <span class="db-stat__label">Active Operators</span>
+                  <span class="db-stat__val">240</span>
+                </div>
+              </div>
+
+              <!-- Top AVS + Top Operators -->
+              <div class="db-tables">
+                <div class="db-panel">
+                  <div class="db-panel__hd">Top AVS <span class="db-panel__hd-info">ⓘ</span></div>
+                  <table class="db-table">
+                    <thead><tr><th>AVS</th><th style="text-align:right">Operators</th><th style="text-align:right">TVL</th></tr></thead>
+                    <tbody>
+                      <tr class="db-clickrow" data-goto="avs-detail" data-id="eigenda">
+                        <td><div class="db-td-name"><div class="db-avatar" style="background:#F31260">E</div>EigenDA</div></td>
+                        <td style="text-align:right" class="db-td-num">123</td>
+                        <td><div class="db-td-tvl"><span>4,554,567 ETH</span><span>$ 34,554,567</span></div></td>
+                      </tr>
+                      <tr class="db-clickrow" data-goto="avs-detail" data-id="altlayer">
+                        <td><div class="db-td-name"><div class="db-avatar" style="background:#627EEA">A</div>AltLayer</div></td>
+                        <td style="text-align:right" class="db-td-num">88</td>
+                        <td><div class="db-td-tvl"><span>1,554,567 ETH</span><span>$ 34,554,567</span></div></td>
+                      </tr>
+                      <tr class="db-clickrow" data-goto="avs-detail" data-id="eigenyields">
+                        <td><div class="db-td-name"><div class="db-avatar" style="background:#7C3AED">Y</div>EigenYields</div></td>
+                        <td style="text-align:right" class="db-td-num">228</td>
+                        <td><div class="db-td-tvl"><span>54,567 ETH</span><span>$ 34,554,567</span></div></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="db-panel">
+                  <div class="db-panel__hd">Top Operators <span class="db-panel__hd-info">ⓘ</span></div>
+                  <table class="db-table">
+                    <thead><tr><th>Operators</th><th style="text-align:right">Restakers</th><th style="text-align:right">TVL</th></tr></thead>
+                    <tbody>
+                      <tr class="db-clickrow" data-goto="op-detail" data-id="infstones">
+                        <td><div class="db-td-name"><div class="db-avatar" style="background:#F97316">I</div>InfStones</div></td>
+                        <td style="text-align:right" class="db-td-num">344</td>
+                        <td><div class="db-td-tvl"><span>4,554,567 ETH</span><span>$ 34,554,567</span></div></td>
+                      </tr>
+                      <tr class="db-clickrow" data-goto="op-detail" data-id="altlayer-op">
+                        <td><div class="db-td-name"><div class="db-avatar" style="background:#627EEA">A</div>AltLayer</div></td>
+                        <td style="text-align:right" class="db-td-num">127</td>
+                        <td><div class="db-td-tvl"><span>1,554,567 ETH</span><span>$ 34,554,567</span></div></td>
+                      </tr>
+                      <tr class="db-clickrow" data-goto="op-detail" data-id="eigenyields-op">
+                        <td><div class="db-td-name"><div class="db-avatar" style="background:#22C55E">Y</div>EigenYields</div></td>
+                        <td style="text-align:right" class="db-td-num">88</td>
+                        <td><div class="db-td-tvl"><span>54,567 ETH</span><span>$ 34,554,567</span></div></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <!-- TVL chart -->
+              <div class="db-chart-wrap" style="padding:14px 14px 0">
+                <div class="db-panel">
+                  <div style="padding:12px 16px">
+                    <div class="db-chart-hd">
+                      <span style="font-size:12px;color:#fff">TVL over time <span style="color:#7A86A5;font-size:11px">ⓘ</span></span>
+                      <div class="db-timefilters" id="dbTimeFilters">
+                        <button class="db-tf">1D</button>
+                        <button class="db-tf is-active">7D</button>
+                        <button class="db-tf">1m</button>
+                        <button class="db-tf">3m</button>
+                        <button class="db-tf">All</button>
+                      </div>
+                    </div>
+                    <div class="db-chart-val">1,479,349 ETH</div>
+                    <svg class="db-chart-svg" viewBox="0 0 620 80" preserveAspectRatio="none">
+                      <!-- bars: roughly 38 bars, heights 0-75, purple -->
+                      <rect x="0"   y="70" width="11" height="8"  fill="#6B21A8" rx="1"/>
+                      <rect x="14"  y="67" width="11" height="11" fill="#6B21A8" rx="1"/>
+                      <rect x="28"  y="65" width="11" height="13" fill="#6B21A8" rx="1"/>
+                      <rect x="42"  y="63" width="11" height="15" fill="#6B21A8" rx="1"/>
+                      <rect x="56"  y="62" width="11" height="16" fill="#6B21A8" rx="1"/>
+                      <rect x="70"  y="60" width="11" height="18" fill="#7C3AED" rx="1"/>
+                      <rect x="84"  y="62" width="11" height="16" fill="#6B21A8" rx="1"/>
+                      <rect x="98"  y="58" width="11" height="20" fill="#7C3AED" rx="1"/>
+                      <rect x="112" y="56" width="11" height="22" fill="#6B21A8" rx="1"/>
+                      <rect x="126" y="55" width="11" height="23" fill="#7C3AED" rx="1"/>
+                      <rect x="140" y="53" width="11" height="25" fill="#6B21A8" rx="1"/>
+                      <rect x="154" y="52" width="11" height="26" fill="#7C3AED" rx="1"/>
+                      <rect x="168" y="50" width="11" height="28" fill="#6B21A8" rx="1"/>
+                      <rect x="182" y="49" width="11" height="29" fill="#7C3AED" rx="1"/>
+                      <rect x="196" y="47" width="11" height="31" fill="#6B21A8" rx="1"/>
+                      <rect x="210" y="46" width="11" height="32" fill="#7C3AED" rx="1"/>
+                      <rect x="224" y="44" width="11" height="34" fill="#6B21A8" rx="1"/>
+                      <rect x="238" y="42" width="11" height="36" fill="#8B5CF6" rx="1"/>
+                      <rect x="252" y="41" width="11" height="37" fill="#7C3AED" rx="1"/>
+                      <rect x="266" y="39" width="11" height="39" fill="#8B5CF6" rx="1"/>
+                      <rect x="280" y="37" width="11" height="41" fill="#7C3AED" rx="1"/>
+                      <rect x="294" y="36" width="11" height="42" fill="#8B5CF6" rx="1"/>
+                      <rect x="308" y="34" width="11" height="44" fill="#7C3AED" rx="1"/>
+                      <rect x="322" y="33" width="11" height="45" fill="#8B5CF6" rx="1"/>
+                      <rect x="336" y="30" width="11" height="48" fill="#7C3AED" rx="1"/>
+                      <rect x="350" y="28" width="11" height="50" fill="#8B5CF6" rx="1"/>
+                      <rect x="364" y="25" width="11" height="53" fill="#7C3AED" rx="1"/>
+                      <rect x="378" y="22" width="11" height="56" fill="#8B5CF6" rx="1"/>
+                      <rect x="392" y="18" width="11" height="60" fill="#7C3AED" rx="1"/>
+                      <rect x="406" y="15" width="11" height="63" fill="#8B5CF6" rx="1"/>
+                      <rect x="420" y="12" width="11" height="66" fill="#7C3AED" rx="1"/>
+                      <rect x="434" y="10" width="11" height="68" fill="#8B5CF6" rx="1"/>
+                      <rect x="448" y="8"  width="11" height="70" fill="#7C3AED" rx="1"/>
+                      <rect x="462" y="5"  width="11" height="73" fill="#8B5CF6" rx="1"/>
+                      <rect x="476" y="4"  width="11" height="74" fill="#9D74F0" rx="1"/>
+                      <rect x="490" y="3"  width="11" height="75" fill="#9D74F0" rx="1"/>
+                      <rect x="504" y="2"  width="11" height="76" fill="#A78BFA" rx="1"/>
+                      <rect x="518" y="1"  width="11" height="77" fill="#A78BFA" rx="1"/>
+                      <rect x="532" y="0"  width="11" height="78" fill="#C4B5FD" rx="1"/>
+                      <!-- x-axis labels -->
+                      <text x="0"   y="80" fill="#7A86A5" font-size="7" font-family="DM Sans">Jul 23</text>
+                      <text x="182" y="80" fill="#7A86A5" font-size="7" font-family="DM Sans">Oct 23</text>
+                      <text x="364" y="80" fill="#7A86A5" font-size="7" font-family="DM Sans">Jan 24</text>
+                      <text x="518" y="80" fill="#7A86A5" font-size="7" font-family="DM Sans">Apr 24</text>
+                    </svg>
+                    <div class="db-chart-legend">
+                      <span class="l-native">Native Token 24,881,994 ETH</span>
+                      <span class="l-lst">LST 10,334,122 ETH</span>
+                      <span class="l-eigen">EIGEN Token 10,334,122 ETH</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- LRT Distribution -->
+              <div style="padding:14px">
+                <div class="db-panel">
+                  <div class="db-panel__hd">LRT Distribution <span class="db-panel__hd-info">ⓘ</span></div>
+                  <div class="db-lrt-wrap">
+                    <div class="db-lrt-grid">
+                      <div class="db-lrt-bars">
+                        <div class="db-lrt-row">
+                          <div class="db-lrt-name"><span class="db-lrt-dot" style="background:#F59E0B"></span>WBETH</div>
+                          <div class="db-lrt-bar-track"><div class="db-lrt-bar-fill" style="width:38%;background:#F59E0B"></div></div>
+                          <div class="db-lrt-pct">38%</div>
+                          <div class="db-lrt-eth">4,554,567 ETH</div>
+                        </div>
+                        <div class="db-lrt-row">
+                          <div class="db-lrt-name"><span class="db-lrt-dot" style="background:#7C3AED"></span>osETH</div>
+                          <div class="db-lrt-bar-track"><div class="db-lrt-bar-fill" style="width:28%;background:#7C3AED"></div></div>
+                          <div class="db-lrt-pct">28%</div>
+                          <div class="db-lrt-eth">4,554,567 ETH</div>
+                        </div>
+                        <div class="db-lrt-row">
+                          <div class="db-lrt-name"><span class="db-lrt-dot" style="background:#22C55E"></span>lsETH</div>
+                          <div class="db-lrt-bar-track"><div class="db-lrt-bar-fill" style="width:6.5%;background:#22C55E"></div></div>
+                          <div class="db-lrt-pct">6.5%</div>
+                          <div class="db-lrt-eth">4,554,567 ETH</div>
+                        </div>
+                        <div class="db-lrt-row">
+                          <div class="db-lrt-name"><span class="db-lrt-dot" style="background:#F97316"></span>ankrETH</div>
+                          <div class="db-lrt-bar-track"><div class="db-lrt-bar-fill" style="width:4%;background:#F97316"></div></div>
+                          <div class="db-lrt-pct">4%</div>
+                          <div class="db-lrt-eth">4,554,567 ETH</div>
+                        </div>
+                        <div class="db-lrt-row">
+                          <div class="db-lrt-name"><span class="db-lrt-dot" style="background:#3B82F6"></span>rETH</div>
+                          <div class="db-lrt-bar-track"><div class="db-lrt-bar-fill" style="width:2.51%;background:#3B82F6"></div></div>
+                          <div class="db-lrt-pct">2.51%</div>
+                          <div class="db-lrt-eth">4,554,567 ETH</div>
+                        </div>
+                        <div class="db-lrt-row">
+                          <div class="db-lrt-name"><span class="db-lrt-dot" style="background:#A78BFA"></span>ETHx</div>
+                          <div class="db-lrt-bar-track"><div class="db-lrt-bar-fill" style="width:2%;background:#A78BFA"></div></div>
+                          <div class="db-lrt-pct">2%</div>
+                          <div class="db-lrt-eth">4,554,567 ETH</div>
+                        </div>
+                        <div class="db-lrt-row">
+                          <div class="db-lrt-name"><span class="db-lrt-dot" style="background:#6B7280"></span>Others</div>
+                          <div class="db-lrt-bar-track"><div class="db-lrt-bar-fill" style="width:12%;background:#6B7280"></div></div>
+                          <div class="db-lrt-pct">12%</div>
+                          <div class="db-lrt-eth">4,554,567 ETH</div>
+                        </div>
+                      </div>
+
+                      <!-- Donut chart -->
+                      <div class="db-donut-wrap">
+                        <div class="db-donut" style="background: conic-gradient(#F59E0B 0% 38%, #7C3AED 38% 66%, #22C55E 66% 72.5%, #F97316 72.5% 76.5%, #3B82F6 76.5% 79%, #A78BFA 79% 81%, #6B7280 81% 93%, #1e2235 93% 100%); border-radius:50%;"></div>
+                        <div class="db-donut-center">
+                          <div class="db-donut-val">48,070,554<br>ETH</div>
+                          <div class="db-donut-sub">$ 3,120,070,554</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div><!-- /overview -->
+
+
+            <!-- ══ SCREEN: AVS ══ -->
+            <div class="db-screen" id="db-screen-avs">
+              <div class="db-screen-hd">
+                <span class="db-screen-title">Active Validated Services</span>
+                <div class="db-screen-controls">
+                  <div class="db-search-input">
+                    <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="4.5" stroke="#7A86A5" stroke-width="1.4"/><path d="M11 11l3 3" stroke="#7A86A5" stroke-width="1.4" stroke-linecap="round"/></svg>
+                    Search by AVS...
+                  </div>
+                  <div class="db-filter-chip" onclick="this.classList.toggle('is-active')">All</div>
+                  <div class="db-filter-chip" onclick="this.classList.toggle('is-active')">Active</div>
+                  <div class="db-filter-chip" onclick="this.classList.toggle('is-active')">Permissionless</div>
+                </div>
+              </div>
+              <table class="db-full-table">
+                <thead><tr>
+                  <th style="width:30px">#</th>
+                  <th>AVS</th>
+                  <th>Operators</th>
+                  <th>Restakers</th>
+                  <th>TVL</th>
+                </tr></thead>
+                <tbody>
+                  <tr class="db-clickrow" data-goto="avs-detail" data-id="eigenda"><td class="db-rank-cell">1</td><td><div class="db-td-name"><div class="db-avatar" style="background:#F31260">E</div>EigenDA</div></td><td>123</td><td>21,345</td><td><div class="db-td-tvl"><span>4,554,567 ETH</span><span>$ 34,554,567</span></div></td></tr>
+                  <tr class="db-clickrow" data-goto="avs-detail" data-id="altlayer"><td class="db-rank-cell">2</td><td><div class="db-td-name"><div class="db-avatar" style="background:#627EEA">A</div>AltLayer</div></td><td>88</td><td>18,902</td><td><div class="db-td-tvl"><span>1,554,567 ETH</span><span>$ 28,120,000</span></div></td></tr>
+                  <tr class="db-clickrow" data-goto="avs-detail" data-id="eigenyields"><td class="db-rank-cell">3</td><td><div class="db-td-name"><div class="db-avatar" style="background:#7C3AED">Y</div>EigenYields</div></td><td>228</td><td>14,210</td><td><div class="db-td-tvl"><span>54,567 ETH</span><span>$ 12,900,000</span></div></td></tr>
+                  <tr class="db-clickrow" data-goto="avs-detail" data-id="lagrange"><td class="db-rank-cell">4</td><td><div class="db-td-name"><div class="db-avatar" style="background:#0EA5E9">L</div>Lagrange</div></td><td>64</td><td>9,822</td><td><div class="db-td-tvl"><span>820,000 ETH</span><span>$ 8,200,000</span></div></td></tr>
+                  <tr class="db-clickrow" data-goto="avs-detail" data-id="witnesschain"><td class="db-rank-cell">5</td><td><div class="db-td-name"><div class="db-avatar" style="background:#F97316">W</div>WitnessChain</div></td><td>41</td><td>7,100</td><td><div class="db-td-tvl"><span>540,000 ETH</span><span>$ 5,400,000</span></div></td></tr>
+                  <tr class="db-clickrow" data-goto="avs-detail" data-id="hyperlane"><td class="db-rank-cell">6</td><td><div class="db-td-name"><div class="db-avatar" style="background:#EC4899">H</div>Hyperlane</div></td><td>37</td><td>5,930</td><td><div class="db-td-tvl"><span>320,000 ETH</span><span>$ 3,200,000</span></div></td></tr>
+                  <tr class="db-clickrow" data-goto="avs-detail" data-id="omni"><td class="db-rank-cell">7</td><td><div class="db-td-name"><div class="db-avatar" style="background:#6B21A8">O</div>Omni Network</div></td><td>29</td><td>4,670</td><td><div class="db-td-tvl"><span>210,000 ETH</span><span>$ 2,100,000</span></div></td></tr>
+                </tbody>
+              </table>
+              <div class="db-pagination">
+                <div class="db-page-btn">‹</div>
+                <div class="db-page-btn is-active">1</div>
+                <div class="db-page-btn" onclick="this.parentElement.querySelectorAll('.db-page-btn').forEach(b=>b.classList.remove('is-active'));this.classList.add('is-active')">2</div>
+                <div class="db-page-btn" onclick="this.parentElement.querySelectorAll('.db-page-btn').forEach(b=>b.classList.remove('is-active'));this.classList.add('is-active')">3</div>
+                <div class="db-page-btn">›</div>
+              </div>
+            </div><!-- /avs -->
+
+
+            <!-- ══ SCREEN: OPERATORS ══ -->
+            <div class="db-screen" id="db-screen-operators">
+              <div class="db-screen-hd">
+                <span class="db-screen-title">Operators</span>
+                <div class="db-screen-controls">
+                  <div class="db-search-input">
+                    <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="4.5" stroke="#7A86A5" stroke-width="1.4"/><path d="M11 11l3 3" stroke="#7A86A5" stroke-width="1.4" stroke-linecap="round"/></svg>
+                    Search operator...
+                  </div>
+                  <div class="db-filter-chip" onclick="this.classList.toggle('is-active')">All networks</div>
+                  <div class="db-filter-chip" onclick="this.classList.toggle('is-active')">Verified</div>
+                </div>
+              </div>
+              <table class="db-full-table">
+                <thead><tr>
+                  <th style="width:30px">#</th>
+                  <th>Operator</th>
+                  <th>AVS</th>
+                  <th>Restakers</th>
+                  <th>TVL</th>
+                </tr></thead>
+                <tbody>
+                  <tr class="db-clickrow" data-goto="op-detail" data-id="nethermind"><td class="db-rank-cell">1</td><td><div class="db-td-name"><div class="db-avatar" style="background:#7A86A5">N</div>Nethermind</div></td><td><div style="display:flex;align-items:center;gap:4px"><div class="db-avs-stack"><div class="db-avs-dot" style="background:#F31260"></div><div class="db-avs-dot" style="background:#627EEA"></div><div class="db-avs-dot" style="background:#F97316"></div></div><span class="db-badge-txt">7 AVS</span></div></td><td>344</td><td><div class="db-td-tvl"><span>4,554,567 ETH</span><span>$ 34,554,567</span></div></td></tr>
+                  <tr class="db-clickrow" data-goto="op-detail" data-id="infstones"><td class="db-rank-cell">2</td><td><div class="db-td-name"><div class="db-avatar" style="background:#F97316">I</div>InfStones</div></td><td><div style="display:flex;align-items:center;gap:4px"><div class="db-avs-stack"><div class="db-avs-dot" style="background:#7C3AED"></div><div class="db-avs-dot" style="background:#22C55E"></div></div><span class="db-badge-txt">5 AVS</span></div></td><td>288</td><td><div class="db-td-tvl"><span>2,120,000 ETH</span><span>$ 21,200,000</span></div></td></tr>
+                  <tr class="db-clickrow" data-goto="op-detail" data-id="altlayer-op"><td class="db-rank-cell">3</td><td><div class="db-td-name"><div class="db-avatar" style="background:#627EEA">A</div>AltLayer</div></td><td><div style="display:flex;align-items:center;gap:4px"><div class="db-avs-stack"><div class="db-avs-dot" style="background:#F31260"></div><div class="db-avs-dot" style="background:#0EA5E9"></div></div><span class="db-badge-txt">4 AVS</span></div></td><td>127</td><td><div class="db-td-tvl"><span>1,554,567 ETH</span><span>$ 15,500,000</span></div></td></tr>
+                  <tr class="db-clickrow" data-goto="op-detail" data-id="a41"><td class="db-rank-cell">4</td><td><div class="db-td-name"><div class="db-avatar" style="background:#6B21A8">P</div>P2P.org</div></td><td><div style="display:flex;align-items:center;gap:4px"><div class="db-avs-stack"><div class="db-avs-dot" style="background:#EC4899"></div><div class="db-avs-dot" style="background:#F97316"></div></div><span class="db-badge-txt">6 AVS</span></div></td><td>198</td><td><div class="db-td-tvl"><span>980,000 ETH</span><span>$ 9,800,000</span></div></td></tr>
+                  <tr class="db-clickrow" data-goto="op-detail" data-id="blockdaemon"><td class="db-rank-cell">5</td><td><div class="db-td-name"><div class="db-avatar" style="background:#0EA5E9">B</div>Blockdaemon</div></td><td><div style="display:flex;align-items:center;gap:4px"><div class="db-avs-stack"><div class="db-avs-dot" style="background:#7C3AED"></div><div class="db-avs-dot" style="background:#F59E0B"></div></div><span class="db-badge-txt">3 AVS</span></div></td><td>142</td><td><div class="db-td-tvl"><span>760,000 ETH</span><span>$ 7,600,000</span></div></td></tr>
+                  <tr class="db-clickrow" data-goto="op-detail" data-id="hashkey"><td class="db-rank-cell">6</td><td><div class="db-td-name"><div class="db-avatar" style="background:#22C55E">H</div>HashKey Cloud</div></td><td><div style="display:flex;align-items:center;gap:4px"><div class="db-avs-stack"><div class="db-avs-dot" style="background:#F31260"></div></div><span class="db-badge-txt">2 AVS</span></div></td><td>89</td><td><div class="db-td-tvl"><span>420,000 ETH</span><span>$ 4,200,000</span></div></td></tr>
+                </tbody>
+              </table>
+              <div class="db-pagination">
+                <div class="db-page-btn">‹</div>
+                <div class="db-page-btn is-active">1</div>
+                <div class="db-page-btn" onclick="this.parentElement.querySelectorAll('.db-page-btn').forEach(b=>b.classList.remove('is-active'));this.classList.add('is-active')">2</div>
+                <div class="db-page-btn" onclick="this.parentElement.querySelectorAll('.db-page-btn').forEach(b=>b.classList.remove('is-active'));this.classList.add('is-active')">3</div>
+                <div class="db-page-btn">›</div>
+              </div>
+            </div><!-- /operators -->
+
+
+            <!-- ══ SCREEN: AVS DETAIL ══ -->
+            <div class="db-screen" id="db-screen-avs-detail">
+              <div class="db-detail-back db-back-btn">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Back to AVS
+              </div>
+              <div class="db-detail-hd">
+                <div class="db-detail-av" id="db-avs-detail-av">E</div>
+                <div>
+                  <div class="db-detail-name" id="db-avs-detail-name">EigenDA</div>
+                  <div class="db-detail-sub">Decentralized data availability service · Mainnet</div>
+                </div>
+              </div>
+              <div class="db-detail-stats">
+                <div class="db-detail-stat"><div class="db-detail-stat__label">TVL</div><div class="db-detail-stat__val">4,554,567</div><div class="db-detail-stat__sub">ETH</div></div>
+                <div class="db-detail-stat"><div class="db-detail-stat__label">Operators</div><div class="db-detail-stat__val">123</div></div>
+                <div class="db-detail-stat"><div class="db-detail-stat__label">Restakers</div><div class="db-detail-stat__val">21,345</div></div>
+                <div class="db-detail-stat"><div class="db-detail-stat__label">AVS Slashing</div><div class="db-detail-stat__val" style="color:#22C55E">Active</div></div>
+              </div>
+              <div style="padding:14px">
+                <div class="db-panel">
+                  <div class="db-panel__hd">Operators running this AVS</div>
+                  <table class="db-full-table">
+                    <thead><tr><th style="width:30px">#</th><th>Operator</th><th>Stake delegated</th><th>TVL</th></tr></thead>
+                    <tbody>
+                      <tr class="db-clickrow" data-goto="op-detail" data-id="nethermind"><td class="db-rank-cell">1</td><td><div class="db-td-name"><div class="db-avatar" style="background:#7A86A5">N</div>Nethermind</div></td><td>34%</td><td><div class="db-td-tvl"><span>1,554,567 ETH</span><span>$ 15,500,000</span></div></td></tr>
+                      <tr class="db-clickrow" data-goto="op-detail" data-id="infstones"><td class="db-rank-cell">2</td><td><div class="db-td-name"><div class="db-avatar" style="background:#F97316">I</div>InfStones</div></td><td>22%</td><td><div class="db-td-tvl"><span>980,000 ETH</span><span>$ 9,800,000</span></div></td></tr>
+                      <tr class="db-clickrow" data-goto="op-detail" data-id="altlayer-op"><td class="db-rank-cell">3</td><td><div class="db-td-name"><div class="db-avatar" style="background:#627EEA">A</div>AltLayer</div></td><td>18%</td><td><div class="db-td-tvl"><span>760,000 ETH</span><span>$ 7,600,000</span></div></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div><!-- /avs-detail -->
+
+
+            <!-- ══ SCREEN: OPERATOR DETAIL ══ -->
+            <div class="db-screen" id="db-screen-op-detail">
+              <div class="db-detail-back db-back-btn">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Back to Operators
+              </div>
+              <div class="db-detail-hd">
+                <div class="db-detail-av" id="db-op-detail-av" style="background:#7A86A5">N</div>
+                <div>
+                  <div class="db-detail-name" id="db-op-detail-name">Nethermind</div>
+                  <div class="db-detail-sub">Professional operator · 7 AVS · Verified</div>
+                </div>
+              </div>
+              <div class="db-detail-stats">
+                <div class="db-detail-stat"><div class="db-detail-stat__label">TVL</div><div class="db-detail-stat__val">4,554,567</div><div class="db-detail-stat__sub">ETH</div></div>
+                <div class="db-detail-stat"><div class="db-detail-stat__label">Restakers</div><div class="db-detail-stat__val">344</div></div>
+                <div class="db-detail-stat"><div class="db-detail-stat__label">AVS Running</div><div class="db-detail-stat__val">7</div></div>
+                <div class="db-detail-stat"><div class="db-detail-stat__label">Commission</div><div class="db-detail-stat__val">10%</div></div>
+              </div>
+              <div style="padding:14px">
+                <div class="db-panel">
+                  <div class="db-panel__hd">AVS exposure</div>
+                  <table class="db-full-table">
+                    <thead><tr><th>AVS</th><th>Stake allocated</th><th>TVL</th><th>Risk</th></tr></thead>
+                    <tbody>
+                      <tr><td><div class="db-td-name"><div class="db-avatar" style="background:#F31260">E</div>EigenDA</div></td><td>34%</td><td><div class="db-td-tvl"><span>1,554,567 ETH</span><span>$ 15,500,000</span></div></td><td><span style="color:#22C55E;font-size:11px">Low</span></td></tr>
+                      <tr><td><div class="db-td-name"><div class="db-avatar" style="background:#627EEA">A</div>AltLayer</div></td><td>28%</td><td><div class="db-td-tvl"><span>980,000 ETH</span><span>$ 9,800,000</span></div></td><td><span style="color:#FFA726;font-size:11px">Medium</span></td></tr>
+                      <tr><td><div class="db-td-name"><div class="db-avatar" style="background:#F97316">W</div>WitnessChain</div></td><td>22%</td><td><div class="db-td-tvl"><span>760,000 ETH</span><span>$ 7,600,000</span></div></td><td><span style="color:#22C55E;font-size:11px">Low</span></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div><!-- /op-detail -->
+
+
+            <!-- ══ PLACEHOLDER SCREENS ══ -->
+            <div class="db-screen" id="db-screen-lst">
+              <div class="db-placeholder">
+                <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><rect x="8" y="12" width="32" height="6" rx="2" fill="#7A86A5"/><rect x="8" y="22" width="24" height="6" rx="2" fill="#7A86A5"/><rect x="8" y="32" width="16" height="6" rx="2" fill="#7A86A5"/></svg>
+                LST overview — in development
               </div>
             </div>
-            <div class="rs-biz-pillar">
-              <span class="rs-biz-pillar__num">02</span>
-              <div>
-                <h4 class="rs-biz-pillar__title">Faster iteration cycles</h4>
-                <p class="rs-biz-pillar__body">Layout hypotheses, component variants, and information hierarchy decisions were validated in the browser — compressing what would be a week-long design-dev loop into an afternoon.</p>
+            <div class="db-screen" id="db-screen-lrt">
+              <div class="db-placeholder">
+                <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="16" stroke="#7A86A5" stroke-width="2"/><circle cx="24" cy="24" r="8" stroke="#7A86A5" stroke-width="2"/></svg>
+                LRT overview — in development
               </div>
             </div>
-            <div class="rs-biz-pillar">
-              <span class="rs-biz-pillar__num">03</span>
-              <div>
-                <h4 class="rs-biz-pillar__title">The next step in the product</h4>
-                <p class="rs-biz-pillar__body">The same principle applies to what I'd build next: an LLM-generated plain-English risk summary per position, updated daily. If AI can compress the gap between complex data and user action, it belongs in the product.</p>
+            <div class="db-screen" id="db-screen-rewards">
+              <div class="db-placeholder">
+                <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><path d="M24 6l4.5 12H42l-10.5 7.5 4.5 12L24 30 12 37.5l4.5-12L6 18h13.5z" stroke="#7A86A5" stroke-width="2" stroke-linejoin="round"/></svg>
+                Rewards — coming soon
               </div>
             </div>
-          </div>
-        </div>
-      </div>
+            <div class="db-screen" id="db-screen-events">
+              <div class="db-placeholder">
+                <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><rect x="8" y="10" width="32" height="32" rx="4" stroke="#7A86A5" stroke-width="2"/><path d="M16 8v4M32 8v4M8 20h32" stroke="#7A86A5" stroke-width="2" stroke-linecap="round"/></svg>
+                Events log — in development
+              </div>
+            </div>
+            <div class="db-screen" id="db-screen-api">
+              <div class="db-placeholder">
+                <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><path d="M10 24l8-10M10 24l8 10M38 24l-8-10M38 24l-8 10M20 34l8-20" stroke="#7A86A5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                API documentation — in development
+              </div>
+            </div>
+
+          </main>
+        </div><!-- /db-app -->
+      </div><!-- /db-browser -->
+
+      <!-- JS -->
+      <script>
+      (function(){
+        var prevView = 'overview';
+
+        function showScreen(id) {
+          document.querySelectorAll('.db-screen').forEach(function(s){ s.classList.remove('is-active'); });
+          var el = document.getElementById('db-screen-' + id);
+          if (el) el.classList.add('is-active');
+        }
+
+        function setNav(view) {
+          document.querySelectorAll('#dbNav .db-nav__item').forEach(function(item){
+            item.classList.toggle('is-active', item.dataset.view === view);
+          });
+        }
+
+        // Nav clicks
+        document.querySelectorAll('#dbNav .db-nav__item').forEach(function(item){
+          item.addEventListener('click', function(){
+            var view = item.dataset.view;
+            prevView = view;
+            showScreen(view);
+            setNav(view);
+          });
+        });
+
+        // Clickable rows
+        document.querySelectorAll('.db-clickrow').forEach(function(row){
+          row.addEventListener('click', function(){
+            var goto = row.dataset.goto;
+            showScreen(goto);
+            // keep nav highlight on whichever list we came from
+          });
+        });
+
+        // Back buttons
+        document.querySelectorAll('.db-back-btn').forEach(function(btn){
+          btn.addEventListener('click', function(){
+            var screen = btn.closest('.db-screen');
+            var id = screen.id; // e.g. db-screen-avs-detail
+            var back = id.includes('avs') ? 'avs' : 'operators';
+            showScreen(back);
+            setNav(back);
+            prevView = back;
+          });
+        });
+
+        // Time filters
+        document.querySelectorAll('#dbTimeFilters .db-tf').forEach(function(btn){
+          btn.addEventListener('click', function(){
+            document.querySelectorAll('#dbTimeFilters .db-tf').forEach(function(b){ b.classList.remove('is-active'); });
+            btn.classList.add('is-active');
+          });
+        });
+      })();
+      </script>
+
     </div>
 
 
