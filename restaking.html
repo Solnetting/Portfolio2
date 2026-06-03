@@ -3206,6 +3206,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           document.querySelectorAll('.db-screen').forEach(function(s){ s.classList.remove('is-active'); });
           var el = document.getElementById('db-screen-' + id);
           if (el) el.classList.add('is-active');
+          var mainEl = document.getElementById('dbMain');
+          if (mainEl) mainEl.scrollTop = 0;
         }
         function setNav(view) {
           document.querySelectorAll('#dbNav .db-nav__item').forEach(function(item){
@@ -3221,8 +3223,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           });
         });
         document.querySelectorAll('.db-clickrow').forEach(function(row){
-          row.addEventListener('click', function(){
-            showScreen(row.dataset.goto);
+          row.addEventListener('click', function(e){
+            e.stopPropagation();
+            var target = row.dataset.goto;
+            if (!isExpanded) { triggered = true; expand(); }
+            showScreen(target);
+            var mainEl = document.getElementById('dbMain');
+            if (mainEl) mainEl.scrollTop = 0;
           });
         });
         document.querySelectorAll('.db-back-btn').forEach(function(btn){
