@@ -1293,7 +1293,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       -webkit-backdrop-filter: blur(8px);
       z-index: 9998;
       opacity: 0; pointer-events: none;
-      transition: opacity .32s ease;
+      transition: opacity .55s ease;
     }
     .db-expand-backdrop.is-visible { opacity: 1; pointer-events: all; }
 
@@ -2996,7 +2996,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         var isExpanded = false;
         var triggered  = false;       // auto-trigger only once per page load
         var EASE       = 'cubic-bezier(.4,0,.2,1)';
-        var DUR        = '360ms';
+        var DUR        = '620ms';
 
         function getRect() { return browser.getBoundingClientRect(); }
 
@@ -3054,7 +3054,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           var hr = holder.getBoundingClientRect();
 
           browser.style.transition = ['top','left','width','height'].map(function(p){
-            return p + ' 300ms ' + EASE;
+            return p + ' 520ms ' + EASE;
           }).join(',');
 
           browser.style.top    = hr.top  + 'px';
