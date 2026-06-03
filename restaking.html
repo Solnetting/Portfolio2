@@ -1148,7 +1148,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .db-lrt-wrap { padding: 14px; }
     .db-lrt-grid { display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: center; }
     .db-lrt-bars { display: flex; flex-direction: column; gap: 7px; }
-    .db-lrt-row { display: grid; grid-template-columns: 80px 1fr 40px 90px; align-items: center; gap: 8px; font-size: 11px; }
+    .db-lrt-row { display: grid; grid-template-columns: 80px 1fr 40px 90px; align-items: center; gap: 8px; font-size: 11px; transition: opacity .18s; cursor: pointer; }
     .db-lrt-name { display:flex; align-items:center; gap:5px; color:#fff; }
     .db-lrt-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
     .db-lrt-bar-track { height: 6px; background: rgba(255,255,255,.06); border-radius: 3px; overflow: hidden; }
@@ -2657,7 +2657,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <div class="db-dist-total__usd">$9,130,243,626</div>
                     <div class="db-dist-total__eth">3,599,711 ETH</div>
                   </div>
-                  <div style="padding:0 16px 16px;display:flex;flex-direction:column;gap:7px">
+                  <div id="dbLeftRows" style="padding:0 16px 16px;display:flex;flex-direction:column;gap:7px">
                     <div class="db-lrt-row"><div class="db-lrt-name"><span class="db-lrt-dot" style="background:#F59E0B"></span>WBETH</div><div class="db-lrt-bar-track"><div class="db-lrt-bar-fill" style="width:38%;background:#F59E0B"></div></div><div class="db-lrt-pct">38%</div><div class="db-lrt-eth">4,554,567 ETH</div></div>
                     <div class="db-lrt-row"><div class="db-lrt-name"><span class="db-lrt-dot" style="background:#8B5CF6"></span>osETH</div><div class="db-lrt-bar-track"><div class="db-lrt-bar-fill" style="width:28%;background:#8B5CF6"></div></div><div class="db-lrt-pct">28%</div><div class="db-lrt-eth">4,554,567 ETH</div></div>
                     <div class="db-lrt-row"><div class="db-lrt-name"><span class="db-lrt-dot" style="background:#22C55E"></span>lsETH</div><div class="db-lrt-bar-track"><div class="db-lrt-bar-fill" style="width:24%;background:#22C55E"></div></div><div class="db-lrt-pct">24%</div><div class="db-lrt-eth">4,554,567 ETH</div></div>
@@ -2673,7 +2673,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                   <div class="db-panel__hd">External LRT Distribution <span class="db-panel__hd-info">ⓘ</span></div>
                   <p class="db-lrt-desc">Liquid Restaking Tokens (LRTs) are not used for cryptoeconomic security in EigenLayer but are still relevant to monitor. Many restakers use LRTs to simplify restaking, as Liquid Restaking Providers handle delegations for them. Tracking LRT total value locked (TVL) and distribution offers insights into retail restaking demand and potential concentration risks.</p>
                   <div class="db-lrt-inner">
-                    <div style="display:flex;flex-direction:column;gap:6px">
+                    <div id="dbRightRows" style="display:flex;flex-direction:column;gap:6px">
                       <div class="db-lrt-row"><div class="db-lrt-name"><span class="db-lrt-dot" style="background:#F59E0B"></span>WBETH</div><div class="db-lrt-bar-track"><div class="db-lrt-bar-fill" style="width:38%;background:#F59E0B"></div></div><div class="db-lrt-pct">38%</div><div class="db-lrt-eth">4,554,567 ETH</div></div>
                       <div class="db-lrt-row"><div class="db-lrt-name"><span class="db-lrt-dot" style="background:#8B5CF6"></span>osETH</div><div class="db-lrt-bar-track"><div class="db-lrt-bar-fill" style="width:28%;background:#8B5CF6"></div></div><div class="db-lrt-pct">28%</div><div class="db-lrt-eth">4,554,567 ETH</div></div>
                       <div class="db-lrt-row"><div class="db-lrt-name"><span class="db-lrt-dot" style="background:#22C55E"></span>lsETH</div><div class="db-lrt-bar-track"><div class="db-lrt-bar-fill" style="width:24%;background:#22C55E"></div></div><div class="db-lrt-pct">24%</div><div class="db-lrt-eth">4,554,567 ETH</div></div>
@@ -2682,12 +2682,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                       <div class="db-lrt-row"><div class="db-lrt-name"><span class="db-lrt-dot" style="background:#A78BFA"></span>ETHx</div><div class="db-lrt-bar-track"><div class="db-lrt-bar-fill" style="width:4%;background:#A78BFA"></div></div><div class="db-lrt-pct">4%</div><div class="db-lrt-eth">4,554,567 ETH</div></div>
                       <div class="db-lrt-row"><div class="db-lrt-name"><span class="db-lrt-dot" style="background:#6B7280"></span>Others</div><div class="db-lrt-bar-track"><div class="db-lrt-bar-fill" style="width:14%;background:#6B7280"></div></div><div class="db-lrt-pct">14%</div><div class="db-lrt-eth">4,554,567 ETH</div></div>
                     </div>
-                    <!-- Donut -->
+                    <!-- Donut (SVG paths so each segment is individually hoverable) -->
                     <div class="db-donut-wrap">
-                      <div class="db-donut" style="background:conic-gradient(#F59E0B 0% 38%,#8B5CF6 38% 66%,#22C55E 66% 90%,#F97316 90% 96%,#A78BFA 96% 100%)"></div>
+                      <svg id="dbDonutSvg" viewBox="0 0 140 140" width="140" height="140" style="display:block">
+                        <!-- cx=70 cy=70 R=65 r=40; 7 segments proportional to 38/28/24/15/6/4/14 -->
+                        <path fill="#F59E0B" stroke="#0A0D12" stroke-width="2" d="M 70 5 A 65 65 0 0 1 132.4 88 L 108.4 81.1 A 40 40 0 0 0 70 30 Z" style="cursor:pointer;transition:opacity .18s"/>
+                        <path fill="#8B5CF6" stroke="#0A0D12" stroke-width="2" d="M 132.4 88 A 65 65 0 0 1 65.2 134.8 L 67.1 109.9 A 40 40 0 0 0 108.4 81.1 Z" style="cursor:pointer;transition:opacity .18s"/>
+                        <path fill="#22C55E" stroke="#0A0D12" stroke-width="2" d="M 65.2 134.8 A 65 65 0 0 1 8.5 91.1 L 32.2 83 A 40 40 0 0 0 67.1 109.9 Z" style="cursor:pointer;transition:opacity .18s"/>
+                        <path fill="#F97316" stroke="#0A0D12" stroke-width="2" d="M 8.5 91.1 A 65 65 0 0 1 10.2 44.5 L 33.2 54.3 A 40 40 0 0 0 32.2 83 Z" style="cursor:pointer;transition:opacity .18s"/>
+                        <path fill="#3B82F6" stroke="#0A0D12" stroke-width="2" d="M 10.2 44.5 A 65 65 0 0 1 20.1 28.4 L 39.3 44.4 A 40 40 0 0 0 33.2 54.3 Z" style="cursor:pointer;transition:opacity .18s"/>
+                        <path fill="#A78BFA" stroke="#0A0D12" stroke-width="2" d="M 20.1 28.4 A 65 65 0 0 1 29.1 19.5 L 44.8 38.9 A 40 40 0 0 0 39.3 44.4 Z" style="cursor:pointer;transition:opacity .18s"/>
+                        <path fill="#6B7280" stroke="#0A0D12" stroke-width="2" d="M 29.1 19.5 A 65 65 0 0 1 70 5 L 70 30 A 40 40 0 0 0 44.8 38.9 Z" style="cursor:pointer;transition:opacity .18s"/>
+                      </svg>
                       <div class="db-donut-center">
-                        <div class="db-donut-val">48.07M</div>
-                        <div class="db-donut-sub">ETH</div>
+                        <div class="db-donut-val" id="dbDonutVal">48.07M</div>
+                        <div class="db-donut-sub" id="dbDonutSub">ETH</div>
                       </div>
                     </div>
                   </div>
@@ -3111,6 +3120,40 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             setTimeout(function(){ adPanel.style.display = 'none'; }, 200);
           });
         }
+
+        /* ── Donut chart hover ── */
+        (function(){
+          var paths    = document.querySelectorAll('#dbDonutSvg path');
+          var lRows    = document.querySelectorAll('#dbLeftRows  .db-lrt-row');
+          var rRows    = document.querySelectorAll('#dbRightRows .db-lrt-row');
+          var dVal     = document.getElementById('dbDonutVal');
+          var dSub     = document.getElementById('dbDonutSub');
+          var names    = ['WBETH','osETH','lsETH','ankrETH','rETH','ETHx','Others'];
+          var pcts     = ['38%','28%','24%','15%','6%','4%','14%'];
+
+          function highlight(idx) {
+            paths.forEach(function(p, i){ p.style.opacity = (idx < 0 || i === idx) ? '1' : '0.2'; });
+            lRows.forEach(function(r, i){ r.style.opacity = (idx < 0 || i === idx) ? '1' : '0.35'; });
+            rRows.forEach(function(r, i){ r.style.opacity = (idx < 0 || i === idx) ? '1' : '0.35'; });
+            if (dVal && dSub) {
+              dVal.textContent = idx < 0 ? '48.07M' : pcts[idx];
+              dSub.textContent = idx < 0 ? 'ETH'    : names[idx];
+            }
+          }
+
+          paths.forEach(function(p, i){
+            p.addEventListener('mouseenter', function(){ highlight(i); });
+            p.addEventListener('mouseleave', function(){ highlight(-1); });
+          });
+          lRows.forEach(function(r, i){
+            r.addEventListener('mouseenter', function(){ highlight(i); });
+            r.addEventListener('mouseleave', function(){ highlight(-1); });
+          });
+          rRows.forEach(function(r, i){
+            r.addEventListener('mouseenter', function(){ highlight(i); });
+            r.addEventListener('mouseleave', function(){ highlight(-1); });
+          });
+        })();
 
         /* Scroll trigger: expand when top of browser reaches 30% from viewport top */
         var ticking = false;
