@@ -896,7 +896,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     /* Sidebar */
     .db-sidebar {
-      width: 200px;
+      width: 224px;
       flex-shrink: 0;
       background: #0F111A;
       border-right: 1px solid #1e2235;
@@ -2505,8 +2505,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </nav>
 
             <div class="db-sidebar-bottom">
-              <div class="db-ad">
-                <div class="db-ad__hd"><span>Promote your operator</span><span>×</span></div>
+              <div class="db-ad" id="dbAdPanel">
+                <div class="db-ad__hd"><span>Promote your operator</span><span id="dbAdClose" style="cursor:pointer;opacity:.6;font-size:14px;line-height:1;padding:2px 4px;border-radius:3px;transition:opacity .15s" onmouseenter="this.style.opacity=1" onmouseleave="this.style.opacity=.6">×</span></div>
                 <div class="db-ad__body">Take advantage of all the features in one glance.</div>
                 <button class="db-ad__btn">Try promotion</button>
               </div>
@@ -2664,12 +2664,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <rect x="595" y="20"  width="13" height="104" fill="#8B5CF6" rx="1"/><rect x="595" y="5"   width="13" height="16" fill="#DDD6FE" rx="1"/>
                         <!-- x-axis -->
                         <line x1="0" y1="124" x2="620" y2="124" stroke="rgba(255,255,255,.12)" stroke-width="1"/>
-                        <!-- x-axis labels -->
-                        <text x="0"   y="136" fill="#7A86A5" font-size="8" font-family="DM Sans, sans-serif">Jul 23</text>
-                        <text x="200" y="136" fill="#7A86A5" font-size="8" font-family="DM Sans, sans-serif">Oct 23</text>
-                        <text x="391" y="136" fill="#7A86A5" font-size="8" font-family="DM Sans, sans-serif">Jan 24</text>
-                        <text x="560" y="136" fill="#7A86A5" font-size="8" font-family="DM Sans, sans-serif">Apr 24</text>
                       </svg>
+                      <!-- x-axis labels as plain HTML so they don't stretch -->
+                      <div style="display:flex;justify-content:space-between;padding:4px 0 0;font-size:9px;color:#7A86A5;font-family:'DM Sans',sans-serif">
+                        <span>Jul 23</span>
+                        <span style="margin-left:29%">Oct 23</span>
+                        <span style="margin-left:auto;margin-right:6%">Jan 24</span>
+                        <span>Apr 24</span>
+                      </div>
                     </div>
                   </div>
                   <div style="padding:6px 16px 12px">
@@ -3083,6 +3085,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
         /* Click backdrop = close */
         backdrop.addEventListener('click', collapse);
+
+        /* Ad panel close */
+        var adClose = document.getElementById('dbAdClose');
+        var adPanel = document.getElementById('dbAdPanel');
+        if (adClose && adPanel) {
+          adClose.addEventListener('click', function(e){
+            e.stopPropagation();
+            adPanel.style.transition = 'opacity .2s';
+            adPanel.style.opacity = '0';
+            setTimeout(function(){ adPanel.style.display = 'none'; }, 200);
+          });
+        }
 
         /* Scroll trigger: expand when top of browser reaches 30% from viewport top */
         var ticking = false;
