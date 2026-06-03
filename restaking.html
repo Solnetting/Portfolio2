@@ -1279,6 +1279,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       font-size: 13px;
     }
     .db-placeholder svg { opacity: .25; }
+
+    /* ── Expand / collapse ── */
+    .db-chrome__dots span:first-child  { background: #FF5F57 !important; cursor: pointer; transition: filter .15s; }
+    .db-chrome__dots span:nth-child(2) { background: #FEBC2E !important; }
+    .db-chrome__dots span:nth-child(3) { background: #28C840 !important; }
+    .db-chrome__dots span:first-child:hover { filter: brightness(1.2); }
+
+    .db-expand-backdrop {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,.7);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 9998;
+      opacity: 0; pointer-events: none;
+      transition: opacity .32s ease;
+    }
+    .db-expand-backdrop.is-visible { opacity: 1; pointer-events: all; }
+
+    .db-space-holder { display: none; }
+
+    .db-browser.is-expanded {
+      border-radius: 10px;
+      box-shadow: 0 40px 120px rgba(0,0,0,.8);
+    }
+    .db-browser.is-expanded .db-app {
+      height: calc(90vh - 44px);
+      overflow-y: auto;
+    }
   </style>
 </head>
 <body>
@@ -2417,8 +2445,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <h2 class="rs-sec__title">Prototyping and shipping with Claude Code</h2>
       <p class="rs-body-text" style="max-width:600px">Every screen below was prototyped directly in the browser using Claude Code — not in Figma. Click the nav, rows, and filters to explore the full operator decision flow.</p>
 
+      <!-- Expand backdrop + space holder -->
+      <div id="dbBackdrop" class="db-expand-backdrop"></div>
+      <div id="dbSpaceHolder" class="db-space-holder"></div>
+
       <!-- ── Browser Frame ── -->
-      <div class="db-browser">
+      <div class="db-browser" id="dbBrowser">
 
         <!-- Chrome bar -->
         <div class="db-chrome">
@@ -2915,6 +2947,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <!-- JS -->
       <script>
       (function(){
+        /* ── Navigation ── */
         var prevView = 'overview';
 
         function showScreen(id) {
@@ -2922,14 +2955,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           var el = document.getElementById('db-screen-' + id);
           if (el) el.classList.add('is-active');
         }
-
         function setNav(view) {
           document.querySelectorAll('#dbNav .db-nav__item').forEach(function(item){
             item.classList.toggle('is-active', item.dataset.view === view);
           });
         }
-
-        // Nav clicks
         document.querySelectorAll('#dbNav .db-nav__item').forEach(function(item){
           item.addEventListener('click', function(){
             var view = item.dataset.view;
@@ -2938,35 +2968,150 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             setNav(view);
           });
         });
-
-        // Clickable rows
         document.querySelectorAll('.db-clickrow').forEach(function(row){
           row.addEventListener('click', function(){
-            var goto = row.dataset.goto;
-            showScreen(goto);
-            // keep nav highlight on whichever list we came from
+            showScreen(row.dataset.goto);
           });
         });
-
-        // Back buttons
         document.querySelectorAll('.db-back-btn').forEach(function(btn){
           btn.addEventListener('click', function(){
-            var screen = btn.closest('.db-screen');
-            var id = screen.id; // e.g. db-screen-avs-detail
+            var id = btn.closest('.db-screen').id;
             var back = id.includes('avs') ? 'avs' : 'operators';
-            showScreen(back);
-            setNav(back);
-            prevView = back;
+            showScreen(back); setNav(back); prevView = back;
           });
         });
-
-        // Time filters
         document.querySelectorAll('#dbTimeFilters .db-tf').forEach(function(btn){
           btn.addEventListener('click', function(){
             document.querySelectorAll('#dbTimeFilters .db-tf').forEach(function(b){ b.classList.remove('is-active'); });
             btn.classList.add('is-active');
           });
         });
+
+        /* ── Expand / collapse ── */
+        var browser    = document.getElementById('dbBrowser');
+        var backdrop   = document.getElementById('dbBackdrop');
+        var holder     = document.getElementById('dbSpaceHolder');
+        var app        = browser.querySelector('.db-app');
+        var redDot     = browser.querySelector('.db-chrome__dots span:first-child');
+        var isExpanded = false;
+        var triggered  = false;       // auto-trigger only once per page load
+        var EASE       = 'cubic-bezier(.4,0,.2,1)';
+        var DUR        = '360ms';
+
+        function getRect() { return browser.getBoundingClientRect(); }
+
+        function expand() {
+          if (isExpanded) return;
+          isExpanded = true;
+
+          /* 1. Capture current rect before we touch anything */
+          var r = getRect();
+
+          /* 2. Insert space-holder so page doesn't jump */
+          holder.style.cssText = 'display:block;height:' + r.height + 'px;width:100%;';
+
+          /* 3. Pin browser to exact current viewport position (no jump) */
+          browser.style.cssText = [
+            'position:fixed',
+            'top:'    + r.top  + 'px',
+            'left:'   + r.left + 'px',
+            'width:'  + r.width  + 'px',
+            'height:' + r.height + 'px',
+            'margin:0',
+            'z-index:9999',
+            'transition:none'
+          ].join(';');
+
+          /* force reflow */
+          browser.offsetHeight;
+
+          /* 4. Animate to full-screen target */
+          var tw = window.innerWidth  * 0.90;
+          var th = window.innerHeight * 0.90;
+          var tl = (window.innerWidth  - tw) / 2;
+          var tt = (window.innerHeight - th) / 2;
+
+          browser.style.transition = ['top','left','width','height'].map(function(p){
+            return p + ' ' + DUR + ' ' + EASE;
+          }).join(',');
+
+          browser.style.top    = tt + 'px';
+          browser.style.left   = tl + 'px';
+          browser.style.width  = tw + 'px';
+          browser.style.height = th + 'px';
+
+          browser.classList.add('is-expanded');
+          app.style.height = (th - 44) + 'px';
+
+          backdrop.classList.add('is-visible');
+          document.body.style.overflow = 'hidden';
+        }
+
+        function collapse() {
+          if (!isExpanded) return;
+
+          /* Animate back to holder's current position */
+          var hr = holder.getBoundingClientRect();
+
+          browser.style.transition = ['top','left','width','height'].map(function(p){
+            return p + ' 300ms ' + EASE;
+          }).join(',');
+
+          browser.style.top    = hr.top  + 'px';
+          browser.style.left   = hr.left + 'px';
+          browser.style.width  = hr.width  + 'px';
+          browser.style.height = hr.height + 'px';
+
+          backdrop.classList.remove('is-visible');
+          document.body.style.overflow = '';
+          browser.classList.remove('is-expanded');
+
+          browser.addEventListener('transitionend', function done(){
+            browser.removeEventListener('transitionend', done);
+            /* restore to normal flow */
+            browser.style.cssText = '';
+            app.style.height = '';
+            holder.style.cssText = 'display:none';
+            isExpanded = false;
+          }, { once: true });
+        }
+
+        /* Red dot = close */
+        redDot.addEventListener('click', function(e){
+          e.stopPropagation();
+          collapse();
+        });
+
+        /* Click backdrop = close */
+        backdrop.addEventListener('click', collapse);
+
+        /* Scroll trigger: expand when top of browser reaches 30% from viewport top */
+        var ticking = false;
+        function onScroll() {
+          if (triggered || isExpanded) return;
+          if (!ticking) {
+            ticking = true;
+            requestAnimationFrame(function(){
+              ticking = false;
+              var r = browser.getBoundingClientRect();
+              if (r.top <= window.innerHeight * 0.30 && r.top > 0) {
+                triggered = true;
+                expand();
+              }
+            });
+          }
+        }
+        window.addEventListener('scroll', onScroll, { passive: true });
+
+        /* First click on prototype also expands */
+        browser.addEventListener('click', function firstClick(){
+          if (!isExpanded) {
+            triggered = true;
+            expand();
+          }
+          browser.removeEventListener('click', firstClick);
+        });
+
       })();
       </script>
 
