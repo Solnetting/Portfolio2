@@ -1050,7 +1050,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     /* Chart with Y-axis */
     .db-chart-outer { display: grid; grid-template-columns: 28px 1fr; gap: 0; align-items: stretch; }
-    .db-chart-yaxis { display: flex; flex-direction: column; justify-content: space-between; padding-bottom: 18px; }
+    .db-chart-yaxis { display: flex; flex-direction: column; justify-content: space-between; padding-bottom: 0; }
     .db-chart-yaxis span { font-size: 9px; color: #7A86A5; text-align: right; line-height: 1; }
 
     /* Panels */
@@ -1130,7 +1130,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .db-tf.is-active { background: #191C2C; color: #CAD7F9; border-color: #CAD7F9; }
     .db-tf:hover:not(.is-active) { color: #CAD7F9; }
     .db-chart-val { font-size: 13px; color: #7A86A5; margin-bottom: 8px; }
-    .db-chart-svg { width: 100%; height: 140px; display: block; }
+    .db-chart-svg { width: 100%; height: 124px; display: block; }
     .db-chart-legend {
       display: flex;
       gap: 16px;
@@ -2618,7 +2618,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                       <span>220</span><span>165</span><span>110</span><span>55</span><span>0</span>
                     </div>
                     <div>
-                      <svg width="100%" height="140" viewBox="0 0 620 140" preserveAspectRatio="none">
+                      <svg width="100%" height="124" viewBox="0 0 620 124" preserveAspectRatio="none">
                         <!-- horizontal grid lines (y scaled ×14/9 from original 90-height viewBox) -->
                         <line x1="0" y1="0"   x2="620" y2="0"   stroke="rgba(255,255,255,.05)" stroke-width="1"/>
                         <line x1="0" y1="31"  x2="620" y2="31"  stroke="rgba(255,255,255,.05)" stroke-width="1"/>
@@ -2666,7 +2666,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <line x1="0" y1="124" x2="620" y2="124" stroke="rgba(255,255,255,.12)" stroke-width="1"/>
                       </svg>
                       <!-- x-axis labels as plain HTML so they don't stretch -->
-                      <div style="display:flex;justify-content:space-between;padding:4px 0 0;font-size:9px;color:#7A86A5;font-family:'DM Sans',sans-serif">
+                      <div style="display:flex;justify-content:space-between;padding:2px 0 0;font-size:9px;color:#7A86A5;font-family:'DM Sans',sans-serif">
                         <span>Jul 23</span>
                         <span style="margin-left:29%">Oct 23</span>
                         <span style="margin-left:auto;margin-right:6%">Jan 24</span>
