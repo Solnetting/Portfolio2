@@ -1371,13 +1371,39 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .avsd-stat-btn.is-active { background: #191C2C; border-color: #293041; }
     .avsd-stat-btn.is-active .avsd-stat-label { color: #CAD7F9; }
     .avsd-stat-btn.is-active .avsd-stat-val { color: #fff; }
+    .avsd-stat-btn:not(.is-active):hover { background: rgba(25,28,44,0.45); border-color: rgba(41,48,65,0.5); }
     .avsd-view { display: none; }
     .avsd-view.is-active { display: block; }
     .avsd-ops-body { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: 16px; }
     .avsd-ldb-addr { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #7A86A5; word-break: break-all; }
+    /* Bar chart tooltip */
+    #dbBarTooltip {
+      position: fixed;
+      background: #1E2235;
+      border: 1px solid #293041;
+      border-radius: 6px;
+      padding: 7px 10px;
+      pointer-events: none;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      line-height: 1.5;
+      color: #7A86A5;
+      white-space: nowrap;
+      display: none;
+      z-index: 9999;
+      transform: translate(-50%, calc(-100% - 8px));
+    }
+    #dbBarTooltip .tt-date { color: #CAD7F9; font-weight: 500; margin-bottom: 2px; }
+    #dbBarTooltip .tt-eth  { color: #fff; font-size: 12px; font-weight: 500; }
+    #dbBarTooltip .tt-pct  { color: #7CCB69; }
   </style>
 </head>
 <body>
+<!-- Bar chart hover tooltip (fixed, body-level to avoid overflow clipping) -->
+<div id="dbBarTooltip">
+  <div class="tt-date"></div>
+  <div><span class="tt-eth"></span>&thinsp;<span class="tt-pct"></span></div>
+</div>
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M5BDFLX8"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -1466,7 +1492,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a href="#rs-iterations" class="rs-sidenav__item" data-s="rs-iterations">Iterations</a>
       <a href="#rs-system"     class="rs-sidenav__item" data-s="rs-system">Design System</a>
       <a href="#rs-ai"         class="rs-sidenav__item" data-s="rs-ai">AI Workflow</a>
-      <a href="#rs-results"    class="rs-sidenav__item" data-s="rs-results">Results &amp;<br>Retrospective</a>
     </nav>
 
     <!-- Scrolling content -->
@@ -2686,7 +2711,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                       <span>220</span><span>165</span><span>110</span><span>55</span><span>0</span>
                     </div>
                     <div>
-                      <svg width="100%" height="124" viewBox="0 0 620 124" preserveAspectRatio="none">
+                      <svg width="100%" height="124" viewBox="0 0 620 124" preserveAspectRatio="none" id="dbChartSvg">
                         <!-- horizontal grid lines (y scaled ×14/9 from original 90-height viewBox) -->
                         <line x1="0" y1="0"   x2="620" y2="0"   stroke="rgba(255,255,255,.05)" stroke-width="1"/>
                         <line x1="0" y1="31"  x2="620" y2="31"  stroke="rgba(255,255,255,.05)" stroke-width="1"/>
@@ -2943,33 +2968,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                       <button class="db-tf">All</button>
                     </div>
                   </div>
-                  <div style="position:relative">
-                    <svg width="100%" height="200" viewBox="0 0 720 200" preserveAspectRatio="none" style="display:block">
-                      <!-- y-axis labels: 300/200/100/50/0 -->
-                      <text x="32" y="24"  text-anchor="end" font-size="11" fill="#7A86A5" font-family="DM Sans,sans-serif">300</text>
-                      <text x="32" y="77"  text-anchor="end" font-size="11" fill="#7A86A5" font-family="DM Sans,sans-serif">200</text>
-                      <text x="32" y="131" text-anchor="end" font-size="11" fill="#7A86A5" font-family="DM Sans,sans-serif">100</text>
-                      <text x="32" y="157" text-anchor="end" font-size="11" fill="#7A86A5" font-family="DM Sans,sans-serif">50</text>
-                      <text x="32" y="184" text-anchor="end" font-size="11" fill="#7A86A5" font-family="DM Sans,sans-serif">0</text>
-                      <!-- grid lines -->
-                      <line x1="37" y1="20"  x2="716" y2="20"  stroke="rgba(255,255,255,.06)" stroke-width="1"/>
-                      <line x1="37" y1="73"  x2="716" y2="73"  stroke="rgba(255,255,255,.06)" stroke-width="1"/>
-                      <line x1="37" y1="127" x2="716" y2="127" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
-                      <line x1="37" y1="153" x2="716" y2="153" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
-                      <line x1="37" y1="180" x2="716" y2="180" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
-                      <!-- chart line — updated by JS -->
-                      <polyline id="avsdChartLine"
-                                points="42,76 152,73 262,140 372,127 482,132 592,130 706,49"
-                                fill="none" stroke="#4E9FD1" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
-                      <!-- x-axis labels — updated by JS -->
-                      <text id="avsdX0" x="42"  y="196" text-anchor="middle" font-size="11" fill="#7A86A5" font-family="DM Sans,sans-serif">Mon</text>
-                      <text id="avsdX1" x="152" y="196" text-anchor="middle" font-size="11" fill="#7A86A5" font-family="DM Sans,sans-serif">Tue</text>
-                      <text id="avsdX2" x="262" y="196" text-anchor="middle" font-size="11" fill="#7A86A5" font-family="DM Sans,sans-serif">Wed</text>
-                      <text id="avsdX3" x="372" y="196" text-anchor="middle" font-size="11" fill="#7A86A5" font-family="DM Sans,sans-serif">Thu</text>
-                      <text id="avsdX4" x="482" y="196" text-anchor="middle" font-size="11" fill="#7A86A5" font-family="DM Sans,sans-serif">Fri</text>
-                      <text id="avsdX5" x="592" y="196" text-anchor="middle" font-size="11" fill="#7A86A5" font-family="DM Sans,sans-serif">Sat</text>
-                      <text id="avsdX6" x="706" y="196" text-anchor="middle" font-size="11" fill="#7A86A5" font-family="DM Sans,sans-serif">Sun</text>
-                    </svg>
+                  <!-- Chart: y-axis labels as HTML + SVG (no text) + x-axis labels as HTML -->
+                  <div style="display:flex;align-items:stretch">
+                    <!-- Y-axis labels: HTML so they don't stretch with the SVG -->
+                    <div style="width:36px;flex-shrink:0;display:flex;flex-direction:column;justify-content:space-between;padding:14px 6px 20px 0;text-align:right;font-size:11px;color:#7A86A5;font-family:'DM Sans',sans-serif;line-height:1">
+                      <span>300</span><span>200</span><span>100</span><span>50</span><span>0</span>
+                    </div>
+                    <div style="flex:1;min-width:0">
+                      <!-- SVG: only grid lines + polyline, viewBox clips away old text area -->
+                      <svg width="100%" height="180" viewBox="37 0 683 180" preserveAspectRatio="none" style="display:block">
+                        <!-- grid lines (same coordinates as before) -->
+                        <line x1="37" y1="20"  x2="720" y2="20"  stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+                        <line x1="37" y1="73"  x2="720" y2="73"  stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+                        <line x1="37" y1="127" x2="720" y2="127" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+                        <line x1="37" y1="153" x2="720" y2="153" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+                        <line x1="37" y1="180" x2="720" y2="180" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+                        <!-- chart line — updated by JS -->
+                        <polyline id="avsdChartLine"
+                                  points="42,76 152,73 262,140 372,127 482,132 592,130 706,49"
+                                  fill="none" stroke="#4E9FD1" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+                      </svg>
+                      <!-- X-axis labels: HTML spans, IDs kept so JS can update textContent -->
+                      <div style="display:flex;justify-content:space-between;padding:4px 0 0;font-size:11px;color:#7A86A5;font-family:'DM Sans',sans-serif">
+                        <span id="avsdX0">Mon</span><span id="avsdX1">Tue</span><span id="avsdX2">Wed</span><span id="avsdX3">Thu</span><span id="avsdX4">Fri</span><span id="avsdX5">Sat</span><span id="avsdX6">Sun</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -3373,23 +3396,81 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           }
         };
 
+        var tooltip    = document.getElementById('dbBarTooltip');
+        var ttDate     = tooltip ? tooltip.querySelector('.tt-date') : null;
+        var ttEth      = tooltip ? tooltip.querySelector('.tt-eth')  : null;
+        var ttPct      = tooltip ? tooltip.querySelector('.tt-pct')  : null;
+        var chartSvg   = document.getElementById('dbChartSvg');
+
+        var dummyTooltipData = [
+          {eth:'4,120,344 ETH',pct:'+0.3%'},  {eth:'4,233,510 ETH',pct:'+2.7%'},
+          {eth:'4,198,002 ETH',pct:'-0.8%'},  {eth:'4,315,667 ETH',pct:'+2.8%'},
+          {eth:'4,401,230 ETH',pct:'+2.0%'},  {eth:'4,289,445 ETH',pct:'-2.5%'},
+          {eth:'4,377,891 ETH',pct:'+2.1%'},  {eth:'4,410,220 ETH',pct:'+0.7%'},
+          {eth:'4,368,004 ETH',pct:'-1.0%'},  {eth:'4,492,117 ETH',pct:'+2.8%'},
+          {eth:'4,540,883 ETH',pct:'+1.1%'},  {eth:'4,554,567 ETH',pct:'+0.3%'},
+          {eth:'4,623,441 ETH',pct:'+1.5%'},  {eth:'4,598,220 ETH',pct:'-0.5%'},
+          {eth:'4,677,894 ETH',pct:'+1.7%'},  {eth:'4,710,330 ETH',pct:'+0.7%'},
+          {eth:'4,755,120 ETH',pct:'+0.9%'},  {eth:'4,801,667 ETH',pct:'+1.0%'},
+          {eth:'4,843,990 ETH',pct:'+0.9%'},  {eth:'4,910,220 ETH',pct:'+1.4%'},
+          {eth:'4,889,445 ETH',pct:'-0.4%'},  {eth:'4,955,117 ETH',pct:'+1.3%'},
+          {eth:'5,012,344 ETH',pct:'+1.2%'},  {eth:'5,078,891 ETH',pct:'+1.3%'},
+          {eth:'5,034,220 ETH',pct:'-0.9%'},  {eth:'5,110,667 ETH',pct:'+1.5%'},
+          {eth:'5,177,994 ETH',pct:'+1.3%'},  {eth:'5,241,330 ETH',pct:'+1.2%'},
+          {eth:'5,198,004 ETH',pct:'-0.8%'},  {eth:'5,280,117 ETH',pct:'+1.6%'},
+          {eth:'5,344,883 ETH',pct:'+1.2%'},  {eth:'5,410,220 ETH',pct:'+1.2%'},
+          {eth:'5,467,441 ETH',pct:'+1.1%'},  {eth:'5,523,567 ETH',pct:'+1.0%'},
+          {eth:'5,589,220 ETH',pct:'+1.2%'},  {eth:'5,644,004 ETH',pct:'+1.0%'}
+        ];
+
         function drawBars(tf) {
           var data   = tfData[tf] || tfData['3m'];
           var g      = document.getElementById('dbChartBars');
           var labels = document.getElementById('dbChartLabels');
-          var html   = '';
+          var lbs    = data.labels;
+          g.innerHTML = '';
           for (var i = 0; i < 36; i++) {
             var x  = i * 17;
             var d  = data.bars[i][0];
             var l  = data.bars[i][1];
             var dy = BASELINE - d;
             var ly = BASELINE - d - l;
-            html += '<rect x="' + x + '" y="' + dy + '" width="13" height="' + d + '" fill="' + darkColors[i]  + '" rx="1"/>';
-            html += '<rect x="' + x + '" y="' + ly + '" width="13" height="' + l + '" fill="' + lightColors[i] + '" rx="1"/>';
+            var grp = document.createElementNS('http://www.w3.org/2000/svg','g');
+            var r1 = document.createElementNS('http://www.w3.org/2000/svg','rect');
+            r1.setAttribute('x',x); r1.setAttribute('y',dy); r1.setAttribute('width',13); r1.setAttribute('height',d); r1.setAttribute('fill',darkColors[i]); r1.setAttribute('rx',1);
+            var r2 = document.createElementNS('http://www.w3.org/2000/svg','rect');
+            r2.setAttribute('x',x); r2.setAttribute('y',ly); r2.setAttribute('width',13); r2.setAttribute('height',l); r2.setAttribute('fill',lightColors[i]); r2.setAttribute('rx',1);
+            // full-column transparent hit rect so any vertical position over the bar column triggers hover
+            var hit = document.createElementNS('http://www.w3.org/2000/svg','rect');
+            hit.setAttribute('x',x-1); hit.setAttribute('y',0); hit.setAttribute('width',15); hit.setAttribute('height',BASELINE);
+            hit.setAttribute('fill','rgba(0,0,0,0)'); hit.setAttribute('pointer-events','all');
+            grp.appendChild(r1); grp.appendChild(r2); grp.appendChild(hit);
+            (function(idx, gEl, _r1, _r2){
+              var td       = dummyTooltipData[idx];
+              var pctColor = td.pct.charAt(0)==='-' ? '#F87171' : '#7CCB69';
+              gEl.addEventListener('mouseenter', function(e){
+                _r1.setAttribute('opacity','0.6'); _r2.setAttribute('opacity','0.6');
+                if (!tooltip) return;
+                ttDate.textContent = lbs[Math.min(Math.floor(idx / Math.max(1, 36/lbs.length)), lbs.length-1)];
+                ttEth.textContent  = td.eth;
+                ttPct.textContent  = td.pct;
+                ttPct.style.color  = pctColor;
+                tooltip.style.left    = e.clientX + 'px';
+                tooltip.style.top     = e.clientY + 'px';
+                tooltip.style.display = 'block';
+              });
+              gEl.addEventListener('mousemove', function(e){
+                if (!tooltip || tooltip.style.display==='none') return;
+                tooltip.style.left = e.clientX + 'px';
+                tooltip.style.top  = e.clientY + 'px';
+              });
+              gEl.addEventListener('mouseleave', function(){
+                _r1.setAttribute('opacity','1'); _r2.setAttribute('opacity','1');
+                if (tooltip) tooltip.style.display = 'none';
+              });
+            })(i, grp, r1, r2);
+            g.appendChild(grp);
           }
-          g.innerHTML = html;
-          // update date labels
-          var lbs = data.labels;
           labels.innerHTML = '<span>' + lbs[0] + '</span><span style="margin-left:29%">' + lbs[1] + '</span><span style="margin-left:auto;margin-right:6%">' + lbs[2] + '</span><span>' + lbs[3] + '</span>';
         }
 
@@ -3664,54 +3745,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       })();
       </script>
 
-    </div>
-
-
-    <!-- ═══════════════════════════════
-         7. RESULTS & RETROSPECTIVE
-    ═══════════════════════════════ -->
-    <div id="rs-results" class="rs-sec">
-      <p class="section__label">Results & Retrospective</p>
-      <h2 class="rs-sec__title">Closing the loop</h2>
-      <p class="rs-body-text" style="max-width:560px">Did we hit the goals set in section 2? Here's where the numbers and the human feedback meet.</p>
-
-      <div class="rs-metrics">
-        <div class="rs-metric">
-          <span class="rs-metric__val">500+</span>
-          <span class="rs-metric__label">Users onboarded — month one</span>
-        </div>
-        <div class="rs-metric">
-          <span class="rs-metric__val">[X]/5</span>
-          <span class="rs-metric__label">Dashboard comprehension score</span>
-        </div>
-        <div class="rs-metric">
-          <span class="rs-metric__val">[X]%</span>
-          <span class="rs-metric__label">Core task completion rate</span>
-        </div>
-      </div>
-
-      <div class="rs-insight" style="max-width:640px">
-        <p class="rs-insight__label">User voice</p>
-        <p class="rs-insight__text">Qualitative user feedback / testing quote will go here.</p>
-      </div>
-
-      <p class="section__label" style="margin-top:3.5rem">What I'd do with more time</p>
-      <div class="rs-next">
-        <div class="rs-next__item">
-          <span class="rs-next__num">01</span>
-          <div>
-            <h4 class="rs-next__title">Mobile companion app</h4>
-            <p class="rs-next__body">The dashboard is inherently desktop-first, but critical alerts (slashing risk, reward milestones) need to reach users on mobile. A lightweight iOS/Android companion is the clearest next surface.</p>
-          </div>
-        </div>
-        <div class="rs-next__item">
-          <span class="rs-next__num">02</span>
-          <div>
-            <h4 class="rs-next__title">Multi-wallet aggregation</h4>
-            <p class="rs-next__body">Power users often manage restaking across 3–5 wallets. A portfolio aggregation view — treating multiple wallets as one entity — is a high-value feature with clear technical complexity worth solving.</p>
-          </div>
-        </div>
-      </div>
     </div>
 
     </div><!-- /rs-case__content -->
